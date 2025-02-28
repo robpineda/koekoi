@@ -6,7 +6,7 @@ plugins {
 
 android {
     namespace = "com.robertopineda.koekoi"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.robertopineda.koekoi"
