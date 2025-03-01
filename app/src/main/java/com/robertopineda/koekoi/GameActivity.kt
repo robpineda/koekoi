@@ -50,7 +50,7 @@ class GameActivity : ComponentActivity() {
         }
 
         override fun onResults(results: Bundle?) {
-            val spokenText = results?.getStringArrayList(RecognizerIntent.EXTRA_RESULTS)?.get(0) ?: ""
+           val spokenText = results?.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION)?.get(0) ?: ""
             Log.d("GameActivity", "Final result: $spokenText")
             currentOnResult?.invoke(spokenText)
         }
@@ -145,6 +145,9 @@ class GameActivity : ComponentActivity() {
             return
         }
 
+        // Update the callback for the existing listener
+        currentOnResult = onResult
+
         // Destroy and recreate the SpeechRecognizer
         if (::speechRecognizer.isInitialized) {
             speechRecognizer.destroy()
@@ -153,15 +156,12 @@ class GameActivity : ComponentActivity() {
         speechRecognizer = SpeechRecognizer.createSpeechRecognizer(this)
         speechRecognizer.setRecognitionListener(speechListener)
 
-        // Update the callback for the existing listener
-        currentOnResult = onResult
-
         val intent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH).apply {
             putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM)
-            // Try using just the language code without regional variants
+            putExtra(RecognizerIntent.EXTRA_CALLING_PACKAGE, packageName)
             putExtra(RecognizerIntent.EXTRA_LANGUAGE, "en-US")
             putExtra(RecognizerIntent.EXTRA_PARTIAL_RESULTS, true)
-            putExtra(RecognizerIntent.EXTRA_MAX_RESULTS, 1)
+            //putExtra(RecognizerIntent.EXTRA_MAX_RESULTS, 1)
         }
 
         try {
