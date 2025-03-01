@@ -1,10 +1,14 @@
 package com.robertopineda.koekoi
 
 import android.Manifest
+import android.content.ComponentName
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.media.MediaPlayer
 import android.os.Bundle
+import android.speech.RecognitionListener
 import android.speech.RecognizerIntent
+import android.speech.SpeechRecognizer
 import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -21,6 +25,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -39,30 +44,46 @@ class GameActivity : ComponentActivity() {
         "저는 친구와 함께 영화를 보러 갈 거예요" to "저는 친구와 함께 영화를 보러 갈 거예요",
         "오늘 점심으로 김치찌개를 먹었어요" to "오늘 점심으로 김치찌개를 먹었어요",
         "저는 주말에 공원에서 책을 읽을 거예요" to "저는 주말에 공원에서 책을 읽을 거예요",
-        "어제는 비가 와서 집에 있었어요" to "어제는 비가 와서 집에 있었n어요",
+        "어제는 비가 와서 집에 있었어요" to "어제는 비가 와서 집에 있었어요"
     )
 
-    private var spokenText by mutableStateOf("")
+    private lateinit var speechRecognizer: SpeechRecognizer
+    private lateinit var mediaPlayer: MediaPlayer
 
+    // RecognizerIntent (commented out)
+    /*
     private val speechLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-        val data = result.data
-        val resultText = data?.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS)?.get(0) ?: ""
-        spokenText = resultText
-        Log.d("GameActivity", "Spoken text received: $spokenText") // Debug log
+        val spokenText = result.data?.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS)?.get(0) ?: ""
+        Log.d("GameActivity", "RecognizerIntent result: $spokenText")
+        onSpeechResult(spokenText)
     }
+    private var onSpeechResult: (String) -> Unit = {}
+    */
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        // Use Google's speech service explicitly
+        speechRecognizer = SpeechRecognizer.createSpeechRecognizer(this)
+        //speechRecognizer = SpeechRecognizer.createSpeechRecognizer(this@ComponentActivity, ComponentName("com.google.android.googlequicksearchbox", "com.google.android.voicesearch.serviceapi.GoogleRecognitionService"))
+        mediaPlayer = MediaPlayer.create(this, R.raw.speak) // Ensure speak.mp3 is in res/raw
         setContent {
             GameScreen(
                 sentences = sentences,
-                spokenText = spokenText,
-                onSpeak = { index -> startListening(index) },
-                onSkip = { startListening(it) },
+                onStartListening = { index, onResult -> startListening(index, onResult) },
                 onQuit = { finish() }
             )
         }
         requestAudioPermission()
+        // Check if SpeechRecognizer is available
+        if (!SpeechRecognizer.isRecognitionAvailable(this)) {
+            Log.e("GameActivity", "Speech recognition not available on this device")
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        speechRecognizer.destroy()
+        mediaPlayer.release()
     }
 
     private fun requestAudioPermission() {
@@ -71,46 +92,111 @@ class GameActivity : ComponentActivity() {
         }
     }
 
-    private fun startListening(currentIndex: Int) {
+    private fun startListening(currentIndex: Int, onResult: (String) -> Unit) {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED) {
+            val intent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH).apply {
+                putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM)
+                putExtra(RecognizerIntent.EXTRA_LANGUAGE, "ko-KR")
+                putExtra(RecognizerIntent.EXTRA_PARTIAL_RESULTS, true)
+                //putExtra(RecognizerIntent.EXTRA_MAX_RESULTS, 1)
+            }
+            speechRecognizer.setRecognitionListener(object : RecognitionListener {
+                override fun onReadyForSpeech(params: Bundle?) {
+                    Log.d("GameActivity", "Ready for speech at index: $currentIndex")
+                    onResult("Listening...")
+                }
+
+                override fun onResults(results: Bundle?) {
+                    val spokenText = results?.getStringArrayList(RecognizerIntent.EXTRA_RESULTS)?.get(0) ?: ""
+                    Log.d("GameActivity", "Final result: $spokenText")
+                    onResult(spokenText)
+                }
+
+                override fun onPartialResults(partialResults: Bundle?) {
+                    val partialText = partialResults?.getStringArrayList(RecognizerIntent.EXTRA_RESULTS)?.get(0) ?: ""
+                    Log.d("GameActivity", "Partial result: $partialText")
+                    if (partialText.isNotEmpty()) onResult(partialText)
+                }
+
+                override fun onError(error: Int) {
+                    Log.e("GameActivity", "Speech error: $error")
+                    val errorMessage = when (error) {
+                        SpeechRecognizer.ERROR_NO_MATCH -> "No match found. Try again."
+                        SpeechRecognizer.ERROR_SPEECH_TIMEOUT -> "Timed out. Speak louder."
+                        else -> "Error $error"
+                    }
+                    onResult(errorMessage)
+                }
+
+                override fun onBeginningOfSpeech() {
+                    Log.d("GameActivity", "Speech began")
+                }
+
+                override fun onRmsChanged(rmsdB: Float) {
+                    Log.d("GameActivity", "RMS: $rmsdB")
+                }
+
+                override fun onBufferReceived(buffer: ByteArray?) {
+                    Log.d("GameActivity", "Buffer received: ${buffer?.size ?: 0} bytes")
+                }
+
+                override fun onEndOfSpeech() {
+                    Log.d("GameActivity", "Speech ended")
+                }
+
+                override fun onEvent(eventType: Int, params: Bundle?) {}
+            })
+            Log.d("GameActivity", "Starting SpeechRecognizer for: ${sentences[currentIndex].first}")
+            speechRecognizer.startListening(intent)
+        } else {
+            onResult("Permission denied")
+        }
+    }
+
+    // RecognizerIntent version (commented out)
+    /*
+    private fun startListeningRecognizerIntent(currentIndex: Int, onResult: (String) -> Unit) {
         val intent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH).apply {
             putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM)
             putExtra(RecognizerIntent.EXTRA_LANGUAGE, "ko-KR")
             putExtra(RecognizerIntent.EXTRA_PROMPT, "Say: ${sentences[currentIndex].first}")
         }
-        Log.d("GameActivity", "Starting speech recognition for index: $currentIndex, prompt: ${sentences[currentIndex].first}")
+        onSpeechResult = onResult
+        Log.d("GameActivity", "Starting RecognizerIntent for: ${sentences[currentIndex].first}")
         speechLauncher.launch(intent)
     }
+    */
 }
 
 @Composable
 fun GameScreen(
     sentences: List<Pair<String, String>>,
-    spokenText: String,
-    onSpeak: (Int) -> Unit,
-    onSkip: (Int) -> Unit,
+    onStartListening: (Int, (String) -> Unit) -> Unit,
     onQuit: () -> Unit
 ) {
     var currentIndex by remember { mutableStateOf(0) }
+    var spokenText by remember { mutableStateOf("") }
     var isCorrect by remember { mutableStateOf<Boolean?>(null) }
     var showResult by remember { mutableStateOf(false) }
 
     val backgroundColor by animateColorAsState(
         targetValue = when (isCorrect) {
-            true -> Color(0xFFB2DFDB) // Soft pastel green
-            false -> Color(0xFFFFCCCB) // Soft pastel red
-            null -> Color(0xFFE6F0FA) // Very soft blue
+            true -> Color(0xFFB2DFDB)
+            false -> Color(0xFFFFCCCB)
+            null -> Color(0xFFE6F0FA)
         },
         animationSpec = tween(durationMillis = 300)
     )
 
     LaunchedEffect(spokenText) {
-        if (spokenText.isNotEmpty()) {
+        if (spokenText.isNotEmpty() && spokenText != "Listening...") {
             val expected = sentences[currentIndex].second
             isCorrect = spokenText.equals(expected, ignoreCase = true)
             Log.d("GameScreen", "Spoken: $spokenText, Expected: $expected, IsCorrect: $isCorrect")
             showResult = true
             if (isCorrect == true) {
                 delay(1500)
+                spokenText = ""
                 isCorrect = null
                 showResult = false
                 currentIndex = (currentIndex + 1) % sentences.size
@@ -172,8 +258,15 @@ fun GameScreen(
             }
         }
 
+        val context = LocalContext.current
+        val mediaPlayer = remember { MediaPlayer.create(context, R.raw.speak) }
         IconButton(
-            onClick = { onSpeak(currentIndex) },
+            onClick = {
+                mediaPlayer.start()
+                onStartListening(currentIndex) { result ->
+                    spokenText = result
+                }
+            },
             modifier = Modifier
                 .align(Alignment.BottomCenter)
                 .padding(bottom = 16.dp)
@@ -191,7 +284,10 @@ fun GameScreen(
             onClick = {
                 val newIndex = (currentIndex + 1) % sentences.size
                 currentIndex = newIndex
-                onSkip(newIndex)
+                mediaPlayer.start()
+                onStartListening(newIndex) { result ->
+                    spokenText = result
+                }
             },
             modifier = Modifier
                 .align(Alignment.BottomEnd)
