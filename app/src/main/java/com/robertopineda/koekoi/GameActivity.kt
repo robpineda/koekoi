@@ -32,10 +32,21 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.content.ContextCompat
 import kotlinx.coroutines.delay
+import com.atilika.kuromoji.ipadic.Token
+import com.atilika.kuromoji.ipadic.Tokenizer
 
 class GameActivity : ComponentActivity() {
     private val sentences = listOf(
-        "Testing" to "Testing"
+        "私は晩ご飯に寿司を食べます" to "私は晩ご飯に寿司を食べます",
+        "私は朝ご飯を食べます" to "私は朝ご飯を食べます",
+        "今日は天気がいいです" to "今日は天気がいいです",
+        "私は日本語を勉強しています" to "私は日本語を勉強しています",
+        "明日は友達と映画を見ます" to "明日は友達と映画を見ます",
+        "私は毎朝コーヒーを飲みます" to "私は毎朝コーヒーを飲みます",
+        "昨日は図書館に行きました" to "昨日は図書館に行きました",
+        "私は朝早く起きます" to "私は朝早く起きます",
+        "私は毎日散歩をします" to "私は毎日散歩をします",
+        "私は今本を読んでいます" to "私は今本を読んでいます"
     )
 
     private lateinit var speechRecognizer: SpeechRecognizer
@@ -80,12 +91,11 @@ class GameActivity : ComponentActivity() {
         }
 
         override fun onBeginningOfSpeech() {
-            Log.d("GameActivity", "Beginning of speech detected")
         }
 
         override fun onEndOfSpeech() {
-            Log.d("GameActivity", "End of speech detected")
         }
+
         override fun onRmsChanged(rmsdB: Float) {}
         override fun onBufferReceived(buffer: ByteArray?) {}
         override fun onEvent(eventType: Int, params: Bundle?) {}
@@ -149,17 +159,17 @@ class GameActivity : ComponentActivity() {
         currentOnResult = onResult
 
         // Destroy and recreate the SpeechRecognizer
-        if (::speechRecognizer.isInitialized) {
-            speechRecognizer.destroy()
-        }
-
-        speechRecognizer = SpeechRecognizer.createSpeechRecognizer(this)
-        speechRecognizer.setRecognitionListener(speechListener)
+//        if (::speechRecognizer.isInitialized) {
+//            speechRecognizer.destroy()
+//        }
+//
+//        speechRecognizer = SpeechRecognizer.createSpeechRecognizer(this)
+//        speechRecognizer.setRecognitionListener(speechListener)
 
         val intent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH).apply {
             putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM)
             putExtra(RecognizerIntent.EXTRA_CALLING_PACKAGE, packageName)
-            putExtra(RecognizerIntent.EXTRA_LANGUAGE, "en-US")
+            putExtra(RecognizerIntent.EXTRA_LANGUAGE, "ja-JP")
             putExtra(RecognizerIntent.EXTRA_PARTIAL_RESULTS, true)
             //putExtra(RecognizerIntent.EXTRA_MAX_RESULTS, 1)
         }
@@ -194,14 +204,27 @@ fun GameScreen(
         animationSpec = tween(durationMillis = 300)
     )
 
+    fun toHiragana(text: String): String {
+        val tokenizer = Tokenizer.Builder().build()
+        val tokens: List<Token> = tokenizer.tokenize(text)
+        return tokens.joinToString("") { it.reading ?: it.surface }
+    }
+
     LaunchedEffect(spokenText) {
         if (spokenText.isNotEmpty() && spokenText != "Listening...") {
             val expected = sentences[currentIndex].second
-            isCorrect = spokenText.equals(expected, ignoreCase = true)
+
+            val normalizedExpected = toHiragana(expected.replace(" ", "")) // Normalize expected
+            val normalizedSpoken = toHiragana(spokenText.replace(" ", "")) // Normalize spoken
+
+            Log.d("normalizedExpected", normalizedExpected)
+            Log.d("normalizedSpoken", normalizedSpoken)
+
+            isCorrect = normalizedExpected == normalizedSpoken
             Log.d("GameScreen", "Spoken: $spokenText, Expected: $expected, IsCorrect: $isCorrect")
             showResult = true
             if (isCorrect == true) {
-                delay(1500)
+                delay(1000)
                 spokenText = ""
                 isCorrect = null
                 showResult = false
@@ -277,7 +300,7 @@ fun GameScreen(
             modifier = Modifier
                 .align(Alignment.BottomCenter)
                 .padding(16.dp)
-                .size(56.dp)
+                .size(70.dp)
                 .background(Color.Gray, shape = CircleShape)
         ) {
             Icon(
@@ -292,9 +315,6 @@ fun GameScreen(
                 val newIndex = (currentIndex + 1) % sentences.size
                 currentIndex = newIndex
                 mediaPlayer.start()
-                onStartListening(newIndex) { result ->
-                    spokenText = result
-                }
             },
             modifier = Modifier
                 .align(Alignment.BottomEnd)

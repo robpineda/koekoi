@@ -40,6 +40,10 @@ android {
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.10" // Update to latest if needed
     }
+    packaging {
+        resources.excludes.add("META-INF/CONTRIBUTORS.md")
+        resources.excludes.add("META-INF/LICENSE.md")
+    }
 }
 
 dependencies {
@@ -52,6 +56,8 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+
+    implementation("com.atilika.kuromoji:kuromoji-ipadic:0.9.0")
 
     implementation("androidx.compose.material:material-icons-extended:1.6.0")
     implementation("androidx.activity:activity-compose:1.8.0")
