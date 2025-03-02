@@ -213,22 +213,39 @@ fun GameScreen(
     LaunchedEffect(spokenText) {
         if (spokenText.isNotEmpty() && spokenText != "Listening...") {
             val expected = sentences[currentIndex].second
-
-            val normalizedExpected = toHiragana(expected.replace(" ", "")) // Normalize expected
-            val normalizedSpoken = toHiragana(spokenText.replace(" ", "")) // Normalize spoken
+            val normalizedExpected = toHiragana(expected.replace(" ", ""))
+            val normalizedSpoken = toHiragana(spokenText.replace(" ", ""))
 
             Log.d("normalizedExpected", normalizedExpected)
             Log.d("normalizedSpoken", normalizedSpoken)
 
-            isCorrect = normalizedExpected == normalizedSpoken
-            Log.d("GameScreen", "Spoken: $spokenText, Expected: $expected, IsCorrect: $isCorrect")
-            showResult = true
-            if (isCorrect == true) {
-                delay(1000)
+            // Check if spokenText is an error message
+            val isError = spokenText.contains("error", ignoreCase = true) ||
+                    spokenText == "No match found. Try again." ||
+                    spokenText == "No speech input. Speak louder."
+
+            if (isError) {
+                // For error messages, just clear the spoken text after a delay without showing result
+                delay(2000)
                 spokenText = ""
-                isCorrect = null
-                showResult = false
-                currentIndex = (currentIndex + 1) % sentences.size
+            } else {
+                // Process valid speech input
+                isCorrect = normalizedExpected == normalizedSpoken
+                Log.d("GameScreen", "Spoken: $spokenText, Expected: $expected, IsCorrect: $isCorrect")
+                showResult = true
+
+                if (isCorrect == true) {
+                    delay(1000)
+                    spokenText = ""
+                    isCorrect = null
+                    showResult = false
+                    currentIndex = (currentIndex + 1) % sentences.size
+                } else if (isCorrect == false) {
+                    delay(2000)
+                    spokenText = ""
+                    isCorrect = null
+                    showResult = false
+                }
             }
         }
     }
@@ -238,7 +255,7 @@ fun GameScreen(
             .fillMaxSize()
             .background(backgroundColor)
             .padding(WindowInsets.systemBars.asPaddingValues())
-        ) {
+    ) {
         Button(
             onClick = onQuit,
             modifier = Modifier
@@ -292,6 +309,10 @@ fun GameScreen(
         val mediaPlayer = remember { MediaPlayer.create(context, R.raw.speak) }
         IconButton(
             onClick = {
+                // Reset to default state before starting new recognition
+                spokenText = ""
+                isCorrect = null
+                showResult = false
                 mediaPlayer.start()
                 onStartListening(currentIndex) { result ->
                     spokenText = result
@@ -312,6 +333,10 @@ fun GameScreen(
 
         Button(
             onClick = {
+                // Reset to default state and move to next sentence
+                spokenText = ""
+                isCorrect = null
+                showResult = false
                 val newIndex = (currentIndex + 1) % sentences.size
                 currentIndex = newIndex
                 mediaPlayer.start()
