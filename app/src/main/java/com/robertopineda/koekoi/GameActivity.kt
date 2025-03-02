@@ -188,9 +188,9 @@ fun GameScreen(
 
     val backgroundColor by animateColorAsState(
         targetValue = when (isCorrect) {
-            true -> Color(0xFFB2DFDB) // Light teal for correct
-            false -> Color(0xFFFFCCCB) // Light red for incorrect
-            null -> Color(0xFFE6F0FA) // Light blue for neutral
+            true -> Color(0xFF4CAF50) // Darker green for correct in dark mode
+            false -> Color(0xFFE57373) // Darker red for incorrect in dark mode
+            null -> Color(0xFF121212) // Dark mode background (very dark gray)
         },
         animationSpec = tween(durationMillis = 300)
     )
@@ -251,9 +251,10 @@ fun GameScreen(
             onClick = onQuit,
             modifier = Modifier
                 .align(Alignment.TopStart)
-                .padding(16.dp)
+                .padding(16.dp),
+            colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFBBDEFB))
         ) {
-            Text("Quit")
+            Text("Quit", color = Color.Black)
         }
 
         Column(
@@ -264,15 +265,17 @@ fun GameScreen(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(
-                text = "Say: ${sentences[currentIndex].first}",
+                text = sentences[currentIndex].first,
                 fontSize = 24.sp,
-                textAlign = TextAlign.Center
+                textAlign = TextAlign.Center,
+                color = Color.White
             )
             Spacer(modifier = Modifier.height(16.dp))
             Text(
-                text = "You said: $spokenText",
+                text = spokenText,
                 fontSize = 24.sp,
-                textAlign = TextAlign.Center
+                textAlign = TextAlign.Center,
+                color = Color.White
             )
             Spacer(modifier = Modifier.height(16.dp))
 
