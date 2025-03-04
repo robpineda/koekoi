@@ -270,13 +270,7 @@ fun GameScreen(
                 textAlign = TextAlign.Center,
                 color = Color.White
             )
-            Spacer(modifier = Modifier.height(16.dp))
-            Text(
-                text = spokenText,
-                fontSize = 24.sp,
-                textAlign = TextAlign.Center,
-                color = Color.White
-            )
+            // Removed spokenText from here to move it below
             Spacer(modifier = Modifier.height(16.dp))
 
             AnimatedVisibility(
@@ -298,6 +292,17 @@ fun GameScreen(
                 }
             }
         }
+
+        // Spoken text just above the microphone
+        Text(
+            text = spokenText,
+            fontSize = 18.sp, // Smaller font size
+            textAlign = TextAlign.Center,
+            color = Color.White,
+            modifier = Modifier
+                .align(Alignment.BottomCenter)
+                .padding(bottom = 90.dp) // Just above the microphone (70dp button + 20dp gap)
+        )
 
         val context = LocalContext.current
         val mediaPlayer = remember { MediaPlayer.create(context, R.raw.speak) }
@@ -337,9 +342,10 @@ fun GameScreen(
             },
             modifier = Modifier
                 .align(Alignment.BottomEnd)
-                .padding(16.dp)
+                .padding(16.dp),
+            colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFBBDEFB))
         ) {
-            Text("Skip")
+            Text("Skip", color = Color.Black)
         }
     }
 }
