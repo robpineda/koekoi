@@ -117,7 +117,6 @@ class GameActivity : ComponentActivity() {
             Log.d("GameActivity", "Found ${activities.size} activities to handle speech recognition")
         }
 
-        // Load and shuffle phrases
         phrases = loadPhrasesFromAssets().shuffled()
         Log.d("GameActivity", "Phrases loaded and shuffled: ${phrases.map { it.spoken }}")
 
@@ -160,11 +159,10 @@ class GameActivity : ComponentActivity() {
             return
         }
 
-        // Destroy and recreate the SpeechRecognizer to ensure a fresh state
         Log.d("GameActivity", "Destroying and recreating SpeechRecognizer")
         speechRecognizer.destroy()
         speechRecognizer = createSpeechRecognizer()
-        delay(50) // Small delay to ensure the old instance is fully released
+        delay(50)
 
         currentOnResult = onResult
 
@@ -238,7 +236,6 @@ fun GameScreen(
 
     val coroutineScope = rememberCoroutineScope()
 
-    // Pulsing animation for the mic icon when listening
     val isListening = spokenText == "Listening..."
     val pulseScale by animateFloatAsState(
         targetValue = if (isListening) 1.2f else 1.0f,
@@ -280,14 +277,8 @@ fun GameScreen(
                 isCorrect = normalizedExpected == normalizedSpoken
                 Log.d("GameScreen", "Spoken: $spokenText, Expected: $expected, IsCorrect: $isCorrect")
                 showResult = true
-
                 if (isCorrect == true) {
-                    delay(1000)
-                    spokenText = ""
-                    isCorrect = null
-                    showResult = false
-                    currentIndex = (currentIndex + 1) % phrases.size
-                    showHelp = false
+                    showHelp = true // Show reading and English when correct
                 }
             }
         }
@@ -449,7 +440,10 @@ fun GameScreen(
                 .padding(16.dp),
             colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFBBDEFB))
         ) {
-            Text("Skip", color = Color.Black)
+            Text(
+                text = if (isCorrect == true && showResult) "Next" else "Skip",
+                color = Color.Black
+            )
         }
     }
 }

@@ -1,20 +1,100 @@
-저는 매일 아침 책을 읽습니다|저는 매일 아침 책을 읽습니다|저는 매일 아침 책을 읽습니다|I read a book every morning
-친구와 함께 영화를 봤어요|친구와 함께 영화를 봤어요|친구와 함께 영화를 봤어요|I watched a movie with a friend
-비가 오면 우산을 가져가세요|비가 오면 우산을 가져가세요|비가 오면 우산을 가져가세요|Take an umbrella if it rains
-저는 커피보다 차를 더 좋아해요|저는 커피보다 차를 더 좋아해요|저는 커피보다 차를 더 좋아해요|I like tea more than coffee
-주말에 가족과 식사를 했습니다|주말에 가족과 식사를 했습니다|주말에 가족과 식사를 했습니다|I had a meal with my family on the weekend
-학교에서 한국어를 공부해요|학교에서 한국어를 공부해요|학교에서 한국어를 공부해요|I study Korean at school
-오늘은 날씨가 정말 따뜻해요|오늘은 날씨가 정말 따뜻해요|오늘은 날씨가 정말 따뜻해요|The weather is really warm today
-저는 매주 수영을 합니다|저는 매주 수영을 합니다|저는 매주 수영을 합니다|I swim every week
-어제 친구에게 편지를 썼어요|어제 친구에게 편지를 썼어요|어제 친구에게 편지를 썼어요|I wrote a letter to a friend yesterday
-도서관에서 책을 빌렸습니다|도서관에서 책을 빌렸습니다|도서관에서 책을 빌렸습니다|I borrowed a book from the library
-저는 음악을 들으며 산책해요|저는 음악을 들으며 산책해요|저는 음악을 들으며 산책해요|I walk while listening to music
-내일은 회사에 일찍 가야 해요|내일은 회사에 일찍 가야 해요|내일은 회사에 일찍 가야 해요|I have to go to work early tomorrow
-저는 요리를 잘 못해요|저는 요리를 잘 못해요|저는 요리를 잘 못해요|I’m not good at cooking
-가게에서 새 옷을 샀습니다|가게에서 새 옷을 샀습니다|가게에서 새 옷을 샀습니다|I bought new clothes at the store
-저는 매일 밤 일기를 써요|저는 매일 밤 일기를 써요|저는 매일 밤 일기를 써요|I write a diary every night
-친구가 저를 집에 초대했어요|친구가 저를 집에 초대했어요|친구가 저를 집에 초대했어요|A friend invited me to their house
-저는 버스를 타고 학교에 가요|저는 버스를 타고 학교에 가요|저는 버스를 타고 학교에 가요|I take the bus to school
-오늘 저녁에 운동을 할 거예요|오늘 저녁에 운동을 할 거예요|오늘 저녁에 운동을 할 거예요|I will exercise this evening
-저는 한국 드라마를 좋아해요|저는 한국 드라마를 좋아해요|저는 한국 드라마를 좋아해요|I like Korean dramas
-주말에 여행을 계획하고 있어요|주말에 여행을 계획하고 있어요|주말에 여행을 계획하고 있어요|I’m planning a trip for the weekend
+저는 매일 아침 책을 읽고 새로운 단어를 외웁니다|저는 매일 아침 책을 읽고 새로운 단어를 외웁니다|저는 매일 아침 책을 읽고 새로운 단어를 외웁니다|I read a book every morning and memorize new words.
+한국의 전통 한복을 입어보고 싶습니다|한국의 전통 한복을 입어보고 싶습니다|한국의 전통 한복을 입어보고 싶습니다|I want to try wearing traditional Korean hanbok.
+과학자들이 기후 변화에 대해 경고하고 있습니다|과학자들이 기후 변화에 대해 경고하고 있습니다|과학자들이 기후 변화에 대해 경고하고 있습니다|Scientists are warning about climate change.
+저는 주말에 친구들과 맛집을 찾아다닙니다|저는 주말에 친구들과 맛집을 찾아다닙니다|저는 주말에 친구들과 맛집을 찾아다닙니다|I look for good restaurants with friends on weekends.
+그의 말이 너무 무례해서 화가 났어요|그의 말이 너무 무례해서 화가 났어요|그의 말이 너무 무례해서 화가 났어요|I got angry because his words were too rude.
+새로운 사업 계획을 세우는 데 시간이 걸립니다|새로운 사업 계획을 세우는 데 시간이 걸립니다|새로운 사업 계획을 세우는 데 시간이 걸립니다|It takes time to set up a new business plan.
+저는 한국어를 유창하게 말할 수 있게 되고 싶어요|저는 한국어를 유창하게 말할 수 있게 되고 싶어요|저는 한국어를 유창하게 말할 수 있게 되고 싶어요|I want to be able to speak Korean fluently.
+여행 중에 현지 사람들과 대화하는 게 재미있습니다|여행 중에 현지 사람들과 대화하는 게 재미있습니다|여행 중에 현지 사람들과 대화하는 게 재미있습니다|It’s fun to talk with locals while traveling.
+환경 문제를 해결하려면 모두가 협력해야 합니다|환경 문제를 해결하려면 모두가 협력해야 합니다|환경 문제를 해결하려면 모두가 협력해야 합니다|Everyone needs to cooperate to solve environmental issues.
+그녀는 노래를 매우 감미롭게 부릅니다|그녀는 노래를 매우 감미롭게 부릅니다|그녀는 노래를 매우 감미롭게 부릅니다|She sings very sweetly.
+저는 잠들기 전에 항상 일기를 씁니다|저는 잠들기 전에 항상 일기를 씁니다|저는 잠들기 전에 항상 일기를 씁니다|I always write in my diary before sleeping.
+한국의 가을 단풍이 정말 아름답습니다|한국의 가을 단풍이 정말 아름답습니다|한국의 가을 단풍이 정말 아름답습니다|Korea’s autumn foliage is really beautiful.
+최신 기술을 배우는 게 쉽지 않습니다|최신 기술을 배우는 게 쉽지 않습니다|최신 기술을 배우는 게 쉽지 않습니다|Learning the latest technology isn’t easy.
+저는 회의에서 팀원들의 의견을 존중합니다|저는 회의에서 팀원들의 의견을 존중합니다|저는 회의에서 팀원들의 의견을 존중합니다|I respect my team members’ opinions in meetings.
+그는 축구 경기에서 놀라운 골을 넣었어요|그는 축구 경기에서 놀라운 골을 넣었어요|그는 축구 경기에서 놀라운 골을 넣었어요|He scored an amazing goal in the soccer game.
+저는 건강을 위해 매일 물을 많이 마십니다|저는 건강을 위해 매일 물을 많이 마십니다|저는 건강을 위해 매일 물을 많이 마십니다|I drink a lot of water every day for my health.
+한국 시장에서 신선한 과일을 샀습니다|한국 시장에서 신선한 과일을 샀습니다|한국 시장에서 신선한 과일을 샀습니다|I bought fresh fruit at a Korean market.
+그 영화가 너무 슬퍼서 울고 말았어요|그 영화가 너무 슬퍼서 울고 말았어요|그 영화가 너무 슬퍼서 울고 말았어요|The movie was so sad that I ended up crying.
+저는 한국어를 공부하면서 문화를 더 이해하게 됐습니다|저는 한국어를 공부하면서 문화를 더 이해하게 됐습니다|저는 한국어를 공부하면서 문화를 더 이해하게 됐습니다|I’ve come enshrined to understand Korean culture more while studying the language.
+그의 유머 감각이 정말 뛰어납니다|그의 유머 감각이 정말 뛰어납니다|그의 유머 감각이 정말 뛰어납니다|His sense of humor is really excellent.
+저는 가족과 함께 주말에 바비큐를 합니다|저는 가족과 함께 주말에 바비큐를 합니다|저는 가족과 함께 주말에 바비큐를 합니다|I have a barbecue with my family on weekends.
+한국의 역사 드라마를 보는 게 흥미롭습니다|한국의 역사 드라마를 보는 게 흥미롭습니다|한국의 역사 드라마를 보는 게 흥미롭습니다|Watching Korean historical dramas is interesting.
+그는 아침마다 세계 뉴스를 확인합니다|그는 아침마다 세계 뉴스를 확인합니다|그는 아침마다 세계 뉴스를 확인합니다|He checks world news every morning.
+저는 클래식 음악을 들으며 마음을 진정시킵니다|저는 클래식 음악을 들으며 마음을 진정시킵니다|저는 클래식 음악을 들으며 마음을 진정시킵니다|I listen to classical music to calm my mind.
+그녀는 어떤 상황에서도 침착함을 잃지 않습니다|그녀는 어떤 상황에서도 침착함을 잃지 않습니다|그녀는 어떤 상황에서도 침착함을 잃지 않습니다|She never loses her composure in any situation.
+저는 새로운 요리를 만드는 데 도전합니다|저는 새로운 요리를 만드는 데 도전합니다|저는 새로운 요리를 만드는 데 도전합니다|I challenge myself to make new dishes.
+한국의 벚꽃 축제에 꼭 가보고 싶어요|한국의 벚꽃 축제에 꼭 가보고 싶어요|한국의 벚꽃 축제에 꼭 가보고 싶어요|I really want to visit Korea’s cherry blossom festival.
+저는 회사에서 효율적인 업무 방식을 제안합니다|저는 회사에서 효율적인 업무 방식을 제안합니다|저는 회사에서 효율적인 업무 방식을 제안합니다|I suggest efficient work methods at the company.
+그는 여행 사진을 찍는 데 탁월한 재능이 있습니다|그는 여행 사진을 찍는 데 탁월한 재능이 있습니다|그는 여행 사진을 찍는 데 탁월한 재능이 있습니다|He has an exceptional talent for taking travel photos.
+저는 다양한 책을 읽으며 지식을 넓힙니다|저는 다양한 책을 읽으며 지식을 넓힙니다|저는 다양한 책을 읽으며 지식을 넓힙니다|I broaden my knowledge by reading various books.
+그녀의 웃음소리가 너무 매력적입니다|그녀의 웃음소리가 너무 매력적입니다|그녀의 웃음소리가 너무 매력적입니다|Her laughter is so charming.
+저는 주말에 박물관을 방문하곤 합니다|저는 주말에 박물관을 방문하곤 합니다|저는 주말에 박물관을 방문하곤 합니다|I often visit museums on weekends.
+한국 전통 음악을 들으면 마음이 편안해집니다|한국 전통 음악을 들으면 마음이 편안해집니다|한국 전통 음악을 들으면 마음이 편안해집니다|Listening to Korean traditional music calms my mind.
+저는 아침에 명상으로 하루를 시작합니다|저는 아침에 명상으로 하루를 시작합니다|저는 아침에 명상으로 하루를 시작합니다|I start my day with morning meditation.
+그는 복잡한 문제를 간단히 설명할 수 있습니다|그는 복잡한 문제를 간단히 설명할 수 있습니다|그는 복잡한 문제를 간단히 설명할 수 있습니다|He can explain complex problems simply.
+저는 여행을 준비하며 일정을 꼼꼼히 짭니다|저는 여행을 준비하며 일정을 꼼꼼히 짭니다|저는 여행을 준비하며 일정을 꼼꼼히 짭니다|I carefully plan my schedule while preparing for a trip.
+한국의 현대 미술이 세계적으로 인정받고 있습니다|한국의 현대 미술이 세계적으로 인정받고 있습니다|한국의 현대 미술이 세계적으로 인정받고 있습니다|Korean modern art is globally recognized.
+저는 친구들과 영화관에서 즐거운 시간을 보냅니다|저는 친구들과 영화관에서 즐거운 시간을 보냅니다|저는 친구들과 영화관에서 즐거운 시간을 보냅니다|I spend enjoyable time with friends at the movie theater.
+그의 그림이 점점 더 섬세해지고 있어요|그의 그림이 점점 더 섬세해지고 있어요|그의 그림이 점점 더 섬세해지고 있어요|His drawings are becoming more and more detailed.
+저는 새로운 언어를 배우는 데 열정을 느낍니다|저는 새로운 언어를 배우는 데 열정을 느낍니다|저는 새로운 언어를 배우는 데 열정을 느낍니다|I feel passionate about learning new languages.
+한국의 겨울 풍경이 정말 장관입니다|한국의 겨울 풍경이 정말 장관입니다|한국의 겨울 풍경이 정말 장관입니다|Korea’s winter scenery is truly spectacular.
+저는 온라인 강의를 통해 전문 지식을 쌓습니다|저는 온라인 강의를 통해 전문 지식을 쌓습니다|저는 온라인 강의를 통해 전문 지식을 쌓습니다|I build expertise through online courses.
+그는 밤하늘을 보며 깊은 생각에 잠깁니다|그는 밤하늘을 보며 깊은 생각에 잠깁니다|그는 밤하늘을 보며 깊은 생각에 잠깁니다|He gazes at the night sky and gets lost in deep thoughts.
+저는 주말에 집에서 맛있는 케이크를 굽습니다|저는 주말에 집에서 맛있는 케이크를 굽습니다|저는 주말에 집에서 맛있는 케이크를 굽습니다|I bake a delicious cake at home on weekends.
+한국의 전통 공예가 매우 정교합니다|한국의 전통 공예가 매우 정교합니다|한국의 전통 공예가 매우 정교합니다|Korean traditional crafts are very intricate.
+저는 새로운 취미로 그림 그리기를 시작했습니다|저는 새로운 취미로 그림 그리기를 시작했습니다|저는 새로운 취미로 그림 그리기를 시작했습니다|I started drawing as a new hobby.
+그녀는 중요한 시험을 잘 준비하고 있습니다|그녀는 중요한 시험을 잘 준비하고 있습니다|그녀는 중요한 시험을 잘 준비하고 있습니다|She is preparing well for an important exam.
+저는 매일 아침 일찍 일어나 운동을 합니다|저는 매일 아침 일찍 일어나 운동을 합니다|저는 매일 아침 일찍 일어나 운동을 합니다|I wake up early every morning to exercise.
+한국의 건축 양식이 독특해서 인상 깊습니다|한국의 건축 양식이 독특해서 인상 깊습니다|한국의 건축 양식이 독특해서 인상 깊습니다|Korean architectural styles are unique and impressive.
+그는 항상 창의적인 해결책을 제시합니다|그는 항상 창의적인 해결책을 제시합니다|그는 항상 창의적인 해결책을 제시합니다|He always offers creative solutions.
+저는 바람 소리를 들으며 인생의 의미를 고민합니다|저는 바람 소리를 들으며 인생의 의미를 고민합니다|저는 바람 소리를 들으며 인생의 의미를 고민합니다|I listen to the sound of the wind while pondering the meaning of life.
+한국의 떡볶이는 매운맛이 중독적이에요|한국의 떡볶이는 매운맛이 중독적이에요|한국의 떡볶이는 매운맛이 중독적이에요|Korean tteokbokki’s spicy flavor is addictive.
+인공지능이 미래의 직업을 완전히 바꿀 거예요|인공지능이 미래의 직업을 완전히 바꿀 거예요|인공지능이 미래의 직업을 완전히 바꿀 거예요|Artificial intelligence will completely transform future jobs.
+저는 낡은 골목길을 걸으며 과거를 떠올립니다|저는 낡은 골목길을 걸으며 과거를 떠올립니다|저는 낡은 골목길을 걸으며 과거를 떠올립니다|I walk through old alleyways and recall the past.
+그의 냉소적인 태도가 분위기를 어색하게 만들었어요|그의 냉소적인 태도가 분위기를 어색하게 만들었어요|그의 냉소적인 태도가 분위기를 어색하게 만들었어요|His cynical attitude made the atmosphere awkward.
+저는 창의적인 아이디어를 회의에서 공유하는 걸 좋아합니다|저는 창의적인 아이디어를 회의에서 공유하는 걸 좋아합니다|저는 창의적인 아이디어를 회의에서 공유하는 걸 좋아합니다|I like sharing creative ideas in meetings.
+한국의 옛날 동화책을 읽으면 마음이 따뜻해집니다|한국의 옛날 동화책을 읽으면 마음이 따뜻해집니다|한국의 옛날 동화책을 읽으면 마음이 따뜻해집니다|Reading old Korean fairy tales warms my heart.
+저는 낯선 도시에서 길을 잃는 모험을 즐깁니다|저는 낯선 도시에서 길을 잃는 모험을 즐깁니다|저는 낯선 도시에서 길을 잃는 모험을 즐깁니다|I enjoy the adventure of getting lost in an unfamiliar city.
+지구 온난화를 막으려면 에너지 소비를 줄여야 합니다|지구 온난화를 막으려면 에너지 소비를 줄여야 합니다|지구 온난화를 막으려면 에너지 소비를 줄여야 합니다|To prevent global warming, we must reduce energy consumption.
+그녀는 춤을 추는 모습이 마치 나비 같아요|그녀는 춤을 추는 모습이 마치 나비 같아요|그녀는 춤을 추는 모습이 마치 나비 같아요|The way she dances is like a butterfly.
+저는 달빛 아래에서 시를 쓰곤 합니다|저는 달빛 아래에서 시를 쓰곤 합니다|저는 달빛 아래에서 시를 쓰곤 합니다|I often write poetry under the moonlight.
+한국의 한강에서 밤에 산책하는 게 낭만적이에요|한국의 한강에서 밤에 산책하는 게 낭만적이에요|한국의 한강에서 밤에 산책하는 게 낭만적이에요|Walking along the Han River at night in Korea is romantic.
+최신 패션 트렌드를 따라가는 게 쉽지 않습니다|최신 패션 트렌드를 따라가는 게 쉽지 않습니다|최신 패션 트렌드를 따라가는 게 쉽지 않습니다|Keeping up with the latest fashion trends isn’t easy.
+저는 상사에게 프로젝트 진행 상황을 보고합니다|저는 상사에게 프로젝트 진행 상황을 보고합니다|저는 상사에게 프로젝트 진행 상황을 보고합니다|I report project progress to my boss.
+그는 농담으로 분위기를 가볍게 만들었어요|그는 농담으로 분위기를 가볍게 만들었어요|그는 농담으로 분위기를 가볍게 만들었어요|He lightened the mood with a joke.
+저는 비 오는 날 창가에서 차를 마십니다|저는 비 오는 날 창가에서 차를 마십니다|저는 비 오는 날 창가에서 차를 마십니다|I drink tea by the window on rainy days.
+한국의 전통 차를 만드는 법을 배우고 싶어요|한국의 전통 차를 만드는 법을 배우고 싶어요|한국의 전통 차를 만드는 법을 배우고 싶어요|I want to learn how to make traditional Korean tea.
+그 영화의 반전 결말이 충격적이었어요|그 영화의 반전 결말이 충격적이었어요|그 영화의 반전 결말이 충격적이었어요|The twist ending of that movie was shocking.
+저는 철학 책을 읽으며 인간의 본질에 대해 생각합니다|저는 철학 책을 읽으며 인간의 본질에 대해 생각합니다|저는 철학 책을 읽으며 인간의 본질에 대해 생각합니다|I read philosophy books and think about human nature.
+그의 따뜻한 미소가 마음을 녹였습니다|그의 따뜻한 미소가 마음을 녹였습니다|그의 따뜻한 미소가 마음을 녹였습니다|His warm smile melted my heart.
+저는 부모님과 함께 추억을 이야기합니다|저는 부모님과 함께 추억을 이야기합니다|저는 부모님과 함께 추억을 이야기합니다|I talk about memories with my parents.
+한국의 설날에 떡국을 먹는 전통이 흥미롭습니다|한국의 설날에 떡국을 먹는 전통이 흥미롭습니다|한국의 설날에 떡국을 먹는 전통이 흥미롭습니다|The tradition of eating tteokguk on Korean New Year is interesting.
+그는 매일 아침 명언을 적어 놓습니다|그는 매일 아침 명언을 적어 놓습니다|그는 매일 아침 명언을 적어 놓습니다|He writes down a famous quote every morning.
+저는 자연의 소리를 들으며 긴장을 풉니다|저는 자연의 소리를 들으며 긴장을 풉니다|저는 자연의 소리를 들으며 긴장을 풉니다|I listen to nature’s sounds to relieve tension.
+그녀는 실수를 인정하는 용기가 대단합니다|그녀는 실수를 인정하는 용기가 대단합니다|그녀는 실수를 인정하는 용기가 대단합니다|Her courage to admit mistakes is impressive.
+저는 뜨거운 여름날 시원한 빙수를 먹습니다|저는 뜨거운 여름날 시원한 빙수를 먹습니다|저는 뜨거운 여름날 시원한 빙수를 먹습니다|I eat cool bingsu on hot summer days.
+한국의 제주도는 독특한 화산 지형으로 유명합니다|한국의 제주도는 독특한 화산 지형으로 유명합니다|한국의 제주도는 독특한 화산 지형으로 유명합니다|Korea’s Jeju Island is famous for its unique volcanic terrain.
+저는 팀원들과 함께 문제를 분석하고 해결책을 찾습니다|저는 팀원들과 함께 문제를 분석하고 해결책을 찾습니다|저는 팀원들과 함께 문제를 분석하고 해결책을 찾습니다|I analyze problems with my team and find solutions.
+그는 낚시를 하며 여유로운 시간을 보냅니다|그는 낚시를 하며 여유로운 시간을 보냅니다|그는 낚시를 하며 여유로운 시간을 보냅니다|He spends leisurely time fishing.
+저는 외국 영화에 자막을 붙이는 작업을 즐깁니다|저는 외국 영화에 자막을 붙이는 작업을 즐깁니다|저는 외국 영화에 자막을 붙이는 작업을 즐깁니다|I enjoy adding subtitles to foreign movies.
+그녀의 손글씨가 너무 예뻐서 감탄했어요|그녀의 손글씨가 너무 예뻐서 감탄했어요|그녀의 손글씨가 너무 예뻐서 감탄했어요|I was amazed by how pretty her handwriting is.
+저는 주말에 숲속에서 책을 읽습니다|저는 주말에 숲속에서 책을 읽습니다|저는 주말에 숲속에서 책을 읽습니다|I read a book in the forest on weekends.
+한국의 전통 가옥은 여름에 시원하게 설계됐어요|한국의 전통 가옥은 여름에 시원하게 설계됐어요|한국의 전통 가옥은 여름에 시원하게 설계됐어요|Korean traditional houses are designed to stay cool in summer.
+저는 아침마다 태양이 떠오르는 모습을 봅니다|저는 아침마다 태양이 떠오르는 모습을 봅니다|저는 아침마다 태양이 떠오르는 모습을 봅니다|I watch the sunrise every morning.
+그는 복잡한 수학 문제를 풀어내는 천재예요|그는 복잡한 수학 문제를 풀어내는 천재예요|그는 복잡한 수학 문제를 풀어내는 천재예요|He’s a genius at solving complex math problems.
+저는 여행 중에 예상치 못한 만남을 기대합니다|저는 여행 중에 예상치 못한 만남을 기대합니다|저는 여행 중에 예상치 못한 만남을 기대합니다|I look forward to unexpected encounters while traveling.
+한국의 불꽃놀이 축제가 화려하고 멋집니다|한국의 불꽃놀이 축제가 화려하고 멋집니다|한국의 불꽃놀이 축제가 화려하고 멋집니다|Korea’s fireworks festivals are dazzling and cool.
+저는 친구들과 깊은 대화를 나누는 걸 좋아합니다|저는 친구들과 깊은 대화를 나누는 걸 좋아합니다|저는 친구들과 깊은 대화를 나누는 걸 좋아합니다|I like having deep conversations with friends.
+그의 연설이 너무 설득력 있어서 감동받았어요|그의 연설이 너무 설득력 있어서 감동받았어요|그의 연설이 너무 설득력 있어서 감동받았어요|I was moved by how persuasive his speech was.
+저는 새로운 악기를 연주하는 법을 배웁니다|저는 새로운 악기를 연주하는 법을 배웁니다|저는 새로운 악기를 연주하는 법을 배웁니다|I’m learning how to play a new instrument.
+한국의 산은 가을에 색색으로 물들어요|한국의 산은 가을에 색색으로 물들어요|한국의 산은 가을에 색색으로 물들어요|Korea’s mountains turn colorful in autumn.
+저는 혼자 조용한 카페에서 글을 씁니다|저는 혼자 조용한 카페에서 글을 씁니다|저는 혼자 조용한 카페에서 글을 씁니다|I write alone in a quiet café.
+그는 우주 탐사에 대한 꿈을 가지고 있습니다|그는 우주 탐사에 대한 꿈을 가지고 있습니다|그는 우주 탐사에 대한 꿈을 가지고 있습니다|He has a dream of space exploration.
+저는 주말에 집에서 작은 정원을 가꿉니다|저는 주말에 집에서 작은 정원을 가꿉니다|저는 주말에 집에서 작은 정원을 가꿉니다|I tend to a small garden at home on weekends.
+한국의 전통 놀이를 아이들과 함께 즐겨요|한국의 전통 놀이를 아이들과 함께 즐겨요|한국의 전통 놀이를 아이들과 함께 즐겨요|I enjoy traditional Korean games with kids.
+저는 새로운 꿈을 향해 한 걸음 내딛습니다|저는 새로운 꿈을 향해 한 걸음 내딛습니다|저는 새로운 꿈을 향해 한 걸음 내딛습니다|I take a step toward a new dream.
+그녀는 어려운 결정을 내리는 데 단호합니다|그녀는 어려운 결정을 내리는 데 단호합니다|그녀는 어려운 결정을 내리는 데 단호합니다|She is resolute in making tough decisions.
+저는 매일 밤 하늘의 별자리를 관찰합니다|저는 매일 밤 하늘의 별자리를 관찰합니다|저는 매일 밤 하늘의 별자리를 관찰합니다|I observe the constellations in the night sky every evening.
+한국의 오래된 사찰은 평화로운 분위기를 줍니다|한국의 오래된 사찰은 평화로운 분위기를 줍니다|한국의 오래된 사찰은 평화로운 분위기를 줍니다|Korea’s old temples give off a peaceful vibe.
+그는 항상 목표를 향해 꾸준히 노력합니다|그는 항상 목표를 향해 꾸준히 노력합니다|그는 항상 목표를 향해 꾸준히 노력합니다|He consistently works toward his goals.
