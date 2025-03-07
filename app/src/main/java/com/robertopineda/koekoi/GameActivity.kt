@@ -5,8 +5,6 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.media.MediaPlayer
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.speech.RecognitionListener
 import android.speech.RecognizerIntent
 import android.speech.SpeechRecognizer
@@ -21,6 +19,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Mic
+import androidx.compose.material.icons.filled.QuestionMark
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -34,21 +33,20 @@ import androidx.core.content.ContextCompat
 import kotlinx.coroutines.delay
 import com.atilika.kuromoji.ipadic.Token
 import com.atilika.kuromoji.ipadic.Tokenizer
-import androidx.compose.material.icons.filled.QuestionMark
 
 class GameActivity : ComponentActivity() {
-    // Data class to hold all four fields
     data class Phrase(
         val spoken: String,
         val expected: String,
-        val hiragana: String,
+        val reading: String, // Renamed from hiragana to be generic (hiragana for JP, hangul for KR)
         val english: String
     )
 
-    private lateinit var phrases: List<Phrase> // Changed to List<Phrase>
+    private lateinit var phrases: List<Phrase>
     private lateinit var speechRecognizer: SpeechRecognizer
     private lateinit var mediaPlayer: MediaPlayer
     private var currentOnResult: ((String) -> Unit)? = null
+    private lateinit var selectedLanguage: String // To store the selected language
 
     private val speechListener = object : RecognitionListener {
         override fun onReadyForSpeech(params: Bundle?) {
@@ -96,6 +94,9 @@ class GameActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        // Get the selected language from the Intent
+        selectedLanguage = intent.getStringExtra("LANGUAGE") ?: "Japanese" // Default to Japanese if null
+
         val pm = packageManager
         val activities = pm.queryIntentActivities(Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH), 0)
         if (activities.size == 0) {
@@ -105,16 +106,15 @@ class GameActivity : ComponentActivity() {
             Log.d("GameActivity", "Found ${activities.size} activities to handle speech recognition")
         }
 
-        // Load phrases from assets
         phrases = loadPhrasesFromAssets()
-
         speechRecognizer = SpeechRecognizer.createSpeechRecognizer(this)
         speechRecognizer.setRecognitionListener(speechListener)
         mediaPlayer = MediaPlayer.create(this, R.raw.speak)
 
         setContent {
             GameScreen(
-                phrases = phrases, // Pass the new Phrase list
+                phrases = phrases,
+                selectedLanguage = selectedLanguage,
                 onStartListening = { index, onResult -> startListening(index, onResult) },
                 onQuit = { finish() }
             )
@@ -146,7 +146,7 @@ class GameActivity : ComponentActivity() {
         val intent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH).apply {
             putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM)
             putExtra(RecognizerIntent.EXTRA_CALLING_PACKAGE, packageName)
-            putExtra(RecognizerIntent.EXTRA_LANGUAGE, "ja-JP")
+            putExtra(RecognizerIntent.EXTRA_LANGUAGE, if (selectedLanguage == "Japanese") "ja-JP" else "ko-KR")
             putExtra(RecognizerIntent.EXTRA_PARTIAL_RESULTS, true)
         }
 
@@ -161,27 +161,27 @@ class GameActivity : ComponentActivity() {
 
     private fun loadPhrasesFromAssets(): List<Phrase> {
         val phrases = mutableListOf<Phrase>()
+        val fileName = if (selectedLanguage == "Japanese") "phrases_jp.txt" else "phrases_kr.txt"
         try {
-            assets.open("phrases_jp.txt").bufferedReader().use { reader ->
+            assets.open(fileName).bufferedReader().use { reader ->
                 reader.forEachLine { line ->
-                    val parts = line.split("|") // Split by vertical bar
+                    val parts = line.split("|")
                     if (parts.size == 4) {
                         phrases.add(Phrase(parts[0], parts[1], parts[2], parts[3]))
                     } else {
-                        Log.w("GameActivity", "Invalid line in phrases.txt: $line")
+                        Log.w("GameActivity", "Invalid line in $fileName: $line")
                     }
                 }
             }
         } catch (e: Exception) {
             Log.e("GameActivity", "Error loading phrases from assets", e)
             Toast.makeText(this, "Error loading phrases", Toast.LENGTH_SHORT).show()
-            // Fallback to a default phrase
             return listOf(
                 Phrase(
-                    "私は晩ご飯に寿司を食べます",
-                    "私は晩ご飯に寿司を食べます",
-                    "わたしはばんごはんにすしをたべます",
-                    "I eat sushi for dinner"
+                    if (selectedLanguage == "Japanese") "私は晩ご飯に寿司を食べます" else "저는 매일 아침 책을 읽습니다",
+                    if (selectedLanguage == "Japanese") "私は晩ご飯に寿司を食べます" else "저는 매일 아침 책을 읽습니다",
+                    if (selectedLanguage == "Japanese") "わたしはばんごはんにすしをたべます" else "저는 매일 아침 책을 읽습니다",
+                    if (selectedLanguage == "Japanese") "I eat sushi for dinner" else "I read a book every morning"
                 )
             )
         }
@@ -192,6 +192,7 @@ class GameActivity : ComponentActivity() {
 @Composable
 fun GameScreen(
     phrases: List<GameActivity.Phrase>,
+    selectedLanguage: String,
     onStartListening: (Int, (String) -> Unit) -> Unit,
     onQuit: () -> Unit
 ) {
@@ -199,28 +200,32 @@ fun GameScreen(
     var spokenText by remember { mutableStateOf("") }
     var isCorrect by remember { mutableStateOf<Boolean?>(null) }
     var showResult by remember { mutableStateOf(false) }
-    var showHelp by remember { mutableStateOf(false) } // State to toggle hiragana and English visibility
+    var showHelp by remember { mutableStateOf(false) }
 
     val backgroundColor by animateColorAsState(
         targetValue = when (isCorrect) {
-            true -> Color(0xFF4CAF50) // Darker green for correct
-            false -> Color(0xFFE57373) // Darker red for incorrect
-            null -> Color(0xFF121212) // Dark mode background
+            true -> Color(0xFF4CAF50)
+            false -> Color(0xFFE57373)
+            null -> Color(0xFF121212)
         },
         animationSpec = tween(durationMillis = 300)
     )
 
-    fun toHiragana(text: String): String {
-        val tokenizer = Tokenizer.Builder().build()
-        val tokens: List<Token> = tokenizer.tokenize(text)
-        return tokens.joinToString("") { it.reading ?: it.surface }
+    fun toReading(text: String): String {
+        return if (selectedLanguage == "Japanese") {
+            val tokenizer = Tokenizer.Builder().build()
+            val tokens: List<Token> = tokenizer.tokenize(text)
+            tokens.joinToString("") { it.reading ?: it.surface }
+        } else {
+            text // For Korean, return the original hangul text
+        }
     }
 
     LaunchedEffect(spokenText) {
         if (spokenText.isNotEmpty() && spokenText != "Listening...") {
             val expected = phrases[currentIndex].expected
-            val normalizedExpected = toHiragana(expected.replace(" ", ""))
-            val normalizedSpoken = toHiragana(spokenText.replace(" ", ""))
+            val normalizedExpected = toReading(expected.replace(" ", ""))
+            val normalizedSpoken = toReading(spokenText.replace(" ", ""))
 
             Log.d("normalizedExpected", normalizedExpected)
             Log.d("normalizedSpoken", normalizedSpoken)
@@ -243,7 +248,7 @@ fun GameScreen(
                     isCorrect = null
                     showResult = false
                     currentIndex = (currentIndex + 1) % phrases.size
-                    showHelp = false // Reset help visibility on correct answer
+                    showHelp = false
                 } else if (isCorrect == false) {
                     delay(2000)
                     spokenText = ""
@@ -285,22 +290,27 @@ fun GameScreen(
             )
             Spacer(modifier = Modifier.height(8.dp))
 
-            // Hiragana text, hidden initially
             AnimatedVisibility(
                 visible = showHelp,
                 enter = fadeIn(),
                 exit = fadeOut()
             ) {
-                Text(
-                    text = phrases[currentIndex].hiragana,
-                    fontSize = 20.sp,
-                    textAlign = TextAlign.Center,
-                    color = Color(0xFFBBBBBB)
-                )
+                Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                    Text(
+                        text = if (selectedLanguage == "Japanese") "Hiragana" else "Hangul",
+                        fontSize = 14.sp,
+                        color = Color(0xFFBBBBBB)
+                    )
+                    Text(
+                        text = phrases[currentIndex].reading,
+                        fontSize = 20.sp,
+                        textAlign = TextAlign.Center,
+                        color = Color(0xFFBBBBBB)
+                    )
+                }
             }
             if (showHelp) Spacer(modifier = Modifier.height(8.dp))
 
-            // English text, hidden initially
             AnimatedVisibility(
                 visible = showHelp,
                 enter = fadeIn(),
@@ -342,13 +352,12 @@ fun GameScreen(
             color = Color.White,
             modifier = Modifier
                 .align(Alignment.BottomCenter)
-                .padding(bottom = 150.dp) // Increased padding to fit buttons
+                .padding(bottom = 150.dp)
         )
 
         val context = LocalContext.current
         val mediaPlayer = remember { MediaPlayer.create(context, R.raw.speak) }
 
-        // Microphone button remains in the center
         IconButton(
             onClick = {
                 spokenText = ""
@@ -372,13 +381,11 @@ fun GameScreen(
             )
         }
 
-        // Help button moved to bottom right
         IconButton(
-            onClick = { showHelp = !showHelp }, // Toggle visibility
+            onClick = { showHelp = !showHelp },
             modifier = Modifier
                 .align(Alignment.BottomEnd)
                 .padding(16.dp)
-                .padding(bottom = 5.dp)
                 .size(40.dp)
                 .background(Color.Gray, shape = CircleShape)
         ) {
@@ -390,13 +397,12 @@ fun GameScreen(
             )
         }
 
-        // Skip button moved to bottom left
         Button(
             onClick = {
                 spokenText = ""
                 isCorrect = null
                 showResult = false
-                showHelp = false // Reset help visibility on skip
+                showHelp = false
                 val newIndex = (currentIndex + 1) % phrases.size
                 currentIndex = newIndex
                 mediaPlayer.start()
