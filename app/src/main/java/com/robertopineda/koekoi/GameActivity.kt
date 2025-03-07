@@ -13,7 +13,7 @@ import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.animation.*
-import androidx.compose.animation.core.tween
+import androidx.compose.animation.core.*
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
@@ -24,18 +24,19 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.content.ContextCompat
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import com.atilika.kuromoji.ipadic.Token
 import com.atilika.kuromoji.ipadic.Tokenizer
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
 
 class GameActivity : ComponentActivity() {
     data class Phrase(
@@ -234,9 +235,19 @@ fun GameScreen(
 
     val coroutineScope = rememberCoroutineScope()
 
+    // Pulsing animation for the mic icon when listening
+    val isListening = spokenText == "Listening..."
+    val pulseScale by animateFloatAsState(
+        targetValue = if (isListening) 1.2f else 1.0f,
+        animationSpec = infiniteRepeatable(
+            animation = tween(durationMillis = 500, easing = LinearEasing),
+            repeatMode = RepeatMode.Reverse
+        )
+    )
+
     suspend fun toReading(text: String): String {
         return if (selectedLanguage == "Japanese") {
-            withContext(Dispatchers.Default) { // Offload to background thread
+            withContext(Dispatchers.Default) {
                 val tokenizer = Tokenizer.Builder().build()
                 val tokens: List<Token> = tokenizer.tokenize(text)
                 tokens.joinToString("") { it.reading ?: it.surface }
@@ -356,7 +367,6 @@ fun GameScreen(
                 isCorrect?.let {
                     Text(
                         text = if (it) "Correct!" else "Incorrect!",
-                        modifier = Modifier.background(if (it) Color.Green else Color(0xFFEF5350)),
                         color = Color.White,
                         fontSize = 30.sp,
                         textAlign = TextAlign.Center
@@ -399,7 +409,10 @@ fun GameScreen(
             Icon(
                 imageVector = Icons.Filled.Mic,
                 contentDescription = "Speak",
-                tint = Color.White
+                tint = Color.White,
+                modifier = Modifier
+                    .size(36.dp)
+                    .scale(pulseScale)
             )
         }
 
@@ -427,7 +440,6 @@ fun GameScreen(
                 showHelp = false
                 val newIndex = (currentIndex + 1) % phrases.size
                 currentIndex = newIndex
-                mediaPlayer.start()
             },
             modifier = Modifier
                 .align(Alignment.BottomStart)
