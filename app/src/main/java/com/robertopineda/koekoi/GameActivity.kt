@@ -34,6 +34,7 @@ import androidx.core.content.ContextCompat
 import kotlinx.coroutines.delay
 import com.atilika.kuromoji.ipadic.Token
 import com.atilika.kuromoji.ipadic.Tokenizer
+import androidx.compose.material.icons.filled.QuestionMark
 
 class GameActivity : ComponentActivity() {
     // Data class to hold all four fields
@@ -190,7 +191,7 @@ class GameActivity : ComponentActivity() {
 
 @Composable
 fun GameScreen(
-    phrases: List<GameActivity.Phrase>, // Updated to use Phrase data class
+    phrases: List<GameActivity.Phrase>,
     onStartListening: (Int, (String) -> Unit) -> Unit,
     onQuit: () -> Unit
 ) {
@@ -198,12 +199,13 @@ fun GameScreen(
     var spokenText by remember { mutableStateOf("") }
     var isCorrect by remember { mutableStateOf<Boolean?>(null) }
     var showResult by remember { mutableStateOf(false) }
+    var showHelp by remember { mutableStateOf(false) } // State to toggle hiragana and English visibility
 
     val backgroundColor by animateColorAsState(
         targetValue = when (isCorrect) {
-            true -> Color(0xFF4CAF50) // Darker green for correct in dark mode
-            false -> Color(0xFFE57373) // Darker red for incorrect in dark mode
-            null -> Color(0xFF121212) // Dark mode background (very dark gray)
+            true -> Color(0xFF4CAF50) // Darker green for correct
+            false -> Color(0xFFE57373) // Darker red for incorrect
+            null -> Color(0xFF121212) // Dark mode background
         },
         animationSpec = tween(durationMillis = 300)
     )
@@ -223,7 +225,6 @@ fun GameScreen(
             Log.d("normalizedExpected", normalizedExpected)
             Log.d("normalizedSpoken", normalizedSpoken)
 
-            // Check if spokenText is an error message
             val isError = spokenText.contains("error", ignoreCase = true) ||
                     spokenText == "No match found. Try again." ||
                     spokenText == "No speech input. Speak louder."
@@ -242,6 +243,7 @@ fun GameScreen(
                     isCorrect = null
                     showResult = false
                     currentIndex = (currentIndex + 1) % phrases.size
+                    showHelp = false // Reset help visibility on correct answer
                 } else if (isCorrect == false) {
                     delay(2000)
                     spokenText = ""
@@ -276,26 +278,42 @@ fun GameScreen(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(
-                text = phrases[currentIndex].spoken, // Display spoken phrase
+                text = phrases[currentIndex].spoken,
                 fontSize = 24.sp,
                 textAlign = TextAlign.Center,
                 color = Color.White
             )
             Spacer(modifier = Modifier.height(8.dp))
-            Text(
-                text = phrases[currentIndex].hiragana, // Display hiragana
-                fontSize = 20.sp,
-                textAlign = TextAlign.Center,
-                color = Color(0xFFBBBBBB) // Lighter gray for contrast
-            )
-            Spacer(modifier = Modifier.height(8.dp))
-            Text(
-                text = phrases[currentIndex].english, // Display English translation
-                fontSize = 18.sp,
-                textAlign = TextAlign.Center,
-                color = Color(0xFFBBBBBB)
-            )
-            Spacer(modifier = Modifier.height(16.dp))
+
+            // Hiragana text, hidden initially
+            AnimatedVisibility(
+                visible = showHelp,
+                enter = fadeIn(),
+                exit = fadeOut()
+            ) {
+                Text(
+                    text = phrases[currentIndex].hiragana,
+                    fontSize = 20.sp,
+                    textAlign = TextAlign.Center,
+                    color = Color(0xFFBBBBBB)
+                )
+            }
+            if (showHelp) Spacer(modifier = Modifier.height(8.dp))
+
+            // English text, hidden initially
+            AnimatedVisibility(
+                visible = showHelp,
+                enter = fadeIn(),
+                exit = fadeOut()
+            ) {
+                Text(
+                    text = phrases[currentIndex].english,
+                    fontSize = 18.sp,
+                    textAlign = TextAlign.Center,
+                    color = Color(0xFFBBBBBB)
+                )
+            }
+            if (showHelp) Spacer(modifier = Modifier.height(16.dp))
 
             AnimatedVisibility(
                 visible = showResult,
@@ -324,11 +342,13 @@ fun GameScreen(
             color = Color.White,
             modifier = Modifier
                 .align(Alignment.BottomCenter)
-                .padding(bottom = 90.dp)
+                .padding(bottom = 150.dp) // Increased padding to fit buttons
         )
 
         val context = LocalContext.current
         val mediaPlayer = remember { MediaPlayer.create(context, R.raw.speak) }
+
+        // Microphone button remains in the center
         IconButton(
             onClick = {
                 spokenText = ""
@@ -352,17 +372,37 @@ fun GameScreen(
             )
         }
 
+        // Help button moved to bottom right
+        IconButton(
+            onClick = { showHelp = !showHelp }, // Toggle visibility
+            modifier = Modifier
+                .align(Alignment.BottomEnd)
+                .padding(16.dp)
+                .padding(bottom = 5.dp)
+                .size(40.dp)
+                .background(Color.Gray, shape = CircleShape)
+        ) {
+            Icon(
+                imageVector = Icons.Default.QuestionMark,
+                contentDescription = "Show Help",
+                tint = Color.White,
+                modifier = Modifier.size(16.dp)
+            )
+        }
+
+        // Skip button moved to bottom left
         Button(
             onClick = {
                 spokenText = ""
                 isCorrect = null
                 showResult = false
+                showHelp = false // Reset help visibility on skip
                 val newIndex = (currentIndex + 1) % phrases.size
                 currentIndex = newIndex
                 mediaPlayer.start()
             },
             modifier = Modifier
-                .align(Alignment.BottomEnd)
+                .align(Alignment.BottomStart)
                 .padding(16.dp),
             colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFBBDEFB))
         ) {
