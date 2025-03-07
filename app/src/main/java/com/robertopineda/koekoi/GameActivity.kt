@@ -236,7 +236,7 @@ fun GameScreen(
 
             if (isError) {
                 delay(2000)
-                spokenText = ""
+                spokenText = "" // Clear error messages after 2 seconds
             } else {
                 isCorrect = normalizedExpected == normalizedSpoken
                 Log.d("GameScreen", "Spoken: $spokenText, Expected: $expected, IsCorrect: $isCorrect")
@@ -249,12 +249,8 @@ fun GameScreen(
                     showResult = false
                     currentIndex = (currentIndex + 1) % phrases.size
                     showHelp = false
-                } else if (isCorrect == false) {
-                    delay(2000)
-                    spokenText = ""
-                    isCorrect = null
-                    showResult = false
                 }
+                // Removed the else-if block for isCorrect == false; no reset here
             }
         }
     }
@@ -360,7 +356,7 @@ fun GameScreen(
 
         IconButton(
             onClick = {
-                spokenText = ""
+                spokenText = "" // Clear spoken text and reset states here
                 isCorrect = null
                 showResult = false
                 mediaPlayer.start()
