@@ -324,13 +324,13 @@ fun GameScreen(
                     Text(
                         text = if (selectedLanguage == "Japanese") "Hiragana" else "Hangul",
                         fontSize = 14.sp,
-                        color = Color(0xFFBBBBBB)
+                        color = Color.White
                     )
                     Text(
                         text = phrases[currentIndex].reading,
                         fontSize = 20.sp,
                         textAlign = TextAlign.Center,
-                        color = Color(0xFFBBBBBB)
+                        color = Color.White
                     )
                 }
             }
@@ -345,7 +345,7 @@ fun GameScreen(
                     text = phrases[currentIndex].english,
                     fontSize = 18.sp,
                     textAlign = TextAlign.Center,
-                    color = Color(0xFFBBBBBB)
+                    color = Color.White
                 )
             }
             if (showHelp) Spacer(modifier = Modifier.height(16.dp))
