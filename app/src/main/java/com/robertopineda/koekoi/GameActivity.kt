@@ -36,24 +36,19 @@ import com.atilika.kuromoji.ipadic.Token
 import com.atilika.kuromoji.ipadic.Tokenizer
 
 class GameActivity : ComponentActivity() {
-    private val sentences = listOf(
-        "私は晩ご飯に寿司を食べます" to "私は晩ご飯に寿司を食べます",
-        "私は朝ご飯を食べます" to "私は朝ご飯を食べます",
-        "今日は天気がいいです" to "今日は天気がいいです",
-        "私は日本語を勉強しています" to "私は日本語を勉強しています",
-        "明日は友達と映画を見ます" to "明日は友達と映画を見ます",
-        "私は毎朝コーヒーを飲みます" to "私は毎朝コーヒーを飲みます",
-        "昨日は図書館に行きました" to "昨日は図書館に行きました",
-        "私は朝早く起きます" to "私は朝早く起きます",
-        "私は毎日散歩をします" to "私は毎日散歩をします",
-        "私は今本を読んでいます" to "私は今本を読んでいます"
+    // Data class to hold all four fields
+    data class Phrase(
+        val spoken: String,
+        val expected: String,
+        val hiragana: String,
+        val english: String
     )
 
+    private lateinit var phrases: List<Phrase> // Changed to List<Phrase>
     private lateinit var speechRecognizer: SpeechRecognizer
     private lateinit var mediaPlayer: MediaPlayer
     private var currentOnResult: ((String) -> Unit)? = null
 
-    // Define the RecognitionListener as a separate property
     private val speechListener = object : RecognitionListener {
         override fun onReadyForSpeech(params: Bundle?) {
             Log.d("GameActivity", "Ready for speech")
@@ -61,7 +56,7 @@ class GameActivity : ComponentActivity() {
         }
 
         override fun onResults(results: Bundle?) {
-           val spokenText = results?.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION)?.get(0) ?: ""
+            val spokenText = results?.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION)?.get(0) ?: ""
             Log.d("GameActivity", "Final result: $spokenText")
             currentOnResult?.invoke(spokenText)
         }
@@ -90,12 +85,8 @@ class GameActivity : ComponentActivity() {
             currentOnResult?.invoke(errorMessage)
         }
 
-        override fun onBeginningOfSpeech() {
-        }
-
-        override fun onEndOfSpeech() {
-        }
-
+        override fun onBeginningOfSpeech() {}
+        override fun onEndOfSpeech() {}
         override fun onRmsChanged(rmsdB: Float) {}
         override fun onBufferReceived(buffer: ByteArray?) {}
         override fun onEvent(eventType: Int, params: Bundle?) {}
@@ -104,11 +95,8 @@ class GameActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // Check if the device has the necessary services for speech recognition
         val pm = packageManager
-        val activities = pm.queryIntentActivities(
-            Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH), 0
-        )
+        val activities = pm.queryIntentActivities(Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH), 0)
         if (activities.size == 0) {
             Log.e("GameActivity", "No activities found to handle speech recognition intent")
             Toast.makeText(this, "Speech recognition not supported on this device", Toast.LENGTH_LONG).show()
@@ -116,25 +104,22 @@ class GameActivity : ComponentActivity() {
             Log.d("GameActivity", "Found ${activities.size} activities to handle speech recognition")
         }
 
-        // Initialize SpeechRecognizer and set the listener explicitly
-        speechRecognizer = SpeechRecognizer.createSpeechRecognizer(this)
-        speechRecognizer.setRecognitionListener(speechListener) // Set before any commands
+        // Load phrases from assets
+        phrases = loadPhrasesFromAssets()
 
+        speechRecognizer = SpeechRecognizer.createSpeechRecognizer(this)
+        speechRecognizer.setRecognitionListener(speechListener)
         mediaPlayer = MediaPlayer.create(this, R.raw.speak)
 
         setContent {
             GameScreen(
-                sentences = sentences,
+                phrases = phrases, // Pass the new Phrase list
                 onStartListening = { index, onResult -> startListening(index, onResult) },
                 onQuit = { finish() }
             )
         }
 
         requestAudioPermission()
-
-        if (!SpeechRecognizer.isRecognitionAvailable(this)) {
-            Log.e("GameActivity", "Speech recognition not available on this device")
-        }
     }
 
     override fun onDestroy() {
@@ -155,7 +140,6 @@ class GameActivity : ComponentActivity() {
             return
         }
 
-        // Update the callback for the existing listener
         currentOnResult = onResult
 
         val intent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH).apply {
@@ -166,18 +150,47 @@ class GameActivity : ComponentActivity() {
         }
 
         try {
-            Log.d("GameActivity", "Starting SpeechRecognizer for: ${sentences[currentIndex].first}")
+            Log.d("GameActivity", "Starting SpeechRecognizer for: ${phrases[currentIndex].spoken}")
             speechRecognizer.startListening(intent)
         } catch (e: Exception) {
             Log.e("GameActivity", "Error starting speech recognizer", e)
             onResult("Error: ${e.message}")
         }
     }
+
+    private fun loadPhrasesFromAssets(): List<Phrase> {
+        val phrases = mutableListOf<Phrase>()
+        try {
+            assets.open("phrases_jp.txt").bufferedReader().use { reader ->
+                reader.forEachLine { line ->
+                    val parts = line.split("|") // Split by vertical bar
+                    if (parts.size == 4) {
+                        phrases.add(Phrase(parts[0], parts[1], parts[2], parts[3]))
+                    } else {
+                        Log.w("GameActivity", "Invalid line in phrases.txt: $line")
+                    }
+                }
+            }
+        } catch (e: Exception) {
+            Log.e("GameActivity", "Error loading phrases from assets", e)
+            Toast.makeText(this, "Error loading phrases", Toast.LENGTH_SHORT).show()
+            // Fallback to a default phrase
+            return listOf(
+                Phrase(
+                    "私は晩ご飯に寿司を食べます",
+                    "私は晩ご飯に寿司を食べます",
+                    "わたしはばんごはんにすしをたべます",
+                    "I eat sushi for dinner"
+                )
+            )
+        }
+        return phrases
+    }
 }
 
 @Composable
 fun GameScreen(
-    sentences: List<Pair<String, String>>,
+    phrases: List<GameActivity.Phrase>, // Updated to use Phrase data class
     onStartListening: (Int, (String) -> Unit) -> Unit,
     onQuit: () -> Unit
 ) {
@@ -203,7 +216,7 @@ fun GameScreen(
 
     LaunchedEffect(spokenText) {
         if (spokenText.isNotEmpty() && spokenText != "Listening...") {
-            val expected = sentences[currentIndex].second
+            val expected = phrases[currentIndex].expected
             val normalizedExpected = toHiragana(expected.replace(" ", ""))
             val normalizedSpoken = toHiragana(spokenText.replace(" ", ""))
 
@@ -216,11 +229,9 @@ fun GameScreen(
                     spokenText == "No speech input. Speak louder."
 
             if (isError) {
-                // For error messages, just clear the spoken text after a delay without showing result
                 delay(2000)
                 spokenText = ""
             } else {
-                // Process valid speech input
                 isCorrect = normalizedExpected == normalizedSpoken
                 Log.d("GameScreen", "Spoken: $spokenText, Expected: $expected, IsCorrect: $isCorrect")
                 showResult = true
@@ -230,7 +241,7 @@ fun GameScreen(
                     spokenText = ""
                     isCorrect = null
                     showResult = false
-                    currentIndex = (currentIndex + 1) % sentences.size
+                    currentIndex = (currentIndex + 1) % phrases.size
                 } else if (isCorrect == false) {
                     delay(2000)
                     spokenText = ""
@@ -265,12 +276,25 @@ fun GameScreen(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(
-                text = sentences[currentIndex].first,
+                text = phrases[currentIndex].spoken, // Display spoken phrase
                 fontSize = 24.sp,
                 textAlign = TextAlign.Center,
                 color = Color.White
             )
-            // Removed spokenText from here to move it below
+            Spacer(modifier = Modifier.height(8.dp))
+            Text(
+                text = phrases[currentIndex].hiragana, // Display hiragana
+                fontSize = 20.sp,
+                textAlign = TextAlign.Center,
+                color = Color(0xFFBBBBBB) // Lighter gray for contrast
+            )
+            Spacer(modifier = Modifier.height(8.dp))
+            Text(
+                text = phrases[currentIndex].english, // Display English translation
+                fontSize = 18.sp,
+                textAlign = TextAlign.Center,
+                color = Color(0xFFBBBBBB)
+            )
             Spacer(modifier = Modifier.height(16.dp))
 
             AnimatedVisibility(
@@ -293,22 +317,20 @@ fun GameScreen(
             }
         }
 
-        // Spoken text just above the microphone
         Text(
             text = spokenText,
-            fontSize = 18.sp, // Smaller font size
+            fontSize = 18.sp,
             textAlign = TextAlign.Center,
             color = Color.White,
             modifier = Modifier
                 .align(Alignment.BottomCenter)
-                .padding(bottom = 90.dp) // Just above the microphone (70dp button + 20dp gap)
+                .padding(bottom = 90.dp)
         )
 
         val context = LocalContext.current
         val mediaPlayer = remember { MediaPlayer.create(context, R.raw.speak) }
         IconButton(
             onClick = {
-                // Reset to default state before starting new recognition
                 spokenText = ""
                 isCorrect = null
                 showResult = false
@@ -332,11 +354,10 @@ fun GameScreen(
 
         Button(
             onClick = {
-                // Reset to default state and move to next sentence
                 spokenText = ""
                 isCorrect = null
                 showResult = false
-                val newIndex = (currentIndex + 1) % sentences.size
+                val newIndex = (currentIndex + 1) % phrases.size
                 currentIndex = newIndex
                 mediaPlayer.start()
             },
