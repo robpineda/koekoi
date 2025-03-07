@@ -33,12 +33,13 @@ import androidx.core.content.ContextCompat
 import kotlinx.coroutines.delay
 import com.atilika.kuromoji.ipadic.Token
 import com.atilika.kuromoji.ipadic.Tokenizer
+import kotlinx.coroutines.launch
 
 class GameActivity : ComponentActivity() {
     data class Phrase(
         val spoken: String,
         val expected: String,
-        val reading: String, // Renamed from hiragana to be generic (hiragana for JP, hangul for KR)
+        val reading: String,
         val english: String
     )
 
@@ -46,17 +47,17 @@ class GameActivity : ComponentActivity() {
     private lateinit var speechRecognizer: SpeechRecognizer
     private lateinit var mediaPlayer: MediaPlayer
     private var currentOnResult: ((String) -> Unit)? = null
-    private lateinit var selectedLanguage: String // To store the selected language
+    private lateinit var selectedLanguage: String
 
     private val speechListener = object : RecognitionListener {
         override fun onReadyForSpeech(params: Bundle?) {
-            Log.d("GameActivity", "Ready for speech")
+            Log.d("GameActivity", "Speech recognizer ready for speech")
             currentOnResult?.invoke("Listening...")
         }
 
         override fun onResults(results: Bundle?) {
             val spokenText = results?.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION)?.get(0) ?: ""
-            Log.d("GameActivity", "Final result: $spokenText")
+            Log.d("GameActivity", "Speech result received: $spokenText")
             currentOnResult?.invoke(spokenText)
         }
 
@@ -67,7 +68,7 @@ class GameActivity : ComponentActivity() {
         }
 
         override fun onError(error: Int) {
-            Log.e("GameActivity", "Speech error: $error")
+            Log.e("GameActivity", "Speech error code: $error")
             val errorMessage = when (error) {
                 SpeechRecognizer.ERROR_AUDIO -> "Audio recording error"
                 SpeechRecognizer.ERROR_CLIENT -> "Client side error"
@@ -78,24 +79,31 @@ class GameActivity : ComponentActivity() {
                 SpeechRecognizer.ERROR_RECOGNIZER_BUSY -> "RecognitionService busy"
                 SpeechRecognizer.ERROR_SERVER -> "Server error"
                 SpeechRecognizer.ERROR_SPEECH_TIMEOUT -> "No speech input. Speak louder."
-                else -> "Error $error"
+                else -> "Unknown error $error"
             }
             Log.e("GameActivity", "Speech error details: $errorMessage")
             currentOnResult?.invoke(errorMessage)
         }
 
-        override fun onBeginningOfSpeech() {}
-        override fun onEndOfSpeech() {}
+        override fun onBeginningOfSpeech() {
+            Log.d("GameActivity", "Speech began")
+        }
+
+        override fun onEndOfSpeech() {
+            Log.d("GameActivity", "Speech ended")
+        }
+
         override fun onRmsChanged(rmsdB: Float) {}
         override fun onBufferReceived(buffer: ByteArray?) {}
-        override fun onEvent(eventType: Int, params: Bundle?) {}
+        override fun onEvent(eventType: Int, params: Bundle?) {
+            Log.d("GameActivity", "Speech event: $eventType")
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // Get the selected language from the Intent
-        selectedLanguage = intent.getStringExtra("LANGUAGE") ?: "Japanese" // Default to Japanese if null
+        selectedLanguage = intent.getStringExtra("LANGUAGE") ?: "Japanese"
 
         val pm = packageManager
         val activities = pm.queryIntentActivities(Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH), 0)
@@ -107,8 +115,7 @@ class GameActivity : ComponentActivity() {
         }
 
         phrases = loadPhrasesFromAssets()
-        speechRecognizer = SpeechRecognizer.createSpeechRecognizer(this)
-        speechRecognizer.setRecognitionListener(speechListener)
+        speechRecognizer = createSpeechRecognizer()
         mediaPlayer = MediaPlayer.create(this, R.raw.speak)
 
         setContent {
@@ -135,11 +142,23 @@ class GameActivity : ComponentActivity() {
         }
     }
 
-    private fun startListening(currentIndex: Int, onResult: (String) -> Unit) {
+    private fun createSpeechRecognizer(): SpeechRecognizer {
+        val recognizer = SpeechRecognizer.createSpeechRecognizer(this)
+        recognizer.setRecognitionListener(speechListener)
+        return recognizer
+    }
+
+    private suspend fun startListening(currentIndex: Int, onResult: (String) -> Unit) {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
             onResult("Permission denied")
             return
         }
+
+        // Destroy and recreate the SpeechRecognizer to ensure a fresh state
+        Log.d("GameActivity", "Destroying and recreating SpeechRecognizer")
+        speechRecognizer.destroy()
+        speechRecognizer = createSpeechRecognizer()
+        delay(50) // Small delay to ensure the old instance is fully released
 
         currentOnResult = onResult
 
@@ -193,7 +212,7 @@ class GameActivity : ComponentActivity() {
 fun GameScreen(
     phrases: List<GameActivity.Phrase>,
     selectedLanguage: String,
-    onStartListening: (Int, (String) -> Unit) -> Unit,
+    onStartListening: suspend (Int, (String) -> Unit) -> Unit,
     onQuit: () -> Unit
 ) {
     var currentIndex by remember { mutableStateOf(0) }
@@ -211,13 +230,15 @@ fun GameScreen(
         animationSpec = tween(durationMillis = 300)
     )
 
+    val coroutineScope = rememberCoroutineScope()
+
     fun toReading(text: String): String {
         return if (selectedLanguage == "Japanese") {
             val tokenizer = Tokenizer.Builder().build()
             val tokens: List<Token> = tokenizer.tokenize(text)
             tokens.joinToString("") { it.reading ?: it.surface }
         } else {
-            text // For Korean, return the original hangul text
+            text
         }
     }
 
@@ -236,7 +257,7 @@ fun GameScreen(
 
             if (isError) {
                 delay(2000)
-                spokenText = "" // Clear error messages after 2 seconds
+                spokenText = ""
             } else {
                 isCorrect = normalizedExpected == normalizedSpoken
                 Log.d("GameScreen", "Spoken: $spokenText, Expected: $expected, IsCorrect: $isCorrect")
@@ -250,7 +271,6 @@ fun GameScreen(
                     currentIndex = (currentIndex + 1) % phrases.size
                     showHelp = false
                 }
-                // Removed the else-if block for isCorrect == false; no reset here
             }
         }
     }
@@ -356,12 +376,14 @@ fun GameScreen(
 
         IconButton(
             onClick = {
-                spokenText = "" // Clear spoken text and reset states here
+                spokenText = ""
                 isCorrect = null
                 showResult = false
                 mediaPlayer.start()
-                onStartListening(currentIndex) { result ->
-                    spokenText = result
+                coroutineScope.launch {
+                    onStartListening(currentIndex) { result ->
+                        spokenText = result
+                    }
                 }
             },
             modifier = Modifier
