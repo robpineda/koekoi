@@ -34,6 +34,8 @@ import kotlinx.coroutines.delay
 import com.atilika.kuromoji.ipadic.Token
 import com.atilika.kuromoji.ipadic.Tokenizer
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 class GameActivity : ComponentActivity() {
     data class Phrase(
@@ -232,11 +234,13 @@ fun GameScreen(
 
     val coroutineScope = rememberCoroutineScope()
 
-    fun toReading(text: String): String {
+    suspend fun toReading(text: String): String {
         return if (selectedLanguage == "Japanese") {
-            val tokenizer = Tokenizer.Builder().build()
-            val tokens: List<Token> = tokenizer.tokenize(text)
-            tokens.joinToString("") { it.reading ?: it.surface }
+            withContext(Dispatchers.Default) { // Offload to background thread
+                val tokenizer = Tokenizer.Builder().build()
+                val tokens: List<Token> = tokenizer.tokenize(text)
+                tokens.joinToString("") { it.reading ?: it.surface }
+            }
         } else {
             text
         }
