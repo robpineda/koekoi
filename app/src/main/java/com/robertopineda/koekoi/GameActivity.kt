@@ -117,7 +117,10 @@ class GameActivity : ComponentActivity() {
             Log.d("GameActivity", "Found ${activities.size} activities to handle speech recognition")
         }
 
-        phrases = loadPhrasesFromAssets()
+        // Load and shuffle phrases
+        phrases = loadPhrasesFromAssets().shuffled()
+        Log.d("GameActivity", "Phrases loaded and shuffled: ${phrases.map { it.spoken }}")
+
         speechRecognizer = createSpeechRecognizer()
         mediaPlayer = MediaPlayer.create(this, R.raw.speak)
 
