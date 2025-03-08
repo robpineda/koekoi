@@ -51,6 +51,7 @@ class GameActivity : ComponentActivity() {
     private lateinit var mediaPlayer: MediaPlayer
     private var currentOnResult: ((String) -> Unit)? = null
     private lateinit var selectedLanguage: String
+    private lateinit var selectedDifficulty: String
 
     private val speechListener = object : RecognitionListener {
         override fun onReadyForSpeech(params: Bundle?) {
@@ -107,6 +108,7 @@ class GameActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         selectedLanguage = intent.getStringExtra("LANGUAGE") ?: "Japanese"
+        selectedDifficulty = intent.getStringExtra("DIFFICULTY") ?: ""
 
         val pm = packageManager
         val activities = pm.queryIntentActivities(Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH), 0)
@@ -184,7 +186,12 @@ class GameActivity : ComponentActivity() {
 
     private fun loadPhrasesFromAssets(): List<Phrase> {
         val phrases = mutableListOf<Phrase>()
-        val fileName = if (selectedLanguage == "Japanese") "phrases_jp.txt" else "phrases_kr.txt"
+        val fileName = when {
+            selectedLanguage == "Japanese" -> "phrases_jp_jlpt_n1.txt" // Default for Japanese, can expand with difficulty later
+            selectedLanguage == "Korean" && selectedDifficulty == "TOPIK I" -> "phrases_kr_topik_1.txt"
+            selectedLanguage == "Korean" && selectedDifficulty == "TOPIK II" -> "phrases_kr_topik_2.txt"
+            else -> "phrases_kr_topik_2.txt" // Fallback for Korean if difficulty not set
+        }
         try {
             assets.open(fileName).bufferedReader().use { reader ->
                 reader.forEachLine { line ->

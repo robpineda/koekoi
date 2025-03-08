@@ -18,9 +18,10 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             MainScreen(
-                onStartGame = { language ->
+                onStartGame = { language, difficulty ->
                     val intent = Intent(this, GameActivity::class.java).apply {
                         putExtra("LANGUAGE", language)
+                        putExtra("DIFFICULTY", difficulty)
                     }
                     startActivity(intent)
                 }
@@ -30,8 +31,17 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun MainScreen(onStartGame: (String) -> Unit) {
+fun MainScreen(onStartGame: (String, String) -> Unit) {
     var selectedLanguage by remember { mutableStateOf("Japanese") } // Default to Japanese
+    var selectedDifficulty by remember { mutableStateOf("") } // Store selected difficulty
+    var expanded by remember { mutableStateOf(false) } // Toggle dropdown visibility
+
+    // Define difficulty options based on language
+    val difficultyOptions = when (selectedLanguage) {
+        "Japanese" -> listOf("Beginner") // Placeholder, can expand later
+        "Korean" -> listOf("TOPIK I", "TOPIK II")
+        else -> emptyList()
+    }
 
     Column(
         modifier = Modifier
@@ -46,7 +56,7 @@ fun MainScreen(onStartGame: (String) -> Unit) {
             modifier = Modifier.padding(bottom = 16.dp)
         )
 
-        // Language selection dropdown
+        // Language selection
         Text("Select Language", fontSize = 18.sp)
         Spacer(modifier = Modifier.height(8.dp))
         Row(
@@ -54,7 +64,10 @@ fun MainScreen(onStartGame: (String) -> Unit) {
             horizontalArrangement = Arrangement.Center
         ) {
             Button(
-                onClick = { selectedLanguage = "Japanese" },
+                onClick = {
+                    selectedLanguage = "Japanese"
+                    selectedDifficulty = "" // Reset difficulty when language changes
+                },
                 colors = ButtonDefaults.buttonColors(
                     containerColor = if (selectedLanguage == "Japanese") Color(0xFFBBDEFB) else Color.Gray
                 )
@@ -63,7 +76,10 @@ fun MainScreen(onStartGame: (String) -> Unit) {
             }
             Spacer(modifier = Modifier.width(16.dp))
             Button(
-                onClick = { selectedLanguage = "Korean" },
+                onClick = {
+                    selectedLanguage = "Korean"
+                    selectedDifficulty = "" // Reset difficulty when language changes
+                },
                 colors = ButtonDefaults.buttonColors(
                     containerColor = if (selectedLanguage == "Korean") Color(0xFFBBDEFB) else Color.Gray
                 )
@@ -74,14 +90,46 @@ fun MainScreen(onStartGame: (String) -> Unit) {
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        // Difficulty selection (placeholder for future use)
-        Button(onClick = { /* TODO: Difficulty selection */ }) {
-            Text("Select Difficulty")
+        // Difficulty selection with DropdownMenu
+        Text("Select Difficulty", fontSize = 18.sp)
+        Spacer(modifier = Modifier.height(8.dp))
+        Box {
+            OutlinedButton(
+                onClick = { expanded = true },
+                modifier = Modifier.fillMaxWidth(0.6f) // Adjust width as needed
+            ) {
+                Text(
+                    text = if (selectedDifficulty.isEmpty()) "Choose Difficulty" else selectedDifficulty,
+                    color = Color.Black
+                )
+            }
+            DropdownMenu(
+                expanded = expanded,
+                onDismissRequest = { expanded = false },
+                modifier = Modifier.fillMaxWidth(0.6f) // Match button width
+            ) {
+                difficultyOptions.forEach { difficulty ->
+                    DropdownMenuItem(
+                        text = { Text(difficulty) },
+                        onClick = {
+                            selectedDifficulty = difficulty
+                            expanded = false
+                        }
+                    )
+                }
+            }
         }
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        Button(onClick = { onStartGame(selectedLanguage) }) {
+        Button(
+            onClick = {
+                if (selectedDifficulty.isNotEmpty()) {
+                    onStartGame(selectedLanguage, selectedDifficulty)
+                }
+            },
+            enabled = selectedDifficulty.isNotEmpty() // Disable until difficulty is selected
+        ) {
             Text("Start Game")
         }
     }
