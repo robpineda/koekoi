@@ -322,8 +322,8 @@ fun GameScreen(
     LaunchedEffect(spokenText) {
         if (spokenText.isNotEmpty() && spokenText != "Listening...") {
             val expected = phrases[currentIndex].expected
-            val normalizedExpected = toReading(expected.replace(" ", ""))
-            val normalizedSpoken = toReading(spokenText.replace(" ", ""))
+            val normalizedExpected = toReading(expected.replace("[\\s、。？！]".toRegex(), ""))
+            val normalizedSpoken = toReading(spokenText.replace("[\\s、。？！]".toRegex(), ""))
 
             Log.d("normalizedExpected", normalizedExpected)
             Log.d("normalizedSpoken", normalizedSpoken)
