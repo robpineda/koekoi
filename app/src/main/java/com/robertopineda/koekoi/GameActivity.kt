@@ -322,8 +322,8 @@ fun GameScreen(
     LaunchedEffect(spokenText) {
         if (spokenText.isNotEmpty() && spokenText != "Listening...") {
             val expected = phrases[currentIndex].expected
-            val normalizedExpected = toReading(expected.replace("[\\s、。？！]".toRegex(), ""))
-            val normalizedSpoken = toReading(spokenText.replace("[\\s、。？！]".toRegex(), ""))
+            val normalizedExpected = toReading(expected.replace("[\\s、。？！]".toRegex(), "")).lowercase()
+            val normalizedSpoken = toReading(spokenText.replace("[\\s、。？！]".toRegex(), "")).lowercase()
 
             Log.d("normalizedExpected", normalizedExpected)
             Log.d("normalizedSpoken", normalizedSpoken)
@@ -377,20 +377,15 @@ fun GameScreen(
             )
             Spacer(modifier = Modifier.height(8.dp))
 
+            // Only show reading for Japanese
             AnimatedVisibility(
-                visible = showHelp,
+                visible = showHelp && selectedLanguage == "Japanese",
                 enter = fadeIn(),
                 exit = fadeOut()
             ) {
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
                     Text(
-                        text = when (selectedLanguage) {
-                            "Japanese" -> "Hiragana"
-                            "Korean" -> "Hangul"
-                            "Vietnamese" -> "Vietnamese"
-                            "Spanish" -> "Spanish"
-                            else -> "Reading"
-                        },
+                        text = "Hiragana",
                         fontSize = 14.sp,
                         color = Color.White
                     )
@@ -402,7 +397,7 @@ fun GameScreen(
                     )
                 }
             }
-            if (showHelp) Spacer(modifier = Modifier.height(8.dp))
+            if (showHelp && selectedLanguage == "Japanese") Spacer(modifier = Modifier.height(8.dp))
 
             AnimatedVisibility(
                 visible = showHelp,
