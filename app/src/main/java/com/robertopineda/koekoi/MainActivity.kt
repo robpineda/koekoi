@@ -34,12 +34,18 @@ class MainActivity : ComponentActivity() {
 fun MainScreen(onStartGame: (String, String) -> Unit) {
     var selectedLanguage by remember { mutableStateOf("Japanese") } // Default to Japanese
     var selectedDifficulty by remember { mutableStateOf("") } // Store selected difficulty
-    var expanded by remember { mutableStateOf(false) } // Toggle dropdown visibility
+    var languageExpanded by remember { mutableStateOf(false) } // Toggle language dropdown
+    var difficultyExpanded by remember { mutableStateOf(false) } // Toggle difficulty dropdown
+
+    // Define language options
+    val languageOptions = listOf("Japanese", "Korean", "Vietnamese", "Spanish")
 
     // Define difficulty options based on language
     val difficultyOptions = when (selectedLanguage) {
-        "Japanese" -> listOf("Beginner") // Placeholder, can expand later
+        "Japanese" -> listOf("JLPT N1", "JLPT N2", "JLPT N3", "JLPT N4", "JLPT N5")
         "Korean" -> listOf("TOPIK I", "TOPIK II")
+        "Vietnamese" -> listOf("Beginner", "Intermediate", "Advanced")
+        "Spanish" -> listOf("Beginner", "Intermediate", "Advanced")
         else -> emptyList()
     }
 
@@ -56,35 +62,34 @@ fun MainScreen(onStartGame: (String, String) -> Unit) {
             modifier = Modifier.padding(bottom = 16.dp)
         )
 
-        // Language selection
+        // Language selection with DropdownMenu
         Text("Select Language", fontSize = 18.sp)
         Spacer(modifier = Modifier.height(8.dp))
-        Row(
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.Center
-        ) {
-            Button(
-                onClick = {
-                    selectedLanguage = "Japanese"
-                    selectedDifficulty = "" // Reset difficulty when language changes
-                },
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = if (selectedLanguage == "Japanese") Color(0xFFBBDEFB) else Color.Gray
-                )
+        Box {
+            OutlinedButton(
+                onClick = { languageExpanded = true },
+                modifier = Modifier.fillMaxWidth(0.6f) // Adjust width as needed
             ) {
-                Text("Japanese", color = Color.Black)
+                Text(
+                    text = selectedLanguage,
+                    color = Color.Black
+                )
             }
-            Spacer(modifier = Modifier.width(16.dp))
-            Button(
-                onClick = {
-                    selectedLanguage = "Korean"
-                    selectedDifficulty = "" // Reset difficulty when language changes
-                },
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = if (selectedLanguage == "Korean") Color(0xFFBBDEFB) else Color.Gray
-                )
+            DropdownMenu(
+                expanded = languageExpanded,
+                onDismissRequest = { languageExpanded = false },
+                modifier = Modifier.fillMaxWidth(0.6f) // Match button width
             ) {
-                Text("Korean", color = Color.Black)
+                languageOptions.forEach { language ->
+                    DropdownMenuItem(
+                        text = { Text(language) },
+                        onClick = {
+                            selectedLanguage = language
+                            selectedDifficulty = "" // Reset difficulty when language changes
+                            languageExpanded = false
+                        }
+                    )
+                }
             }
         }
 
@@ -95,7 +100,7 @@ fun MainScreen(onStartGame: (String, String) -> Unit) {
         Spacer(modifier = Modifier.height(8.dp))
         Box {
             OutlinedButton(
-                onClick = { expanded = true },
+                onClick = { difficultyExpanded = true },
                 modifier = Modifier.fillMaxWidth(0.6f) // Adjust width as needed
             ) {
                 Text(
@@ -104,8 +109,8 @@ fun MainScreen(onStartGame: (String, String) -> Unit) {
                 )
             }
             DropdownMenu(
-                expanded = expanded,
-                onDismissRequest = { expanded = false },
+                expanded = difficultyExpanded,
+                onDismissRequest = { difficultyExpanded = false },
                 modifier = Modifier.fillMaxWidth(0.6f) // Match button width
             ) {
                 difficultyOptions.forEach { difficulty ->
@@ -113,7 +118,7 @@ fun MainScreen(onStartGame: (String, String) -> Unit) {
                         text = { Text(difficulty) },
                         onClick = {
                             selectedDifficulty = difficulty
-                            expanded = false
+                            difficultyExpanded = false
                         }
                     )
                 }

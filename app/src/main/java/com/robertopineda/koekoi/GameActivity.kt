@@ -171,7 +171,16 @@ class GameActivity : ComponentActivity() {
         val intent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH).apply {
             putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM)
             putExtra(RecognizerIntent.EXTRA_CALLING_PACKAGE, packageName)
-            putExtra(RecognizerIntent.EXTRA_LANGUAGE, if (selectedLanguage == "Japanese") "ja-JP" else "ko-KR")
+            putExtra(
+                RecognizerIntent.EXTRA_LANGUAGE,
+                when (selectedLanguage) {
+                    "Japanese" -> "ja-JP"
+                    "Korean" -> "ko-KR"
+                    "Vietnamese" -> "vi-VN"
+                    "Spanish" -> "es-ES"
+                    else -> "ja-JP" // Fallback
+                }
+            )
             putExtra(RecognizerIntent.EXTRA_PARTIAL_RESULTS, true)
         }
 
@@ -186,11 +195,33 @@ class GameActivity : ComponentActivity() {
 
     private fun loadPhrasesFromAssets(): List<Phrase> {
         val phrases = mutableListOf<Phrase>()
-        val fileName = when {
-            selectedLanguage == "Japanese" -> "phrases_jp_jlpt_n1.txt" // Default for Japanese, can expand with difficulty later
-            selectedLanguage == "Korean" && selectedDifficulty == "TOPIK I" -> "phrases_kr_topik_1.txt"
-            selectedLanguage == "Korean" && selectedDifficulty == "TOPIK II" -> "phrases_kr_topik_2.txt"
-            else -> "phrases_kr_topik_2.txt" // Fallback for Korean if difficulty not set
+        val fileName = when (selectedLanguage) {
+            "Japanese" -> when (selectedDifficulty) {
+                "JLPT N1" -> "phrases_jp_jlpt_n1.txt"
+                "JLPT N2" -> "phrases_jp_jlpt_n2.txt"
+                "JLPT N3" -> "phrases_jp_jlpt_n3.txt"
+                "JLPT N4" -> "phrases_jp_jlpt_n4.txt"
+                "JLPT N5" -> "phrases_jp_jlpt_n5.txt"
+                else -> "phrases_jp_jlpt_n1.txt" // Fallback
+            }
+            "Korean" -> when (selectedDifficulty) {
+                "TOPIK I" -> "phrases_kr_topik_1.txt"
+                "TOPIK II" -> "phrases_kr_topik_2.txt"
+                else -> "phrases_kr_topik_2.txt" // Fallback
+            }
+            "Vietnamese" -> when (selectedDifficulty) {
+                "Beginner" -> "phrases_vi_beginner.txt"
+                "Intermediate" -> "phrases_vi_intermediate.txt"
+                "Advanced" -> "phrases_vi_advanced.txt"
+                else -> "phrases_vi_beginner.txt" // Fallback
+            }
+            "Spanish" -> when (selectedDifficulty) {
+                "Beginner" -> "phrases_es_beginner.txt"
+                "Intermediate" -> "phrases_es_intermediate.txt"
+                "Advanced" -> "phrases_es_advanced.txt"
+                else -> "phrases_es_beginner.txt" // Fallback
+            }
+            else -> "phrases_jp_jlpt_n1.txt" // Overall fallback
         }
         try {
             assets.open(fileName).bufferedReader().use { reader ->
@@ -208,10 +239,34 @@ class GameActivity : ComponentActivity() {
             Toast.makeText(this, "Error loading phrases", Toast.LENGTH_SHORT).show()
             return listOf(
                 Phrase(
-                    if (selectedLanguage == "Japanese") "私は晩ご飯に寿司を食べます" else "저는 매일 아침 책을 읽습니다",
-                    if (selectedLanguage == "Japanese") "私は晩ご飯に寿司を食べます" else "저는 매일 아침 책을 읽습니다",
-                    if (selectedLanguage == "Japanese") "わたしはばんごはんにすしをたべます" else "저는 매일 아침 책을 읽습니다",
-                    if (selectedLanguage == "Japanese") "I eat sushi for dinner" else "I read a book every morning"
+                    when (selectedLanguage) {
+                        "Japanese" -> "私は晩ご飯に寿司を食べます"
+                        "Korean" -> "저는 매일 아침 책을 읽습니다"
+                        "Vietnamese" -> "Tôi ăn sáng mỗi ngày"
+                        "Spanish" -> "Yo como desayuno todos los días"
+                        else -> "私は晩ご飯に寿司を食べます"
+                    },
+                    when (selectedLanguage) {
+                        "Japanese" -> "私は晩ご飯に寿司を食べます"
+                        "Korean" -> "저는 매일 아침 책을 읽습니다"
+                        "Vietnamese" -> "Tôi ăn sáng mỗi ngày"
+                        "Spanish" -> "Yo como desayuno todos los días"
+                        else -> "私は晩ご飯に寿司を食べます"
+                    },
+                    when (selectedLanguage) {
+                        "Japanese" -> "わたしはばんごはんにすしをたべます"
+                        "Korean" -> "저는 매일 아침 책을 읽습니다"
+                        "Vietnamese" -> "Tôi ăn sáng mỗi ngày"
+                        "Spanish" -> "Yo como desayuno todos los días"
+                        else -> "わたしはばんごはんにすしをたべます"
+                    },
+                    when (selectedLanguage) {
+                        "Japanese" -> "I eat sushi for dinner"
+                        "Korean" -> "I read a book every morning"
+                        "Vietnamese" -> "I eat breakfast every day"
+                        "Spanish" -> "I eat breakfast every day"
+                        else -> "I eat sushi for dinner"
+                    }
                 )
             )
         }
@@ -329,7 +384,13 @@ fun GameScreen(
             ) {
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
                     Text(
-                        text = if (selectedLanguage == "Japanese") "Hiragana" else "Hangul",
+                        text = when (selectedLanguage) {
+                            "Japanese" -> "Hiragana"
+                            "Korean" -> "Hangul"
+                            "Vietnamese" -> "Vietnamese"
+                            "Spanish" -> "Spanish"
+                            else -> "Reading"
+                        },
                         fontSize = 14.sp,
                         color = Color.White
                     )
