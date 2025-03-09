@@ -50,6 +50,7 @@ class GameActivity : ComponentActivity() {
     private lateinit var speechRecognizer: SpeechRecognizer
     private lateinit var mediaPlayer: MediaPlayer
     private var currentOnResult: ((String) -> Unit)? = null
+    private var currentOnSpeechEnded: (() -> Unit)? = null // New callback for onEndOfSpeech
     private lateinit var selectedLanguage: String
     private lateinit var selectedDifficulty: String
 
@@ -95,6 +96,7 @@ class GameActivity : ComponentActivity() {
 
         override fun onEndOfSpeech() {
             Log.d("GameActivity", "Speech ended")
+            currentOnSpeechEnded?.invoke() // Notify GameScreen without altering spokenText
         }
 
         override fun onRmsChanged(rmsdB: Float) {}
@@ -129,7 +131,9 @@ class GameActivity : ComponentActivity() {
             GameScreen(
                 phrases = phrases,
                 selectedLanguage = selectedLanguage,
-                onStartListening = { index, onResult -> startListening(index, onResult) },
+                onStartListening = { index, onResult, onSpeechEnded ->
+                    startListening(index, onResult, onSpeechEnded)
+                },
                 onQuit = { finish() },
                 onDestroyRecognizer = { speechRecognizer.destroy() }
             )
@@ -156,7 +160,11 @@ class GameActivity : ComponentActivity() {
         return recognizer
     }
 
-    private suspend fun startListening(currentIndex: Int, onResult: (String) -> Unit) {
+    private suspend fun startListening(
+        currentIndex: Int,
+        onResult: (String) -> Unit,
+        onSpeechEnded: () -> Unit // New parameter
+    ) {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
             onResult("Permission denied")
             return
@@ -168,6 +176,7 @@ class GameActivity : ComponentActivity() {
         delay(50)
 
         currentOnResult = onResult
+        currentOnSpeechEnded = onSpeechEnded // Set the callback
 
         val intent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH).apply {
             putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM)
@@ -279,7 +288,7 @@ class GameActivity : ComponentActivity() {
 fun GameScreen(
     phrases: List<GameActivity.Phrase>,
     selectedLanguage: String,
-    onStartListening: suspend (Int, (String) -> Unit) -> Unit,
+    onStartListening: suspend (Int, (String) -> Unit, () -> Unit) -> Unit, // Updated signature
     onQuit: () -> Unit,
     onDestroyRecognizer: () -> Unit
 ) {
@@ -290,6 +299,7 @@ fun GameScreen(
     var showHelp by remember { mutableStateOf(false) }
     var speechEnded by remember { mutableStateOf(false) }
     var lastPartialText by remember { mutableStateOf("") }
+    var isRecording by remember { mutableStateOf(false) }
 
     val backgroundColor by animateColorAsState(
         targetValue = when (isCorrect) {
@@ -301,14 +311,6 @@ fun GameScreen(
     )
 
     val coroutineScope = rememberCoroutineScope()
-    val isListening = spokenText == "Listening..."
-    val pulseScale by animateFloatAsState(
-        targetValue = if (isListening) 1.2f else 1.0f,
-        animationSpec = infiniteRepeatable(
-            animation = tween(durationMillis = 500, easing = LinearEasing),
-            repeatMode = RepeatMode.Reverse
-        )
-    )
 
     suspend fun toReading(text: String): String {
         return if (selectedLanguage == "Japanese") {
@@ -322,7 +324,7 @@ fun GameScreen(
         }
     }
 
-        LaunchedEffect(spokenText) {
+    LaunchedEffect(spokenText) {
         if (spokenText.isNotEmpty() && spokenText != "Listening...") {
             val expected = phrases[currentIndex].expected
             val normalizedExpected = toReading(expected.replace("[\\s、。？！]".toRegex(), "")).lowercase()
@@ -342,32 +344,32 @@ fun GameScreen(
                 isCorrect = null
                 showResult = false
                 lastPartialText = ""
-                Log.d("entered 0", "entered 0");
+                isRecording = false
+                Log.d("entered 0", "entered 0")
             } else {
-                // Check if spoken text is a prefix of expected text or matches fully
                 val isPrefix = normalizedExpected.startsWith(normalizedSpoken)
                 val matches = normalizedExpected == normalizedSpoken
 
                 if (matches) {
-                    // Full match, mark as correct
                     isCorrect = true
                     showResult = true
                     showHelp = true
                     onDestroyRecognizer()
-                    Log.d("entered 1", "entered 1");
+                    isRecording = false
+                    Log.d("entered 1", "entered 1")
                 } else if (!isPrefix && normalizedSpoken.isNotEmpty()) {
-                    // Spoken text deviates from expected, mark as incorrect
                     isCorrect = false
                     showResult = true
-                    speechEnded = true // Treat as final since no recovery possible
+                    speechEnded = true
                     onDestroyRecognizer()
+                    isRecording = false
                     Log.d("entered 2", "entered 2")
                 } else {
-                    // Spoken text is still a valid prefix, wait for more
+                    lastPartialText = spokenText
                     Log.d("entered 3", "entered 3")
                 }
-                Log.d("GameScreen", "Spoken: $spokenText, Expected: $expected, IsCorrect: $isCorrect, SpeechEnded: $speechEnded, LastPartial: $lastPartialText")
             }
+            Log.d("GameScreen", "Spoken: $spokenText, Expected: $expected, IsCorrect: $isCorrect, SpeechEnded: $speechEnded, LastPartial: $lastPartialText")
         }
     }
 
@@ -469,24 +471,32 @@ fun GameScreen(
                 showHelp = false
                 speechEnded = false
                 lastPartialText = ""
+                isRecording = true // Turn mic light red
                 mediaPlayer.start()
                 coroutineScope.launch {
-                    onStartListening(currentIndex) { result ->
+                    onStartListening(currentIndex, { result ->
                         spokenText = result
-                    }
+                    }, {
+                        // Callback for onEndOfSpeech
+                        isRecording = false // Turn mic back to light blue
+                        Log.d("GameScreen", "Speech ended callback triggered")
+                    })
                 }
             },
             modifier = Modifier
                 .align(Alignment.BottomCenter)
                 .padding(16.dp)
                 .size(70.dp)
-                .background(Color.Gray, shape = CircleShape)
+                .background(
+                    color = if (isRecording) Color(0xFFFF9999) else Color(0xFF99CCFF), // Light red when recording, light blue otherwise
+                    shape = CircleShape
+                )
         ) {
             Icon(
                 imageVector = Icons.Filled.Mic,
                 contentDescription = "Speak",
                 tint = Color.White,
-                modifier = Modifier.size(36.dp).scale(pulseScale)
+                modifier = Modifier.size(36.dp)
             )
         }
 
@@ -496,12 +506,12 @@ fun GameScreen(
                 .align(Alignment.BottomEnd)
                 .padding(16.dp)
                 .size(40.dp)
-                .background(Color.Gray, shape = CircleShape)
+                .background(Color(0xFFBBDEFB), shape = CircleShape)
         ) {
             Icon(
                 imageVector = Icons.Default.QuestionMark,
                 contentDescription = "Show Help",
-                tint = Color.White,
+                tint = Color.Black,
                 modifier = Modifier.size(16.dp)
             )
         }
@@ -514,6 +524,7 @@ fun GameScreen(
                 showHelp = false
                 speechEnded = false
                 lastPartialText = ""
+                isRecording = false
                 val newIndex = (currentIndex + 1) % phrases.size
                 currentIndex = newIndex
             },
