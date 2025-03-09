@@ -61,13 +61,13 @@ class GameActivity : ComponentActivity() {
 
         override fun onResults(results: Bundle?) {
             val spokenText = results?.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION)?.get(0) ?: ""
-            Log.d("GameActivity", "Speech result received: $spokenText")
+            Log.d("GameActivity", "Speech result received: '$spokenText'")
             currentOnResult?.invoke(spokenText)
         }
 
         override fun onPartialResults(partialResults: Bundle?) {
             val partialText = partialResults?.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION)?.get(0) ?: ""
-            Log.d("GameActivity", "Partial result: $partialText")
+            Log.d("GameActivity", "Partial result: '$partialText'")
             if (partialText.isNotEmpty()) currentOnResult?.invoke(partialText)
         }
 
@@ -94,7 +94,7 @@ class GameActivity : ComponentActivity() {
         }
 
         override fun onEndOfSpeech() {
-            currentOnResult?.invoke("SpeechEnded")
+            Log.d("GameActivity", "Speech ended")
         }
 
         override fun onRmsChanged(rmsdB: Float) {}
@@ -179,7 +179,7 @@ class GameActivity : ComponentActivity() {
                     "Korean" -> "ko-KR"
                     "Vietnamese" -> "vi-VN"
                     "Spanish" -> "es-ES"
-                    else -> "ja-JP" // Fallback
+                    else -> "ja-JP"
                 }
             )
             putExtra(RecognizerIntent.EXTRA_PARTIAL_RESULTS, true)
@@ -289,6 +289,7 @@ fun GameScreen(
     var showResult by remember { mutableStateOf(false) }
     var showHelp by remember { mutableStateOf(false) }
     var speechEnded by remember { mutableStateOf(false) }
+    var lastPartialText by remember { mutableStateOf("") }
 
     val backgroundColor by animateColorAsState(
         targetValue = when (isCorrect) {
@@ -321,12 +322,7 @@ fun GameScreen(
         }
     }
 
-    LaunchedEffect(spokenText) {
-        if (spokenText == "SpeechEnded") {
-            speechEnded = true
-            return@LaunchedEffect // Wait for final result to process
-        }
-
+        LaunchedEffect(spokenText) {
         if (spokenText.isNotEmpty() && spokenText != "Listening...") {
             val expected = phrases[currentIndex].expected
             val normalizedExpected = toReading(expected.replace("[\\s、。？！]".toRegex(), "")).lowercase()
@@ -345,18 +341,32 @@ fun GameScreen(
                 speechEnded = false
                 isCorrect = null
                 showResult = false
+                lastPartialText = ""
+                Log.d("entered 0", "entered 0");
             } else {
+                // Check if spoken text is a prefix of expected text or matches fully
+                val isPrefix = normalizedExpected.startsWith(normalizedSpoken)
                 val matches = normalizedExpected == normalizedSpoken
+
                 if (matches) {
+                    // Full match, mark as correct
                     isCorrect = true
                     showResult = true
                     showHelp = true
                     onDestroyRecognizer()
-                } else if (speechEnded) {
-                    isCorrect = false // Only set to false after speech ends
+                    Log.d("entered 1", "entered 1");
+                } else if (!isPrefix && normalizedSpoken.isNotEmpty()) {
+                    // Spoken text deviates from expected, mark as incorrect
+                    isCorrect = false
                     showResult = true
+                    speechEnded = true // Treat as final since no recovery possible
+                    onDestroyRecognizer()
+                    Log.d("entered 2", "entered 2")
+                } else {
+                    // Spoken text is still a valid prefix, wait for more
+                    Log.d("entered 3", "entered 3")
                 }
-                Log.d("GameScreen", "Spoken: $spokenText, Expected: $expected, IsCorrect: $isCorrect, SpeechEnded: $speechEnded")
+                Log.d("GameScreen", "Spoken: $spokenText, Expected: $expected, IsCorrect: $isCorrect, SpeechEnded: $speechEnded, LastPartial: $lastPartialText")
             }
         }
     }
@@ -458,6 +468,7 @@ fun GameScreen(
                 showResult = false
                 showHelp = false
                 speechEnded = false
+                lastPartialText = ""
                 mediaPlayer.start()
                 coroutineScope.launch {
                     onStartListening(currentIndex) { result ->
@@ -501,7 +512,8 @@ fun GameScreen(
                 isCorrect = null
                 showResult = false
                 showHelp = false
-                speechEnded = false // Reset speech ended state
+                speechEnded = false
+                lastPartialText = ""
                 val newIndex = (currentIndex + 1) % phrases.size
                 currentIndex = newIndex
             },
