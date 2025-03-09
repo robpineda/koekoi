@@ -385,7 +385,7 @@ fun GameScreen(
                 .padding(16.dp),
             colors = ButtonDefaults.buttonColors(
                 containerColor = Color(0xFFCE93D8), // Pastel purple
-                contentColor = Color(0xFFBBDEFB) // Pastel blue text
+                contentColor = Color(0xFFFCFCFC)
             )
         ) {
             Text("Quit")
@@ -402,7 +402,7 @@ fun GameScreen(
                 text = phrases[currentIndex].spoken,
                 fontSize = 24.sp,
                 textAlign = TextAlign.Center,
-                color = Color(0xFFBBDEFB) // Pastel blue
+                color = Color(0xFFF6F6F6)
             )
             Spacer(modifier = Modifier.height(8.dp))
 
@@ -415,13 +415,13 @@ fun GameScreen(
                     Text(
                         text = "Hiragana",
                         fontSize = 14.sp,
-                        color = Color(0xFFBBDEFB) // Pastel blue
+                        color = Color(0xFFF6F6F6)
                     )
                     Text(
                         text = phrases[currentIndex].reading,
                         fontSize = 20.sp,
                         textAlign = TextAlign.Center,
-                        color = Color(0xFFBBDEFB) // Pastel blue
+                        color = Color(0xFFF6F6F6)
                     )
                 }
             }
@@ -436,7 +436,7 @@ fun GameScreen(
                     text = phrases[currentIndex].english,
                     fontSize = 18.sp,
                     textAlign = TextAlign.Center,
-                    color = Color(0xFFBBDEFB) // Pastel blue
+                    color = Color(0xFFF6F6F6)
                 )
             }
             if (showHelp) Spacer(modifier = Modifier.height(16.dp))
@@ -452,7 +452,7 @@ fun GameScreen(
                 isCorrect?.let {
                     Text(
                         text = if (it) "Correct!" else "Incorrect!",
-                        color = Color(0xFFBBDEFB), // Pastel blue
+                        color = Color(0xFFF6F6F6),
                         fontSize = 30.sp,
                         textAlign = TextAlign.Center
                     )
@@ -464,7 +464,7 @@ fun GameScreen(
             text = spokenText,
             fontSize = 18.sp,
             textAlign = TextAlign.Center,
-            color = Color(0xFFBBDEFB), // Pastel blue
+            color = Color(0xFFF6F6F6),
             modifier = Modifier
                 .align(Alignment.BottomCenter)
                 .padding(bottom = 150.dp)
@@ -504,7 +504,7 @@ fun GameScreen(
             Icon(
                 imageVector = Icons.Filled.Mic,
                 contentDescription = "Speak",
-                tint = Color(0xFFBBDEFB), // Pastel blue
+                tint = Color(0xFFFCFCFC),
                 modifier = Modifier.size(36.dp)
             )
         }
@@ -515,12 +515,12 @@ fun GameScreen(
                 .align(Alignment.BottomEnd)
                 .padding(16.dp)
                 .size(40.dp)
-                .background(Color(0xFFCE93D8), shape = CircleShape) // Pastel purple
+                .background(Color(0xFFCE93D8), shape = CircleShape)
         ) {
             Icon(
                 imageVector = Icons.Default.QuestionMark,
                 contentDescription = "Show Help",
-                tint = Color(0xFFBBDEFB), // Pastel blue
+                tint = Color(0xFFFCFCFC),
                 modifier = Modifier.size(16.dp)
             )
         }
@@ -542,7 +542,7 @@ fun GameScreen(
                 .padding(16.dp),
             colors = ButtonDefaults.buttonColors(
                 containerColor = Color(0xFFCE93D8), // Pastel purple
-                contentColor = Color(0xFFBBDEFB) // Pastel blue text
+                contentColor = Color(0xFFFCFCFC)
             )
         ) {
             Text(
