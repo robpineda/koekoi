@@ -66,7 +66,7 @@ class GameActivity : ComponentActivity() {
         }
 
         override fun onPartialResults(partialResults: Bundle?) {
-            val partialText = partialResults?.getStringArrayList(RecognizerIntent.EXTRA_RESULTS)?.get(0) ?: ""
+            val partialText = partialResults?.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION)?.get(0) ?: ""
             Log.d("GameActivity", "Partial result: $partialText")
             if (partialText.isNotEmpty()) currentOnResult?.invoke(partialText)
         }
@@ -94,7 +94,7 @@ class GameActivity : ComponentActivity() {
         }
 
         override fun onEndOfSpeech() {
-            Log.d("GameActivity", "Speech ended")
+            currentOnResult?.invoke("SpeechEnded")
         }
 
         override fun onRmsChanged(rmsdB: Float) {}
@@ -130,7 +130,8 @@ class GameActivity : ComponentActivity() {
                 phrases = phrases,
                 selectedLanguage = selectedLanguage,
                 onStartListening = { index, onResult -> startListening(index, onResult) },
-                onQuit = { finish() }
+                onQuit = { finish() },
+                onDestroyRecognizer = { speechRecognizer.destroy() }
             )
         }
 
@@ -279,13 +280,15 @@ fun GameScreen(
     phrases: List<GameActivity.Phrase>,
     selectedLanguage: String,
     onStartListening: suspend (Int, (String) -> Unit) -> Unit,
-    onQuit: () -> Unit
+    onQuit: () -> Unit,
+    onDestroyRecognizer: () -> Unit
 ) {
     var currentIndex by remember { mutableStateOf(0) }
     var spokenText by remember { mutableStateOf("") }
     var isCorrect by remember { mutableStateOf<Boolean?>(null) }
     var showResult by remember { mutableStateOf(false) }
     var showHelp by remember { mutableStateOf(false) }
+    var speechEnded by remember { mutableStateOf(false) }
 
     val backgroundColor by animateColorAsState(
         targetValue = when (isCorrect) {
@@ -297,7 +300,6 @@ fun GameScreen(
     )
 
     val coroutineScope = rememberCoroutineScope()
-
     val isListening = spokenText == "Listening..."
     val pulseScale by animateFloatAsState(
         targetValue = if (isListening) 1.2f else 1.0f,
@@ -320,6 +322,11 @@ fun GameScreen(
     }
 
     LaunchedEffect(spokenText) {
+        if (spokenText == "SpeechEnded") {
+            speechEnded = true
+            return@LaunchedEffect // Wait for final result to process
+        }
+
         if (spokenText.isNotEmpty() && spokenText != "Listening...") {
             val expected = phrases[currentIndex].expected
             val normalizedExpected = toReading(expected.replace("[\\s、。？！]".toRegex(), "")).lowercase()
@@ -335,13 +342,21 @@ fun GameScreen(
             if (isError) {
                 delay(2000)
                 spokenText = ""
+                speechEnded = false
+                isCorrect = null
+                showResult = false
             } else {
-                isCorrect = normalizedExpected == normalizedSpoken
-                Log.d("GameScreen", "Spoken: $spokenText, Expected: $expected, IsCorrect: $isCorrect")
-                showResult = true
-                if (isCorrect == true) {
-                    showHelp = true // Show reading and English when correct
+                val matches = normalizedExpected == normalizedSpoken
+                if (matches) {
+                    isCorrect = true
+                    showResult = true
+                    showHelp = true
+                    onDestroyRecognizer()
+                } else if (speechEnded) {
+                    isCorrect = false // Only set to false after speech ends
+                    showResult = true
                 }
+                Log.d("GameScreen", "Spoken: $spokenText, Expected: $expected, IsCorrect: $isCorrect, SpeechEnded: $speechEnded")
             }
         }
     }
@@ -377,18 +392,13 @@ fun GameScreen(
             )
             Spacer(modifier = Modifier.height(8.dp))
 
-            // Only show reading for Japanese
             AnimatedVisibility(
                 visible = showHelp && selectedLanguage == "Japanese",
                 enter = fadeIn(),
                 exit = fadeOut()
             ) {
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                    Text(
-                        text = "Hiragana",
-                        fontSize = 14.sp,
-                        color = Color.White
-                    )
+                    Text("Hiragana", fontSize = 14.sp, color = Color.White)
                     Text(
                         text = phrases[currentIndex].reading,
                         fontSize = 20.sp,
@@ -399,11 +409,7 @@ fun GameScreen(
             }
             if (showHelp && selectedLanguage == "Japanese") Spacer(modifier = Modifier.height(8.dp))
 
-            AnimatedVisibility(
-                visible = showHelp,
-                enter = fadeIn(),
-                exit = fadeOut()
-            ) {
+            AnimatedVisibility(visible = showHelp, enter = fadeIn(), exit = fadeOut()) {
                 Text(
                     text = phrases[currentIndex].english,
                     fontSize = 18.sp,
@@ -450,6 +456,8 @@ fun GameScreen(
                 spokenText = ""
                 isCorrect = null
                 showResult = false
+                showHelp = false
+                speechEnded = false
                 mediaPlayer.start()
                 coroutineScope.launch {
                     onStartListening(currentIndex) { result ->
@@ -467,9 +475,7 @@ fun GameScreen(
                 imageVector = Icons.Filled.Mic,
                 contentDescription = "Speak",
                 tint = Color.White,
-                modifier = Modifier
-                    .size(36.dp)
-                    .scale(pulseScale)
+                modifier = Modifier.size(36.dp).scale(pulseScale)
             )
         }
 
@@ -495,6 +501,7 @@ fun GameScreen(
                 isCorrect = null
                 showResult = false
                 showHelp = false
+                speechEnded = false // Reset speech ended state
                 val newIndex = (currentIndex + 1) % phrases.size
                 currentIndex = newIndex
             },
