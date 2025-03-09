@@ -4,6 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -52,6 +54,7 @@ fun MainScreen(onStartGame: (String, String) -> Unit) {
     Column(
         modifier = Modifier
             .fillMaxSize()
+            .background(Color(0xFF212121)) // Dark gray background
             .padding(16.dp),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
@@ -59,35 +62,47 @@ fun MainScreen(onStartGame: (String, String) -> Unit) {
         Text(
             text = "KoeKoi",
             fontSize = 32.sp,
+            color = Color(0xFFBBDEFB), // Pastel blue for title
             modifier = Modifier.padding(bottom = 16.dp)
         )
 
         // Language selection with DropdownMenu
-        Text("Select Language", fontSize = 18.sp)
+        Text(
+            text = "Select Language",
+            fontSize = 18.sp,
+            color = Color(0xFFBBDEFB) // Pastel blue
+        )
         Spacer(modifier = Modifier.height(8.dp))
         Box {
             OutlinedButton(
                 onClick = { languageExpanded = true },
-                modifier = Modifier.fillMaxWidth(0.6f) // Adjust width as needed
+                modifier = Modifier.fillMaxWidth(0.6f),
+                colors = ButtonDefaults.outlinedButtonColors(
+                    contentColor = Color(0xFFCE93D8) // Pastel purple for outline/text
+                ),
+                border = BorderStroke(1.dp, Color(0xFFCE93D8)) // Pastel purple border
             ) {
                 Text(
                     text = selectedLanguage,
-                    color = Color.Black
+                    color = Color(0xFFCE93D8) // Pastel purple
                 )
             }
             DropdownMenu(
                 expanded = languageExpanded,
                 onDismissRequest = { languageExpanded = false },
-                modifier = Modifier.fillMaxWidth(0.6f) // Match button width
+                modifier = Modifier
+                    .fillMaxWidth(0.6f)
+                    .background(Color(0xFF424242)) // Dark gray for dropdown
             ) {
                 languageOptions.forEach { language ->
                     DropdownMenuItem(
-                        text = { Text(language) },
+                        text = { Text(language, color = Color(0xFFBBDEFB)) }, // Pastel blue text
                         onClick = {
                             selectedLanguage = language
                             selectedDifficulty = "" // Reset difficulty when language changes
                             languageExpanded = false
-                        }
+                        },
+                        modifier = Modifier.background(Color(0xFF424242)) // Dark gray item background
                     )
                 }
             }
@@ -96,30 +111,41 @@ fun MainScreen(onStartGame: (String, String) -> Unit) {
         Spacer(modifier = Modifier.height(16.dp))
 
         // Difficulty selection with DropdownMenu
-        Text("Select Difficulty", fontSize = 18.sp)
+        Text(
+            text = "Select Difficulty",
+            fontSize = 18.sp,
+            color = Color(0xFFBBDEFB) // Pastel blue
+        )
         Spacer(modifier = Modifier.height(8.dp))
         Box {
             OutlinedButton(
                 onClick = { difficultyExpanded = true },
-                modifier = Modifier.fillMaxWidth(0.6f) // Adjust width as needed
+                modifier = Modifier.fillMaxWidth(0.6f),
+                colors = ButtonDefaults.outlinedButtonColors(
+                    contentColor = Color(0xFFCE93D8) // Pastel purple for outline/text
+                ),
+                border = BorderStroke(1.dp, Color(0xFFCE93D8)) // Pastel purple border
             ) {
                 Text(
                     text = if (selectedDifficulty.isEmpty()) "Choose Difficulty" else selectedDifficulty,
-                    color = Color.Black
+                    color = Color(0xFFCE93D8) // Pastel purple
                 )
             }
             DropdownMenu(
                 expanded = difficultyExpanded,
                 onDismissRequest = { difficultyExpanded = false },
-                modifier = Modifier.fillMaxWidth(0.6f) // Match button width
+                modifier = Modifier
+                    .fillMaxWidth(0.6f)
+                    .background(Color(0xFF424242)) // Dark gray for dropdown
             ) {
                 difficultyOptions.forEach { difficulty ->
                     DropdownMenuItem(
-                        text = { Text(difficulty) },
+                        text = { Text(difficulty, color = Color(0xFFBBDEFB)) }, // Pastel blue text
                         onClick = {
                             selectedDifficulty = difficulty
                             difficultyExpanded = false
-                        }
+                        },
+                        modifier = Modifier.background(Color(0xFF424242)) // Dark gray item background
                     )
                 }
             }
@@ -133,7 +159,13 @@ fun MainScreen(onStartGame: (String, String) -> Unit) {
                     onStartGame(selectedLanguage, selectedDifficulty)
                 }
             },
-            enabled = selectedDifficulty.isNotEmpty() // Disable until difficulty is selected
+            enabled = selectedDifficulty.isNotEmpty(),
+            colors = ButtonDefaults.buttonColors(
+                containerColor = Color(0xFFAB47BC), // Darker pastel purple for enabled
+                contentColor = Color(0xFFBBDEFB), // Pastel blue text
+                disabledContainerColor = Color(0xFF616161), // Muted gray for disabled
+                disabledContentColor = Color(0xFFBBBBBB) // Light gray text when disabled
+            )
         ) {
             Text("Start Game")
         }

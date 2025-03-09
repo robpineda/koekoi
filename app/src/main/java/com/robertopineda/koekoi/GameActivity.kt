@@ -24,7 +24,6 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
@@ -50,7 +49,7 @@ class GameActivity : ComponentActivity() {
     private lateinit var speechRecognizer: SpeechRecognizer
     private lateinit var mediaPlayer: MediaPlayer
     private var currentOnResult: ((String) -> Unit)? = null
-    private var currentOnSpeechEnded: (() -> Unit)? = null // New callback for onEndOfSpeech
+    private var currentOnSpeechEnded: (() -> Unit)? = null
     private lateinit var selectedLanguage: String
     private lateinit var selectedDifficulty: String
 
@@ -96,7 +95,7 @@ class GameActivity : ComponentActivity() {
 
         override fun onEndOfSpeech() {
             Log.d("GameActivity", "Speech ended")
-            currentOnSpeechEnded?.invoke() // Notify GameScreen without altering spokenText
+            currentOnSpeechEnded?.invoke()
         }
 
         override fun onRmsChanged(rmsdB: Float) {}
@@ -163,7 +162,7 @@ class GameActivity : ComponentActivity() {
     private suspend fun startListening(
         currentIndex: Int,
         onResult: (String) -> Unit,
-        onSpeechEnded: () -> Unit // New parameter
+        onSpeechEnded: () -> Unit
     ) {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
             onResult("Permission denied")
@@ -176,7 +175,7 @@ class GameActivity : ComponentActivity() {
         delay(50)
 
         currentOnResult = onResult
-        currentOnSpeechEnded = onSpeechEnded // Set the callback
+        currentOnSpeechEnded = onSpeechEnded
 
         val intent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH).apply {
             putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM)
@@ -212,26 +211,26 @@ class GameActivity : ComponentActivity() {
                 "JLPT N3" -> "phrases_jp_jlpt_n3.txt"
                 "JLPT N4" -> "phrases_jp_jlpt_n4.txt"
                 "JLPT N5" -> "phrases_jp_jlpt_n5.txt"
-                else -> "phrases_jp_jlpt_n1.txt" // Fallback
+                else -> "phrases_jp_jlpt_n1.txt"
             }
             "Korean" -> when (selectedDifficulty) {
                 "TOPIK I" -> "phrases_kr_topik_1.txt"
                 "TOPIK II" -> "phrases_kr_topik_2.txt"
-                else -> "phrases_kr_topik_2.txt" // Fallback
+                else -> "phrases_kr_topik_2.txt"
             }
             "Vietnamese" -> when (selectedDifficulty) {
                 "Beginner" -> "phrases_vi_beginner.txt"
                 "Intermediate" -> "phrases_vi_intermediate.txt"
                 "Advanced" -> "phrases_vi_advanced.txt"
-                else -> "phrases_vi_beginner.txt" // Fallback
+                else -> "phrases_vi_beginner.txt"
             }
             "Spanish" -> when (selectedDifficulty) {
                 "Beginner" -> "phrases_es_beginner.txt"
                 "Intermediate" -> "phrases_es_intermediate.txt"
                 "Advanced" -> "phrases_es_advanced.txt"
-                else -> "phrases_es_beginner.txt" // Fallback
+                else -> "phrases_es_beginner.txt"
             }
-            else -> "phrases_jp_jlpt_n1.txt" // Overall fallback
+            else -> "phrases_jp_jlpt_n1.txt"
         }
         try {
             assets.open(fileName).bufferedReader().use { reader ->
@@ -288,7 +287,7 @@ class GameActivity : ComponentActivity() {
 fun GameScreen(
     phrases: List<GameActivity.Phrase>,
     selectedLanguage: String,
-    onStartListening: suspend (Int, (String) -> Unit, () -> Unit) -> Unit, // Updated signature
+    onStartListening: suspend (Int, (String) -> Unit, () -> Unit) -> Unit,
     onQuit: () -> Unit,
     onDestroyRecognizer: () -> Unit
 ) {
@@ -303,9 +302,9 @@ fun GameScreen(
 
     val backgroundColor by animateColorAsState(
         targetValue = when (isCorrect) {
-            true -> Color(0xFF4CAF50)
-            false -> Color(0xFFE57373)
-            null -> Color(0xFF121212)
+            true -> Color(0xFF4CAF50) // Green for correct
+            false -> Color(0xFFE57373) // Red for incorrect
+            null -> Color(0xFF212121) // Dark gray default
         },
         animationSpec = tween(durationMillis = 300)
     )
@@ -384,9 +383,12 @@ fun GameScreen(
             modifier = Modifier
                 .align(Alignment.TopStart)
                 .padding(16.dp),
-            colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFBBDEFB))
+            colors = ButtonDefaults.buttonColors(
+                containerColor = Color(0xFFCE93D8), // Pastel purple
+                contentColor = Color(0xFFBBDEFB) // Pastel blue text
+            )
         ) {
-            Text("Quit", color = Color.Black)
+            Text("Quit")
         }
 
         Column(
@@ -400,7 +402,7 @@ fun GameScreen(
                 text = phrases[currentIndex].spoken,
                 fontSize = 24.sp,
                 textAlign = TextAlign.Center,
-                color = Color.White
+                color = Color(0xFFBBDEFB) // Pastel blue
             )
             Spacer(modifier = Modifier.height(8.dp))
 
@@ -410,23 +412,31 @@ fun GameScreen(
                 exit = fadeOut()
             ) {
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                    Text("Hiragana", fontSize = 14.sp, color = Color.White)
+                    Text(
+                        text = "Hiragana",
+                        fontSize = 14.sp,
+                        color = Color(0xFFBBDEFB) // Pastel blue
+                    )
                     Text(
                         text = phrases[currentIndex].reading,
                         fontSize = 20.sp,
                         textAlign = TextAlign.Center,
-                        color = Color.White
+                        color = Color(0xFFBBDEFB) // Pastel blue
                     )
                 }
             }
             if (showHelp && selectedLanguage == "Japanese") Spacer(modifier = Modifier.height(8.dp))
 
-            AnimatedVisibility(visible = showHelp, enter = fadeIn(), exit = fadeOut()) {
+            AnimatedVisibility(
+                visible = showHelp,
+                enter = fadeIn(),
+                exit = fadeOut()
+            ) {
                 Text(
                     text = phrases[currentIndex].english,
                     fontSize = 18.sp,
                     textAlign = TextAlign.Center,
-                    color = Color.White
+                    color = Color(0xFFBBDEFB) // Pastel blue
                 )
             }
             if (showHelp) Spacer(modifier = Modifier.height(16.dp))
@@ -442,7 +452,7 @@ fun GameScreen(
                 isCorrect?.let {
                     Text(
                         text = if (it) "Correct!" else "Incorrect!",
-                        color = Color.White,
+                        color = Color(0xFFBBDEFB), // Pastel blue
                         fontSize = 30.sp,
                         textAlign = TextAlign.Center
                     )
@@ -454,7 +464,7 @@ fun GameScreen(
             text = spokenText,
             fontSize = 18.sp,
             textAlign = TextAlign.Center,
-            color = Color.White,
+            color = Color(0xFFBBDEFB), // Pastel blue
             modifier = Modifier
                 .align(Alignment.BottomCenter)
                 .padding(bottom = 150.dp)
@@ -471,14 +481,13 @@ fun GameScreen(
                 showHelp = false
                 speechEnded = false
                 lastPartialText = ""
-                isRecording = true // Turn mic light red
+                isRecording = true
                 mediaPlayer.start()
                 coroutineScope.launch {
                     onStartListening(currentIndex, { result ->
                         spokenText = result
                     }, {
-                        // Callback for onEndOfSpeech
-                        isRecording = false // Turn mic back to light blue
+                        isRecording = false
                         Log.d("GameScreen", "Speech ended callback triggered")
                     })
                 }
@@ -495,7 +504,7 @@ fun GameScreen(
             Icon(
                 imageVector = Icons.Filled.Mic,
                 contentDescription = "Speak",
-                tint = Color.White,
+                tint = Color(0xFFBBDEFB), // Pastel blue
                 modifier = Modifier.size(36.dp)
             )
         }
@@ -506,12 +515,12 @@ fun GameScreen(
                 .align(Alignment.BottomEnd)
                 .padding(16.dp)
                 .size(40.dp)
-                .background(Color(0xFFBBDEFB), shape = CircleShape)
+                .background(Color(0xFFCE93D8), shape = CircleShape) // Pastel purple
         ) {
             Icon(
                 imageVector = Icons.Default.QuestionMark,
                 contentDescription = "Show Help",
-                tint = Color.Black,
+                tint = Color(0xFFBBDEFB), // Pastel blue
                 modifier = Modifier.size(16.dp)
             )
         }
@@ -531,11 +540,13 @@ fun GameScreen(
             modifier = Modifier
                 .align(Alignment.BottomStart)
                 .padding(16.dp),
-            colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFBBDEFB))
+            colors = ButtonDefaults.buttonColors(
+                containerColor = Color(0xFFCE93D8), // Pastel purple
+                contentColor = Color(0xFFBBDEFB) // Pastel blue text
+            )
         ) {
             Text(
-                text = if (isCorrect == true && showResult) "Next" else "Skip",
-                color = Color.Black
+                text = if (isCorrect == true && showResult) "Next" else "Skip"
             )
         }
     }
