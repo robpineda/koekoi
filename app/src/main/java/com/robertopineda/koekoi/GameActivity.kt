@@ -52,6 +52,7 @@ class GameActivity : ComponentActivity() {
     private var currentOnSpeechEnded: (() -> Unit)? = null
     private lateinit var selectedLanguage: String
     private lateinit var selectedDifficulty: String
+    private lateinit var selectedMaterial: String
 
     private val speechListener = object : RecognitionListener {
         override fun onReadyForSpeech(params: Bundle?) {
@@ -110,6 +111,7 @@ class GameActivity : ComponentActivity() {
 
         selectedLanguage = intent.getStringExtra("LANGUAGE") ?: "Japanese"
         selectedDifficulty = intent.getStringExtra("DIFFICULTY") ?: ""
+        selectedMaterial = intent.getStringExtra("MATERIAL") ?: "Vocabulary" // Default to Vocabulary
 
         val pm = packageManager
         val activities = pm.queryIntentActivities(Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH), 0)
@@ -206,11 +208,11 @@ class GameActivity : ComponentActivity() {
         val phrases = mutableListOf<Phrase>()
         val fileName = when (selectedLanguage) {
             "Japanese" -> when (selectedDifficulty) {
-                "JLPT N1" -> "phrases_jp_jlpt_n1.txt"
-                "JLPT N2" -> "phrases_jp_jlpt_n2.txt"
-                "JLPT N3" -> "phrases_jp_jlpt_n3.txt"
-                "JLPT N4" -> "phrases_jp_jlpt_n4.txt"
-                "JLPT N5" -> "phrases_jp_jlpt_n5.txt"
+                "JLPT N1" -> if (selectedMaterial == "Grammar") "phrases_jp_jlpt_n1_grammar.txt" else "phrases_jp_jlpt_n1.txt"
+                "JLPT N2" -> if (selectedMaterial == "Grammar") "phrases_jp_jlpt_n2_grammar.txt" else "phrases_jp_jlpt_n2.txt"
+                "JLPT N3" -> if (selectedMaterial == "Grammar") "phrases_jp_jlpt_n3_grammar.txt" else "phrases_jp_jlpt_n3.txt"
+                "JLPT N4" -> if (selectedMaterial == "Grammar") "phrases_jp_jlpt_n4_grammar.txt" else "phrases_jp_jlpt_n4.txt"
+                "JLPT N5" -> if (selectedMaterial == "Grammar") "phrases_jp_jlpt_n5_grammar.txt" else "phrases_jp_jlpt_n5.txt"
                 else -> "phrases_jp_jlpt_n1.txt"
             }
             "Korean" -> when (selectedDifficulty) {
@@ -232,6 +234,7 @@ class GameActivity : ComponentActivity() {
             }
             else -> "phrases_jp_jlpt_n1.txt"
         }
+
         try {
             assets.open(fileName).bufferedReader().use { reader ->
                 reader.forEachLine { line ->
