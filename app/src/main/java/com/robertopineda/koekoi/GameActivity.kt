@@ -313,6 +313,20 @@ fun GameScreen(
     )
 
     val coroutineScope = rememberCoroutineScope()
+    val context = LocalContext.current
+
+    // MediaPlayer for the "speak" sound (existing)
+    val speakMediaPlayer = remember { MediaPlayer.create(context, R.raw.speak) }
+    // MediaPlayer for the "correct" sound
+    val correctMediaPlayer = remember { MediaPlayer.create(context, R.raw.correct) }
+
+    // Clean up MediaPlayers when the composable is disposed
+    DisposableEffect(Unit) {
+        onDispose {
+            speakMediaPlayer.release()
+            correctMediaPlayer.release()
+        }
+    }
 
     suspend fun toReading(text: String): String {
         return if (selectedLanguage == "Japanese") {
@@ -358,6 +372,8 @@ fun GameScreen(
                     showHelp = true
                     onDestroyRecognizer()
                     isRecording = false
+                    // Play the correct sound when the answer is correct
+                    correctMediaPlayer.start()
                     Log.d("entered 1", "entered 1")
                 } else if (!isPrefix && normalizedSpoken.isNotEmpty()) {
                     isCorrect = false
@@ -473,9 +489,6 @@ fun GameScreen(
                 .padding(bottom = 150.dp)
         )
 
-        val context = LocalContext.current
-        val mediaPlayer = remember { MediaPlayer.create(context, R.raw.speak) }
-
         IconButton(
             onClick = {
                 spokenText = ""
@@ -485,7 +498,7 @@ fun GameScreen(
                 speechEnded = false
                 lastPartialText = ""
                 isRecording = true
-                mediaPlayer.start()
+                speakMediaPlayer.start()
                 coroutineScope.launch {
                     onStartListening(currentIndex, { result ->
                         spokenText = result
