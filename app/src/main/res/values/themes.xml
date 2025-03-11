@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <style name="Theme.KoeKoi" parent="android:Theme.Material.Light.NoActionBar" />
+    <!-- Base app theme -->
+    <style name="Theme.KoeKoi" parent="android:Theme.Material.Light.NoActionBar">
+        <!-- Optional: Set window background for consistency in activities -->
+        <item name="android:windowBackground">@color/dark_gray</item>
+    </style>
 </resources>
