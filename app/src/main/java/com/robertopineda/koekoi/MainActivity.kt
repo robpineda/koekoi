@@ -24,8 +24,12 @@ class MainActivity : ComponentActivity() {
                     val intent = Intent(this, GameActivity::class.java).apply {
                         putExtra("LANGUAGE", language)
                         putExtra("DIFFICULTY", difficulty)
-                        putExtra("MATERIAL", material) // Pass material type
+                        putExtra("MATERIAL", material)
                     }
+                    startActivity(intent)
+                },
+                onShowFavorites = {
+                    val intent = Intent(this, FavoritesActivity::class.java)
                     startActivity(intent)
                 }
             )
@@ -34,18 +38,18 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun MainScreen(onStartGame: (String, String, String) -> Unit) {
-    var selectedLanguage by remember { mutableStateOf("Japanese") } // Default to Japanese
-    var selectedDifficulty by remember { mutableStateOf("") } // Store selected difficulty
-    var selectedMaterial by remember { mutableStateOf("Vocabulary") } // Default to Vocabulary
-    var languageExpanded by remember { mutableStateOf(false) } // Toggle language dropdown
-    var difficultyExpanded by remember { mutableStateOf(false) } // Toggle difficulty dropdown
-    var materialExpanded by remember { mutableStateOf(false) } // Toggle material dropdown
+fun MainScreen(
+    onStartGame: (String, String, String) -> Unit,
+    onShowFavorites: () -> Unit
+) {
+    var selectedLanguage by remember { mutableStateOf("Japanese") }
+    var selectedDifficulty by remember { mutableStateOf("") }
+    var selectedMaterial by remember { mutableStateOf("Vocabulary") }
+    var languageExpanded by remember { mutableStateOf(false) }
+    var difficultyExpanded by remember { mutableStateOf(false) }
+    var materialExpanded by remember { mutableStateOf(false) }
 
-    // Define language options
     val languageOptions = listOf("Japanese", "Korean", "Vietnamese", "Spanish")
-
-    // Define difficulty options based on language
     val difficultyOptions = when (selectedLanguage) {
         "Japanese" -> listOf("JLPT N1", "JLPT N2", "JLPT N3", "JLPT N4", "JLPT N5")
         "Korean" -> listOf("TOPIK I", "TOPIK II")
@@ -53,14 +57,12 @@ fun MainScreen(onStartGame: (String, String, String) -> Unit) {
         "Spanish" -> listOf("Beginner", "Intermediate", "Advanced")
         else -> emptyList()
     }
-
-    // Define material options (only for Japanese)
     val materialOptions = listOf("Vocabulary", "Grammar")
 
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color(0xFF212121)) // Dark gray background
+            .background(Color(0xFF212121))
             .padding(16.dp),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
@@ -68,15 +70,14 @@ fun MainScreen(onStartGame: (String, String, String) -> Unit) {
         Text(
             text = "KoeKoi",
             fontSize = 32.sp,
-            color = Color(0xFFBBDEFB), // Pastel blue for title
+            color = Color(0xFFBBDEFB),
             modifier = Modifier.padding(bottom = 16.dp)
         )
 
-        // Language selection with DropdownMenu
         Text(
             text = "Select Language",
             fontSize = 18.sp,
-            color = Color(0xFFBBDEFB) // Pastel blue
+            color = Color(0xFFBBDEFB)
         )
         Spacer(modifier = Modifier.height(8.dp))
         Box {
@@ -84,13 +85,13 @@ fun MainScreen(onStartGame: (String, String, String) -> Unit) {
                 onClick = { languageExpanded = true },
                 modifier = Modifier.fillMaxWidth(0.6f),
                 colors = ButtonDefaults.outlinedButtonColors(
-                    contentColor = Color(0xFFCE93D8) // Pastel purple for outline/text
+                    contentColor = Color(0xFFCE93D8)
                 ),
-                border = BorderStroke(1.dp, Color(0xFFCE93D8)) // Pastel purple border
+                border = BorderStroke(1.dp, Color(0xFFCE93D8))
             ) {
                 Text(
                     text = selectedLanguage,
-                    color = Color(0xFFCE93D8) // Pastel purple
+                    color = Color(0xFFCE93D8)
                 )
             }
             DropdownMenu(
@@ -98,18 +99,18 @@ fun MainScreen(onStartGame: (String, String, String) -> Unit) {
                 onDismissRequest = { languageExpanded = false },
                 modifier = Modifier
                     .fillMaxWidth(0.6f)
-                    .background(Color(0xFF424242)) // Dark gray for dropdown
+                    .background(Color(0xFF424242))
             ) {
                 languageOptions.forEach { language ->
                     DropdownMenuItem(
-                        text = { Text(language, color = Color(0xFFBBDEFB)) }, // Pastel blue text
+                        text = { Text(language, color = Color(0xFFBBDEFB)) },
                         onClick = {
                             selectedLanguage = language
-                            selectedDifficulty = "" // Reset difficulty when language changes
-                            selectedMaterial = "Vocabulary" // Reset to Vocabulary
+                            selectedDifficulty = ""
+                            selectedMaterial = "Vocabulary"
                             languageExpanded = false
                         },
-                        modifier = Modifier.background(Color(0xFF424242)) // Dark gray item background
+                        modifier = Modifier.background(Color(0xFF424242))
                     )
                 }
             }
@@ -117,11 +118,10 @@ fun MainScreen(onStartGame: (String, String, String) -> Unit) {
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        // Difficulty selection with DropdownMenu
         Text(
             text = "Select Difficulty",
             fontSize = 18.sp,
-            color = Color(0xFFBBDEFB) // Pastel blue
+            color = Color(0xFFBBDEFB)
         )
         Spacer(modifier = Modifier.height(8.dp))
         Box {
@@ -129,13 +129,13 @@ fun MainScreen(onStartGame: (String, String, String) -> Unit) {
                 onClick = { difficultyExpanded = true },
                 modifier = Modifier.fillMaxWidth(0.6f),
                 colors = ButtonDefaults.outlinedButtonColors(
-                    contentColor = Color(0xFFCE93D8) // Pastel purple for outline/text
+                    contentColor = Color(0xFFCE93D8)
                 ),
-                border = BorderStroke(1.dp, Color(0xFFCE93D8)) // Pastel purple border
+                border = BorderStroke(1.dp, Color(0xFFCE93D8))
             ) {
                 Text(
                     text = if (selectedDifficulty.isEmpty()) "Choose Difficulty" else selectedDifficulty,
-                    color = Color(0xFFCE93D8) // Pastel purple
+                    color = Color(0xFFCE93D8)
                 )
             }
             DropdownMenu(
@@ -143,16 +143,16 @@ fun MainScreen(onStartGame: (String, String, String) -> Unit) {
                 onDismissRequest = { difficultyExpanded = false },
                 modifier = Modifier
                     .fillMaxWidth(0.6f)
-                    .background(Color(0xFF424242)) // Dark gray for dropdown
+                    .background(Color(0xFF424242))
             ) {
                 difficultyOptions.forEach { difficulty ->
                     DropdownMenuItem(
-                        text = { Text(difficulty, color = Color(0xFFBBDEFB)) }, // Pastel blue text
+                        text = { Text(difficulty, color = Color(0xFFBBDEFB)) },
                         onClick = {
                             selectedDifficulty = difficulty
                             difficultyExpanded = false
                         },
-                        modifier = Modifier.background(Color(0xFF424242)) // Dark gray item background
+                        modifier = Modifier.background(Color(0xFF424242))
                     )
                 }
             }
@@ -160,27 +160,26 @@ fun MainScreen(onStartGame: (String, String, String) -> Unit) {
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        // Material type selection with DropdownMenu (enabled only for Japanese)
         Text(
             text = "Select Material",
             fontSize = 18.sp,
-            color = Color(0xFFBBDEFB) // Pastel blue
+            color = Color(0xFFBBDEFB)
         )
         Spacer(modifier = Modifier.height(8.dp))
         Box {
             OutlinedButton(
                 onClick = { if (selectedLanguage == "Japanese") materialExpanded = true },
                 modifier = Modifier.fillMaxWidth(0.6f),
-                enabled = selectedLanguage == "Japanese", // Enabled only for Japanese
+                enabled = selectedLanguage == "Japanese",
                 colors = ButtonDefaults.outlinedButtonColors(
-                    contentColor = if (selectedLanguage == "Japanese") Color(0xFFCE93D8) else Color(0xFFBBBBBB), // Pastel purple when enabled, gray when disabled
-                    disabledContentColor = Color(0xFFBBBBBB) // Light gray when disabled
+                    contentColor = if (selectedLanguage == "Japanese") Color(0xFFCE93D8) else Color(0xFFBBBBBB),
+                    disabledContentColor = Color(0xFFBBBBBB)
                 ),
-                border = BorderStroke(1.dp, if (selectedLanguage == "Japanese") Color(0xFFCE93D8) else Color(0xFF616161)) // Pastel purple or gray border
+                border = BorderStroke(1.dp, if (selectedLanguage == "Japanese") Color(0xFFCE93D8) else Color(0xFF616161))
             ) {
                 Text(
                     text = selectedMaterial,
-                    color = if (selectedLanguage == "Japanese") Color(0xFFCE93D8) else Color(0xFFBBBBBB) // Pastel purple or gray
+                    color = if (selectedLanguage == "Japanese") Color(0xFFCE93D8) else Color(0xFFBBBBBB)
                 )
             }
             DropdownMenu(
@@ -188,16 +187,16 @@ fun MainScreen(onStartGame: (String, String, String) -> Unit) {
                 onDismissRequest = { materialExpanded = false },
                 modifier = Modifier
                     .fillMaxWidth(0.6f)
-                    .background(Color(0xFF424242)) // Dark gray for dropdown
+                    .background(Color(0xFF424242))
             ) {
                 materialOptions.forEach { material ->
                     DropdownMenuItem(
-                        text = { Text(material, color = Color(0xFFBBDEFB)) }, // Pastel blue text
+                        text = { Text(material, color = Color(0xFFBBDEFB)) },
                         onClick = {
                             selectedMaterial = material
                             materialExpanded = false
                         },
-                        modifier = Modifier.background(Color(0xFF424242)) // Dark gray item background
+                        modifier = Modifier.background(Color(0xFF424242))
                     )
                 }
             }
@@ -213,13 +212,25 @@ fun MainScreen(onStartGame: (String, String, String) -> Unit) {
             },
             enabled = selectedDifficulty.isNotEmpty(),
             colors = ButtonDefaults.buttonColors(
-                containerColor = Color(0xFFAB47BC), // Darker pastel purple for enabled
-                contentColor = Color(0xFFBBDEFB), // Pastel blue text
-                disabledContainerColor = Color(0xFF616161), // Muted gray for disabled
-                disabledContentColor = Color(0xFFBBBBBB) // Light gray text when disabled
+                containerColor = Color(0xFFAB47BC),
+                contentColor = Color(0xFFBBDEFB),
+                disabledContainerColor = Color(0xFF616161),
+                disabledContentColor = Color(0xFFBBBBBB)
             )
         ) {
             Text("Start Game")
+        }
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        Button(
+            onClick = onShowFavorites,
+            colors = ButtonDefaults.buttonColors(
+                containerColor = Color(0xFFAB47BC),
+                contentColor = Color(0xFFBBDEFB)
+            )
+        ) {
+            Text("Favorites")
         }
     }
 }

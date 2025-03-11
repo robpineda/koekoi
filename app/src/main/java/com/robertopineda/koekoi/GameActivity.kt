@@ -18,6 +18,8 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material.icons.filled.Mic
 import androidx.compose.material.icons.filled.QuestionMark
 import androidx.compose.material3.*
@@ -30,6 +32,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.content.ContextCompat
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -111,19 +115,16 @@ class GameActivity : ComponentActivity() {
 
         selectedLanguage = intent.getStringExtra("LANGUAGE") ?: "Japanese"
         selectedDifficulty = intent.getStringExtra("DIFFICULTY") ?: ""
-        selectedMaterial = intent.getStringExtra("MATERIAL") ?: "Vocabulary" // Default to Vocabulary
+        selectedMaterial = intent.getStringExtra("MATERIAL") ?: "Vocabulary"
 
-        val pm = packageManager
-        val activities = pm.queryIntentActivities(Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH), 0)
-        if (activities.size == 0) {
-            Log.e("GameActivity", "No activities found to handle speech recognition intent")
-            Toast.makeText(this, "Speech recognition not supported on this device", Toast.LENGTH_LONG).show()
+        val singlePhraseJson = intent.getStringExtra("PHRASE")
+        phrases = if (singlePhraseJson != null) {
+            val gson = Gson()
+            listOf(gson.fromJson(singlePhraseJson, Phrase::class.java))
         } else {
-            Log.d("GameActivity", "Found ${activities.size} activities to handle speech recognition")
+            loadPhrasesFromAssets().shuffled()
         }
-
-        phrases = loadPhrasesFromAssets().shuffled()
-        Log.d("GameActivity", "Phrases loaded and shuffled: ${phrases.map { it.spoken }}")
+        Log.d("GameActivity", "Phrases loaded: ${phrases.map { it.spoken }}")
 
         speechRecognizer = createSpeechRecognizer()
         mediaPlayer = MediaPlayer.create(this, R.raw.speak)
@@ -284,286 +285,342 @@ class GameActivity : ComponentActivity() {
         }
         return phrases
     }
-}
 
-@Composable
-fun GameScreen(
-    phrases: List<GameActivity.Phrase>,
-    selectedLanguage: String,
-    onStartListening: suspend (Int, (String) -> Unit, () -> Unit) -> Unit,
-    onQuit: () -> Unit,
-    onDestroyRecognizer: () -> Unit
-) {
-    var currentIndex by remember { mutableStateOf(0) }
-    var spokenText by remember { mutableStateOf("") }
-    var isCorrect by remember { mutableStateOf<Boolean?>(null) }
-    var showResult by remember { mutableStateOf(false) }
-    var showHelp by remember { mutableStateOf(false) }
-    var speechEnded by remember { mutableStateOf(false) }
-    var lastPartialText by remember { mutableStateOf("") }
-    var isRecording by remember { mutableStateOf(false) }
-
-    val backgroundColor by animateColorAsState(
-        targetValue = when (isCorrect) {
-            true -> Color(0xFF4CAF50) // Green for correct
-            false -> Color(0xFFE57373) // Red for incorrect
-            null -> Color(0xFF212121) // Dark gray default
-        },
-        animationSpec = tween(durationMillis = 300)
-    )
-
-    val coroutineScope = rememberCoroutineScope()
-    val context = LocalContext.current
-
-    // MediaPlayer for the "speak" sound (existing)
-    val speakMediaPlayer = remember { MediaPlayer.create(context, R.raw.speak) }
-    // MediaPlayer for the "correct" sound
-    val correctMediaPlayer = remember { MediaPlayer.create(context, R.raw.correct) }
-
-    // Clean up MediaPlayers when the composable is disposed
-    DisposableEffect(Unit) {
-        onDispose {
-            speakMediaPlayer.release()
-            correctMediaPlayer.release()
-        }
-    }
-
-    suspend fun toReading(text: String): String {
-        return if (selectedLanguage == "Japanese") {
-            withContext(Dispatchers.Default) {
-                val tokenizer = Tokenizer.Builder().build()
-                val tokens: List<Token> = tokenizer.tokenize(text)
-                tokens.joinToString("") { it.reading ?: it.surface }
-            }
-        } else {
-            text
-        }
-    }
-
-    LaunchedEffect(spokenText) {
-        if (spokenText.isNotEmpty() && spokenText != "Listening...") {
-            val expected = phrases[currentIndex].expected
-            val normalizedExpected = toReading(expected.replace("[\\s、。？！]".toRegex(), "")).lowercase()
-            val normalizedSpoken = toReading(spokenText.replace("[\\s、。？！]".toRegex(), "")).lowercase()
-
-            Log.d("normalizedExpected", normalizedExpected)
-            Log.d("normalizedSpoken", normalizedSpoken)
-
-            val isError = spokenText.contains("error", ignoreCase = true) ||
-                    spokenText == "No match found. Try again." ||
-                    spokenText == "No speech input. Speak louder."
-
-            if (isError) {
-                delay(2000)
-                spokenText = ""
-                speechEnded = false
-                isCorrect = null
-                showResult = false
-                lastPartialText = ""
-                isRecording = false
-                Log.d("entered 0", "entered 0")
-            } else {
-                val isPrefix = normalizedExpected.startsWith(normalizedSpoken)
-                val matches = normalizedExpected == normalizedSpoken
-
-                if (matches) {
-                    isCorrect = true
-                    showResult = true
-                    showHelp = true
-                    onDestroyRecognizer()
-                    isRecording = false
-                    // Play the correct sound when the answer is correct
-                    correctMediaPlayer.start()
-                    Log.d("entered 1", "entered 1")
-                } else if (!isPrefix && normalizedSpoken.isNotEmpty()) {
-                    isCorrect = false
-                    showResult = true
-                    speechEnded = true
-                    onDestroyRecognizer()
-                    isRecording = false
-                    Log.d("entered 2", "entered 2")
-                } else {
-                    lastPartialText = spokenText
-                    Log.d("entered 3", "entered 3")
-                }
-            }
-            Log.d("GameScreen", "Spoken: $spokenText, Expected: $expected, IsCorrect: $isCorrect, SpeechEnded: $speechEnded, LastPartial: $lastPartialText")
-        }
-    }
-
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(backgroundColor)
-            .padding(WindowInsets.systemBars.asPaddingValues())
+    @Composable
+    fun GameScreen(
+        phrases: List<Phrase>,
+        selectedLanguage: String,
+        onStartListening: suspend (Int, (String) -> Unit, () -> Unit) -> Unit,
+        onQuit: () -> Unit,
+        onDestroyRecognizer: () -> Unit
     ) {
-        Button(
-            onClick = onQuit,
-            modifier = Modifier
-                .align(Alignment.TopStart)
-                .padding(16.dp),
-            colors = ButtonDefaults.buttonColors(
-                containerColor = Color(0xFFCE93D8), // Pastel purple
-                contentColor = Color(0xFFFCFCFC)
-            )
-        ) {
-            Text("Quit")
+        var currentIndex by remember { mutableStateOf(0) }
+        var spokenText by remember { mutableStateOf("") }
+        var isCorrect by remember { mutableStateOf<Boolean?>(null) }
+        var showResult by remember { mutableStateOf(false) }
+        var showHelp by remember { mutableStateOf(false) }
+        var speechEnded by remember { mutableStateOf(false) }
+        var lastPartialText by remember { mutableStateOf("") }
+        var isRecording by remember { mutableStateOf(false) }
+        val context = LocalContext.current
+        var isFavorite by remember { mutableStateOf(isPhraseFavorite(phrases[currentIndex], selectedLanguage, context)) }
+
+        val backgroundColor by animateColorAsState(
+            targetValue = when (isCorrect) {
+                true -> Color(0xFF4CAF50)
+                false -> Color(0xFFE57373)
+                null -> Color(0xFF212121)
+            },
+            animationSpec = tween(durationMillis = 300)
+        )
+
+        val coroutineScope = rememberCoroutineScope()
+        val speakMediaPlayer = remember { MediaPlayer.create(context, R.raw.speak) }
+        val correctMediaPlayer = remember { MediaPlayer.create(context, R.raw.correct) }
+
+        DisposableEffect(Unit) {
+            onDispose {
+                speakMediaPlayer.release()
+                correctMediaPlayer.release()
+            }
         }
 
-        Column(
+        suspend fun toReading(text: String): String {
+            return if (selectedLanguage == "Japanese") {
+                withContext(Dispatchers.Default) {
+                    val tokenizer = Tokenizer.Builder().build()
+                    val tokens: List<Token> = tokenizer.tokenize(text)
+                    tokens.joinToString("") { it.reading ?: it.surface }
+                }
+            } else {
+                text
+            }
+        }
+
+        LaunchedEffect(spokenText) {
+            if (spokenText.isNotEmpty() && spokenText != "Listening...") {
+                val expected = phrases[currentIndex].expected
+                val normalizedExpected = toReading(expected.replace("[\\s、。？！]".toRegex(), "")).lowercase()
+                val normalizedSpoken = toReading(spokenText.replace("[\\s、。？！]".toRegex(), "")).lowercase()
+
+                Log.d("normalizedExpected", normalizedExpected)
+                Log.d("normalizedSpoken", normalizedSpoken)
+
+                val isError = spokenText.contains("error", ignoreCase = true) ||
+                        spokenText == "No match found. Try again." ||
+                        spokenText == "No speech input. Speak louder."
+
+                if (isError) {
+                    delay(2000)
+                    spokenText = ""
+                    speechEnded = false
+                    isCorrect = null
+                    showResult = false
+                    lastPartialText = ""
+                    isRecording = false
+                    Log.d("entered 0", "entered 0")
+                } else {
+                    val isPrefix = normalizedExpected.startsWith(normalizedSpoken)
+                    val matches = normalizedExpected == normalizedSpoken
+
+                    if (matches) {
+                        isCorrect = true
+                        showResult = true
+                        showHelp = true
+                        onDestroyRecognizer()
+                        isRecording = false
+                        correctMediaPlayer.start()
+                        Log.d("entered 1", "entered 1")
+                    } else if (!isPrefix && normalizedSpoken.isNotEmpty()) {
+                        isCorrect = false
+                        showResult = true
+                        speechEnded = true
+                        onDestroyRecognizer()
+                        isRecording = false
+                        Log.d("entered 2", "entered 2")
+                    } else {
+                        lastPartialText = spokenText
+                        Log.d("entered 3", "entered 3")
+                    }
+                }
+                Log.d("GameScreen", "Spoken: $spokenText, Expected: $expected, IsCorrect: $isCorrect, SpeechEnded: $speechEnded, LastPartial: $lastPartialText")
+            }
+        }
+
+        LaunchedEffect(currentIndex) {
+            isFavorite = isPhraseFavorite(phrases[currentIndex], selectedLanguage, context)
+        }
+
+        Box(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(16.dp),
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally
+                .background(backgroundColor)
+                .padding(WindowInsets.systemBars.asPaddingValues())
         ) {
-            Text(
-                text = phrases[currentIndex].spoken,
-                fontSize = 24.sp,
-                textAlign = TextAlign.Center,
-                color = Color(0xFFF6F6F6)
-            )
-            Spacer(modifier = Modifier.height(8.dp))
-
-            AnimatedVisibility(
-                visible = showHelp && selectedLanguage == "Japanese",
-                enter = fadeIn(),
-                exit = fadeOut()
+            Button(
+                onClick = onQuit,
+                modifier = Modifier
+                    .align(Alignment.TopStart)
+                    .padding(16.dp),
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = Color(0xFFCE93D8),
+                    contentColor = Color(0xFFFCFCFC)
+                )
             ) {
-                Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                Text("Quit")
+            }
+
+            IconButton(
+                onClick = {
+                    if (isFavorite) {
+                        removeFavoritePhrase(phrases[currentIndex], selectedLanguage, context)
+                        Toast.makeText(context, "Removed from favorites", Toast.LENGTH_SHORT).show()
+                    } else {
+                        addFavoritePhrase(phrases[currentIndex], selectedLanguage, context)
+                        Toast.makeText(context, "Added to favorites", Toast.LENGTH_SHORT).show()
+                    }
+                    isFavorite = !isFavorite
+                },
+                modifier = Modifier
+                    .align(Alignment.TopEnd)
+                    .padding(16.dp)
+                    .size(40.dp)
+                    .background(Color(0xFFCE93D8), shape = CircleShape)
+            ) {
+                Icon(
+                    imageVector = if (isFavorite) Icons.Filled.Favorite else Icons.Filled.FavoriteBorder,
+                    contentDescription = "Favorite",
+                    tint = if (isFavorite) Color(0xFFFF9999) else Color(0xFFFCFCFC),
+                    modifier = Modifier.size(24.dp)
+                )
+            }
+
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(16.dp),
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Text(
+                    text = phrases[currentIndex].spoken,
+                    fontSize = 24.sp,
+                    textAlign = TextAlign.Center,
+                    color = Color(0xFFF6F6F6)
+                )
+                Spacer(modifier = Modifier.height(8.dp))
+
+                AnimatedVisibility(
+                    visible = showHelp && selectedLanguage == "Japanese",
+                    enter = fadeIn(),
+                    exit = fadeOut()
+                ) {
+                    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                        Text(
+                            text = "Hiragana",
+                            fontSize = 14.sp,
+                            color = Color(0xFFF6F6F6)
+                        )
+                        Text(
+                            text = phrases[currentIndex].reading,
+                            fontSize = 20.sp,
+                            textAlign = TextAlign.Center,
+                            color = Color(0xFFF6F6F6)
+                        )
+                    }
+                }
+                if (showHelp && selectedLanguage == "Japanese") Spacer(modifier = Modifier.height(8.dp))
+
+                AnimatedVisibility(
+                    visible = showHelp,
+                    enter = fadeIn(),
+                    exit = fadeOut()
+                ) {
                     Text(
-                        text = "Hiragana",
-                        fontSize = 14.sp,
-                        color = Color(0xFFF6F6F6)
-                    )
-                    Text(
-                        text = phrases[currentIndex].reading,
-                        fontSize = 20.sp,
+                        text = phrases[currentIndex].english,
+                        fontSize = 18.sp,
                         textAlign = TextAlign.Center,
                         color = Color(0xFFF6F6F6)
                     )
                 }
-            }
-            if (showHelp && selectedLanguage == "Japanese") Spacer(modifier = Modifier.height(8.dp))
+                if (showHelp) Spacer(modifier = Modifier.height(16.dp))
 
-            AnimatedVisibility(
-                visible = showHelp,
-                enter = fadeIn(),
-                exit = fadeOut()
+                AnimatedVisibility(
+                    visible = showResult,
+                    enter = slideInVertically(
+                        initialOffsetY = { fullHeight -> fullHeight },
+                        animationSpec = tween(durationMillis = 500)
+                    ),
+                    exit = fadeOut()
+                ) {
+                    isCorrect?.let {
+                        Text(
+                            text = if (it) "Correct!" else "Incorrect!",
+                            color = Color(0xFFF6F6F6),
+                            fontSize = 30.sp,
+                            textAlign = TextAlign.Center
+                        )
+                    }
+                }
+            }
+
+            Text(
+                text = spokenText,
+                fontSize = 18.sp,
+                textAlign = TextAlign.Center,
+                color = Color(0xFFF6F6F6),
+                modifier = Modifier
+                    .align(Alignment.BottomCenter)
+                    .padding(bottom = 150.dp)
+            )
+
+            IconButton(
+                onClick = {
+                    spokenText = ""
+                    isCorrect = null
+                    showResult = false
+                    showHelp = false
+                    speechEnded = false
+                    lastPartialText = ""
+                    isRecording = true
+                    speakMediaPlayer.start()
+                    coroutineScope.launch {
+                        onStartListening(currentIndex, { result ->
+                            spokenText = result
+                        }, {
+                            isRecording = false
+                            Log.d("GameScreen", "Speech ended callback triggered")
+                        })
+                    }
+                },
+                modifier = Modifier
+                    .align(Alignment.BottomCenter)
+                    .padding(16.dp)
+                    .size(70.dp)
+                    .background(
+                        color = if (isRecording) Color(0xFFFF9999) else Color(0xFF99CCFF),
+                        shape = CircleShape
+                    )
+            ) {
+                Icon(
+                    imageVector = Icons.Filled.Mic,
+                    contentDescription = "Speak",
+                    tint = Color(0xFFFCFCFC),
+                    modifier = Modifier.size(36.dp)
+                )
+            }
+
+            IconButton(
+                onClick = { showHelp = !showHelp },
+                modifier = Modifier
+                    .align(Alignment.BottomEnd)
+                    .padding(16.dp)
+                    .size(40.dp)
+                    .background(Color(0xFFCE93D8), shape = CircleShape)
+            ) {
+                Icon(
+                    imageVector = Icons.Default.QuestionMark,
+                    contentDescription = "Show Help",
+                    tint = Color(0xFFFCFCFC),
+                    modifier = Modifier.size(16.dp)
+                )
+            }
+
+            Button(
+                onClick = {
+                    spokenText = ""
+                    isCorrect = null
+                    showResult = false
+                    showHelp = false
+                    speechEnded = false
+                    lastPartialText = ""
+                    isRecording = false
+                    val newIndex = (currentIndex + 1) % phrases.size
+                    currentIndex = newIndex
+                },
+                modifier = Modifier
+                    .align(Alignment.BottomStart)
+                    .padding(16.dp),
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = Color(0xFFCE93D8),
+                    contentColor = Color(0xFFFCFCFC)
+                )
             ) {
                 Text(
-                    text = phrases[currentIndex].english,
-                    fontSize = 18.sp,
-                    textAlign = TextAlign.Center,
-                    color = Color(0xFFF6F6F6)
+                    text = if (isCorrect == true && showResult) "Next" else "Skip"
                 )
             }
-            if (showHelp) Spacer(modifier = Modifier.height(16.dp))
-
-            AnimatedVisibility(
-                visible = showResult,
-                enter = slideInVertically(
-                    initialOffsetY = { fullHeight -> fullHeight },
-                    animationSpec = tween(durationMillis = 500)
-                ),
-                exit = fadeOut()
-            ) {
-                isCorrect?.let {
-                    Text(
-                        text = if (it) "Correct!" else "Incorrect!",
-                        color = Color(0xFFF6F6F6),
-                        fontSize = 30.sp,
-                        textAlign = TextAlign.Center
-                    )
-                }
-            }
         }
+    }
 
-        Text(
-            text = spokenText,
-            fontSize = 18.sp,
-            textAlign = TextAlign.Center,
-            color = Color(0xFFF6F6F6),
-            modifier = Modifier
-                .align(Alignment.BottomCenter)
-                .padding(bottom = 150.dp)
-        )
-
-        IconButton(
-            onClick = {
-                spokenText = ""
-                isCorrect = null
-                showResult = false
-                showHelp = false
-                speechEnded = false
-                lastPartialText = ""
-                isRecording = true
-                speakMediaPlayer.start()
-                coroutineScope.launch {
-                    onStartListening(currentIndex, { result ->
-                        spokenText = result
-                    }, {
-                        isRecording = false
-                        Log.d("GameScreen", "Speech ended callback triggered")
-                    })
-                }
-            },
-            modifier = Modifier
-                .align(Alignment.BottomCenter)
-                .padding(16.dp)
-                .size(70.dp)
-                .background(
-                    color = if (isRecording) Color(0xFFFF9999) else Color(0xFF99CCFF), // Light red when recording, light blue otherwise
-                    shape = CircleShape
-                )
-        ) {
-            Icon(
-                imageVector = Icons.Filled.Mic,
-                contentDescription = "Speak",
-                tint = Color(0xFFFCFCFC),
-                modifier = Modifier.size(36.dp)
-            )
+    private fun addFavoritePhrase(phrase: Phrase, language: String, context: android.content.Context) {
+        val prefs = context.getSharedPreferences("FavoritesPrefs", android.content.Context.MODE_PRIVATE)
+        val gson = Gson()
+        val favoritesJson = prefs.getString("favorites_$language", "[]")
+        val type = object : TypeToken<MutableList<Phrase>>() {}.type
+        val favorites: MutableList<Phrase> = gson.fromJson(favoritesJson, type) ?: mutableListOf()
+        if (!favorites.contains(phrase)) {
+            favorites.add(phrase)
+            prefs.edit().putString("favorites_$language", gson.toJson(favorites)).apply()
         }
+    }
 
-        IconButton(
-            onClick = { showHelp = !showHelp },
-            modifier = Modifier
-                .align(Alignment.BottomEnd)
-                .padding(16.dp)
-                .size(40.dp)
-                .background(Color(0xFFCE93D8), shape = CircleShape)
-        ) {
-            Icon(
-                imageVector = Icons.Default.QuestionMark,
-                contentDescription = "Show Help",
-                tint = Color(0xFFFCFCFC),
-                modifier = Modifier.size(16.dp)
-            )
-        }
+    private fun removeFavoritePhrase(phrase: Phrase, language: String, context: android.content.Context) {
+        val prefs = context.getSharedPreferences("FavoritesPrefs", android.content.Context.MODE_PRIVATE)
+        val gson = Gson()
+        val favoritesJson = prefs.getString("favorites_$language", "[]")
+        val type = object : TypeToken<MutableList<Phrase>>() {}.type
+        val favorites: MutableList<Phrase> = gson.fromJson(favoritesJson, type) ?: mutableListOf()
+        favorites.remove(phrase)
+        prefs.edit().putString("favorites_$language", gson.toJson(favorites)).apply()
+    }
 
-        Button(
-            onClick = {
-                spokenText = ""
-                isCorrect = null
-                showResult = false
-                showHelp = false
-                speechEnded = false
-                lastPartialText = ""
-                isRecording = false
-                val newIndex = (currentIndex + 1) % phrases.size
-                currentIndex = newIndex
-            },
-            modifier = Modifier
-                .align(Alignment.BottomStart)
-                .padding(16.dp),
-            colors = ButtonDefaults.buttonColors(
-                containerColor = Color(0xFFCE93D8), // Pastel purple
-                contentColor = Color(0xFFFCFCFC)
-            )
-        ) {
-            Text(
-                text = if (isCorrect == true && showResult) "Next" else "Skip"
-            )
-        }
+    private fun isPhraseFavorite(phrase: Phrase, language: String, context: android.content.Context): Boolean {
+        val prefs = context.getSharedPreferences("FavoritesPrefs", android.content.Context.MODE_PRIVATE)
+        val gson = Gson()
+        val favoritesJson = prefs.getString("favorites_$language", "[]")
+        val type = object : TypeToken<List<Phrase>>() {}.type
+        val favorites: List<Phrase> = gson.fromJson(favoritesJson, type) ?: emptyList()
+        return favorites.contains(phrase)
     }
 }
