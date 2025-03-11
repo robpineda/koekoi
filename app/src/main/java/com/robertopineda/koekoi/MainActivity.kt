@@ -59,172 +59,179 @@ fun MainScreen(
     }
     val materialOptions = listOf("Vocabulary", "Grammar")
 
-    Column(
+    Box(
         modifier = Modifier
             .fillMaxSize()
             .background(Color(0xFF212121))
-            .padding(16.dp),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
+            .padding(WindowInsets.systemBars.asPaddingValues()) // Apply padding for system bars
     ) {
-        Text(
-            text = "KoeKoi",
-            fontSize = 32.sp,
-            color = Color(0xFFBBDEFB),
-            modifier = Modifier.padding(bottom = 16.dp)
-        )
-
-        Text(
-            text = "Select Language",
-            fontSize = 18.sp,
-            color = Color(0xFFBBDEFB)
-        )
-        Spacer(modifier = Modifier.height(8.dp))
-        Box {
-            OutlinedButton(
-                onClick = { languageExpanded = true },
-                modifier = Modifier.fillMaxWidth(0.6f),
-                colors = ButtonDefaults.outlinedButtonColors(
-                    contentColor = Color(0xFFCE93D8)
-                ),
-                border = BorderStroke(1.dp, Color(0xFFCE93D8))
-            ) {
-                Text(
-                    text = selectedLanguage,
-                    color = Color(0xFFCE93D8)
-                )
-            }
-            DropdownMenu(
-                expanded = languageExpanded,
-                onDismissRequest = { languageExpanded = false },
-                modifier = Modifier
-                    .fillMaxWidth(0.6f)
-                    .background(Color(0xFF424242))
-            ) {
-                languageOptions.forEach { language ->
-                    DropdownMenuItem(
-                        text = { Text(language, color = Color(0xFFBBDEFB)) },
-                        onClick = {
-                            selectedLanguage = language
-                            selectedDifficulty = ""
-                            selectedMaterial = "Vocabulary"
-                            languageExpanded = false
-                        },
-                        modifier = Modifier.background(Color(0xFF424242))
-                    )
-                }
-            }
-        }
-
-        Spacer(modifier = Modifier.height(16.dp))
-
-        Text(
-            text = "Select Difficulty",
-            fontSize = 18.sp,
-            color = Color(0xFFBBDEFB)
-        )
-        Spacer(modifier = Modifier.height(8.dp))
-        Box {
-            OutlinedButton(
-                onClick = { difficultyExpanded = true },
-                modifier = Modifier.fillMaxWidth(0.6f),
-                colors = ButtonDefaults.outlinedButtonColors(
-                    contentColor = Color(0xFFCE93D8)
-                ),
-                border = BorderStroke(1.dp, Color(0xFFCE93D8))
-            ) {
-                Text(
-                    text = if (selectedDifficulty.isEmpty()) "Choose Difficulty" else selectedDifficulty,
-                    color = Color(0xFFCE93D8)
-                )
-            }
-            DropdownMenu(
-                expanded = difficultyExpanded,
-                onDismissRequest = { difficultyExpanded = false },
-                modifier = Modifier
-                    .fillMaxWidth(0.6f)
-                    .background(Color(0xFF424242))
-            ) {
-                difficultyOptions.forEach { difficulty ->
-                    DropdownMenuItem(
-                        text = { Text(difficulty, color = Color(0xFFBBDEFB)) },
-                        onClick = {
-                            selectedDifficulty = difficulty
-                            difficultyExpanded = false
-                        },
-                        modifier = Modifier.background(Color(0xFF424242))
-                    )
-                }
-            }
-        }
-
-        Spacer(modifier = Modifier.height(16.dp))
-
-        Text(
-            text = "Select Material",
-            fontSize = 18.sp,
-            color = Color(0xFFBBDEFB)
-        )
-        Spacer(modifier = Modifier.height(8.dp))
-        Box {
-            OutlinedButton(
-                onClick = { if (selectedLanguage == "Japanese") materialExpanded = true },
-                modifier = Modifier.fillMaxWidth(0.6f),
-                enabled = selectedLanguage == "Japanese",
-                colors = ButtonDefaults.outlinedButtonColors(
-                    contentColor = if (selectedLanguage == "Japanese") Color(0xFFCE93D8) else Color(0xFFBBBBBB),
-                    disabledContentColor = Color(0xFFBBBBBB)
-                ),
-                border = BorderStroke(1.dp, if (selectedLanguage == "Japanese") Color(0xFFCE93D8) else Color(0xFF616161))
-            ) {
-                Text(
-                    text = selectedMaterial,
-                    color = if (selectedLanguage == "Japanese") Color(0xFFCE93D8) else Color(0xFFBBBBBB)
-                )
-            }
-            DropdownMenu(
-                expanded = materialExpanded,
-                onDismissRequest = { materialExpanded = false },
-                modifier = Modifier
-                    .fillMaxWidth(0.6f)
-                    .background(Color(0xFF424242))
-            ) {
-                materialOptions.forEach { material ->
-                    DropdownMenuItem(
-                        text = { Text(material, color = Color(0xFFBBDEFB)) },
-                        onClick = {
-                            selectedMaterial = material
-                            materialExpanded = false
-                        },
-                        modifier = Modifier.background(Color(0xFF424242))
-                    )
-                }
-            }
-        }
-
-        Spacer(modifier = Modifier.height(16.dp))
-
-        Button(
-            onClick = {
-                if (selectedDifficulty.isNotEmpty()) {
-                    onStartGame(selectedLanguage, selectedDifficulty, selectedMaterial)
-                }
-            },
-            enabled = selectedDifficulty.isNotEmpty(),
-            colors = ButtonDefaults.buttonColors(
-                containerColor = Color(0xFFAB47BC),
-                contentColor = Color(0xFFBBDEFB),
-                disabledContainerColor = Color(0xFF616161),
-                disabledContentColor = Color(0xFFBBBBBB)
-            )
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .align(Alignment.Center),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Text("Start Game")
-        }
+            Text(
+                text = "KoeKoi",
+                fontSize = 32.sp,
+                color = Color(0xFFBBDEFB),
+                modifier = Modifier.padding(bottom = 16.dp)
+            )
 
-        Spacer(modifier = Modifier.height(16.dp))
+            Text(
+                text = "Select Language",
+                fontSize = 18.sp,
+                color = Color(0xFFBBDEFB)
+            )
+            Spacer(modifier = Modifier.height(8.dp))
+            Box {
+                OutlinedButton(
+                    onClick = { languageExpanded = true },
+                    modifier = Modifier.fillMaxWidth(0.6f),
+                    colors = ButtonDefaults.outlinedButtonColors(
+                        contentColor = Color(0xFFCE93D8)
+                    ),
+                    border = BorderStroke(1.dp, Color(0xFFCE93D8))
+                ) {
+                    Text(
+                        text = selectedLanguage,
+                        color = Color(0xFFCE93D8)
+                    )
+                }
+                DropdownMenu(
+                    expanded = languageExpanded,
+                    onDismissRequest = { languageExpanded = false },
+                    modifier = Modifier
+                        .fillMaxWidth(0.6f)
+                        .background(Color(0xFF424242))
+                ) {
+                    languageOptions.forEach { language ->
+                        DropdownMenuItem(
+                            text = { Text(language, color = Color(0xFFBBDEFB)) },
+                            onClick = {
+                                selectedLanguage = language
+                                selectedDifficulty = ""
+                                selectedMaterial = "Vocabulary"
+                                languageExpanded = false
+                            },
+                            modifier = Modifier.background(Color(0xFF424242))
+                        )
+                    }
+                }
+            }
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            Text(
+                text = "Select Difficulty",
+                fontSize = 18.sp,
+                color = Color(0xFFBBDEFB)
+            )
+            Spacer(modifier = Modifier.height(8.dp))
+            Box {
+                OutlinedButton(
+                    onClick = { difficultyExpanded = true },
+                    modifier = Modifier.fillMaxWidth(0.6f),
+                    colors = ButtonDefaults.outlinedButtonColors(
+                        contentColor = Color(0xFFCE93D8)
+                    ),
+                    border = BorderStroke(1.dp, Color(0xFFCE93D8))
+                ) {
+                    Text(
+                        text = if (selectedDifficulty.isEmpty()) "Choose Difficulty" else selectedDifficulty,
+                        color = Color(0xFFCE93D8)
+                    )
+                }
+                DropdownMenu(
+                    expanded = difficultyExpanded,
+                    onDismissRequest = { difficultyExpanded = false },
+                    modifier = Modifier
+                        .fillMaxWidth(0.6f)
+                        .background(Color(0xFF424242))
+                ) {
+                    difficultyOptions.forEach { difficulty ->
+                        DropdownMenuItem(
+                            text = { Text(difficulty, color = Color(0xFFBBDEFB)) },
+                            onClick = {
+                                selectedDifficulty = difficulty
+                                difficultyExpanded = false
+                            },
+                            modifier = Modifier.background(Color(0xFF424242))
+                        )
+                    }
+                }
+            }
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            Text(
+                text = "Select Material",
+                fontSize = 18.sp,
+                color = Color(0xFFBBDEFB)
+            )
+            Spacer(modifier = Modifier.height(8.dp))
+            Box {
+                OutlinedButton(
+                    onClick = { if (selectedLanguage == "Japanese") materialExpanded = true },
+                    modifier = Modifier.fillMaxWidth(0.6f),
+                    enabled = selectedLanguage == "Japanese",
+                    colors = ButtonDefaults.outlinedButtonColors(
+                        contentColor = if (selectedLanguage == "Japanese") Color(0xFFCE93D8) else Color(0xFFBBBBBB),
+                        disabledContentColor = Color(0xFFBBBBBB)
+                    ),
+                    border = BorderStroke(1.dp, if (selectedLanguage == "Japanese") Color(0xFFCE93D8) else Color(0xFF616161))
+                ) {
+                    Text(
+                        text = selectedMaterial,
+                        color = if (selectedLanguage == "Japanese") Color(0xFFCE93D8) else Color(0xFFBBBBBB)
+                    )
+                }
+                DropdownMenu(
+                    expanded = materialExpanded,
+                    onDismissRequest = { materialExpanded = false },
+                    modifier = Modifier
+                        .fillMaxWidth(0.6f)
+                        .background(Color(0xFF424242))
+                ) {
+                    materialOptions.forEach { material ->
+                        DropdownMenuItem(
+                            text = { Text(material, color = Color(0xFFBBDEFB)) },
+                            onClick = {
+                                selectedMaterial = material
+                                materialExpanded = false
+                            },
+                            modifier = Modifier.background(Color(0xFF424242))
+                        )
+                    }
+                }
+            }
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            Button(
+                onClick = {
+                    if (selectedDifficulty.isNotEmpty()) {
+                        onStartGame(selectedLanguage, selectedDifficulty, selectedMaterial)
+                    }
+                },
+                enabled = selectedDifficulty.isNotEmpty(),
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = Color(0xFFAB47BC),
+                    contentColor = Color(0xFFBBDEFB),
+                    disabledContainerColor = Color(0xFF616161),
+                    disabledContentColor = Color(0xFFBBBBBB)
+                )
+            ) {
+                Text("Start Game")
+            }
+        }
 
         Button(
             onClick = onShowFavorites,
+            modifier = Modifier
+                .align(Alignment.BottomStart)
+                .padding(16.dp),
             colors = ButtonDefaults.buttonColors(
                 containerColor = Color(0xFFAB47BC),
                 contentColor = Color(0xFFBBDEFB)
