@@ -7,6 +7,9 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -234,28 +237,34 @@ fun MainScreen(
 
         Row(
             modifier = Modifier
-                .align(Alignment.BottomStart)
+                .align(Alignment.BottomEnd)
                 .padding(16.dp),
             horizontalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-            Button(
+            IconButton(
                 onClick = onShowFavorites,
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = Color(0xFFAB47BC),
-                    contentColor = Color(0xFFBBDEFB)
-                )
+                modifier = Modifier
+                    .size(48.dp)
             ) {
-                Text("Favorites")
+                Icon(
+                    imageVector = Icons.Filled.Favorite,
+                    contentDescription = "Favorites",
+                    tint = Color(0xFFBBDEFB),
+                    modifier = Modifier.size(24.dp)
+                )
             }
 
-            Button(
+            IconButton(
                 onClick = onShowSettings,
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = Color(0xFFAB47BC),
-                    contentColor = Color(0xFFBBDEFB)
-                )
+                modifier = Modifier
+                    .size(48.dp)
             ) {
-                Text("Settings")
+                Icon(
+                    imageVector = Icons.Filled.Settings,
+                    contentDescription = "Settings",
+                    tint = Color(0xFFBBDEFB),
+                    modifier = Modifier.size(24.dp)
+                )
             }
         }
     }
