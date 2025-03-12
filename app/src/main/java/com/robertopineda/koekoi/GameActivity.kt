@@ -425,7 +425,6 @@ class GameActivity : ComponentActivity() {
                     .align(Alignment.TopEnd)
                     .padding(16.dp)
                     .size(40.dp)
-                    .background(Color(0xFFCE93D8), shape = CircleShape)
             ) {
                 Icon(
                     imageVector = if (isFavorite) Icons.Filled.Favorite else Icons.Filled.FavoriteBorder,
