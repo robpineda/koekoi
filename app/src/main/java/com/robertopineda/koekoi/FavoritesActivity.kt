@@ -89,8 +89,9 @@ fun FavoritesScreen(
                             modifier = Modifier.padding(bottom = 8.dp)
                         )
                     }
-                    items(phrases) { phrase ->
-                        var isFavorite by remember { mutableStateOf(true) } // Local state for each item
+                    items(phrases, key = { it.spoken + it.english }) { phrase ->
+                        // Key the remember state to the phrase to ensure uniqueness
+                        var isFavorite by remember(phrase) { mutableStateOf(isPhraseFavorite(phrase, language, context)) }
                         Row(
                             modifier = Modifier
                                 .fillMaxWidth()
@@ -113,15 +114,15 @@ fun FavoritesScreen(
                             IconButton(
                                 onClick = {
                                     removeFavoritePhrase(phrase, language, context)
-                                    isFavorite = false // Update local state to unfill heart
-                                    refreshFavorites() // Refresh the entire list
+                                    isFavorite = false // Update local state
+                                    refreshFavorites() // Refresh the list
                                     Toast.makeText(context, "Removed from favorites", Toast.LENGTH_SHORT).show()
                                 }
                             ) {
                                 Icon(
                                     imageVector = Icons.Filled.Favorite,
                                     contentDescription = "Unfavorite",
-                                    tint = if (isFavorite) Color(0xFFFF9999) else Color(0xFFBBBBBB), // Change color when unfavorited
+                                    tint = if (isFavorite) Color(0xFFFF9999) else Color(0xFFBBBBBB),
                                     modifier = Modifier.size(24.dp)
                                 )
                             }
@@ -170,4 +171,14 @@ private fun removeFavoritePhrase(phrase: GameActivity.Phrase, language: String, 
     val favorites: MutableList<GameActivity.Phrase> = gson.fromJson(favoritesJson, type) ?: mutableListOf()
     favorites.remove(phrase)
     prefs.edit().putString("favorites_$language", gson.toJson(favorites)).apply()
+}
+
+// Check if a phrase is in favorites
+private fun isPhraseFavorite(phrase: GameActivity.Phrase, language: String, context: android.content.Context): Boolean {
+    val prefs = context.getSharedPreferences("FavoritesPrefs", android.content.Context.MODE_PRIVATE)
+    val gson = Gson()
+    val favoritesJson = prefs.getString("favorites_$language", "[]")
+    val type = object : TypeToken<List<GameActivity.Phrase>>() {}.type
+    val favorites: List<GameActivity.Phrase> = gson.fromJson(favoritesJson, type) ?: emptyList()
+    return favorites.contains(phrase)
 }
