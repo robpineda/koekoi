@@ -2,6 +2,7 @@ package com.robertopineda.koekoi
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
@@ -31,8 +32,8 @@ class FavoritesActivity : ComponentActivity() {
                 onPhraseSelected = { phrase, language ->
                     val intent = Intent(this, GameActivity::class.java).apply {
                         putExtra("LANGUAGE", language)
-                        putExtra("DIFFICULTY", "Favorites") // Custom difficulty to indicate single phrase
-                        putExtra("PHRASE", Gson().toJson(phrase)) // Pass the selected phrase
+                        putExtra("DIFFICULTY", "Favorites")
+                        putExtra("PHRASE", Gson().toJson(phrase))
                     }
                     startActivity(intent)
                 }
@@ -50,13 +51,13 @@ fun FavoritesScreen(
     val languages = listOf("Japanese", "Korean", "Vietnamese", "Spanish")
     val gson = Gson()
 
-    // Load favorites for each language
-    val favoritesByLanguage = languages.map { language ->
-        val prefs = context.getSharedPreferences("FavoritesPrefs", android.content.Context.MODE_PRIVATE)
-        val favoritesJson = prefs.getString("favorites_$language", "[]")
-        val type = object : TypeToken<List<GameActivity.Phrase>>() {}.type
-        language to (gson.fromJson<List<GameActivity.Phrase>>(favoritesJson, type) ?: emptyList())
-    }.filter { it.second.isNotEmpty() }
+    // State to hold favorites, updated when a phrase is removed
+    val favoritesByLanguage = remember { mutableStateOf(loadFavorites(context, languages, gson)) }
+
+    // Function to reload favorites and update state
+    fun refreshFavorites() {
+        favoritesByLanguage.value = loadFavorites(context, languages, gson)
+    }
 
     Box(
         modifier = Modifier
@@ -79,7 +80,7 @@ fun FavoritesScreen(
             Spacer(modifier = Modifier.height(16.dp))
 
             LazyColumn {
-                favoritesByLanguage.forEach { (language, phrases) ->
+                favoritesByLanguage.value.forEach { (language, phrases) ->
                     item {
                         Text(
                             text = language,
@@ -89,7 +90,7 @@ fun FavoritesScreen(
                         )
                     }
                     items(phrases) { phrase ->
-                        var isFavorite by remember { mutableStateOf(true) }
+                        var isFavorite by remember { mutableStateOf(true) } // Local state for each item
                         Row(
                             modifier = Modifier
                                 .fillMaxWidth()
@@ -112,13 +113,16 @@ fun FavoritesScreen(
                             IconButton(
                                 onClick = {
                                     removeFavoritePhrase(phrase, language, context)
-                                    isFavorite = false // This will trigger recomposition
+                                    isFavorite = false // Update local state to unfill heart
+                                    refreshFavorites() // Refresh the entire list
+                                    Toast.makeText(context, "Removed from favorites", Toast.LENGTH_SHORT).show()
                                 }
                             ) {
                                 Icon(
                                     imageVector = Icons.Filled.Favorite,
                                     contentDescription = "Unfavorite",
-                                    tint = Color(0xFFFF9999)
+                                    tint = if (isFavorite) Color(0xFFFF9999) else Color(0xFFBBBBBB), // Change color when unfavorited
+                                    modifier = Modifier.size(24.dp)
                                 )
                             }
                         }
@@ -142,7 +146,22 @@ fun FavoritesScreen(
     }
 }
 
-// Reuse the same helper function from GameActivity
+// Load favorites from SharedPreferences
+private fun loadFavorites(
+    context: android.content.Context,
+    languages: List<String>,
+    gson: Gson
+): List<Pair<String, List<GameActivity.Phrase>>> {
+    return languages.map { language ->
+        val prefs = context.getSharedPreferences("FavoritesPrefs", android.content.Context.MODE_PRIVATE)
+        val favoritesJson = prefs.getString("favorites_$language", "[]")
+        val type = object : TypeToken<List<GameActivity.Phrase>>() {}.type
+        val phrases: List<GameActivity.Phrase> = gson.fromJson(favoritesJson, type) ?: emptyList()
+        language to phrases
+    }.filter { it.second.isNotEmpty() }
+}
+
+// Remove a phrase from favorites
 private fun removeFavoritePhrase(phrase: GameActivity.Phrase, language: String, context: android.content.Context) {
     val prefs = context.getSharedPreferences("FavoritesPrefs", android.content.Context.MODE_PRIVATE)
     val gson = Gson()
