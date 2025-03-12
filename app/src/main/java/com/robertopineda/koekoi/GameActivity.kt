@@ -20,6 +20,8 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.FavoriteBorder
+import androidx.compose.material.icons.filled.Lightbulb
+import androidx.compose.material.icons.filled.LightbulbCircle
 import androidx.compose.material.icons.filled.Mic
 import androidx.compose.material.icons.filled.QuestionMark
 import androidx.compose.material3.*
@@ -122,9 +124,9 @@ class GameActivity : ComponentActivity() {
             val gson = Gson()
             listOf(gson.fromJson(singlePhraseJson, Phrase::class.java))
         } else {
-            loadPhrasesFromAssets().shuffled()
+            loadPhrasesFromAssets().shuffled().filterNot { isPhraseLearned(it, selectedLanguage, this) }
         }
-        Log.d("GameActivity", "Phrases loaded: ${phrases.map { it.spoken }}")
+        Log.d("GameActivity", "Phrases loaded (filtered): ${phrases.map { it.spoken }}")
 
         speechRecognizer = createSpeechRecognizer()
         mediaPlayer = MediaPlayer.create(this, R.raw.speak)
@@ -304,6 +306,8 @@ class GameActivity : ComponentActivity() {
         var isRecording by remember { mutableStateOf(false) }
         val context = LocalContext.current
         var isFavorite by remember { mutableStateOf(isPhraseFavorite(phrases[currentIndex], selectedLanguage, context)) }
+        var isLearned by remember { mutableStateOf(isPhraseLearned(phrases[currentIndex], selectedLanguage, context)) }
+        var showLearnConfirmation by remember { mutableStateOf(false) }
 
         val backgroundColor by animateColorAsState(
             targetValue = when (isCorrect) {
@@ -389,6 +393,7 @@ class GameActivity : ComponentActivity() {
 
         LaunchedEffect(currentIndex) {
             isFavorite = isPhraseFavorite(phrases[currentIndex], selectedLanguage, context)
+            isLearned = isPhraseLearned(phrases[currentIndex], selectedLanguage, context)
         }
 
         Box(
@@ -410,27 +415,82 @@ class GameActivity : ComponentActivity() {
                 Text("Quit")
             }
 
-            IconButton(
-                onClick = {
-                    if (isFavorite) {
-                        removeFavoritePhrase(phrases[currentIndex], selectedLanguage, context)
-                        Toast.makeText(context, "Removed from favorites", Toast.LENGTH_SHORT).show()
-                    } else {
-                        addFavoritePhrase(phrases[currentIndex], selectedLanguage, context)
-                        Toast.makeText(context, "Added to favorites", Toast.LENGTH_SHORT).show()
-                    }
-                    isFavorite = !isFavorite
-                },
+            Row(
                 modifier = Modifier
                     .align(Alignment.TopEnd)
-                    .padding(16.dp)
-                    .size(40.dp)
+                    .padding(16.dp),
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-                Icon(
-                    imageVector = if (isFavorite) Icons.Filled.Favorite else Icons.Filled.FavoriteBorder,
-                    contentDescription = "Favorite",
-                    tint = if (isFavorite) Color(0xFFFF9999) else Color(0xFFFCFCFC),
-                    modifier = Modifier.size(24.dp)
+                IconButton(
+                    onClick = {
+                        if (isFavorite) {
+                            removeFavoritePhrase(phrases[currentIndex], selectedLanguage, context)
+                            Toast.makeText(context, "Removed from favorites", Toast.LENGTH_SHORT).show()
+                        } else {
+                            addFavoritePhrase(phrases[currentIndex], selectedLanguage, context)
+                            Toast.makeText(context, "Added to favorites", Toast.LENGTH_SHORT).show()
+                        }
+                        isFavorite = !isFavorite
+                    },
+                    modifier = Modifier.size(40.dp)
+                ) {
+                    Icon(
+                        imageVector = if (isFavorite) Icons.Filled.Favorite else Icons.Filled.FavoriteBorder,
+                        contentDescription = "Favorite",
+                        tint = if (isFavorite) Color(0xFFFF9999) else Color(0xFFFCFCFC),
+                        modifier = Modifier.size(24.dp)
+                    )
+                }
+
+                IconButton(
+                    onClick = {
+                        if (!isLearned) {
+                            showLearnConfirmation = true
+                        } else {
+                            removeLearnedPhrase(phrases[currentIndex], selectedLanguage, context)
+                            isLearned = false
+                            Toast.makeText(context, "Removed from learned phrases", Toast.LENGTH_SHORT).show()
+                        }
+                    },
+                    modifier = Modifier.size(40.dp)
+                ) {
+                    Icon(
+                        imageVector = if (isLearned) Icons.Filled.Lightbulb else Icons.Filled.LightbulbCircle,
+                        contentDescription = "Learned",
+                        tint = if (isLearned) Color(0xFFFFD700) else Color(0xFFFCFCFC),
+                        modifier = Modifier.size(24.dp)
+                    )
+                }
+            }
+
+            if (showLearnConfirmation) {
+                AlertDialog(
+                    onDismissRequest = { showLearnConfirmation = false },
+                    title = { Text("Confirm Learning") },
+                    text = { Text("Have you fully learned this phrase? It will no longer appear in the game.") },
+                    confirmButton = {
+                        Button(
+                            onClick = {
+                                addLearnedPhrase(phrases[currentIndex], selectedLanguage, context)
+                                isLearned = true
+                                showLearnConfirmation = false
+                                Toast.makeText(context, "Added to learned phrases", Toast.LENGTH_SHORT).show()
+                                val newIndex = (currentIndex + 1) % phrases.size
+                                currentIndex = newIndex
+                            },
+                            colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFAB47BC))
+                        ) {
+                            Text("Yes")
+                        }
+                    },
+                    dismissButton = {
+                        Button(
+                            onClick = { showLearnConfirmation = false },
+                            colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFCE93D8))
+                        ) {
+                            Text("No")
+                        }
+                    }
                 )
             }
 
@@ -621,5 +681,36 @@ class GameActivity : ComponentActivity() {
         val type = object : TypeToken<List<Phrase>>() {}.type
         val favorites: List<Phrase> = gson.fromJson(favoritesJson, type) ?: emptyList()
         return favorites.contains(phrase)
+    }
+
+    private fun addLearnedPhrase(phrase: Phrase, language: String, context: android.content.Context) {
+        val prefs = context.getSharedPreferences("LearnedPrefs", android.content.Context.MODE_PRIVATE)
+        val gson = Gson()
+        val learnedJson = prefs.getString("learned_$language", "[]")
+        val type = object : TypeToken<MutableList<Phrase>>() {}.type
+        val learned: MutableList<Phrase> = gson.fromJson(learnedJson, type) ?: mutableListOf()
+        if (!learned.contains(phrase)) {
+            learned.add(phrase)
+            prefs.edit().putString("learned_$language", gson.toJson(learned)).apply()
+        }
+    }
+
+    private fun removeLearnedPhrase(phrase: Phrase, language: String, context: android.content.Context) {
+        val prefs = context.getSharedPreferences("LearnedPrefs", android.content.Context.MODE_PRIVATE)
+        val gson = Gson()
+        val learnedJson = prefs.getString("learned_$language", "[]")
+        val type = object : TypeToken<MutableList<Phrase>>() {}.type
+        val learned: MutableList<Phrase> = gson.fromJson(learnedJson, type) ?: mutableListOf()
+        learned.remove(phrase)
+        prefs.edit().putString("learned_$language", gson.toJson(learned)).apply()
+    }
+
+    private fun isPhraseLearned(phrase: Phrase, language: String, context: android.content.Context): Boolean {
+        val prefs = context.getSharedPreferences("LearnedPrefs", android.content.Context.MODE_PRIVATE)
+        val gson = Gson()
+        val learnedJson = prefs.getString("learned_$language", "[]")
+        val type = object : TypeToken<List<Phrase>>() {}.type
+        val learned: List<Phrase> = gson.fromJson(learnedJson, type) ?: emptyList()
+        return learned.contains(phrase)
     }
 }

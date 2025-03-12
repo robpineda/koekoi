@@ -31,6 +31,10 @@ class MainActivity : ComponentActivity() {
                 onShowFavorites = {
                     val intent = Intent(this, FavoritesActivity::class.java)
                     startActivity(intent)
+                },
+                onShowSettings = {
+                    val intent = Intent(this, SettingsActivity::class.java)
+                    startActivity(intent)
                 }
             )
         }
@@ -40,7 +44,8 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun MainScreen(
     onStartGame: (String, String, String) -> Unit,
-    onShowFavorites: () -> Unit
+    onShowFavorites: () -> Unit,
+    onShowSettings: () -> Unit
 ) {
     var selectedLanguage by remember { mutableStateOf("Japanese") }
     var selectedDifficulty by remember { mutableStateOf("") }
@@ -63,7 +68,7 @@ fun MainScreen(
         modifier = Modifier
             .fillMaxSize()
             .background(Color(0xFF212121))
-            .padding(WindowInsets.systemBars.asPaddingValues()) // Apply padding for system bars
+            .padding(WindowInsets.systemBars.asPaddingValues())
     ) {
         Column(
             modifier = Modifier
@@ -227,17 +232,31 @@ fun MainScreen(
             }
         }
 
-        Button(
-            onClick = onShowFavorites,
+        Row(
             modifier = Modifier
                 .align(Alignment.BottomStart)
                 .padding(16.dp),
-            colors = ButtonDefaults.buttonColors(
-                containerColor = Color(0xFFAB47BC),
-                contentColor = Color(0xFFBBDEFB)
-            )
+            horizontalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-            Text("Favorites")
+            Button(
+                onClick = onShowFavorites,
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = Color(0xFFAB47BC),
+                    contentColor = Color(0xFFBBDEFB)
+                )
+            ) {
+                Text("Favorites")
+            }
+
+            Button(
+                onClick = onShowSettings,
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = Color(0xFFAB47BC),
+                    contentColor = Color(0xFFBBDEFB)
+                )
+            ) {
+                Text("Settings")
+            }
         }
     }
 }
