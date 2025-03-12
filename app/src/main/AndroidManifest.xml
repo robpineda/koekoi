@@ -36,6 +36,7 @@
         <activity android:name=".GameActivity" />
         <activity android:name=".FavoritesActivity" />
         <activity android:name=".SettingsActivity" />
+        <activity android:name=".LearnedPhrasesActivity" />
     </application>
 
 </manifest>
