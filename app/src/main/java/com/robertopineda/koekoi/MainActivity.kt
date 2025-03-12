@@ -98,13 +98,13 @@ fun MainScreen(
                     onClick = { languageExpanded = true },
                     modifier = Modifier.fillMaxWidth(0.6f),
                     colors = ButtonDefaults.outlinedButtonColors(
-                        contentColor = Color(0xFFCE93D8)
+                        contentColor = Color(0xFFD893B9)
                     ),
-                    border = BorderStroke(1.dp, Color(0xFFCE93D8))
+                    border = BorderStroke(1.dp, Color(0xFFD893B9))
                 ) {
                     Text(
                         text = selectedLanguage,
-                        color = Color(0xFFCE93D8)
+                        color = Color(0xFFD893B9)
                     )
                 }
                 DropdownMenu(
@@ -142,13 +142,13 @@ fun MainScreen(
                     onClick = { difficultyExpanded = true },
                     modifier = Modifier.fillMaxWidth(0.6f),
                     colors = ButtonDefaults.outlinedButtonColors(
-                        contentColor = Color(0xFFCE93D8)
+                        contentColor = Color(0xFFD893B9)
                     ),
-                    border = BorderStroke(1.dp, Color(0xFFCE93D8))
+                    border = BorderStroke(1.dp, Color(0xFFD893B9))
                 ) {
                     Text(
                         text = if (selectedDifficulty.isEmpty()) "Choose Difficulty" else selectedDifficulty,
-                        color = Color(0xFFCE93D8)
+                        color = Color(0xFFD893B9)
                     )
                 }
                 DropdownMenu(
@@ -185,14 +185,14 @@ fun MainScreen(
                     modifier = Modifier.fillMaxWidth(0.6f),
                     enabled = selectedLanguage == "Japanese",
                     colors = ButtonDefaults.outlinedButtonColors(
-                        contentColor = if (selectedLanguage == "Japanese") Color(0xFFCE93D8) else Color(0xFFBBBBBB),
+                        contentColor = if (selectedLanguage == "Japanese") Color(0xFFD893B9) else Color(0xFFBBBBBB),
                         disabledContentColor = Color(0xFFBBBBBB)
                     ),
-                    border = BorderStroke(1.dp, if (selectedLanguage == "Japanese") Color(0xFFCE93D8) else Color(0xFF616161))
+                    border = BorderStroke(1.dp, if (selectedLanguage == "Japanese") Color(0xFFD893B9) else Color(0xFF616161))
                 ) {
                     Text(
                         text = selectedMaterial,
-                        color = if (selectedLanguage == "Japanese") Color(0xFFCE93D8) else Color(0xFFBBBBBB)
+                        color = if (selectedLanguage == "Japanese") Color(0xFFD893B9) else Color(0xFFBBBBBB)
                     )
                 }
                 DropdownMenu(
@@ -225,7 +225,7 @@ fun MainScreen(
                 },
                 enabled = selectedDifficulty.isNotEmpty(),
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = Color(0xFFAB47BC),
+                    containerColor = Color(0xFFC2729C),
                     contentColor = Color(0xFFBBDEFB),
                     disabledContainerColor = Color(0xFF616161),
                     disabledContentColor = Color(0xFFBBBBBB)
