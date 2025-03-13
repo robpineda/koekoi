@@ -477,6 +477,14 @@ class GameActivity : ComponentActivity() {
                                 Toast.makeText(context, "Added to learned phrases", Toast.LENGTH_SHORT).show()
                                 val newIndex = (currentIndex + 1) % phrases.size
                                 currentIndex = newIndex
+                                // Reset all relevant states for the new phrase
+                                spokenText = ""
+                                isCorrect = null
+                                showResult = false
+                                showHelp = false
+                                speechEnded = false
+                                lastPartialText = ""
+                                isRecording = false
                             },
                             colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFAB47BC))
                         ) {
