@@ -313,7 +313,7 @@ class GameActivity : ComponentActivity() {
             targetValue = when (isCorrect) {
                 true -> Color(0xFF4CAF50)
                 false -> Color(0xFFE57373)
-                null -> Color(0xFF212121)
+                null -> Color(0xFF212121) // Dark background for eye comfort
             },
             animationSpec = tween(durationMillis = 300)
         )
@@ -408,8 +408,8 @@ class GameActivity : ComponentActivity() {
                     .align(Alignment.TopStart)
                     .padding(16.dp),
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = Color(0xFFCE93D8),
-                    contentColor = Color(0xFFFCFCFC)
+                    containerColor = Color(0xFFFF8F00), // Deep amber
+                    contentColor = Color(0xFFE0F7FA) // Light cyan
                 )
             ) {
                 Text("Quit")
@@ -437,7 +437,7 @@ class GameActivity : ComponentActivity() {
                     Icon(
                         imageVector = if (isFavorite) Icons.Filled.Favorite else Icons.Filled.FavoriteBorder,
                         contentDescription = "Favorite",
-                        tint = if (isFavorite) Color(0xFFFF9999) else Color(0xFFFCFCFC),
+                        tint = if (isFavorite) Color(0xFFFF9999) else Color(0xFFE0F7FA), // Keep red for favorite
                         modifier = Modifier.size(24.dp)
                     )
                 }
@@ -457,7 +457,7 @@ class GameActivity : ComponentActivity() {
                     Icon(
                         imageVector = if (isLearned) Icons.Filled.Lightbulb else Icons.Filled.LightbulbCircle,
                         contentDescription = "Learned",
-                        tint = if (isLearned) Color(0xFFFFD700) else Color(0xFFFCFCFC),
+                        tint = if (isLearned) Color(0xFFFFD700) else Color(0xFFE0F7FA), // Keep yellow for learned
                         modifier = Modifier.size(24.dp)
                     )
                 }
@@ -466,8 +466,8 @@ class GameActivity : ComponentActivity() {
             if (showLearnConfirmation) {
                 AlertDialog(
                     onDismissRequest = { showLearnConfirmation = false },
-                    title = { Text("Confirm Learning") },
-                    text = { Text("Have you fully learned this phrase? It will no longer appear in the game.") },
+                    title = { Text("Confirm Learning", color = Color(0xFFE0F7FA)) },
+                    text = { Text("Have you fully learned this phrase? It will no longer appear in the game.", color = Color(0xFFE0F7FA)) },
                     confirmButton = {
                         Button(
                             onClick = {
@@ -477,7 +477,6 @@ class GameActivity : ComponentActivity() {
                                 Toast.makeText(context, "Added to learned phrases", Toast.LENGTH_SHORT).show()
                                 val newIndex = (currentIndex + 1) % phrases.size
                                 currentIndex = newIndex
-                                // Reset all relevant states for the new phrase
                                 spokenText = ""
                                 isCorrect = null
                                 showResult = false
@@ -486,19 +485,20 @@ class GameActivity : ComponentActivity() {
                                 lastPartialText = ""
                                 isRecording = false
                             },
-                            colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFAB47BC))
+                            colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFFF8F00)) // Deep amber
                         ) {
-                            Text("Yes")
+                            Text("Yes", color = Color(0xFFE0F7FA))
                         }
                     },
                     dismissButton = {
                         Button(
                             onClick = { showLearnConfirmation = false },
-                            colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFCE93D8))
+                            colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF015D73)) // Darker teal
                         ) {
-                            Text("No")
+                            Text("No", color = Color(0xFFE0F7FA))
                         }
-                    }
+                    },
+                    containerColor = Color(0xFF015D73) // Darker teal
                 )
             }
 
@@ -513,7 +513,7 @@ class GameActivity : ComponentActivity() {
                     text = phrases[currentIndex].spoken,
                     fontSize = 24.sp,
                     textAlign = TextAlign.Center,
-                    color = Color(0xFFF6F6F6)
+                    color = Color(0xFFE0F7FA) // Light cyan
                 )
                 Spacer(modifier = Modifier.height(8.dp))
 
@@ -526,13 +526,13 @@ class GameActivity : ComponentActivity() {
                         Text(
                             text = "Hiragana",
                             fontSize = 14.sp,
-                            color = Color(0xFFF6F6F6)
+                            color = Color(0xFFE0F7FA)
                         )
                         Text(
                             text = phrases[currentIndex].reading,
                             fontSize = 20.sp,
                             textAlign = TextAlign.Center,
-                            color = Color(0xFFF6F6F6)
+                            color = Color(0xFFE0F7FA)
                         )
                     }
                 }
@@ -547,7 +547,7 @@ class GameActivity : ComponentActivity() {
                         text = phrases[currentIndex].english,
                         fontSize = 18.sp,
                         textAlign = TextAlign.Center,
-                        color = Color(0xFFF6F6F6)
+                        color = Color(0xFFE0F7FA)
                     )
                 }
                 if (showHelp) Spacer(modifier = Modifier.height(16.dp))
@@ -563,7 +563,7 @@ class GameActivity : ComponentActivity() {
                     isCorrect?.let {
                         Text(
                             text = if (it) "Correct!" else "Incorrect!",
-                            color = Color(0xFFF6F6F6),
+                            color = Color(0xFFE0F7FA),
                             fontSize = 30.sp,
                             textAlign = TextAlign.Center
                         )
@@ -575,7 +575,7 @@ class GameActivity : ComponentActivity() {
                 text = spokenText,
                 fontSize = 18.sp,
                 textAlign = TextAlign.Center,
-                color = Color(0xFFF6F6F6),
+                color = Color(0xFFE0F7FA),
                 modifier = Modifier
                     .align(Alignment.BottomCenter)
                     .padding(bottom = 150.dp)
@@ -605,14 +605,14 @@ class GameActivity : ComponentActivity() {
                     .padding(16.dp)
                     .size(70.dp)
                     .background(
-                        color = if (isRecording) Color(0xFFFF9999) else Color(0xFF99CCFF),
+                        color = if (isRecording) Color(0xFFFF9999) else Color(0xFFFFB300), // Keep red when active, amber otherwise
                         shape = CircleShape
                     )
             ) {
                 Icon(
                     imageVector = Icons.Filled.Mic,
                     contentDescription = "Speak",
-                    tint = Color(0xFFFCFCFC),
+                    tint = Color(0xFFE0F7FA),
                     modifier = Modifier.size(36.dp)
                 )
             }
@@ -623,12 +623,12 @@ class GameActivity : ComponentActivity() {
                     .align(Alignment.BottomEnd)
                     .padding(16.dp)
                     .size(40.dp)
-                    .background(Color(0xFFCE93D8), shape = CircleShape)
+                    .background(Color(0xFFFF8F00), shape = CircleShape) // Deep amber
             ) {
                 Icon(
                     imageVector = Icons.Default.QuestionMark,
                     contentDescription = "Show Help",
-                    tint = Color(0xFFFCFCFC),
+                    tint = Color(0xFFE0F7FA),
                     modifier = Modifier.size(16.dp)
                 )
             }
@@ -649,8 +649,8 @@ class GameActivity : ComponentActivity() {
                     .align(Alignment.BottomStart)
                     .padding(16.dp),
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = Color(0xFFCE93D8),
-                    contentColor = Color(0xFFFCFCFC)
+                    containerColor = Color(0xFFFF8F00), // Deep amber
+                    contentColor = Color(0xFFE0F7FA)
                 )
             ) {
                 Text(

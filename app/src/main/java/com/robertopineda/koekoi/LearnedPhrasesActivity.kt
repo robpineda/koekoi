@@ -90,7 +90,15 @@ fun LearnedPhrasesScreen(
                         )
                     }
                     items(phrases, key = { it.spoken + it.english }) { phrase ->
-                        var isLearned by remember(phrase) { mutableStateOf(isPhraseLearned(phrase, language, context)) }
+                        var isLearned by remember(phrase) {
+                            mutableStateOf(
+                                isPhraseLearned(
+                                    phrase,
+                                    language,
+                                    context
+                                )
+                            )
+                        }
                         Row(
                             modifier = Modifier
                                 .fillMaxWidth()
@@ -115,7 +123,11 @@ fun LearnedPhrasesScreen(
                                     removeLearnedPhrase(phrase, language, context)
                                     isLearned = false
                                     refreshLearned()
-                                    Toast.makeText(context, "Removed from learned phrases", Toast.LENGTH_SHORT).show()
+                                    Toast.makeText(
+                                        context,
+                                        "Removed from learned phrases",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
                                 }
                             ) {
                                 Icon(
@@ -152,7 +164,8 @@ private fun loadLearned(
     gson: Gson
 ): List<Pair<String, List<GameActivity.Phrase>>> {
     return languages.map { language ->
-        val prefs = context.getSharedPreferences("LearnedPrefs", android.content.Context.MODE_PRIVATE)
+        val prefs =
+            context.getSharedPreferences("LearnedPrefs", android.content.Context.MODE_PRIVATE)
         val learnedJson = prefs.getString("learned_$language", "[]")
         val type = object : TypeToken<List<GameActivity.Phrase>>() {}.type
         val phrases: List<GameActivity.Phrase> = gson.fromJson(learnedJson, type) ?: emptyList()
@@ -160,17 +173,26 @@ private fun loadLearned(
     }.filter { it.second.isNotEmpty() }
 }
 
-private fun removeLearnedPhrase(phrase: GameActivity.Phrase, language: String, context: android.content.Context) {
+private fun removeLearnedPhrase(
+    phrase: GameActivity.Phrase,
+    language: String,
+    context: android.content.Context
+) {
     val prefs = context.getSharedPreferences("LearnedPrefs", android.content.Context.MODE_PRIVATE)
     val gson = Gson()
     val learnedJson = prefs.getString("learned_$language", "[]")
     val type = object : TypeToken<MutableList<GameActivity.Phrase>>() {}.type
-    val learned: MutableList<GameActivity.Phrase> = gson.fromJson(learnedJson, type) ?: mutableListOf()
+    val learned: MutableList<GameActivity.Phrase> =
+        gson.fromJson(learnedJson, type) ?: mutableListOf()
     learned.remove(phrase)
     prefs.edit().putString("learned_$language", gson.toJson(learned)).apply()
 }
 
-private fun isPhraseLearned(phrase: GameActivity.Phrase, language: String, context: android.content.Context): Boolean {
+private fun isPhraseLearned(
+    phrase: GameActivity.Phrase,
+    language: String,
+    context: android.content.Context
+): Boolean {
     val prefs = context.getSharedPreferences("LearnedPrefs", android.content.Context.MODE_PRIVATE)
     val gson = Gson()
     val learnedJson = prefs.getString("learned_$language", "[]")
