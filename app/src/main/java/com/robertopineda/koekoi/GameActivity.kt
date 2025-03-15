@@ -14,16 +14,13 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.animation.*
 import androidx.compose.animation.core.*
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Favorite
-import androidx.compose.material.icons.filled.FavoriteBorder
-import androidx.compose.material.icons.filled.Lightbulb
-import androidx.compose.material.icons.filled.LightbulbCircle
-import androidx.compose.material.icons.filled.Mic
-import androidx.compose.material.icons.filled.QuestionMark
+import androidx.compose.material.icons.filled.*
+import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -402,17 +399,18 @@ class GameActivity : ComponentActivity() {
                 .background(backgroundColor)
                 .padding(WindowInsets.systemBars.asPaddingValues())
         ) {
-            Button(
+            IconButton(
                 onClick = onQuit,
                 modifier = Modifier
                     .align(Alignment.TopStart)
-                    .padding(16.dp),
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = Color(0xFFFF8F00), // Deep amber
-                    contentColor = Color(0xFFE0F7FA) // Light cyan
-                )
+                    .padding(16.dp)
             ) {
-                Text("Quit")
+                Icon(
+                    imageVector = Icons.Filled.ArrowBack,
+                    contentDescription = "Quit",
+                    tint = Color(0xFFE0F7FA),
+                    modifier = Modifier.size(24.dp)
+                )
             }
 
             Row(
@@ -617,23 +615,22 @@ class GameActivity : ComponentActivity() {
                 )
             }
 
-            IconButton(
+            OutlinedIconButton(
                 onClick = { showHelp = !showHelp },
                 modifier = Modifier
                     .align(Alignment.BottomEnd)
-                    .padding(16.dp)
-                    .size(40.dp)
-                    .background(Color(0xFFFF8F00), shape = CircleShape) // Deep amber
+                    .padding(16.dp),
+                border = BorderStroke(1.dp, Color(0xFFFF8F00)) // Deep amber border
             ) {
                 Icon(
                     imageVector = Icons.Default.QuestionMark,
                     contentDescription = "Show Help",
                     tint = Color(0xFFE0F7FA),
-                    modifier = Modifier.size(16.dp)
+                    modifier = Modifier.size(18.dp)
                 )
             }
 
-            Button(
+            OutlinedButton(
                 onClick = {
                     spokenText = ""
                     isCorrect = null
@@ -648,8 +645,8 @@ class GameActivity : ComponentActivity() {
                 modifier = Modifier
                     .align(Alignment.BottomStart)
                     .padding(16.dp),
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = Color(0xFFFF8F00), // Deep amber
+                border = BorderStroke(1.dp, Color(0xFFFF8F00)),
+                colors = ButtonDefaults.outlinedButtonColors(
                     contentColor = Color(0xFFE0F7FA)
                 )
             ) {
