@@ -70,7 +70,7 @@ fun MainScreen(
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color(0xFF212121))
+            .background(Color(0xFF007893)) // RGB(0, 120, 147)
             .padding(WindowInsets.systemBars.asPaddingValues())
     ) {
         Column(
@@ -83,14 +83,14 @@ fun MainScreen(
             Text(
                 text = "KoeKoi",
                 fontSize = 32.sp,
-                color = Color(0xFFBBDEFB),
+                color = Color(0xFFE0F7FA), // Light cyan for contrast
                 modifier = Modifier.padding(bottom = 16.dp)
             )
 
             Text(
                 text = "Select Language",
                 fontSize = 18.sp,
-                color = Color(0xFFBBDEFB)
+                color = Color(0xFFE0F7FA)
             )
             Spacer(modifier = Modifier.height(8.dp))
             Box {
@@ -98,13 +98,13 @@ fun MainScreen(
                     onClick = { languageExpanded = true },
                     modifier = Modifier.fillMaxWidth(0.6f),
                     colors = ButtonDefaults.outlinedButtonColors(
-                        contentColor = Color(0xFFD893B9)
+                        contentColor = Color(0xFFFFB300) // Amber accent
                     ),
-                    border = BorderStroke(1.dp, Color(0xFFD893B9))
+                    border = BorderStroke(1.dp, Color(0xFFFFB300))
                 ) {
                     Text(
                         text = selectedLanguage,
-                        color = Color(0xFFD893B9)
+                        color = Color(0xFFFFB300)
                     )
                 }
                 DropdownMenu(
@@ -112,18 +112,18 @@ fun MainScreen(
                     onDismissRequest = { languageExpanded = false },
                     modifier = Modifier
                         .fillMaxWidth(0.6f)
-                        .background(Color(0xFF424242))
+                        .background(Color(0xFF015D73)) // Darker teal
                 ) {
                     languageOptions.forEach { language ->
                         DropdownMenuItem(
-                            text = { Text(language, color = Color(0xFFBBDEFB)) },
+                            text = { Text(language, color = Color(0xFFE0F7FA)) },
                             onClick = {
                                 selectedLanguage = language
                                 selectedDifficulty = ""
                                 selectedMaterial = "Vocabulary"
                                 languageExpanded = false
                             },
-                            modifier = Modifier.background(Color(0xFF424242))
+                            modifier = Modifier.background(Color(0xFF015D73))
                         )
                     }
                 }
@@ -134,7 +134,7 @@ fun MainScreen(
             Text(
                 text = "Select Difficulty",
                 fontSize = 18.sp,
-                color = Color(0xFFBBDEFB)
+                color = Color(0xFFE0F7FA)
             )
             Spacer(modifier = Modifier.height(8.dp))
             Box {
@@ -142,13 +142,13 @@ fun MainScreen(
                     onClick = { difficultyExpanded = true },
                     modifier = Modifier.fillMaxWidth(0.6f),
                     colors = ButtonDefaults.outlinedButtonColors(
-                        contentColor = Color(0xFFD893B9)
+                        contentColor = Color(0xFFFFB300)
                     ),
-                    border = BorderStroke(1.dp, Color(0xFFD893B9))
+                    border = BorderStroke(1.dp, Color(0xFFFFB300))
                 ) {
                     Text(
                         text = if (selectedDifficulty.isEmpty()) "Choose Difficulty" else selectedDifficulty,
-                        color = Color(0xFFD893B9)
+                        color = Color(0xFFFFB300)
                     )
                 }
                 DropdownMenu(
@@ -156,16 +156,16 @@ fun MainScreen(
                     onDismissRequest = { difficultyExpanded = false },
                     modifier = Modifier
                         .fillMaxWidth(0.6f)
-                        .background(Color(0xFF424242))
+                        .background(Color(0xFF015D73))
                 ) {
                     difficultyOptions.forEach { difficulty ->
                         DropdownMenuItem(
-                            text = { Text(difficulty, color = Color(0xFFBBDEFB)) },
+                            text = { Text(difficulty, color = Color(0xFFE0F7FA)) },
                             onClick = {
                                 selectedDifficulty = difficulty
                                 difficultyExpanded = false
                             },
-                            modifier = Modifier.background(Color(0xFF424242))
+                            modifier = Modifier.background(Color(0xFF015D73))
                         )
                     }
                 }
@@ -176,7 +176,7 @@ fun MainScreen(
             Text(
                 text = "Select Material",
                 fontSize = 18.sp,
-                color = Color(0xFFBBDEFB)
+                color = Color(0xFFE0F7FA)
             )
             Spacer(modifier = Modifier.height(8.dp))
             Box {
@@ -185,14 +185,14 @@ fun MainScreen(
                     modifier = Modifier.fillMaxWidth(0.6f),
                     enabled = selectedLanguage == "Japanese",
                     colors = ButtonDefaults.outlinedButtonColors(
-                        contentColor = if (selectedLanguage == "Japanese") Color(0xFFD893B9) else Color(0xFFBBBBBB),
-                        disabledContentColor = Color(0xFFBBBBBB)
+                        contentColor = if (selectedLanguage == "Japanese") Color(0xFFFFB300) else Color(0xFF90A4AE),
+                        disabledContentColor = Color(0xFF90A4AE) // Blue-grey for disabled
                     ),
-                    border = BorderStroke(1.dp, if (selectedLanguage == "Japanese") Color(0xFFD893B9) else Color(0xFF616161))
+                    border = BorderStroke(1.dp, if (selectedLanguage == "Japanese") Color(0xFFFFB300) else Color(0xFF455A64))
                 ) {
                     Text(
                         text = selectedMaterial,
-                        color = if (selectedLanguage == "Japanese") Color(0xFFD893B9) else Color(0xFFBBBBBB)
+                        color = if (selectedLanguage == "Japanese") Color(0xFFFFB300) else Color(0xFF90A4AE)
                     )
                 }
                 DropdownMenu(
@@ -200,16 +200,16 @@ fun MainScreen(
                     onDismissRequest = { materialExpanded = false },
                     modifier = Modifier
                         .fillMaxWidth(0.6f)
-                        .background(Color(0xFF424242))
+                        .background(Color(0xFF015D73))
                 ) {
                     materialOptions.forEach { material ->
                         DropdownMenuItem(
-                            text = { Text(material, color = Color(0xFFBBDEFB)) },
+                            text = { Text(material, color = Color(0xFFE0F7FA)) },
                             onClick = {
                                 selectedMaterial = material
                                 materialExpanded = false
                             },
-                            modifier = Modifier.background(Color(0xFF424242))
+                            modifier = Modifier.background(Color(0xFF015D73))
                         )
                     }
                 }
@@ -225,10 +225,10 @@ fun MainScreen(
                 },
                 enabled = selectedDifficulty.isNotEmpty(),
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = Color(0xFFC2729C),
-                    contentColor = Color(0xFFBBDEFB),
-                    disabledContainerColor = Color(0xFF616161),
-                    disabledContentColor = Color(0xFFBBBBBB)
+                    containerColor = Color(0xFFFF8F00), // Deep amber
+                    contentColor = Color(0xFFE0F7FA),
+                    disabledContainerColor = Color(0xFF455A64), // Dark blue-grey
+                    disabledContentColor = Color(0xFF90A4AE)
                 )
             ) {
                 Text("Start Game")
@@ -249,7 +249,7 @@ fun MainScreen(
                 Icon(
                     imageVector = Icons.Filled.Favorite,
                     contentDescription = "Favorites",
-                    tint = Color(0xFFBBDEFB),
+                    tint = Color(0xFFE0F7FA),
                     modifier = Modifier.size(24.dp)
                 )
             }
@@ -262,7 +262,7 @@ fun MainScreen(
                 Icon(
                     imageVector = Icons.Filled.Settings,
                     contentDescription = "Settings",
-                    tint = Color(0xFFBBDEFB),
+                    tint = Color(0xFFE0F7FA),
                     modifier = Modifier.size(24.dp)
                 )
             }
