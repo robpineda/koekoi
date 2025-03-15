@@ -504,7 +504,7 @@ class GameActivity : ComponentActivity() {
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(horizontal = 16.dp, vertical = 8.dp),
-                verticalArrangement = Arrangement.Center, // Kept as Center per your change
+                verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 // Reduced initial spacing to move animation icon up

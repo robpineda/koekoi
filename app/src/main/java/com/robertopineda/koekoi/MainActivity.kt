@@ -15,6 +15,8 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
@@ -50,7 +52,7 @@ fun MainScreen(
     onShowFavorites: () -> Unit,
     onShowSettings: () -> Unit
 ) {
-    var selectedLanguage by remember { mutableStateOf("Japanese") }
+    var selectedLanguage by remember { mutableStateOf("Korean") }
     var selectedDifficulty by remember { mutableStateOf("") }
     var selectedMaterial by remember { mutableStateOf("Vocabulary") }
     var languageExpanded by remember { mutableStateOf(false) }
@@ -73,6 +75,17 @@ fun MainScreen(
             .background(Color(0xFF007893)) // RGB(0, 120, 147)
             .padding(WindowInsets.systemBars.asPaddingValues())
     ) {
+        Text(
+            text = "KoeKoi",
+            fontSize = 38.sp,
+            fontFamily = FontFamily.Cursive,
+            fontWeight = FontWeight.Medium,
+            color = Color(0xFFE0F7FA),
+            modifier = Modifier
+                .align(Alignment.TopCenter)
+                .padding(top = 72.dp)
+        )
+
         Column(
             modifier = Modifier
                 .fillMaxWidth()
@@ -80,13 +93,6 @@ fun MainScreen(
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Text(
-                text = "KoeKoi",
-                fontSize = 32.sp,
-                color = Color(0xFFE0F7FA), // Light cyan for contrast
-                modifier = Modifier.padding(bottom = 16.dp)
-            )
-
             Text(
                 text = "Select Language",
                 fontSize = 18.sp,
@@ -98,7 +104,7 @@ fun MainScreen(
                     onClick = { languageExpanded = true },
                     modifier = Modifier.fillMaxWidth(0.6f),
                     colors = ButtonDefaults.outlinedButtonColors(
-                        contentColor = Color(0xFFFFB300) // Amber accent
+                        contentColor = Color(0xFFFFB300)
                     ),
                     border = BorderStroke(1.dp, Color(0xFFFFB300))
                 ) {
@@ -112,7 +118,7 @@ fun MainScreen(
                     onDismissRequest = { languageExpanded = false },
                     modifier = Modifier
                         .fillMaxWidth(0.6f)
-                        .background(Color(0xFF015D73)) // Darker teal
+                        .background(Color(0xFF015D73))
                 ) {
                     languageOptions.forEach { language ->
                         DropdownMenuItem(
@@ -186,7 +192,7 @@ fun MainScreen(
                     enabled = selectedLanguage == "Japanese",
                     colors = ButtonDefaults.outlinedButtonColors(
                         contentColor = if (selectedLanguage == "Japanese") Color(0xFFFFB300) else Color(0xFF90A4AE),
-                        disabledContentColor = Color(0xFF90A4AE) // Blue-grey for disabled
+                        disabledContentColor = Color(0xFF90A4AE)
                     ),
                     border = BorderStroke(1.dp, if (selectedLanguage == "Japanese") Color(0xFFFFB300) else Color(0xFF455A64))
                 ) {
@@ -225,9 +231,9 @@ fun MainScreen(
                 },
                 enabled = selectedDifficulty.isNotEmpty(),
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = Color(0xFFFF8F00), // Deep amber
+                    containerColor = Color(0xFFFF8F00),
                     contentColor = Color(0xFFE0F7FA),
-                    disabledContainerColor = Color(0xFF455A64), // Dark blue-grey
+                    disabledContainerColor = Color(0xFF455A64),
                     disabledContentColor = Color(0xFF90A4AE)
                 )
             ) {
