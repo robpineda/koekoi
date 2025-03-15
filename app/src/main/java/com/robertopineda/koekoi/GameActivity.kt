@@ -15,6 +15,7 @@ import androidx.activity.compose.setContent
 import androidx.compose.animation.*
 import androidx.compose.animation.core.*
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
@@ -25,7 +26,10 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.PaintingStyle.Companion.Stroke
+import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -310,7 +314,7 @@ class GameActivity : ComponentActivity() {
             targetValue = when (isCorrect) {
                 true -> Color(0xFF4CAF50)
                 false -> Color(0xFFE57373)
-                null -> Color(0xFF212121) // Dark background for eye comfort
+                null -> Color(0xFF212121)
             },
             animationSpec = tween(durationMillis = 300)
         )
@@ -344,9 +348,6 @@ class GameActivity : ComponentActivity() {
                 val normalizedExpected = toReading(expected.replace("[\\s、。？！]".toRegex(), "")).lowercase()
                 val normalizedSpoken = toReading(spokenText.replace("[\\s、。？！]".toRegex(), "")).lowercase()
 
-                Log.d("normalizedExpected", normalizedExpected)
-                Log.d("normalizedSpoken", normalizedSpoken)
-
                 val isError = spokenText.contains("error", ignoreCase = true) ||
                         spokenText == "No match found. Try again." ||
                         spokenText == "No speech input. Speak louder."
@@ -359,7 +360,6 @@ class GameActivity : ComponentActivity() {
                     showResult = false
                     lastPartialText = ""
                     isRecording = false
-                    Log.d("entered 0", "entered 0")
                 } else {
                     val isPrefix = normalizedExpected.startsWith(normalizedSpoken)
                     val matches = normalizedExpected == normalizedSpoken
@@ -371,20 +371,16 @@ class GameActivity : ComponentActivity() {
                         onDestroyRecognizer()
                         isRecording = false
                         correctMediaPlayer.start()
-                        Log.d("entered 1", "entered 1")
                     } else if (!isPrefix && normalizedSpoken.isNotEmpty()) {
                         isCorrect = false
                         showResult = true
                         speechEnded = true
                         onDestroyRecognizer()
                         isRecording = false
-                        Log.d("entered 2", "entered 2")
                     } else {
                         lastPartialText = spokenText
-                        Log.d("entered 3", "entered 3")
                     }
                 }
-                Log.d("GameScreen", "Spoken: $spokenText, Expected: $expected, IsCorrect: $isCorrect, SpeechEnded: $speechEnded, LastPartial: $lastPartialText")
             }
         }
 
@@ -435,7 +431,7 @@ class GameActivity : ComponentActivity() {
                     Icon(
                         imageVector = if (isFavorite) Icons.Filled.Favorite else Icons.Filled.FavoriteBorder,
                         contentDescription = "Favorite",
-                        tint = if (isFavorite) Color(0xFFFF9999) else Color(0xFFE0F7FA), // Keep red for favorite
+                        tint = if (isFavorite) Color(0xFFFF9999) else Color(0xFFE0F7FA),
                         modifier = Modifier.size(24.dp)
                     )
                 }
@@ -455,7 +451,7 @@ class GameActivity : ComponentActivity() {
                     Icon(
                         imageVector = if (isLearned) Icons.Filled.Lightbulb else Icons.Filled.LightbulbCircle,
                         contentDescription = "Learned",
-                        tint = if (isLearned) Color(0xFFFFD700) else Color(0xFFE0F7FA), // Keep yellow for learned
+                        tint = if (isLearned) Color(0xFFFFD700) else Color(0xFFE0F7FA),
                         modifier = Modifier.size(24.dp)
                     )
                 }
@@ -483,7 +479,7 @@ class GameActivity : ComponentActivity() {
                                 lastPartialText = ""
                                 isRecording = false
                             },
-                            colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFFF8F00)) // Deep amber
+                            colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFFF8F00))
                         ) {
                             Text("Yes", color = Color(0xFFE0F7FA))
                         }
@@ -491,12 +487,12 @@ class GameActivity : ComponentActivity() {
                     dismissButton = {
                         Button(
                             onClick = { showLearnConfirmation = false },
-                            colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF015D73)) // Darker teal
+                            colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF015D73))
                         ) {
                             Text("No", color = Color(0xFFE0F7FA))
                         }
                     },
-                    containerColor = Color(0xFF015D73) // Darker teal
+                    containerColor = Color(0xFF015D73)
                 )
             }
 
@@ -507,13 +503,53 @@ class GameActivity : ComponentActivity() {
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
+                AnimatedVisibility(
+                    visible = showResult && isCorrect == true,
+                    enter = scaleIn(animationSpec = tween(300)),
+                    exit = fadeOut()
+                ) {
+                    Box(
+                        modifier = Modifier
+                            .size(80.dp)
+                            .padding(bottom = 16.dp),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        val circleProgress by animateFloatAsState(
+                            targetValue = if (showResult && isCorrect == true) 1f else 0f,
+                            animationSpec = tween(durationMillis = 500)
+                        )
+
+                        Canvas(modifier = Modifier.size(80.dp)) {
+                            drawArc(
+                                color = Color(0xFFE0F7FA),
+                                startAngle = -90f,
+                                sweepAngle = 360f * circleProgress,
+                                useCenter = false,
+                                style = Stroke(width = 4.dp.toPx())
+                            )
+                        }
+
+                        Icon(
+                            imageVector = Icons.Filled.Check,
+                            contentDescription = "Correct",
+                            tint = Color(0xFFE0F7FA),
+                            modifier = Modifier
+                                .size(40.dp)
+                                .alpha(if (circleProgress > 0.5f) 1f else 0f)
+                        )
+                    }
+                }
+
+                Spacer(modifier = Modifier.height(24.dp))
+
                 Text(
                     text = phrases[currentIndex].spoken,
                     fontSize = 24.sp,
                     textAlign = TextAlign.Center,
-                    color = Color(0xFFE0F7FA) // Light cyan
+                    color = Color(0xFFE0F7FA)
                 )
-                Spacer(modifier = Modifier.height(8.dp))
+
+                Spacer(modifier = Modifier.height(16.dp))
 
                 AnimatedVisibility(
                     visible = showHelp && selectedLanguage == "Japanese",
@@ -534,7 +570,8 @@ class GameActivity : ComponentActivity() {
                         )
                     }
                 }
-                if (showHelp && selectedLanguage == "Japanese") Spacer(modifier = Modifier.height(8.dp))
+
+                Spacer(modifier = Modifier.height(24.dp))
 
                 AnimatedVisibility(
                     visible = showHelp,
@@ -548,24 +585,21 @@ class GameActivity : ComponentActivity() {
                         color = Color(0xFFE0F7FA)
                     )
                 }
-                if (showHelp) Spacer(modifier = Modifier.height(16.dp))
 
                 AnimatedVisibility(
-                    visible = showResult,
+                    visible = showResult && isCorrect == false,
                     enter = slideInVertically(
                         initialOffsetY = { fullHeight -> fullHeight },
                         animationSpec = tween(durationMillis = 500)
                     ),
                     exit = fadeOut()
                 ) {
-                    isCorrect?.let {
-                        Text(
-                            text = if (it) "Correct!" else "Incorrect!",
-                            color = Color(0xFFE0F7FA),
-                            fontSize = 30.sp,
-                            textAlign = TextAlign.Center
-                        )
-                    }
+                    Text(
+                        text = "Incorrect!",
+                        color = Color(0xFFE0F7FA),
+                        fontSize = 30.sp,
+                        textAlign = TextAlign.Center
+                    )
                 }
             }
 
@@ -603,7 +637,7 @@ class GameActivity : ComponentActivity() {
                     .padding(16.dp)
                     .size(70.dp)
                     .background(
-                        color = if (isRecording) Color(0xFFFF9999) else Color(0xFFFFB300), // Keep red when active, amber otherwise
+                        color = if (isRecording) Color(0xFFFF9999) else Color(0xFFFFB300),
                         shape = CircleShape
                     )
             ) {
@@ -620,7 +654,7 @@ class GameActivity : ComponentActivity() {
                 modifier = Modifier
                     .align(Alignment.BottomEnd)
                     .padding(16.dp),
-                border = BorderStroke(1.dp, Color(0xFFFF8F00)) // Deep amber border
+                border = BorderStroke(1.dp, Color(0xFFFF8F00))
             ) {
                 Icon(
                     imageVector = Icons.Default.QuestionMark,
