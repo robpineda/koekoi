@@ -3,6 +3,7 @@ package com.robertopineda.koekoi
 import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
+import androidx.compose.ui.text.font.FontStyle
 import android.media.MediaPlayer
 import android.os.Bundle
 import android.speech.RecognitionListener
@@ -573,7 +574,7 @@ class GameActivity : ComponentActivity() {
                         )
                         Text(
                             text = phrases[currentIndex].reading,
-                            fontSize = 20.sp,
+                            fontSize = 18.sp,
                             textAlign = TextAlign.Center,
                             color = Color(0xFFE0F7FA)
                         )
@@ -590,6 +591,7 @@ class GameActivity : ComponentActivity() {
                     Text(
                         text = phrases[currentIndex].english,
                         fontSize = 18.sp,
+                        fontStyle = FontStyle.Italic,
                         textAlign = TextAlign.Center,
                         color = Color(0xFFE0F7FA)
                     )
