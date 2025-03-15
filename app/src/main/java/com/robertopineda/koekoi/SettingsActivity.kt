@@ -44,7 +44,7 @@ fun SettingsScreen(
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color(0xFF212121))
+            .background(Color(0xFF007893)) // Teal background
             .padding(WindowInsets.systemBars.asPaddingValues())
     ) {
         Column(
@@ -55,7 +55,7 @@ fun SettingsScreen(
             Text(
                 text = "Settings",
                 fontSize = 32.sp,
-                color = Color(0xFFBBDEFB),
+                color = Color(0xFFE0F7FA), // Light cyan
                 modifier = Modifier.align(Alignment.CenterHorizontally)
             )
 
@@ -73,13 +73,13 @@ fun SettingsScreen(
                                 }
                             },
                         colors = CardDefaults.cardColors(
-                            containerColor = Color(0xFF424242)
+                            containerColor = Color(0xFF015D73) // Darker teal
                         )
                     ) {
                         Text(
                             text = option,
                             fontSize = 18.sp,
-                            color = Color(0xFFCE93D8),
+                            color = Color(0xFFFFB300), // Amber accent
                             modifier = Modifier.padding(16.dp)
                         )
                     }
@@ -93,8 +93,8 @@ fun SettingsScreen(
                 .align(Alignment.BottomStart)
                 .padding(16.dp),
             colors = ButtonDefaults.buttonColors(
-                containerColor = Color(0xFFCE93D8),
-                contentColor = Color(0xFFFCFCFC)
+                containerColor = Color(0xFFFF8F00), // Deep amber
+                contentColor = Color(0xFFE0F7FA) // Light cyan
             )
         ) {
             Text("Back")

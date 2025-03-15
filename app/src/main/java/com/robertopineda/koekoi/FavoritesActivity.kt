@@ -51,10 +51,8 @@ fun FavoritesScreen(
     val languages = listOf("Japanese", "Korean", "Vietnamese", "Spanish")
     val gson = Gson()
 
-    // State to hold favorites, updated when a phrase is removed
     val favoritesByLanguage = remember { mutableStateOf(loadFavorites(context, languages, gson)) }
 
-    // Function to reload favorites and update state
     fun refreshFavorites() {
         favoritesByLanguage.value = loadFavorites(context, languages, gson)
     }
@@ -62,7 +60,7 @@ fun FavoritesScreen(
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color(0xFF212121))
+            .background(Color(0xFF007893)) // Teal background
             .padding(WindowInsets.systemBars.asPaddingValues())
     ) {
         Column(
@@ -73,7 +71,7 @@ fun FavoritesScreen(
             Text(
                 text = "Favorite Phrases",
                 fontSize = 32.sp,
-                color = Color(0xFFBBDEFB),
+                color = Color(0xFFE0F7FA), // Light cyan
                 modifier = Modifier.align(Alignment.CenterHorizontally)
             )
 
@@ -85,12 +83,11 @@ fun FavoritesScreen(
                         Text(
                             text = language,
                             fontSize = 24.sp,
-                            color = Color(0xFFCE93D8),
+                            color = Color(0xFFFFB300), // Amber accent
                             modifier = Modifier.padding(bottom = 8.dp)
                         )
                     }
                     items(phrases, key = { it.spoken + it.english }) { phrase ->
-                        // Key the remember state to the phrase to ensure uniqueness
                         var isFavorite by remember(phrase) { mutableStateOf(isPhraseFavorite(phrase, language, context)) }
                         Row(
                             modifier = Modifier
@@ -103,26 +100,26 @@ fun FavoritesScreen(
                                 Text(
                                     text = phrase.spoken,
                                     fontSize = 18.sp,
-                                    color = Color(0xFFF6F6F6)
+                                    color = Color(0xFFE0F7FA) // Light cyan
                                 )
                                 Text(
                                     text = phrase.english,
                                     fontSize = 14.sp,
-                                    color = Color(0xFFBBBBBB)
+                                    color = Color(0xFF90A4AE) // Blue-grey
                                 )
                             }
                             IconButton(
                                 onClick = {
                                     removeFavoritePhrase(phrase, language, context)
-                                    isFavorite = false // Update local state
-                                    refreshFavorites() // Refresh the list
+                                    isFavorite = false
+                                    refreshFavorites()
                                     Toast.makeText(context, "Removed from favorites", Toast.LENGTH_SHORT).show()
                                 }
                             ) {
                                 Icon(
                                     imageVector = Icons.Filled.Favorite,
                                     contentDescription = "Unfavorite",
-                                    tint = if (isFavorite) Color(0xFFFF9999) else Color(0xFFBBBBBB),
+                                    tint = if (isFavorite) Color(0xFFFF9999) else Color(0xFFE0F7FA), // Keep red when favorited
                                     modifier = Modifier.size(24.dp)
                                 )
                             }
@@ -138,8 +135,8 @@ fun FavoritesScreen(
                 .align(Alignment.BottomStart)
                 .padding(16.dp),
             colors = ButtonDefaults.buttonColors(
-                containerColor = Color(0xFFCE93D8),
-                contentColor = Color(0xFFFCFCFC)
+                containerColor = Color(0xFFFF8F00), // Deep amber
+                contentColor = Color(0xFFE0F7FA) // Light cyan
             )
         ) {
             Text("Back")
@@ -147,7 +144,6 @@ fun FavoritesScreen(
     }
 }
 
-// Load favorites from SharedPreferences
 private fun loadFavorites(
     context: android.content.Context,
     languages: List<String>,
@@ -162,7 +158,6 @@ private fun loadFavorites(
     }.filter { it.second.isNotEmpty() }
 }
 
-// Remove a phrase from favorites
 private fun removeFavoritePhrase(phrase: GameActivity.Phrase, language: String, context: android.content.Context) {
     val prefs = context.getSharedPreferences("FavoritesPrefs", android.content.Context.MODE_PRIVATE)
     val gson = Gson()
@@ -173,7 +168,6 @@ private fun removeFavoritePhrase(phrase: GameActivity.Phrase, language: String, 
     prefs.edit().putString("favorites_$language", gson.toJson(favorites)).apply()
 }
 
-// Check if a phrase is in favorites
 private fun isPhraseFavorite(phrase: GameActivity.Phrase, language: String, context: android.content.Context): Boolean {
     val prefs = context.getSharedPreferences("FavoritesPrefs", android.content.Context.MODE_PRIVATE)
     val gson = Gson()

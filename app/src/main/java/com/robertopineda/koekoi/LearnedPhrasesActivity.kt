@@ -51,10 +51,8 @@ fun LearnedPhrasesScreen(
     val languages = listOf("Japanese", "Korean", "Vietnamese", "Spanish")
     val gson = Gson()
 
-    // State to hold learned phrases, updated when a phrase is removed
     val learnedByLanguage = remember { mutableStateOf(loadLearned(context, languages, gson)) }
 
-    // Function to reload learned phrases and update state
     fun refreshLearned() {
         learnedByLanguage.value = loadLearned(context, languages, gson)
     }
@@ -62,7 +60,7 @@ fun LearnedPhrasesScreen(
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color(0xFF212121))
+            .background(Color(0xFF007893)) // Teal background
             .padding(WindowInsets.systemBars.asPaddingValues())
     ) {
         Column(
@@ -73,7 +71,7 @@ fun LearnedPhrasesScreen(
             Text(
                 text = "Review Learned Phrases",
                 fontSize = 32.sp,
-                color = Color(0xFFBBDEFB),
+                color = Color(0xFFE0F7FA), // Light cyan
                 modifier = Modifier.align(Alignment.CenterHorizontally)
             )
 
@@ -85,7 +83,7 @@ fun LearnedPhrasesScreen(
                         Text(
                             text = language,
                             fontSize = 20.sp,
-                            color = Color(0xFFCE93D8),
+                            color = Color(0xFFFFB300), // Amber accent
                             modifier = Modifier.padding(bottom = 8.dp)
                         )
                     }
@@ -110,12 +108,12 @@ fun LearnedPhrasesScreen(
                                 Text(
                                     text = phrase.spoken,
                                     fontSize = 18.sp,
-                                    color = Color(0xFFF6F6F6)
+                                    color = Color(0xFFE0F7FA) // Light cyan
                                 )
                                 Text(
                                     text = phrase.english,
                                     fontSize = 14.sp,
-                                    color = Color(0xFFBBBBBB)
+                                    color = Color(0xFF90A4AE) // Blue-grey
                                 )
                             }
                             IconButton(
@@ -133,7 +131,7 @@ fun LearnedPhrasesScreen(
                                 Icon(
                                     imageVector = Icons.Filled.Lightbulb,
                                     contentDescription = "Unlearn",
-                                    tint = if (isLearned) Color(0xFFFFD700) else Color(0xFFBBBBBB),
+                                    tint = if (isLearned) Color(0xFFFFD700) else Color(0xFFE0F7FA), // Keep yellow when learned
                                     modifier = Modifier.size(24.dp)
                                 )
                             }
@@ -149,8 +147,8 @@ fun LearnedPhrasesScreen(
                 .align(Alignment.BottomStart)
                 .padding(16.dp),
             colors = ButtonDefaults.buttonColors(
-                containerColor = Color(0xFFCE93D8),
-                contentColor = Color(0xFFFCFCFC)
+                containerColor = Color(0xFFFF8F00), // Deep amber
+                contentColor = Color(0xFFE0F7FA) // Light cyan
             )
         ) {
             Text("Back")
