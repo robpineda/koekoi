@@ -27,6 +27,8 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.PaintingStyle.Companion.Stroke
 import androidx.compose.ui.graphics.drawscope.Stroke
@@ -399,7 +401,7 @@ class GameActivity : ComponentActivity() {
                 onClick = onQuit,
                 modifier = Modifier
                     .align(Alignment.TopStart)
-                    .padding(16.dp)
+                    .padding(8.dp) // Reduced padding to move content up
             ) {
                 Icon(
                     imageVector = Icons.Filled.ArrowBack,
@@ -412,7 +414,7 @@ class GameActivity : ComponentActivity() {
             Row(
                 modifier = Modifier
                     .align(Alignment.TopEnd)
-                    .padding(16.dp),
+                    .padding(8.dp), // Reduced padding to move content up
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
                 IconButton(
@@ -499,39 +501,43 @@ class GameActivity : ComponentActivity() {
             Column(
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(16.dp),
-                verticalArrangement = Arrangement.Center,
+                    .padding(horizontal = 16.dp, vertical = 8.dp), // Reduced vertical padding
+                verticalArrangement = Arrangement.Top, // Changed to Top to move content up
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
+                Spacer(modifier = Modifier.height(32.dp)) // Add some initial spacing from top icons
+
                 AnimatedVisibility(
-                    visible = showResult && isCorrect == true,
+                    visible = showResult && isCorrect != null,
                     enter = scaleIn(animationSpec = tween(300)),
                     exit = fadeOut()
                 ) {
                     Box(
                         modifier = Modifier
-                            .size(80.dp)
-                            .padding(bottom = 16.dp),
+                            .size(80.dp),
                         contentAlignment = Alignment.Center
                     ) {
                         val circleProgress by animateFloatAsState(
-                            targetValue = if (showResult && isCorrect == true) 1f else 0f,
+                            targetValue = if (showResult && isCorrect != null) 1f else 0f,
                             animationSpec = tween(durationMillis = 500)
                         )
 
                         Canvas(modifier = Modifier.size(80.dp)) {
+                            val diameter = size.minDimension // Ensure a perfect circle
                             drawArc(
                                 color = Color(0xFFE0F7FA),
                                 startAngle = -90f,
                                 sweepAngle = 360f * circleProgress,
                                 useCenter = false,
-                                style = Stroke(width = 4.dp.toPx())
+                                style = Stroke(width = 4.dp.toPx()),
+                                size = Size(diameter, diameter),
+                                topLeft = Offset((size.width - diameter) / 2, (size.height - diameter) / 2)
                             )
                         }
 
                         Icon(
-                            imageVector = Icons.Filled.Check,
-                            contentDescription = "Correct",
+                            imageVector = if (isCorrect == true) Icons.Filled.Check else Icons.Filled.Close,
+                            contentDescription = if (isCorrect == true) "Correct" else "Incorrect",
                             tint = Color(0xFFE0F7FA),
                             modifier = Modifier
                                 .size(40.dp)
@@ -583,22 +589,6 @@ class GameActivity : ComponentActivity() {
                         fontSize = 18.sp,
                         textAlign = TextAlign.Center,
                         color = Color(0xFFE0F7FA)
-                    )
-                }
-
-                AnimatedVisibility(
-                    visible = showResult && isCorrect == false,
-                    enter = slideInVertically(
-                        initialOffsetY = { fullHeight -> fullHeight },
-                        animationSpec = tween(durationMillis = 500)
-                    ),
-                    exit = fadeOut()
-                ) {
-                    Text(
-                        text = "Incorrect!",
-                        color = Color(0xFFE0F7FA),
-                        fontSize = 30.sp,
-                        textAlign = TextAlign.Center
                     )
                 }
             }
