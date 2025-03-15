@@ -18,6 +18,7 @@ import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
@@ -401,7 +402,7 @@ class GameActivity : ComponentActivity() {
                 onClick = onQuit,
                 modifier = Modifier
                     .align(Alignment.TopStart)
-                    .padding(8.dp) // Reduced padding to move content up
+                    .padding(8.dp)
             ) {
                 Icon(
                     imageVector = Icons.Filled.ArrowBack,
@@ -414,7 +415,7 @@ class GameActivity : ComponentActivity() {
             Row(
                 modifier = Modifier
                     .align(Alignment.TopEnd)
-                    .padding(8.dp), // Reduced padding to move content up
+                    .padding(8.dp),
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
                 IconButton(
@@ -501,11 +502,12 @@ class GameActivity : ComponentActivity() {
             Column(
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(horizontal = 16.dp, vertical = 8.dp), // Reduced vertical padding
-                verticalArrangement = Arrangement.Top, // Changed to Top to move content up
+                    .padding(horizontal = 16.dp, vertical = 8.dp),
+                verticalArrangement = Arrangement.Center, // Kept as Center per your change
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                Spacer(modifier = Modifier.height(32.dp)) // Add some initial spacing from top icons
+                // Reduced initial spacing to move animation icon up
+                Spacer(modifier = Modifier.height(16.dp))
 
                 AnimatedVisibility(
                     visible = showResult && isCorrect != null,
@@ -523,7 +525,7 @@ class GameActivity : ComponentActivity() {
                         )
 
                         Canvas(modifier = Modifier.size(80.dp)) {
-                            val diameter = size.minDimension // Ensure a perfect circle
+                            val diameter = size.minDimension
                             drawArc(
                                 color = Color(0xFFE0F7FA),
                                 startAngle = -90f,
@@ -546,7 +548,8 @@ class GameActivity : ComponentActivity() {
                     }
                 }
 
-                Spacer(modifier = Modifier.height(24.dp))
+                // Adjusted spacing to balance between top icons and expected text
+                Spacer(modifier = Modifier.height(40.dp))
 
                 Text(
                     text = phrases[currentIndex].spoken,
