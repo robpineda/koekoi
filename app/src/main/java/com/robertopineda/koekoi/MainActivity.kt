@@ -52,7 +52,7 @@ fun MainScreen(
     onShowFavorites: () -> Unit,
     onShowSettings: () -> Unit
 ) {
-    var selectedLanguage by remember { mutableStateOf("Korean") }
+    var selectedLanguage by remember { mutableStateOf("Japanese") }
     var selectedDifficulty by remember { mutableStateOf("") }
     var selectedMaterial by remember { mutableStateOf("Vocabulary") }
     var languageExpanded by remember { mutableStateOf(false) }
