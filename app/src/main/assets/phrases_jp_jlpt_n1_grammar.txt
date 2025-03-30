@@ -1,50 +1,124 @@
-雨が降ったが早いか、彼は傘を手に持った|雨が降ったが早いか、彼は傘を手に持った|あめがふったがはやいか、かれはかさをてにもった|As soon as it started raining, he grabbed an umbrella.
-会議が終わるや否や、部長は席を立った|会議が終わるや否や、部長は席を立った|かいぎがおわるやいなや、ぶちょうはせきをたった|No sooner had the meeting ended than the manager stood up.
-電車に乗るなり、彼女は本を開いた|電車に乗るなり、彼女は本を開いた|でんしゃにのるなり、かのじょはほんをひらいた|The moment she boarded the train, she opened her book.
-絵を描き終えたそばから、子供がそれを破ってしまった|絵を描き終えたそばから、子供がそれを破ってしまった|えをかきおえたそばから、こどもがそれをやぶってしまった|Right after finishing the drawing, the child tore it up.
-大学を卒業してからというものは、毎日忙しく働いている|大学を卒業してからというものは、毎日忙しく働いている|だいがくをそつぎょうしてからのものは、まいにちいそがしくはたらいている|Ever since graduating from university, he has been working busily every day.
-困難にあって、彼は決して諦めなかった|困難にあって、彼は決して諦めなかった|こんなんにあって、かれはけっしてあきらめなかった|In the face of difficulties, he never gave up.
-新製品の発売を皮切りに、会社は業績を伸ばした|新製品の発売を皮切りに、会社は業績を伸ばした|しんせいひんのはつばいをかわきりに、かいしゃはぎょうせきをのばした|Starting with the new product launch, the company improved its performance.
-朝から晩に至るまで、研究に没頭している|朝から晩に至るまで、研究に没頭している|あさからばんにいたるまで、けんきゅうにぼっとうしている|From morning till night, she is immersed in research.
-今月を限りに、彼はこの仕事を辞めるつもりだ|今月を限りに、彼はこの仕事を辞めるつもりだ|こんげつをかぎりに、かれはこのしごとをやめるつもりだ|He intends to quit this job at the end of this month.
-この手紙をもって、感謝の気持ちを伝えたい|この手紙をもって、感謝の気持ちを伝えたい|このてがみをもって、かんしゃのきもちをつたえたい|With this letter, I’d like to express my gratitude.
-彼の努力といったところだ、成功の鍵は|彼の努力といったところだ、成功の鍵は|かれのどりょくといったところだ、せいこうのかぎは|His effort, that’s the key to success.
-母をおいて、誰もそんな料理を作れない|母をおいて、誰もそんな料理を作れない|ははをおいて、だれもそんなりょうりをつくれない|Aside from my mother, no one can cook like that.
-この景色ならではの美しさを感じた|この景色ならではの美しさを感じた|このけしきならではのうつくしさをかんじた|I felt the beauty unique to this scenery.
-技術の進歩にとどまらず、文化も変わった|技術の進歩にとどまらず、文化も変わった|ぎじゅつのしんぽにとどまらず、ぶんかもかわった|Not only has technology advanced, but culture has changed too.
-雨はおろか、風さえ吹いていなかった|雨はおろか、風さえ吹いていなかった|あめはおろか、かぜさえふいていなかった|Let alone rain, not even the wind was blowing.
-彼の才能もさることながら、努力がすごい|彼の才能もさることながら、努力がすごい|かれのさいのうもさることながら、どりょくがすごい|His talent aside, his effort is impressive.
-試験が終わるや否や、学生たちは歓声を上げた|試験が終わるや否や、学生たちは歓声を上げた|しけんがおわるやいなや、がくせいたちはかんせいをあげた|The moment the exam ended, the students cheered.
-店に入るなり、店員が挨拶してきた|店に入るなり、店員が挨拶してきた|みせにはいるなり、てんいんがあいさつしてきた|Upon entering the shop, the clerk greeted me.
-花を植えたそばから、雨が降り始めた|花を植えたそばから、雨が降り始めた|はなをうえたそばから、あめがふりはじめた|Right after planting the flowers, it started to rain.
-海外に住んでからというものは、日本の文化が恋しい|海外に住んでからというものは、日本の文化が恋しい|かいがいにすんでからのものは、にほんのぶんかがこいしい|Since living abroad, I’ve missed Japanese culture.
-病気にあっても、彼女は笑顔を絶やさなかった|病気にあっても、彼女は笑顔を絶やさなかった|びょうきにあっても、かのじょはえがおをたやさなかった|Even when ill, she never stopped smiling.
-オリンピックを皮切りとして、観光客が増えた|オリンピックを皮切りとして、観光客が増えた|おりんぴっくをかわきりとして、かんこうきゃくがふえた|With the Olympics as a starting point, tourists increased.
-子供の頃に至るまで、彼は本が嫌いだった|子供の頃に至るまで、彼は本が嫌いだった|こどものころにいたるまで、かれはほんがきらいだった|Up until childhood, he disliked books.
-今日を限りに、タバコをやめようと思う|今日を限りに、タバコをやめようと思う|きょうをかぎりに、たばこをやめようとおもう|I plan to quit smoking as of today.
-この勝利をもって、チームの結束が強まった|この勝利をもって、チームの結束が強まった|このしょうりをもって、ちーむのけっそくがつよまった|With this victory, the team’s unity strengthened.
-彼女の優しさといったところだ、みんなが慕う理由は|彼女の優しさといったところだ、みんなが慕う理由は|かのじょのやさしさといったところだ、みんながしたうりゆうは|Her kindness, that’s why everyone admires her.
-父をおいて、この機械を直せる人はいない|父をおいて、この機械を直せる人はいない|とうをおいて、このきかいをなおせるひとはいない|Aside from my father, no one can fix this machine.
-温泉ならではの癒しを体験した|温泉ならではの癒しを体験した|おんせんならではのいやしをたいけんした|I experienced the healing unique to hot springs.
-経済成長にとどまらず、教育も向上した|経済成長にとどまらず、教育も向上した|けいざいせいちょうにとどまらず、きょういくもこうじょうした|Not only did the economy grow, but education improved too.
-雪はおろか、寒ささえ感じなかった|雪はおろか、寒ささえ感じなかった|ゆきはおろか、さむささえかんじなかった|Let alone snow, I didn’t even feel the cold.
-仕事の成果もさることながら、態度も立派だ|仕事の成果もさることながら、態度も立派だ|しごとのせいかもさることながら、たいどもりっぱだ|His work results aside, his attitude is admirable too.
-雷が鳴ったが早いか、犬が隠れた|雷が鳴ったが早いか、犬が隠れた|かみなりがなったがはやいか、いぬがかくれた|As soon as thunder roared, the dog hid.
-旅行から帰るなり、疲れて寝てしまった|旅行から帰るなり、疲れて寝てしまった|りょこうからかえるなり、つかれてねてしまった|Upon returning from the trip, I fell asleep from exhaustion.
-ケーキを焼いたそばから、子供が食べ始めた|ケーキを焼いたそばから、子供が食べ始めた|けーきをやいたそばから、こどもがたべはじめた|Right after baking the cake, the kids started eating.
-就職してからというものは、休みが少ない|就職してからというものは、休みが少ない|しゅうしょくしてからのものは、やすみがすくない|Since starting the job, there’s been little time off.
-災害にあっても、地域は団結した|災害にあっても、地域は団結した|さいがいにあっても、ちいきはだんけつした|Even in disaster, the community came together.
-新年を皮切りに、健康的な生活を始めた|新年を皮切りに、健康的な生活を始めた|しんねんをかかわきりに、けんこうてきなせいかつをはじめた|Starting with the new year, I began a healthy lifestyle.
-学生時代に至るまで、スポーツが得意だった|学生時代に至るまで、スポーツが得意だった|がくせいじだいにいたるまで、すぽーつがとくいだった|Up until my student days, I was good at sports.
-今週を限りに、夜更かしをやめるつもりだ|今週を限りに、夜更かしをやめるつもりだ|こんしゅうをかぎりに、よふかしをやめるつもりだ|I plan to stop staying up late after this week.
-この本をもって、知識を深めたい|この本をもって、知識を深めたい|このほんをもって、ちしきをふかめたい|With this book, I want to deepen my knowledge.
-彼のユーモアといったところだ、場の雰囲気が和む理由は|彼のユーモアといったところだ、場の雰囲気が和む理由は|かれのゆーもあといったところだ、ばのふんいきがなごむりゆうは|His humor, that’s why the atmosphere relaxes.
-先生をおいて、こんな難しい問題を解ける人はいない|先生をおいて、こんな難しい問題を解ける人はいない|せんせいをおいて、こんなむずかしいもんだいをとけるひとはいない|Aside from the teacher, no one can solve such a tough problem.
-この店ならではのおもてなしに感動した|この店ならではのおもてなしに感動した|このみせならではのおもてなしにかんどうした|I was moved by the hospitality unique to this shop.
-音楽にとどまらず、ダンスも習いたい|音楽にとどまらず、ダンスも習いたい|おんがくにとどまらず、だんすもならいたい|Not only music, but I also want to learn dance.
-台風はおろか、雨さえ降らなかった|台風はおろか、雨さえ降らなかった|たいふうはおろか、あめさえふらなかった|Let alone a typhoon, it didn’t even rain.
-彼女の知性もさることながら、優しさも際立つ|彼女の知性もさることながら、優しさも際立つ|かのじょのちせいもさることながら、やさしさもきわだつ|Her intelligence aside, her kindness stands out too.
-風が吹いたが早いか、木の葉が散った|風が吹いたが早いか、木の葉が散った|かぜがふいたがはやいか、きのほうがちった|As soon as the wind blew, the leaves scattered.
-飛行機に乗るなり、窓の外を見始めた|飛行機に乗るなり、窓の外を見始めた|ひこうきにのるなり、まどのそとをみはじめた|Upon boarding the plane, I started looking out the window.
-手紙を書いたそばから、電話がかかってきた|手紙を書いたそばから、電話がかかってきた|てがみをかいたそばから、でんわがかかってきた|Right after writing the letter, the phone rang.
-結婚してからというものは、責任感が増した|結婚してからというものは、責任感が増した|けっこんしてからのものは、せきにんかんがました|Since getting married, my sense of responsibility has grown.
+朝食を食べ終わるが早いか出勤の準備を始めました|朝食を食べ終わるが早いか出勤の準備を始めました|ちょうしょくをたべおわるがはやいかしゅっきんのじゅんびを始めました|No sooner had I finished breakfast than I started preparing to leave for work.
+彼がドアを開けるが早いか子供たちが飛び込んできました|彼がドアを開けるが早いか子供たちが飛び込んできました|かれがどあをあけるがはやいかこどもたちがとびこんできました|The moment he opened the door, the kids rushed in.
+雨が降り出すが早いか傘を手に持った|雨が降り出すが早いか傘を手に持った|あめがふりだすがはやいかかさをてにもった|As soon as it started raining, I grabbed an umbrella.
+ニュースを聞くが早いか彼女は電話をかけた|ニュースを聞くが早いか彼女は電話をかけた|にゅーすをきくがはやいかかのじょはでんわをかけた|The instant she heard the news, she made a phone call.
+
+目覚ましが鳴るや否や起き上がった|目覚ましが鳴るや否や起き上がった|めざましがなるやいなやおきあがった|The moment the alarm rang, I got up.
+部長が指示を出すや否や皆が動き始めた|部長が指示を出すや否や皆が動き始めた|ぶちょうがしじをだすやいなやみながうごきはじめた|As soon as the manager gave instructions, everyone started moving.
+結果が発表されるや否や歓声が上がった|結果が発表されるや否や歓声が上がった|けっかがはっぴょうされるやいなやかんせいがあがった|The second the results were announced, cheers erupted.
+友達が帰るや否や部屋が静かになった|友達が帰るや否や部屋が静かになった|ともだちがかえるやいなやへやがしずかになった|The instant my friend left, the room became quiet.
+
+駅に着くなり荷物を預けた|駅に着くなり荷物を預けた|えきにつくなりにもつをあずけた|Upon arriving at the station, I checked my luggage.
+彼女が笑い出すなり皆も笑い始めた|彼女が笑い出すなり皆も笑い始めた|かのじょがわらいだすなりみなもわらいはじめた|As soon as she started laughing, everyone else did too.
+試験が終わるなり学生たちは帰宅した|試験が終わるなり学生たちは帰宅した|しけんがおわるなりがくせいたちはきたくした|The moment the exam ended, the students went home.
+電話が鳴るなり受付が対応した|電話が鳴るなり受付が対応した|でんわがなるなりうけつけがたいおうした|As soon as the phone rang, the receptionist answered.
+
+子供が片付けるそばから散らかしてしまう|子供が片付けるそばから散らかしてしまう|こどもがかたづけるそばからちらかしてしまう|The child messes things up as soon as they tidy them.
+雨が止むそばからまた降り出した|雨が止むそばからまた降り出した|あめがやむそばからまたふりだした|No sooner does the rain stop than it starts again.
+私が説明するそばから彼は質問してきた|私が説明するそばから彼は質問してきた|わたしがせつめいするそばからかれはしつもんしてきた|As I explain, he keeps interrupting with questions.
+先生が教えるそばから生徒が忘れてしまう|先生が教えるそばから生徒が忘れてしまう|せんせいがおしえるそばからせいとがわすれてしまう|The students forget as soon as the teacher explains.
+
+大学を卒業してからというものは忙しい毎日です|大学を卒業してからというものは忙しい毎日です|だいがくをそつぎょうしてからというものはいそがしいまいにちです|Ever since graduating university, every day has been busy.
+彼に会ってからというものは彼女が変わった|彼に会ってからというものは彼女が変わった|かれにあってからというものはかのじょがかわった|Since meeting him, she has changed completely.
+日本に来てからというものは毎日驚いています|日本に来てからというものは毎日驚いています|にほんにきてからというものはまいにちおどろいています|Ever since coming to Japan, I’m amazed every day.
+仕事を辞めてからというものは時間が増えた|仕事を辞めてからというものは時間が増えた|しごとをやめてからというものはじかんがふえた|Since quitting my job, I’ve had more time.
+
+台風にあって電車が止まった|台風にあって電車が止まった|たいふうにあってでんしゃがとまった|Due to the typhoon, the trains stopped.
+戦争にあって多くの文化が失われた|戦争にあって多くの文化が失われた|せんそうにあっておおくのぶんかがうしなわれた|Because of the war, much culture was lost.
+急な病気にあっても彼は冷静だった|急な病気にあっても彼は冷静だった|きゅうなびょうきにあってもかれはれいせいだった|Even in sudden illness, he remained calm.
+経済危機にあって会社が倒産した|経済危機にあって会社が倒産した|けいざいききにあってかいしゃがとうさんした|Due to the economic crisis, the company went bankrupt.
+
+新製品の発売を皮切りに売り上げが伸びた|新製品の発売を皮切りに売り上げが伸びた|しんせいひんのはつばいをかわきりにうりあげがのびた|Starting with the new product launch, sales increased.
+彼の講演を皮切りとして議論が始まった|彼の講演を皮切りとして議論が始まった|かれのこうえんをかわきりとしてぎろんがはじまった|His lecture kicked off the debate.
+東京店を皮切りに全国に展開した|東京店を皮切りに全国に展開した|とうきょうてんをかわきりにぜんこくにてんかいした|Beginning with the Tokyo store, it expanded nationwide.
+春の祭りを皮切りにイベントが続いた|春の祭りを皮切りにイベントが続いた|はるのまつりをかわきりにいべんとがつづいた|Starting with the spring festival, events followed.
+
+小さなミスに至るまで指摘された|小さなミスに至るまで指摘された|ちいさなみすにいたるまでしてきされた|Even the smallest mistakes were pointed out.
+細部に至るまで計画が練られた|細部に至るまで計画が練られた|さいぶにいたるまでけいかくがねられた|The plan was refined down to the details.
+子供の教育に至るまで政府が支援する|子供の教育に至るまで政府が支援する|こどものきょういくにいたるまでせいふがしえんする|The government supports even children’s education.
+過去の記録に至るまで調査した|過去の記録に至るまで調査した|かこのきろくにいたるまでちょうさした|They investigated even past records.
+
+今月を限りに退職します|今月を限りに退職します|こんげつをかぎりにたいしょくします|I will retire at the end of this month.
+今日を限りに禁煙すると決めた|今日を限りに禁煙すると決めた|きょうをかぎりにきんえんとするときめた|I decided to quit smoking as of today.
+夏を限りに店を閉めます|夏を限りに店を閉めます|なつをかぎりにみせをしめます|The shop will close at the end of summer.
+今週を限りにプロジェクトを終える|今週を限りにプロジェクトを終える|こんしゅうをかぎりにぷろじぇくとをおえる|The project will end this week.
+
+この会議をもって終了とします|この会議をもって終了とします|このかいぎをもってしゅうりょうとします|With this meeting, we conclude.
+今夜をもって店を閉店します|今夜をもって店を閉店します|こんやをもってみせをへいてんします|The shop will close tonight.
+本日をもって契約が終了した|本日をもって契約が終了した|ほんじつをもってけいやくがしゅうりょうした|The contract ended today.
+今月をもってサービスを停止する|今月をもってサービスを停止する|こんげつをもってさーびすをていしする|The service will stop this month.
+
+努力はしたといったところだ|努力はしたといったところだ|どりょくはしたといったところだ|At best, I made an effort.
+合格は難しいといったところだ|合格は難しいといったところだ|ごうかくはむずかしいといったところだ|Passing seems difficult, at most.
+半分終わったといったところだ|半分終わったといったところだ|はんぶんおわったといったところだ|It’s about halfway done, I’d say.
+改善したといったところだ|改善したといったところだ|かいぜんしたといったところだ|It’s improved, at best.
+
+この景色をおいて他にない|この景色をおいて他にない|このけしきをおいてほかにない|There’s no scenery like this anywhere else.
+彼女をおいて適任者はいない|彼女をおいて適任者はいない|かのじょをおいててきにんしゃはいない|No one is more suitable than her.
+東京をおいてこんな街はない|東京をおいてこんな街はない|とうきょうをおいてこんなまちはない|No city compares to Tokyo.
+彼をおいてリーダーは考えられない|彼をおいてリーダーは考えられない|かれをおいてりーだーはかんがえられない|No one but him could be the leader.
+
+日本ならではの文化を楽しんだ|日本ならではの文化を楽しんだ|にほんならではのぶんかをたのしんだ|I enjoyed a culture unique to Japan.
+この味は手作りならではだ|この味は手作りならではだ|このあじはてづくりならではだ|This flavor is unique to handmade food.
+都会ならではの賑わいを感じた|都会ならではの賑わいをかんじた|とかいならではのにぎわいをかんじた|I felt the bustle unique to cities.
+老舗ならではの伝統を守る|老舗ならではの伝統を守る|しにせならではのでんとうをまもる|They preserve traditions unique to old establishments.
+
+支援は金銭にとどまらず助言もくれた|支援は金銭にとどまらず助言もくれた|しえんはきんせんにとどまらずじょげんもくれた|Support wasn’t limited to money; they gave advice too.
+影響は日本にとどまらず海外にも及んだ|影響は日本にとどまらず海外にも及んだ|えいきょうはにほんにとどまらずかいがいにもおよんだ|The impact extended beyond Japan to overseas.
+話題は天気にとどまらず政治にも広がった|話題は天気にとどまらず政治にも広がった|わだいはてんきにとどまらずせいじにもひろがった|The topic went beyond weather to politics.
+努力は勉強にとどまらず運動もした|努力は勉強にとどまらず運動もした|どりょくはべんきょうにとどまらずうんどうもした|Efforts went beyond studying to include exercise.
+
+漢字はおろかひらがなも読めない|漢字はおろかひらがなも読めない|かんじはおろかひらがなもよめない|He can’t read kanji, let alone hiragana.
+走るはおろか歩くのも辛い|走るはおろか歩くのも辛い|はしるはおろかあるくのもつらい|Running aside, even walking is tough.
+大人はおろか子供にも人気だ|大人はおろか子供にも人気だ|おとなはおろかこどもにもにんきだ|It’s popular with adults, not to mention kids.
+英語はおろか日本語も怪しい|英語はおろか日本語も怪しい|えいごはおろかにほんごもあやしい|English aside, even his Japanese is shaky.
+
+味もさることながら見た目も美しい|味もさることながら見た目も美しい|あじもさることながらみためもうつくしい|The taste is great, but the appearance is stunning too.
+価格もさることながら品質が優れている|価格もさることながら品質が優れている|かかくもさることながらひんしつがすぐれている|The price is notable, but the quality stands out more.
+景色もさることながら空気が澄んでいる|景色もさることながら空気が澄んでいる|けしきもさることながらくうきがすんでいる|The scenery is nice, but the clear air is remarkable.
+実績もさることながら人柄が信頼される|実績もさることながら人柄が信頼される|じっせきもさることながらひとがらしんらいされる|Achievements aside, his character earns trust.
+
+歩くなり走るなりしてください|歩くなり走るなりしてください|あるくなりはしるなりしてください|Walk or run, just do something.
+笑うなり泣くなり自由だ|笑うなり泣くなり自由だ|わらうなりなくなりじゆうだ|Laugh or cry, it’s up to you.
+食べるなり飲むなり好きなように|食べるなり飲むなり好きなように|たべるなりのむなりすきなように|Eat or drink, whatever you like.
+働くなり休むなり決めなさい|働くなり休むなり決めなさい|はたらくなりやすむなりきめなさい|Work or rest, make a choice.
+
+雨であれ雪であれ出かけます|雨であれ雪であれ出かけます|あめであれゆきであれでかけます|Rain or snow, I’ll go out.
+若かろうと老いていようと努力する|若かろうと老いていようと努力する|わかかろうとおいていようとどりょくする|Young or old, I’ll keep trying.
+勝とうと負けようと楽しむ|勝とうと負けようと楽しむ|かとうとまけようとたのしむ|Win or lose, I’ll enjoy it.
+夏であれ冬であれ旅行が好きだ|夏であれ冬であれ旅行が好きだ|なつであれふゆであれりょこうがすきだ|Summer or winter, I love traveling.
+
+料理といい接客といい素晴らしい|料理といい接客といい素晴らしい|りょうりといいせっきゃくといいすばらしい|The food and service are both excellent.
+デザインといい機能といい完璧だ|デザインといい機能といい完璧だ|でざいんといいきのうといいかんぺきだ|The design and functionality are both perfect.
+天気といい気分といい最高だ|天気といい気分といい最高だ|てんきといいきぶんといいさいこうだ|The weather and my mood are both great.
+朝といい夜といい忙しい|朝といい夜といい忙しい|あさといいよるともいそがしい|Morning and night, I’m always busy.
+
+子供といわず大人といわず楽しめる|子供といわず大人といわず楽しめる|こどもといわずおとなといわずたのしめる|Kids and adults alike can enjoy it.
+夏といわず冬といわず賑わう|夏といわず冬といわず賑わう|なつといわずふゆといわずにぎわう|Summer or winter, it’s always lively.
+都会といわず田舎といわず変化した|都会といわず田舎といわず変化した|とかいといわずいなかといわずへんかした|Cities and countryside alike have changed.
+昼といわず夜といわず働く|昼といわず夜といわず働く|ひるともいわずよるともいはたらく|Day or night, they keep working.
+
+成功するかはいかんだ|成功するかはいかんだ|せいこうするかはかんだ|Success depends on it.
+結果は努力いかんだ|結果は努力いかんだ|けっかはどりょくいかんだ|The outcome hinges on effort.
+天気いかんで予定が変わる|天気いかんで予定が変わる|てんきいかんでよていがかわる|Plans change depending on the weather.
+彼の態度いかんで決まる|彼の態度いかんで決まる|かれのたいどいかんできまる|It’s decided by his attitude.
+
+天気いかんにかかわらず開催する|天気いかんにかかわらず開催する|てんきいかんにかかわらずかいさいする|It’ll be held regardless of the weather.
+年齢いかんによらず応募できる|年齢いかんによらず応募できる|ねんれいいかんによらずおうぼできる|You can apply regardless of age.
+結果いかんをとわず頑張る|結果いかんをとわず頑張る|けっかいかんをとわずがんばる|I’ll try hard regardless of the outcome.
+状況いかんにかかわらず進める|状況いかんにかかわらず進める|じょうきょういかんにかかわらずすすめる|We’ll proceed regardless of the situation.
+
+困難をものともせず挑戦した|困難をものともせず挑戦した|こんなんをものともせずちょうせんした|She faced challenges undeterred.
+批判をものともせず意見を述べた|批判をものともせず意見を述べた|ひはんをものともせずいけんをのべた|He spoke up despite criticism.
+疲れをものともせず走り続けた|疲れをものともせず走り続けた|つかれをものともせずはしりつづけた|He kept running despite exhaustion.
+時間をものともせず研究した|時間をものともせず研究した|じかんをものともせずけんきゅうした|She researched without regard for time.
+
+周囲の目をよそに歌い続けた|周囲の目をよそに歌い続けた|しゅういのめをよそにうたいつづけた|She kept singing, ignoring others’ stares.
+雨をよそに外で遊んだ|雨をよそに外で遊んだ|あめをよそにそとであそんだ|They played outside, heedless of the rain.
+反対をよそに計画を進めた|反対をよそに計画を進めた|はんたいをよそにけいかくをすすめた|He pushed the plan despite opposition.
+騒音をよそに眠り続けた|騒音をよそに眠り続けた|そうおんをよそにねむりつづけた|I slept on, ignoring the noise.
+
+天才ならいざしらず私は凡人だ|天才ならいざしらず私は凡人だ|てんさいならいざしらずわたしはぼんじんだ|A genius might manage, but I’m ordinary.
+夏ならいざしらず冬は寒い|夏ならいざしらず冬は寒い|なつならいざしらずふゆはさむい|Summer might be fine, but winter is cold.
+専門家ならいざしらず素人には難しい|専門家ならいざしらず素人には難しい|せんもんかならいざしらずしろうとにはむずかしい|An expert might do it, but it’s hard for an amateur.
+金持ちならいざしらず私には無理だ|金持ちならいざしらず私には無理だ|かねもちならいざしらずわたしにはむりだ|A rich person might afford it, but I can’t.
