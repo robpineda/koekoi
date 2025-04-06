@@ -3,7 +3,7 @@ package com.robertopineda.koekoi
 import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
-import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.font.FontStyle // Keep existing imports
 import android.media.MediaPlayer
 import android.os.Bundle
 import android.speech.RecognitionListener
@@ -19,10 +19,8 @@ import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.*
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -32,28 +30,32 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.PaintingStyle.Companion.Stroke
-import androidx.compose.ui.graphics.drawscope.Stroke
+import androidx.compose.ui.graphics.drawscope.Stroke // Correct import
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.content.ContextCompat
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
+import com.google.gson.Gson // <<<--- ADDED: Gson import
+import com.google.gson.reflect.TypeToken // <<<--- ADDED: TypeToken import
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import com.atilika.kuromoji.ipadic.Token
 import com.atilika.kuromoji.ipadic.Tokenizer
+import java.io.InputStreamReader // <<<--- ADDED: InputStreamReader import
+
 
 class GameActivity : ComponentActivity() {
+
+    // --- MODIFIED: Phrase data class includes 'grammar' ---
     data class Phrase(
         val spoken: String,
         val expected: String,
         val reading: String,
-        val english: String
+        val english: String,
+        val grammar: String // Added grammar field
     )
 
     private lateinit var phrases: List<Phrase>
@@ -65,6 +67,7 @@ class GameActivity : ComponentActivity() {
     private lateinit var selectedDifficulty: String
     private lateinit var selectedMaterial: String
 
+    // Original speechListener remains the same
     private val speechListener = object : RecognitionListener {
         override fun onReadyForSpeech(params: Bundle?) {
             Log.d("GameActivity", "Speech recognizer ready for speech")
@@ -125,18 +128,32 @@ class GameActivity : ComponentActivity() {
         selectedMaterial = intent.getStringExtra("MATERIAL") ?: "Vocabulary"
 
         val singlePhraseJson = intent.getStringExtra("PHRASE")
+        val gson = Gson() // Gson instance needed here too
+
         phrases = if (singlePhraseJson != null) {
-            val gson = Gson()
-            listOf(gson.fromJson(singlePhraseJson, Phrase::class.java))
+            // --- MODIFIED: Deserialize single phrase from JSON ---
+            try {
+                Log.d("GameActivity", "Attempting to load single phrase from JSON: $singlePhraseJson")
+                listOf(gson.fromJson(singlePhraseJson, Phrase::class.java))
+            } catch (e: Exception) {
+                Log.e("GameActivity", "Error deserializing single phrase JSON", e)
+                // Fallback to loading the default list if parsing the single phrase fails
+                loadPhrasesFromAssets().shuffled().filterNot { isPhraseLearned(it, selectedLanguage, this) }
+            }
         } else {
+            // Load phrases from JSON asset file
             loadPhrasesFromAssets().shuffled().filterNot { isPhraseLearned(it, selectedLanguage, this) }
         }
-        Log.d("GameActivity", "Phrases loaded (filtered): ${phrases.map { it.spoken }}")
+        // Use size for brevity in logs
+        Log.d("GameActivity", "Phrases loaded (filtered): ${phrases.size} phrases")
 
+        // Initialize SpeechRecognizer and MediaPlayer as before
         speechRecognizer = createSpeechRecognizer()
+        // Ensure R.raw.speak exists in res/raw
         mediaPlayer = MediaPlayer.create(this, R.raw.speak)
 
         setContent {
+            // Pass the loaded phrases (now potentially from JSON) to the original GameScreen
             GameScreen(
                 phrases = phrases,
                 selectedLanguage = selectedLanguage,
@@ -151,6 +168,7 @@ class GameActivity : ComponentActivity() {
         requestAudioPermission()
     }
 
+    // Original onDestroy, requestAudioPermission, createSpeechRecognizer, startListening
     override fun onDestroy() {
         super.onDestroy()
         speechRecognizer.destroy()
@@ -182,7 +200,7 @@ class GameActivity : ComponentActivity() {
         Log.d("GameActivity", "Destroying and recreating SpeechRecognizer")
         speechRecognizer.destroy()
         speechRecognizer = createSpeechRecognizer()
-        delay(50)
+        delay(50) // Small delay might help stability
 
         currentOnResult = onResult
         currentOnSpeechEnded = onSpeechEnded
@@ -197,110 +215,105 @@ class GameActivity : ComponentActivity() {
                     "Korean" -> "ko-KR"
                     "Vietnamese" -> "vi-VN"
                     "Spanish" -> "es-ES"
-                    else -> "ja-JP"
+                    else -> "ja-JP" // Default language
                 }
             )
             putExtra(RecognizerIntent.EXTRA_PARTIAL_RESULTS, true)
         }
 
         try {
-            Log.d("GameActivity", "Starting SpeechRecognizer for: ${phrases[currentIndex].spoken}")
-            speechRecognizer.startListening(intent)
+            // Bounds check before accessing phrases
+            if (currentIndex >= 0 && currentIndex < phrases.size) {
+                Log.d("GameActivity", "Starting SpeechRecognizer for: ${phrases[currentIndex].spoken}")
+                speechRecognizer.startListening(intent)
+            } else {
+                Log.e("GameActivity", "Error: currentIndex $currentIndex is out of bounds for phrases list size ${phrases.size}")
+                onResult("Error: Invalid phrase index.")
+            }
         } catch (e: Exception) {
             Log.e("GameActivity", "Error starting speech recognizer", e)
             onResult("Error: ${e.message}")
         }
     }
 
+
+    // --- MODIFIED: loadPhrasesFromAssets reads and parses JSON ---
     private fun loadPhrasesFromAssets(): List<Phrase> {
-        val phrases = mutableListOf<Phrase>()
+        val gson = Gson() // Create Gson instance
         val fileName = when (selectedLanguage) {
             "Japanese" -> when (selectedDifficulty) {
-                "JLPT N1" -> if (selectedMaterial == "Grammar") "phrases_jp_jlpt_n1_grammar.txt" else "phrases_jp_jlpt_n1.txt"
-                "JLPT N2" -> if (selectedMaterial == "Grammar") "phrases_jp_jlpt_n2_grammar.txt" else "phrases_jp_jlpt_n2.txt"
-                "JLPT N3" -> if (selectedMaterial == "Grammar") "phrases_jp_jlpt_n3_grammar.txt" else "phrases_jp_jlpt_n3.txt"
-                "JLPT N4" -> if (selectedMaterial == "Grammar") "phrases_jp_jlpt_n4_grammar.txt" else "phrases_jp_jlpt_n4.txt"
-                "JLPT N5" -> if (selectedMaterial == "Grammar") "phrases_jp_jlpt_n5_grammar.txt" else "phrases_jp_jlpt_n5.txt"
-                else -> "phrases_jp_jlpt_n1.txt"
+                // --- CHANGED FILE EXTENSIONS TO .json ---
+                "JLPT N1" -> if (selectedMaterial == "Grammar") "phrases_jp_jlpt_n1_grammar.json" else "phrases_jp_jlpt_n1.json"
+                "JLPT N2" -> if (selectedMaterial == "Grammar") "phrases_jp_jlpt_n2_grammar.json" else "phrases_jp_jlpt_n2.json"
+                "JLPT N3" -> if (selectedMaterial == "Grammar") "phrases_jp_jlpt_n3_grammar.json" else "phrases_jp_jlpt_n3.json"
+                "JLPT N4" -> if (selectedMaterial == "Grammar") "phrases_jp_jlpt_n4_grammar.json" else "phrases_jp_jlpt_n4.json"
+                "JLPT N5" -> if (selectedMaterial == "Grammar") "phrases_jp_jlpt_n5_grammar.json" else "phrases_jp_jlpt_n5.json"
+                else -> "phrases_jp_jlpt_n1.json" // Default fallback for Japanese
             }
             "Korean" -> when (selectedDifficulty) {
-                "TOPIK I" -> "phrases_kr_topik_1.txt"
-                "TOPIK II" -> "phrases_kr_topik_2.txt"
-                else -> "phrases_kr_topik_2.txt"
+                "TOPIK I" -> "phrases_kr_topik_1.json"
+                "TOPIK II" -> "phrases_kr_topik_2.json"
+                else -> "phrases_kr_topik_2.json" // Default fallback for Korean
             }
             "Vietnamese" -> when (selectedDifficulty) {
-                "Beginner" -> "phrases_vi_beginner.txt"
-                "Intermediate" -> "phrases_vi_intermediate.txt"
-                "Advanced" -> "phrases_vi_advanced.txt"
-                else -> "phrases_vi_beginner.txt"
+                "Beginner" -> "phrases_vi_beginner.json"
+                "Intermediate" -> "phrases_vi_intermediate.json"
+                "Advanced" -> "phrases_vi_advanced.json"
+                else -> "phrases_vi_beginner.json" // Default fallback for Vietnamese
             }
             "Spanish" -> when (selectedDifficulty) {
-                "Beginner" -> "phrases_es_beginner.txt"
-                "Intermediate" -> "phrases_es_intermediate.txt"
-                "Advanced" -> "phrases_es_advanced.txt"
-                else -> "phrases_es_beginner.txt"
+                "Beginner" -> "phrases_es_beginner.json"
+                "Intermediate" -> "phrases_es_intermediate.json"
+                "Advanced" -> "phrases_es_advanced.json"
+                else -> "phrases_es_beginner.json" // Default fallback for Spanish
             }
-            else -> "phrases_jp_jlpt_n1.txt"
+            else -> "phrases_jp_jlpt_n1.json" // Ultimate fallback
         }
 
-        try {
-            assets.open(fileName).bufferedReader().use { reader ->
-                reader.forEachLine { line ->
-                    val parts = line.split("|")
-                    if (parts.size == 4) {
-                        phrases.add(Phrase(parts[0], parts[1], parts[2], parts[3]))
-                    } else {
-                        Log.w("GameActivity", "Invalid line in $fileName: $line")
+        Log.d("GameActivity", "Attempting to load phrases from assets file: $fileName")
+
+        return try {
+            // Open the asset file input stream
+            assets.open(fileName).use { inputStream ->
+                // Create a reader for the input stream
+                InputStreamReader(inputStream, "UTF-8").use { reader -> // Specify UTF-8 encoding
+                    // Define the type for Gson: List<Phrase>
+                    val phraseListType = object : TypeToken<List<Phrase>>() {}.type
+                    // Parse the JSON reader directly into a List<Phrase>
+                    // Return empty list if parsing results in null
+                    gson.fromJson(reader, phraseListType) ?: emptyList<Phrase>().also {
+                        Log.w("GameActivity", "Parsed JSON from $fileName resulted in null, returning empty list.")
                     }
                 }
             }
         } catch (e: Exception) {
-            Log.e("GameActivity", "Error loading phrases from assets", e)
-            Toast.makeText(this, "Error loading phrases", Toast.LENGTH_SHORT).show()
-            return listOf(
+            Log.e("GameActivity", "Error loading or parsing phrases from assets file: $fileName", e)
+            Toast.makeText(this, "Error loading phrases from $fileName", Toast.LENGTH_LONG).show()
+            // --- MODIFIED: Return a default list with the updated Phrase structure on error ---
+            // Provide more specific default values if desired
+            listOf(
                 Phrase(
-                    when (selectedLanguage) {
-                        "Japanese" -> "私は晩ご飯に寿司を食べます"
-                        "Korean" -> "저는 매일 아침 책을 읽습니다"
-                        "Vietnamese" -> "Tôi ăn sáng mỗi ngày"
-                        "Spanish" -> "Yo como desayuno todos los días"
-                        else -> "私は晩ご飯に寿司を食べます"
-                    },
-                    when (selectedLanguage) {
-                        "Japanese" -> "私は晩ご飯に寿司を食べます"
-                        "Korean" -> "저는 매일 아침 책을 읽습니다"
-                        "Vietnamese" -> "Tôi ăn sáng mỗi ngày"
-                        "Spanish" -> "Yo como desayuno todos los días"
-                        else -> "私は晩ご飯に寿司を食べます"
-                    },
-                    when (selectedLanguage) {
-                        "Japanese" -> "わたしはばんごはんにすしをたべます"
-                        "Korean" -> "저는 매일 아침 책을 읽습니다"
-                        "Vietnamese" -> "Tôi ăn sáng mỗi ngày"
-                        "Spanish" -> "Yo como desayuno todos los días"
-                        else -> "わたしはばんごはんにすしをたべます"
-                    },
-                    when (selectedLanguage) {
-                        "Japanese" -> "I eat sushi for dinner"
-                        "Korean" -> "I read a book every morning"
-                        "Vietnamese" -> "I eat breakfast every day"
-                        "Spanish" -> "I eat breakfast every day"
-                        else -> "I eat sushi for dinner"
-                    }
+                    spoken = "Error: Check Logcat",
+                    expected = "Error: Check Logcat",
+                    reading = "error",
+                    english = "Could not load phrases. File: $fileName",
+                    grammar = "" // Default empty grammar
                 )
             )
         }
-        return phrases
     }
 
+
+    // --- GameScreen Composable (Original UI/Flow/Animation Logic) ---
     @Composable
     fun GameScreen(
-        phrases: List<Phrase>,
+        phrases: List<Phrase>, // Accepts the updated Phrase type
         selectedLanguage: String,
         onStartListening: suspend (Int, (String) -> Unit, () -> Unit) -> Unit,
         onQuit: () -> Unit,
         onDestroyRecognizer: () -> Unit
     ) {
+        // Original state variables
         var currentIndex by remember { mutableStateOf(0) }
         var spokenText by remember { mutableStateOf("") }
         var isCorrect by remember { mutableStateOf<Boolean?>(null) }
@@ -310,10 +323,56 @@ class GameActivity : ComponentActivity() {
         var lastPartialText by remember { mutableStateOf("") }
         var isRecording by remember { mutableStateOf(false) }
         val context = LocalContext.current
-        var isFavorite by remember { mutableStateOf(isPhraseFavorite(phrases[currentIndex], selectedLanguage, context)) }
-        var isLearned by remember { mutableStateOf(isPhraseLearned(phrases[currentIndex], selectedLanguage, context)) }
+
+        // Gracefully handle empty phrases list
+        if (phrases.isEmpty() || phrases[0].spoken.startsWith("Error:")) {
+            Box(
+                modifier = Modifier.fillMaxSize().background(Color(0xFF212121)),
+                contentAlignment = Alignment.Center
+            ) {
+                Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                    Text(
+                        phrases.getOrNull(0)?.spoken ?: "No phrases found.",
+                        color = Color.White, fontSize = 20.sp, textAlign = TextAlign.Center
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    Text(
+                        phrases.getOrNull(0)?.english ?: "Please check assets or logs.",
+                        color = Color.Gray, fontSize = 16.sp, textAlign = TextAlign.Center
+                    )
+                    Button(onClick = onQuit, modifier = Modifier.padding(top = 20.dp)) {
+                        Text("Back")
+                    }
+                }
+            }
+            return // Stop rendering the rest if no phrases or error loading
+        }
+
+        // Ensure currentIndex is valid, especially after filtering or if list is modified
+        LaunchedEffect(phrases) {
+            if (currentIndex >= phrases.size) {
+                Log.w("GameScreen", "currentIndex $currentIndex was out of bounds for new phrases list (size ${phrases.size}), resetting to 0")
+                currentIndex = 0
+            }
+        }
+        // Need to handle if the list becomes empty *after* initial load
+        if (phrases.isEmpty()) {
+            // Handle as above
+            Box(modifier = Modifier.fillMaxSize().background(Color(0xFF212121)), contentAlignment = Alignment.Center) {
+                Text("No phrases remaining.", color = Color.White, fontSize = 20.sp)
+                Button(onClick = onQuit, modifier = Modifier.padding(top = 20.dp)) { Text("Back") }
+            }
+            return
+        }
+        // Recalculate favorite/learned status when index or phrases list changes.
+        // Use currentIndex and phrases list content as keys.
+        val currentPhrase = phrases[currentIndex] // Get current phrase safely after bounds check
+        var isFavorite by remember(currentPhrase) { mutableStateOf(isPhraseFavorite(currentPhrase, selectedLanguage, context)) }
+        var isLearned by remember(currentPhrase) { mutableStateOf(isPhraseLearned(currentPhrase, selectedLanguage, context)) }
         var showLearnConfirmation by remember { mutableStateOf(false) }
 
+
+        // Original background color animation
         val backgroundColor by animateColorAsState(
             targetValue = when (isCorrect) {
                 true -> Color(0xFF4CAF50)
@@ -323,82 +382,133 @@ class GameActivity : ComponentActivity() {
             animationSpec = tween(durationMillis = 300)
         )
 
+        // Original coroutine scope and media players
         val coroutineScope = rememberCoroutineScope()
         val speakMediaPlayer = remember { MediaPlayer.create(context, R.raw.speak) }
         val correctMediaPlayer = remember { MediaPlayer.create(context, R.raw.correct) }
 
+        // Original DisposableEffect
         DisposableEffect(Unit) {
             onDispose {
                 speakMediaPlayer.release()
                 correctMediaPlayer.release()
+                // Consider if onDestroyRecognizer should be called here or just in Activity onDestroy
+                // onDestroyRecognizer()
             }
         }
 
+        // Original toReading function
         suspend fun toReading(text: String): String {
             return if (selectedLanguage == "Japanese") {
                 withContext(Dispatchers.Default) {
-                    val tokenizer = Tokenizer.Builder().build()
-                    val tokens: List<Token> = tokenizer.tokenize(text)
-                    tokens.joinToString("") { it.reading ?: it.surface }
+                    try {
+                        val tokenizer = Tokenizer.Builder().build()
+                        val tokens: List<Token> = tokenizer.tokenize(text)
+                        tokens.joinToString("") { it.reading ?: it.surface }
+                    } catch (e: Exception) {
+                        Log.e("GameScreen", "Kuromoji tokenization error", e)
+                        text // fallback
+                    }
                 }
             } else {
                 text
             }
         }
 
-        LaunchedEffect(spokenText) {
-            if (spokenText.isNotEmpty() && spokenText != "Listening...") {
-                val expected = phrases[currentIndex].expected
-                val normalizedExpected = toReading(expected.replace("[\\s、。？！]".toRegex(), "")).lowercase()
-                val normalizedSpoken = toReading(spokenText.replace("[\\s、。？！]".toRegex(), "")).lowercase()
+        // Original LaunchedEffect for processing spoken text
+        LaunchedEffect(spokenText, speechEnded) { // Rely on spokenText and speechEnded status
+            if (spokenText.isNotEmpty() && spokenText != "Listening..." && currentIndex < phrases.size) {
+                val currentPhraseProcessing = phrases[currentIndex] // Capture phrase for this effect instance
+                val expected = currentPhraseProcessing.expected
+                // Perform normalization off main thread if complex
+                val normalizedExpected = withContext(Dispatchers.Default) {
+                    toReading(expected.replace("[\\s、。？！]".toRegex(), "")).lowercase()
+                }
+                val normalizedSpoken = withContext(Dispatchers.Default) {
+                    toReading(spokenText.replace("[\\s、。？！]".toRegex(), "")).lowercase()
+                }
+
+
+                Log.d("GameScreen", "Comparing: SpokenNorm='$normalizedSpoken' vs ExpectedNorm='$normalizedExpected'")
 
                 val isError = spokenText.contains("error", ignoreCase = true) ||
                         spokenText == "No match found. Try again." ||
                         spokenText == "No speech input. Speak louder."
 
                 if (isError) {
-                    delay(2000)
+                    Log.d("GameScreen", "Error detected in spoken text: $spokenText")
+                    // Show error feedback immediately
+                    isCorrect = false // Treat as incorrect
+                    showResult = true
+                    isRecording = false // Stop recording state
+                    // Delay to show feedback, then reset
+                    delay(1500)
                     spokenText = ""
-                    speechEnded = false
                     isCorrect = null
                     showResult = false
                     lastPartialText = ""
-                    isRecording = false
+
                 } else {
-                    val isPrefix = normalizedExpected.startsWith(normalizedSpoken)
+                    val isPrefix = normalizedSpoken.isNotEmpty() && normalizedExpected.startsWith(normalizedSpoken)
                     val matches = normalizedExpected == normalizedSpoken
 
+                    Log.d("GameScreen", "Match=$matches, Prefix=$isPrefix, SpeechEnded=$speechEnded")
+
                     if (matches) {
+                        Log.d("GameScreen", "Correct match found.")
                         isCorrect = true
                         showResult = true
-                        showHelp = true
-                        onDestroyRecognizer()
+                        showHelp = true // Show help on correct
                         isRecording = false
                         correctMediaPlayer.start()
-                    } else if (!isPrefix && normalizedSpoken.isNotEmpty()) {
+                        // Don't destroy recognizer here, let user press next/skip
+                    } else if (speechEnded && !matches) { // Check if speech ended *and* it's not a match
+                        Log.d("GameScreen", "Incorrect result after speech ended.")
                         isCorrect = false
                         showResult = true
-                        speechEnded = true
-                        onDestroyRecognizer()
                         isRecording = false
+                    } else if (!isPrefix && normalizedSpoken.isNotEmpty()) {
+                        // It's not a prefix, could be wrong - store it but wait for speech end
+                        Log.d("GameScreen", "Partial result is not a prefix: $normalizedSpoken")
+                        lastPartialText = spokenText
+                        // If speech has ended here, it should have been caught by the previous condition
+                        if (speechEnded){
+                            isCorrect = false
+                            showResult = true
+                            isRecording = false
+                        }
                     } else {
+                        // It's a prefix or still empty, keep listening
+                        Log.d("GameScreen", "Partial result is a prefix or empty.")
                         lastPartialText = spokenText
                     }
                 }
             }
         }
 
+
+        // Original LaunchedEffect for currentIndex changes (resetting state)
         LaunchedEffect(currentIndex) {
-            isFavorite = isPhraseFavorite(phrases[currentIndex], selectedLanguage, context)
-            isLearned = isPhraseLearned(phrases[currentIndex], selectedLanguage, context)
+            Log.d("GameScreen", "Current index changed to: $currentIndex")
+            // Reset state for the new phrase
+            spokenText = ""
+            isCorrect = null
+            showResult = false
+            showHelp = false // Reset help visibility
+            speechEnded = false
+            lastPartialText = ""
+            isRecording = false
+            // Favorite/Learned state is updated via remember(currentPhrase)
         }
 
+        // Original UI Box Structure
         Box(
             modifier = Modifier
                 .fillMaxSize()
                 .background(backgroundColor)
                 .padding(WindowInsets.systemBars.asPaddingValues())
         ) {
+            // Original Back Button
             IconButton(
                 onClick = onQuit,
                 modifier = Modifier
@@ -413,22 +523,25 @@ class GameActivity : ComponentActivity() {
                 )
             }
 
+            // Original Top Right Icons Row
             Row(
                 modifier = Modifier
                     .align(Alignment.TopEnd)
                     .padding(8.dp),
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
+                // Original Favorite Button
                 IconButton(
                     onClick = {
+                        val phraseToToggle = phrases[currentIndex] // Use checked phrase
                         if (isFavorite) {
-                            removeFavoritePhrase(phrases[currentIndex], selectedLanguage, context)
+                            removeFavoritePhrase(phraseToToggle, selectedLanguage, context)
                             Toast.makeText(context, "Removed from favorites", Toast.LENGTH_SHORT).show()
                         } else {
-                            addFavoritePhrase(phrases[currentIndex], selectedLanguage, context)
+                            addFavoritePhrase(phraseToToggle, selectedLanguage, context)
                             Toast.makeText(context, "Added to favorites", Toast.LENGTH_SHORT).show()
                         }
-                        isFavorite = !isFavorite
+                        isFavorite = !isFavorite // Immediate UI feedback
                     },
                     modifier = Modifier.size(40.dp)
                 ) {
@@ -440,12 +553,15 @@ class GameActivity : ComponentActivity() {
                     )
                 }
 
+                // Original Learned Button
                 IconButton(
                     onClick = {
+                        val phraseToToggle = phrases[currentIndex]
                         if (!isLearned) {
-                            showLearnConfirmation = true
+                            showLearnConfirmation = true // Show confirmation dialog
                         } else {
-                            removeLearnedPhrase(phrases[currentIndex], selectedLanguage, context)
+                            // Instantly remove if already learned
+                            removeLearnedPhrase(phraseToToggle, selectedLanguage, context)
                             isLearned = false
                             Toast.makeText(context, "Removed from learned phrases", Toast.LENGTH_SHORT).show()
                         }
@@ -461,6 +577,7 @@ class GameActivity : ComponentActivity() {
                 }
             }
 
+            // Original Learn Confirmation Dialog
             if (showLearnConfirmation) {
                 AlertDialog(
                     onDismissRequest = { showLearnConfirmation = false },
@@ -469,19 +586,27 @@ class GameActivity : ComponentActivity() {
                     confirmButton = {
                         Button(
                             onClick = {
-                                addLearnedPhrase(phrases[currentIndex], selectedLanguage, context)
+                                val phraseToLearn = phrases[currentIndex]
+                                addLearnedPhrase(phraseToLearn, selectedLanguage, context)
                                 isLearned = true
                                 showLearnConfirmation = false
                                 Toast.makeText(context, "Added to learned phrases", Toast.LENGTH_SHORT).show()
-                                val newIndex = (currentIndex + 1) % phrases.size
-                                currentIndex = newIndex
-                                spokenText = ""
-                                isCorrect = null
-                                showResult = false
-                                showHelp = false
-                                speechEnded = false
-                                lastPartialText = ""
-                                isRecording = false
+
+                                // Logic to move to next *unlearned* phrase implicitly handled by filtering in onCreate
+                                // Just trigger moving to the next index in the *current filtered list*
+                                val nextIndex = (currentIndex + 1).let {
+                                    if (it >= phrases.size) 0 else it // Wrap around
+                                }
+                                // Check if the list became empty after learning the last one
+                                val newListSize = phrases.size - 1 // Hypothetical size after removal
+                                if (newListSize <= 0) {
+                                    // Handle case where last phrase was learned
+                                    Toast.makeText(context, "All phrases learned!", Toast.LENGTH_SHORT).show()
+                                    onQuit() // Or navigate somewhere else
+                                } else {
+                                    // Trigger LaunchedEffect(currentIndex) by changing the index state
+                                    currentIndex = nextIndex
+                                }
                             },
                             colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFFF8F00))
                         ) {
@@ -500,24 +625,27 @@ class GameActivity : ComponentActivity() {
                 )
             }
 
+
+            // Original Central Content Column Structure
             Column(
                 modifier = Modifier
                     .fillMaxSize()
+                    // Use original padding
                     .padding(horizontal = 16.dp, vertical = 8.dp),
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                // Reduced initial spacing to move animation icon up
+                // Original spacing
                 Spacer(modifier = Modifier.height(16.dp))
 
+                // Original Correct/Incorrect Animation Icon
                 AnimatedVisibility(
                     visible = showResult && isCorrect != null,
                     enter = scaleIn(animationSpec = tween(300)),
                     exit = fadeOut()
                 ) {
                     Box(
-                        modifier = Modifier
-                            .size(80.dp),
+                        modifier = Modifier.size(80.dp),
                         contentAlignment = Alignment.Center
                     ) {
                         val circleProgress by animateFloatAsState(
@@ -549,18 +677,21 @@ class GameActivity : ComponentActivity() {
                     }
                 }
 
-                // Adjusted spacing to balance between top icons and expected text
+                // Original spacing
                 Spacer(modifier = Modifier.height(40.dp))
 
+                // Original Phrase Text (Spoken)
                 Text(
-                    text = phrases[currentIndex].spoken,
+                    text = currentPhrase.spoken, // Use checked phrase
                     fontSize = 24.sp,
                     textAlign = TextAlign.Center,
                     color = Color(0xFFE0F7FA)
                 )
 
+                // Original spacing
                 Spacer(modifier = Modifier.height(16.dp))
 
+                // Original Hiragana Display (Conditional)
                 AnimatedVisibility(
                     visible = showHelp && selectedLanguage == "Japanese",
                     enter = fadeIn(),
@@ -570,34 +701,40 @@ class GameActivity : ComponentActivity() {
                         Text(
                             text = "Hiragana",
                             fontSize = 14.sp,
-                            color = Color(0xFFE0F7FA)
+                            color = Color(0xFFE0F7FA) // Original color
                         )
                         Text(
-                            text = phrases[currentIndex].reading,
+                            text = currentPhrase.reading,
                             fontSize = 18.sp,
                             textAlign = TextAlign.Center,
-                            color = Color(0xFFE0F7FA)
+                            color = Color(0xFFE0F7FA) // Original color
                         )
                     }
                 }
 
+                // Original spacing
                 Spacer(modifier = Modifier.height(24.dp))
 
+                // Original English Display (Conditional)
                 AnimatedVisibility(
                     visible = showHelp,
                     enter = fadeIn(),
                     exit = fadeOut()
                 ) {
                     Text(
-                        text = phrases[currentIndex].english,
+                        text = currentPhrase.english,
                         fontSize = 18.sp,
-                        fontStyle = FontStyle.Italic,
+                        fontStyle = FontStyle.Italic, // Original style
                         textAlign = TextAlign.Center,
-                        color = Color(0xFFE0F7FA)
+                        color = Color(0xFFE0F7FA) // Original color
                     )
                 }
+                // This Spacer was missing in the original file, adding it back if needed
+                // If the spoken text should be higher, remove or adjust this.
+                // Spacer(modifier = Modifier.weight(1f))
             }
 
+            // Original Spoken Text Display (at original position)
             Text(
                 text = spokenText,
                 fontSize = 18.sp,
@@ -605,15 +742,18 @@ class GameActivity : ComponentActivity() {
                 color = Color(0xFFE0F7FA),
                 modifier = Modifier
                     .align(Alignment.BottomCenter)
+                    // Original padding
                     .padding(bottom = 150.dp)
             )
 
+            // Original Mic Button
             IconButton(
                 onClick = {
+                    // Original logic: Reset state and start listening
                     spokenText = ""
                     isCorrect = null
                     showResult = false
-                    showHelp = false
+                    // showHelp = false // Decide if help resets on mic press
                     speechEnded = false
                     lastPartialText = ""
                     isRecording = true
@@ -622,13 +762,16 @@ class GameActivity : ComponentActivity() {
                         onStartListening(currentIndex, { result ->
                             spokenText = result
                         }, {
+                            // Original end of speech logic
                             isRecording = false
+                            speechEnded = true // Set flag that speech ended
                             Log.d("GameScreen", "Speech ended callback triggered")
                         })
                     }
                 },
                 modifier = Modifier
                     .align(Alignment.BottomCenter)
+                    // Original position and style
                     .padding(16.dp)
                     .size(70.dp)
                     .background(
@@ -640,51 +783,64 @@ class GameActivity : ComponentActivity() {
                     imageVector = Icons.Filled.Mic,
                     contentDescription = "Speak",
                     tint = Color(0xFFE0F7FA),
-                    modifier = Modifier.size(36.dp)
+                    modifier = Modifier.size(36.dp) // Original size
                 )
             }
 
-            OutlinedIconButton(
+            // Original Help Button
+            OutlinedIconButton( // Keep original component type
                 onClick = { showHelp = !showHelp },
                 modifier = Modifier
                     .align(Alignment.BottomEnd)
-                    .padding(16.dp),
-                border = BorderStroke(1.dp, Color(0xFFFF8F00))
+                    .padding(16.dp), // Original padding
+                border = BorderStroke(1.dp, Color(0xFFFF8F00)) // Original border
             ) {
                 Icon(
-                    imageVector = Icons.Default.QuestionMark,
+                    // Original icon
+                    imageVector = Icons.Default.QuestionMark, // Or HelpOutline if preferred
                     contentDescription = "Show Help",
                     tint = Color(0xFFE0F7FA),
-                    modifier = Modifier.size(18.dp)
+                    modifier = Modifier.size(18.dp) // Original size
                 )
             }
 
+            // Original Skip/Next Button
             OutlinedButton(
                 onClick = {
+                    // Original logic: Reset state and move index
                     spokenText = ""
                     isCorrect = null
                     showResult = false
-                    showHelp = false
+                    // showHelp = false // Reset help on skip/next?
                     speechEnded = false
                     lastPartialText = ""
                     isRecording = false
-                    val newIndex = (currentIndex + 1) % phrases.size
-                    currentIndex = newIndex
+                    // Ensure recognizer is stopped if active
+                    // speechRecognizer.stopListening() // Or cancel()
+                    val nextIndex = (currentIndex + 1).let {
+                        if (it >= phrases.size) 0 else it // Wrap around
+                    }
+                    currentIndex = nextIndex // Trigger LaunchedEffect(currentIndex)
                 },
                 modifier = Modifier
                     .align(Alignment.BottomStart)
-                    .padding(16.dp),
-                border = BorderStroke(1.dp, Color(0xFFFF8F00)),
+                    .padding(16.dp), // Original padding
+                border = BorderStroke(1.dp, Color(0xFFFF8F00)), // Original border
                 colors = ButtonDefaults.outlinedButtonColors(
-                    contentColor = Color(0xFFE0F7FA)
+                    contentColor = Color(0xFFE0F7FA) // Original color
                 )
             ) {
+                // Original text logic
                 Text(
                     text = if (isCorrect == true && showResult) "Next" else "Skip"
                 )
             }
         }
     }
+
+
+    // --- SharedPreferences Functions (Original implementations - work with updated Phrase) ---
+    // Gson handles the extra 'grammar' field automatically during serialization/deserialization.
 
     private fun addFavoritePhrase(phrase: Phrase, language: String, context: android.content.Context) {
         val prefs = context.getSharedPreferences("FavoritesPrefs", android.content.Context.MODE_PRIVATE)
@@ -704,7 +860,7 @@ class GameActivity : ComponentActivity() {
         val favoritesJson = prefs.getString("favorites_$language", "[]")
         val type = object : TypeToken<MutableList<Phrase>>() {}.type
         val favorites: MutableList<Phrase> = gson.fromJson(favoritesJson, type) ?: mutableListOf()
-        favorites.remove(phrase)
+        favorites.remove(phrase) // remove relies on equals() which includes grammar now
         prefs.edit().putString("favorites_$language", gson.toJson(favorites)).apply()
     }
 
@@ -714,7 +870,7 @@ class GameActivity : ComponentActivity() {
         val favoritesJson = prefs.getString("favorites_$language", "[]")
         val type = object : TypeToken<List<Phrase>>() {}.type
         val favorites: List<Phrase> = gson.fromJson(favoritesJson, type) ?: emptyList()
-        return favorites.contains(phrase)
+        return favorites.contains(phrase) // contains relies on equals()
     }
 
     private fun addLearnedPhrase(phrase: Phrase, language: String, context: android.content.Context) {

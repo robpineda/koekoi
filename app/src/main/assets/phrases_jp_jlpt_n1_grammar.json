@@ -1,0 +1,44 @@
+[
+  {
+    "spoken": "チャイムが鳴るが早いか、彼は受話器を取った。",
+    "expected": "チャイムが鳴るが早いか、彼は受話器を取った。",
+    "reading": "ちゃいむがなるがはやいか、かれはじゅわきをとった。",
+    "english": "No sooner did the chime ring than he picked up the receiver.",
+    "grammar": "〜が早いか"
+  },
+  {
+    "spoken": "飛行機が着陸するが早いか、乗客は席を立った。",
+    "expected": "飛行機が着陸するが早いか、乗客は席を立った。",
+    "reading": "ひこうきがちゃくりくするがはやいか、じょうきゃくはせきをたった。",
+    "english": "As soon as the plane landed, the passengers stood up.",
+    "grammar": "〜が早いか"
+  },
+  {
+    "spoken": "家に帰るや否や、子供はゲームを始めた。",
+    "expected": "家に帰るや否や、子供はゲームを始めた。",
+    "reading": "いえにかえるやいなや、こどもはげーむをはじめた。",
+    "english": "The moment the child got home, they started playing games.",
+    "grammar": "〜や、〜や否や"
+  },
+  {
+    "spoken": "社長が部屋に入るや、社員たちは立ち上がった。",
+    "expected": "社長が部屋に入るや、社員たちは立ち上がった。",
+    "reading": "しゃちょうがへやにはいるや、しゃいんたちはたちあがった。",
+    "english": "As soon as the company president entered the room, the employees stood up.",
+    "grammar": "〜や、〜や否や"
+  },
+  {
+    "spoken": "彼はコーヒーを飲むなり、すぐに仕事に取り掛かった。",
+    "expected": "彼はコーヒーを飲むなり、すぐに仕事に取り掛かった。",
+    "reading": "かれはこーひーをのむなり、すぐにしごとにとりかかった。",
+    "english": "Right after drinking coffee, he immediately started working.",
+    "grammar": "〜なり"
+  },
+  {
+    "spoken": "弟はベッドに入るなり、いびきをかき始めた。",
+    "expected": "弟はベッドに入るなり、いびきをかき始めた。",
+    "reading": "おとうとはべっどにはいるなり、いびきをかきはじめた。",
+    "english": "As soon as my younger brother got into bed, he started snoring.",
+    "grammar": "〜なり"
+  }
+]
