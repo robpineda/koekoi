@@ -46,7 +46,7 @@ import kotlinx.coroutines.withContext
 import com.atilika.kuromoji.ipadic.Token
 import com.atilika.kuromoji.ipadic.Tokenizer
 import java.io.InputStreamReader
-// --- ADDED Imports for WebView Dialog ---
+// --- Imports for WebView Dialog ---
 import android.webkit.WebResourceError
 import android.webkit.WebResourceRequest
 import android.webkit.WebView
@@ -161,7 +161,7 @@ class GameActivity : ComponentActivity() {
         setContent {
             GameScreen(
                 phrases = phrases,
-                selectedLanguage = selectedLanguage,
+                selectedLanguage = selectedLanguage, // Pass language to GameScreen
                 onStartListening = { index, onResult, onSpeechEnded ->
                     startListening(index, onResult, onSpeechEnded)
                 },
@@ -217,7 +217,7 @@ class GameActivity : ComponentActivity() {
                     "Korean" -> "ko-KR"
                     "Vietnamese" -> "vi-VN"
                     "Spanish" -> "es-ES"
-                    else -> "ja-JP"
+                    else -> "ja-JP" // Default
                 }
             )
             putExtra(RecognizerIntent.EXTRA_PARTIAL_RESULTS, true)
@@ -236,7 +236,7 @@ class GameActivity : ComponentActivity() {
         }
     }
 
-    // MODIFIED: loadPhrasesFromAssets (reads JSON)
+    // loadPhrasesFromAssets (reads JSON - remains the same)
     private fun loadPhrasesFromAssets(): List<Phrase> {
         val gson = Gson()
         val fileName = when (selectedLanguage) {
@@ -265,13 +265,12 @@ class GameActivity : ComponentActivity() {
                 "Advanced" -> "phrases_es_advanced.json"
                 else -> "phrases_es_beginner.json"
             }
-            else -> "phrases_jp_jlpt_n1.json"
+            else -> "phrases_jp_jlpt_n1.json" // Ultimate fallback
         }
         Log.d("GameActivity", "Attempting to load phrases from assets file: $fileName")
         return try {
             assets.open(fileName).use { inputStream ->
-                // Ensure UTF-8 encoding is used, crucial for non-Latin scripts
-                InputStreamReader(inputStream, "UTF-8").use { reader ->
+                InputStreamReader(inputStream, "UTF-8").use { reader -> // Specify UTF-8
                     val phraseListType = object : TypeToken<List<Phrase>>() {}.type
                     gson.fromJson(reader, phraseListType) ?: emptyList<Phrase>().also {
                         Log.w("GameActivity", "Parsed JSON from $fileName resulted in null, returning empty list.")
@@ -281,24 +280,23 @@ class GameActivity : ComponentActivity() {
         } catch (e: Exception) {
             Log.e("GameActivity", "Error loading or parsing phrases from assets file: $fileName", e)
             Toast.makeText(this, "Error loading phrases from $fileName", Toast.LENGTH_LONG).show()
-            // Return a specific error phrase
             listOf(
                 Phrase(
                     spoken = "Error: Check Logcat",
                     expected = "Error: Check Logcat",
                     reading = "error",
                     english = "Could not load phrases. File: $fileName",
-                    grammar = "" // Default empty grammar
+                    grammar = ""
                 )
             )
         }
     }
 
-    // GameScreen Composable (Original UI + New Button + Dialog State)
+    // GameScreen Composable (Accepts selectedLanguage)
     @Composable
     fun GameScreen(
         phrases: List<Phrase>,
-        selectedLanguage: String,
+        selectedLanguage: String, // Now receives the selected language
         onStartListening: suspend (Int, (String) -> Unit, () -> Unit) -> Unit,
         onQuit: () -> Unit,
         onDestroyRecognizer: () -> Unit
@@ -314,10 +312,10 @@ class GameActivity : ComponentActivity() {
         var isRecording by remember { mutableStateOf(false) }
         val context = LocalContext.current
 
-        // ADDED: State for grammar dialog
+        // State for grammar dialog
         var showGrammarDialog by remember { mutableStateOf(false) }
 
-        // Handle empty/error phrases list gracefully
+        // Handle empty/error phrases list
         if (phrases.isEmpty() || phrases[0].spoken.startsWith("Error:")) {
             Box(
                 modifier = Modifier
@@ -328,57 +326,45 @@ class GameActivity : ComponentActivity() {
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
                     Text(
                         phrases.getOrNull(0)?.spoken ?: "No phrases found.",
-                        color = Color.White,
-                        fontSize = 20.sp,
-                        textAlign = TextAlign.Center,
+                        color = Color.White, fontSize = 20.sp, textAlign = TextAlign.Center,
                         modifier = Modifier.padding(horizontal = 16.dp)
                     )
                     Spacer(Modifier.height(8.dp))
                     Text(
                         phrases.getOrNull(0)?.english ?: "Please check assets or logs.",
-                        color = Color.Gray,
-                        fontSize = 16.sp,
-                        textAlign = TextAlign.Center,
+                        color = Color.Gray, fontSize = 16.sp, textAlign = TextAlign.Center,
                         modifier = Modifier.padding(horizontal = 16.dp)
                     )
-                    Button(
-                        onClick = onQuit,
-                        modifier = Modifier.padding(top = 20.dp)
-                    ) {
-                        Text("Back")
-                    }
+                    Button(onClick = onQuit, modifier = Modifier.padding(top = 20.dp)) { Text("Back") }
                 }
             }
-            return // Stop rendering the rest
+            return
         }
 
-        // Ensure currentIndex is valid after potential filtering/loading changes
+        // Ensure currentIndex is valid
         LaunchedEffect(phrases) {
             if (currentIndex >= phrases.size && phrases.isNotEmpty()) {
                 Log.w("GameScreen", "currentIndex $currentIndex OOB for new list (size ${phrases.size}), reset to 0")
                 currentIndex = 0
             }
         }
-
-        // Handle edge case where list becomes empty after filtering/learning
-        if (phrases.isEmpty()) {
+        if (phrases.isEmpty()) { // Re-check after effect
             Box(
-                Modifier
-                    .fillMaxSize()
-                    .background(Color(0xFF212121)), Alignment.Center) {
+                Modifier.fillMaxSize().background(Color(0xFF212121)), Alignment.Center
+            ) {
                 Text("No phrases remaining.", color = Color.White, fontSize = 20.sp)
                 Button(onClick = onQuit, modifier = Modifier.padding(top = 20.dp)) { Text("Back") }
             }
             return
         }
 
-        // Get current phrase and dependent states safely
+        // Get current phrase and dependent states
         val currentPhrase = phrases[currentIndex]
         var isFavorite by remember(currentPhrase) { mutableStateOf(isPhraseFavorite(currentPhrase, selectedLanguage, context)) }
         var isLearned by remember(currentPhrase) { mutableStateOf(isPhraseLearned(currentPhrase, selectedLanguage, context)) }
         var showLearnConfirmation by remember { mutableStateOf(false) }
 
-        // Existing background color animation
+        // Background color animation
         val backgroundColor by animateColorAsState(
             targetValue = when (isCorrect) {
                 true -> Color(0xFF4CAF50)
@@ -388,12 +374,12 @@ class GameActivity : ComponentActivity() {
             animationSpec = tween(durationMillis = 300)
         )
 
-        // Existing scope and media players
+        // Coroutine scope and media players
         val coroutineScope = rememberCoroutineScope()
-        val speakMediaPlayer = remember { MediaPlayer.create(context, R.raw.speak) } // Ensure exists
-        val correctMediaPlayer = remember { MediaPlayer.create(context, R.raw.correct) } // Ensure exists
+        val speakMediaPlayer = remember { MediaPlayer.create(context, R.raw.speak) }
+        val correctMediaPlayer = remember { MediaPlayer.create(context, R.raw.correct) }
 
-        // Existing DisposableEffect
+        // DisposableEffect
         DisposableEffect(Unit) {
             onDispose {
                 speakMediaPlayer.release()
@@ -401,11 +387,12 @@ class GameActivity : ComponentActivity() {
             }
         }
 
-        // Existing toReading function
+        // toReading function
         suspend fun toReading(text: String): String {
             return if (selectedLanguage == "Japanese") {
                 withContext(Dispatchers.Default) {
                     try {
+                        // Ensure tokenizer is initialized - consider making it a member if performance is critical
                         val tokenizer = Tokenizer.Builder().build()
                         val tokens: List<Token> = tokenizer.tokenize(text)
                         tokens.joinToString("") { it.reading ?: it.surface }
@@ -419,86 +406,75 @@ class GameActivity : ComponentActivity() {
             }
         }
 
-        // Existing LaunchedEffect for processing spoken text
+
+        // LaunchedEffect for processing spoken text
         LaunchedEffect(spokenText, speechEnded) {
             if (spokenText.isNotEmpty() && spokenText != "Listening..." && currentIndex < phrases.size) {
-                val phrase = phrases[currentIndex] // Capture phrase for this effect instance
+                val phrase = phrases[currentIndex]
                 val expected = phrase.expected
-
-                // Run normalization potentially off the main thread
                 val normalizedExpected = withContext(Dispatchers.IO) {
                     toReading(expected.replace("[\\s、。？！]".toRegex(), "")).lowercase()
                 }
                 val normalizedSpoken = withContext(Dispatchers.IO) {
                     toReading(spokenText.replace("[\\s、。？！]".toRegex(), "")).lowercase()
                 }
-
                 Log.d("GameScreen", "Comparing: SpokenNorm='$normalizedSpoken' vs ExpectedNorm='$normalizedExpected'")
-
                 val isError = spokenText.contains("error", ignoreCase = true) ||
                         spokenText == "No match found. Try again." ||
                         spokenText == "No speech input. Speak louder."
-
                 if (isError) {
-                    Log.d("GameScreen", "Error detected in spoken text: $spokenText")
-                    isCorrect = false // Treat errors as incorrect for UI feedback
+                    Log.d("GameScreen", "Error detected: $spokenText")
+                    isCorrect = false
                     showResult = true
-                    isRecording = false // Stop recording state if error occurs
-                    delay(1500) // Show feedback briefly
-                    spokenText = "" // Reset text after feedback
+                    isRecording = false
+                    delay(1500)
+                    spokenText = ""
                     isCorrect = null
                     showResult = false
                     lastPartialText = ""
                 } else {
                     val isPrefix = normalizedSpoken.isNotEmpty() && normalizedExpected.startsWith(normalizedSpoken)
                     val matches = normalizedExpected == normalizedSpoken
-
-                    Log.d("GameScreen", "Match=$matches, Prefix=$isPrefix, SpeechEnded=$speechEnded")
-
+                    Log.d("GameScreen", "Match=$matches, Prefix=$isPrefix, Ended=$speechEnded")
                     if (matches) {
-                        Log.d("GameScreen", "Correct match found.")
+                        Log.d("GameScreen", "Correct match.")
                         isCorrect = true
                         showResult = true
-                        showHelp = true // Show help automatically on correct
+                        showHelp = true
                         isRecording = false
                         correctMediaPlayer.start()
-                        // Don't destroy recognizer, user clicks next/skip
-                    } else if (speechEnded && !matches) { // Only mark incorrect if speech has ended AND it's not a match
+                    } else if (speechEnded && !matches) {
                         Log.d("GameScreen", "Incorrect result after speech ended.")
                         isCorrect = false
                         showResult = true
                         isRecording = false
                     } else if (!isPrefix && normalizedSpoken.isNotEmpty()) {
-                        // Partial result is not a prefix. Could be wrong. Store it.
-                        // If speech ends now, the above condition will catch it.
-                        Log.d("GameScreen", "Partial result is not a prefix: $normalizedSpoken")
+                        Log.d("GameScreen", "Partial not prefix: $normalizedSpoken")
                         lastPartialText = spokenText
-                        if (speechEnded) { // If speech ended *right now* and it wasn't a prefix
+                        if (speechEnded) {
                             isCorrect = false
                             showResult = true
                             isRecording = false
                         }
                     } else {
-                        // It's a prefix or still empty, keep listening/waiting
-                        Log.d("GameScreen", "Partial result is a prefix or empty.")
+                        Log.d("GameScreen", "Partial is prefix or empty.")
                         lastPartialText = spokenText
                     }
                 }
             }
         }
 
-        // Existing LaunchedEffect for currentIndex changes (resetting state)
+
+        // LaunchedEffect for currentIndex changes
         LaunchedEffect(currentIndex) {
-            Log.d("GameScreen", "Current index changed to: $currentIndex")
-            // Reset state for the new phrase
+            Log.d("GameScreen", "Index changed: $currentIndex")
             spokenText = ""
             isCorrect = null
             showResult = false
-            showHelp = false // Reset help visibility too
+            showHelp = false
             speechEnded = false
             lastPartialText = ""
             isRecording = false
-            // isFavorite/isLearned are updated via remember(currentPhrase)
         }
 
         // Main UI Box
@@ -592,30 +568,19 @@ class GameActivity : ComponentActivity() {
                                 showLearnConfirmation = false
                                 Toast.makeText(context, "Added to learned phrases", Toast.LENGTH_SHORT).show()
 
-                                // Trigger moving to the next index in the *current filtered list*
                                 val nextIndex = (currentIndex + 1).let {
-                                    // Wrap around if it reaches the end of the current list
-                                    if (it >= phrases.size) 0 else it
+                                    if (it >= phrases.size) 0 else it // Wrap around
                                 }
-
-                                // After learning, the list size effectively decreases for the next load.
-                                // We just need to change the current index to trigger the LaunchedEffect.
-                                // Checking if the list *will become* empty is complex here.
-                                // The filtering in onCreate handles showing an empty state if needed.
-                                currentIndex = nextIndex // Update state to trigger recomposition and effects
+                                currentIndex = nextIndex // Update state to trigger effects
                             },
                             colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFFF8F00))
-                        ) {
-                            Text("Yes", color = Color(0xFFE0F7FA))
-                        }
+                        ) { Text("Yes", color = Color(0xFFE0F7FA)) }
                     },
                     dismissButton = {
                         Button(
                             onClick = { showLearnConfirmation = false },
                             colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF015D73))
-                        ) {
-                            Text("No", color = Color(0xFFE0F7FA))
-                        }
+                        ) { Text("No", color = Color(0xFFE0F7FA)) }
                     },
                     containerColor = Color(0xFF015D73) // Dialog background
                 )
@@ -647,27 +612,18 @@ class GameActivity : ComponentActivity() {
                             targetValue = if (showResult && isCorrect != null) 1f else 0f,
                             animationSpec = tween(durationMillis = 500)
                         )
-
                         Canvas(modifier = Modifier.size(80.dp)) {
                             val diameter = size.minDimension
                             drawArc(
-                                color = Color(0xFFE0F7FA),
-                                startAngle = -90f,
-                                sweepAngle = 360f * circleProgress,
-                                useCenter = false,
-                                style = Stroke(width = 4.dp.toPx()),
-                                size = Size(diameter, diameter),
+                                color = Color(0xFFE0F7FA), startAngle = -90f, sweepAngle = 360f * circleProgress,
+                                useCenter = false, style = Stroke(width = 4.dp.toPx()), size = Size(diameter, diameter),
                                 topLeft = Offset((size.width - diameter) / 2, (size.height - diameter) / 2)
                             )
                         }
-
                         Icon(
                             imageVector = if (isCorrect == true) Icons.Filled.Check else Icons.Filled.Close,
-                            contentDescription = if (isCorrect == true) "Correct" else "Incorrect",
-                            tint = Color(0xFFE0F7FA),
-                            modifier = Modifier
-                                .size(40.dp)
-                                .alpha(if (circleProgress > 0.5f) 1f else 0f)
+                            contentDescription = if (isCorrect == true) "Correct" else "Incorrect", tint = Color(0xFFE0F7FA),
+                            modifier = Modifier.size(40.dp).alpha(if (circleProgress > 0.5f) 1f else 0f)
                         )
                     }
                 }
@@ -689,20 +645,13 @@ class GameActivity : ComponentActivity() {
                 // Hiragana Reading (Conditional)
                 AnimatedVisibility(
                     visible = showHelp && selectedLanguage == "Japanese",
-                    enter = fadeIn(),
-                    exit = fadeOut()
+                    enter = fadeIn(), exit = fadeOut()
                 ) {
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                        Text(text = "Hiragana", fontSize = 14.sp, color = Color(0xFFE0F7FA))
                         Text(
-                            text = "Hiragana", // Label
-                            fontSize = 14.sp,
-                            color = Color(0xFFE0F7FA) // Original color
-                        )
-                        Text(
-                            text = currentPhrase.reading,
-                            fontSize = 18.sp,
-                            textAlign = TextAlign.Center,
-                            color = Color(0xFFE0F7FA) // Original color
+                            text = currentPhrase.reading, fontSize = 18.sp,
+                            textAlign = TextAlign.Center, color = Color(0xFFE0F7FA)
                         )
                     }
                 }
@@ -713,170 +662,122 @@ class GameActivity : ComponentActivity() {
                 // English Translation (Conditional)
                 AnimatedVisibility(
                     visible = showHelp,
-                    enter = fadeIn(),
-                    exit = fadeOut()
+                    enter = fadeIn(), exit = fadeOut()
                 ) {
                     Text(
-                        text = currentPhrase.english,
-                        fontSize = 18.sp,
-                        fontStyle = FontStyle.Italic, // Original style
-                        textAlign = TextAlign.Center,
-                        color = Color(0xFFE0F7FA) // Original color
+                        text = currentPhrase.english, fontSize = 18.sp, fontStyle = FontStyle.Italic,
+                        textAlign = TextAlign.Center, color = Color(0xFFE0F7FA)
                     )
                 }
-                // If spoken text should be higher, remove or adjust this Spacer
-                // Spacer(modifier = Modifier.weight(1f))
+                // Spacer(modifier = Modifier.weight(1f)) // Removed or adjust if needed for spoken text position
             }
 
-            // Spoken Text Display (at original position near bottom)
+            // Spoken Text Display
             Text(
-                text = spokenText,
-                fontSize = 18.sp,
-                textAlign = TextAlign.Center,
-                color = Color(0xFFE0F7FA),
-                modifier = Modifier
-                    .align(Alignment.BottomCenter)
-                    .padding(bottom = 150.dp) // Original padding from bottom
+                text = spokenText, fontSize = 18.sp, textAlign = TextAlign.Center, color = Color(0xFFE0F7FA),
+                modifier = Modifier.align(Alignment.BottomCenter).padding(bottom = 150.dp) // Original position
             )
 
-            // Mic Button (Bottom Center)
+            // Mic Button
             IconButton(
                 onClick = {
-                    if (!isRecording) { // Prevent multiple clicks
-                        // Original logic: Reset state and start listening
+                    if (!isRecording) {
                         spokenText = ""
                         isCorrect = null
                         showResult = false
-                        // showHelp = false // Optional: reset help on mic press
                         speechEnded = false
                         lastPartialText = ""
                         isRecording = true
-                        speakMediaPlayer.start() // Play sound effect
+                        speakMediaPlayer.start()
                         coroutineScope.launch {
-                            onStartListening(currentIndex, { result ->
-                                spokenText = result // Update state, effect handles comparison
-                            }, {
-                                // Original end of speech callback
+                            onStartListening(currentIndex, { result -> spokenText = result }, {
                                 isRecording = false
-                                speechEnded = true // Set flag that recognizer stopped
+                                speechEnded = true
                                 Log.d("GameScreen", "Speech ended callback triggered")
                             })
                         }
                     } else {
                         Log.d("GameScreen", "Mic clicked while already recording.")
-                        // Optional: Stop current recognition if clicked again while recording
-                        // speechRecognizer.stopListening() // or cancel()
-                        // isRecording = false
                     }
                 },
-                modifier = Modifier
-                    .align(Alignment.BottomCenter)
-                    .padding(16.dp) // Original padding
-                    .size(70.dp) // Original size
-                    .background(
-                        color = if (isRecording) Color(0xFFFF9999) else Color(0xFFFFB300), // Red/Amber
-                        shape = CircleShape
-                    )
+                modifier = Modifier.align(Alignment.BottomCenter).padding(16.dp).size(70.dp)
+                    .background(if (isRecording) Color(0xFFFF9999) else Color(0xFFFFB300), CircleShape)
             ) {
-                Icon(
-                    imageVector = Icons.Filled.Mic,
-                    contentDescription = "Speak",
-                    tint = Color(0xFFE0F7FA),
-                    modifier = Modifier.size(36.dp) // Original size
-                )
+                Icon(Icons.Filled.Mic, "Speak", tint = Color(0xFFE0F7FA), modifier = Modifier.size(36.dp))
             }
 
-            // MODIFIED: Row for Bottom End Buttons (Grammar + Help)
+            // Row for Bottom End Buttons (Grammar + Help)
             Row(
                 modifier = Modifier
                     .align(Alignment.BottomEnd)
                     .padding(16.dp), // Overall padding for the row
                 horizontalArrangement = Arrangement.spacedBy(8.dp) // Space between buttons
             ) {
-                // ADDED: Grammar Info Button
+                // Grammar Info Button
                 OutlinedIconButton(
                     onClick = {
-                        // Show dialog only if grammar field is not empty/blank
                         if (currentPhrase.grammar.isNotBlank()) {
-                            showGrammarDialog = true
+                            showGrammarDialog = true // Show dialog
                         } else {
-                            Toast.makeText(context, "No grammar point specified for this phrase.", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(context, "No grammar point specified.", Toast.LENGTH_SHORT).show()
                         }
                     },
-                    modifier = Modifier.size(48.dp), // Match help button size for alignment
-                    border = BorderStroke(1.dp, Color(0xFFFF8F00)), // Amber outline
-                    enabled = currentPhrase.grammar.isNotBlank() // Disable if no grammar data
+                    modifier = Modifier.size(48.dp), // Match help button size
+                    border = BorderStroke(1.dp, Color(0xFFFF8F00)),
+                    enabled = currentPhrase.grammar.isNotBlank()
                 ) {
                     Icon(
-                        imageVector = Icons.Filled.MenuBook, // Icon for grammar/book
-                        contentDescription = "Show Grammar Info",
-                        tint = if (currentPhrase.grammar.isNotBlank()) Color(0xFFE0F7FA) else Color.Gray, // Dim if disabled
+                        imageVector = Icons.Filled.MenuBook, contentDescription = "Show Grammar Info",
+                        tint = if (currentPhrase.grammar.isNotBlank()) Color(0xFFE0F7FA) else Color.Gray,
                         modifier = Modifier.size(24.dp)
                     )
                 }
 
-                // Original Help Button (now inside the Row)
+                // Help Button
                 OutlinedIconButton(
                     onClick = { showHelp = !showHelp },
-                    modifier = Modifier.size(48.dp), // Ensure consistent size
-                    border = BorderStroke(1.dp, Color(0xFFFF8F00)) // Original border
+                    modifier = Modifier.size(48.dp), // Consistent size
+                    border = BorderStroke(1.dp, Color(0xFFFF8F00))
                 ) {
                     Icon(
-                        imageVector = Icons.Default.HelpOutline, // Using HelpOutline consistently
-                        contentDescription = "Show Help",
-                        tint = Color(0xFFE0F7FA),
-                        modifier = Modifier.size(24.dp) // Consistent icon size
+                        imageVector = Icons.Default.HelpOutline, contentDescription = "Show Help",
+                        tint = Color(0xFFE0F7FA), modifier = Modifier.size(24.dp)
                     )
                 }
             }
 
-
-            // Skip/Next Button (Bottom Start)
+            // Skip/Next Button
             OutlinedButton(
                 onClick = {
-                    // Original logic: Reset state, move index, trigger recomposition/effects
                     spokenText = ""
                     isCorrect = null
                     showResult = false
-                    // showHelp = false // Optional: reset help on skip/next
                     speechEnded = false
                     lastPartialText = ""
                     isRecording = false
-                    // Consider stopping recognizer if active
-                    // speechRecognizer.stopListening() // or cancel()
-
-                    val nextIndex = (currentIndex + 1).let {
-                        // Wrap around if it reaches the end of the current list
-                        if (it >= phrases.size) 0 else it
-                    }
-                    currentIndex = nextIndex // Update state to trigger LaunchedEffect(currentIndex)
+                    val nextIndex = (currentIndex + 1).let { if (it >= phrases.size) 0 else it }
+                    currentIndex = nextIndex // Update state to trigger effects
                 },
-                modifier = Modifier
-                    .align(Alignment.BottomStart)
-                    .padding(16.dp), // Original padding
-                border = BorderStroke(1.dp, Color(0xFFFF8F00)), // Original border
-                colors = ButtonDefaults.outlinedButtonColors(
-                    contentColor = Color(0xFFE0F7FA) // Original color
-                )
+                modifier = Modifier.align(Alignment.BottomStart).padding(16.dp),
+                border = BorderStroke(1.dp, Color(0xFFFF8F00)),
+                colors = ButtonDefaults.outlinedButtonColors(contentColor = Color(0xFFE0F7FA))
             ) {
-                // Original text logic
-                Text(
-                    text = if (isCorrect == true && showResult) "Next" else "Skip"
-                )
+                Text(if (isCorrect == true && showResult) "Next" else "Skip")
             }
 
-            // ADDED: Grammar Dialog - Shown conditionally based on state
+            // Grammar Dialog - Call updated GrammarDialog passing selectedLanguage
             if (showGrammarDialog) {
                 GrammarDialog(
-                    grammarPoint = currentPhrase.grammar, // Pass the grammar string from current phrase
-                    onDismiss = { showGrammarDialog = false } // Action to hide the dialog
+                    grammarPoint = currentPhrase.grammar,
+                    language = selectedLanguage, // Pass the selected language here
+                    onDismiss = { showGrammarDialog = false }
                 )
             }
         } // End of Main Box
     } // End of GameScreen Composable
 
 
-    // SharedPreferences Functions (Original implementations - work with updated Phrase)
+    // SharedPreferences Functions (Remain the same, Gson handles the Phrase structure)
     private fun addFavoritePhrase(phrase: Phrase, language: String, context: android.content.Context) {
         val prefs = context.getSharedPreferences("FavoritesPrefs", MODE_PRIVATE)
         val gson = Gson()
@@ -940,16 +841,30 @@ class GameActivity : ComponentActivity() {
     }
 
 
-    // ADDED: Composable for the Grammar Dialog with WebView
+    // MODIFIED: GrammarDialog Composable accepts language parameter
     @Composable
     fun GrammarDialog(
         grammarPoint: String,
+        language: String, // Added language parameter
         onDismiss: () -> Unit
     ) {
         val context = LocalContext.current
-        // Construct the Android asset path. Ensure grammarPoint exactly matches the filename.
-        // If filenames were sanitized (e.g., replacing '〜' with '_'), do that here too.
-        val assetPath = "file:///android_asset/grammar/html/${grammarPoint}.html"
+
+        // Determine the language subfolder code based on the passed language string
+        val langCode = when (language) {
+            "Japanese" -> "jp"
+            "Korean" -> "kr"
+            "Spanish" -> "es"
+            "Vietnamese" -> "vi"
+            else -> "misc" // Fallback folder for unmapped languages or default
+        }
+
+        // Construct the asset path dynamically using the language code
+        val assetPath = "file:///android_asset/grammar/html/$langCode/${grammarPoint}.html"
+
+        // Define a base URL for the error HTML to correctly resolve the relative CSS path
+        // Point it to the base HTML directory so "../css/grammar_style.css" works
+        val errorBaseUrl = "file:///android_asset/grammar/html/"
 
         // Fallback HTML content in case the file isn't found or WebView fails
         val errorHtml = """
@@ -957,16 +872,18 @@ class GameActivity : ComponentActivity() {
             <head>
                 <meta charset="UTF-8">
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <link rel="stylesheet" href="../css/grammar_style.css">
+                <!-- Relative path from errorBaseUrl -->
+                <link rel="stylesheet" href="../css/grammar_style.css"> 
             </head>
             <body>
                 <h1>Error Loading Explanation</h1>
                 <p>Could not load the grammar explanation for:</p>
                 <p><code>$grammarPoint</code></p>
                 <hr>
-                <p>Please check if the file exists at:</p>
-                <p><code>assets/grammar/html/${grammarPoint}.html</code></p>
-                <p>(Note: Filename must match exactly, including special characters.)</p>
+                <p>Looked for file at:</p>
+                <!-- Show the full attempted path -->
+                <p><code>assets/grammar/html/$langCode/${grammarPoint}.html</code></p>
+                <p>(Note: Filename must match exactly, including case and special characters if applicable.)</p>
             </body>
             </html>
             """.trimIndent()
@@ -976,92 +893,74 @@ class GameActivity : ComponentActivity() {
         // Use Compose Dialog for modal behavior
         Dialog(
             onDismissRequest = onDismiss,
-            // Allow dialog to size itself based on content within constraints
-            properties = DialogProperties(usePlatformDefaultWidth = false)
+            properties = DialogProperties(usePlatformDefaultWidth = false) // Allow custom width/height
         ) {
-            // Surface provides background, shape, elevation for the dialog content
+            // Surface provides background, shape, elevation
             Surface(
                 modifier = Modifier
-                    .fillMaxWidth(0.95f) // Use most of the screen width
-                    .fillMaxHeight(0.85f), // Use most of the screen height
+                    .fillMaxWidth(0.95f) // Use 95% of screen width
+                    .fillMaxHeight(0.85f), // Use 85% of screen height
                 shape = RoundedCornerShape(16.dp), // Rounded corners
-                color = MaterialTheme.colorScheme.surface, // Use theme's surface color
-                tonalElevation = 8.dp // Add some elevation
+                color = MaterialTheme.colorScheme.surface, // Theme surface color
+                tonalElevation = 8.dp // Add elevation shadow
             ) {
                 Column(modifier = Modifier.fillMaxSize()) {
                     // Dialog Title Bar
                     Row(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .background(Color(0xFF015D73)) // Darker teal header consistent with other buttons
+                            .background(Color(0xFF015D73)) // Header background
                             .padding(horizontal = 16.dp, vertical = 12.dp),
                         verticalAlignment = Alignment.CenterVertically
                     ) {
-                        // Display the grammar point in the title
                         Text(
                             text = "Grammar: $grammarPoint",
-                            color = Color(0xFFE0F7FA), // Light text on dark header
+                            color = Color(0xFFE0F7FA), // Light text color
                             style = MaterialTheme.typography.titleMedium,
-                            modifier = Modifier.weight(1f), // Take available space
-                            maxLines = 1 // Prevent wrapping if too long
+                            modifier = Modifier.weight(1f), // Title takes available space
+                            maxLines = 1 // Prevent title wrapping
                         )
-                        // Close Button
                         IconButton(onClick = onDismiss) {
                             Icon(
                                 imageVector = Icons.Filled.Close,
                                 contentDescription = "Close Dialog",
-                                tint = Color(0xFFE0F7FA) // Light icon on dark header
+                                tint = Color(0xFFE0F7FA) // Light icon color
                             )
                         }
                     }
 
-                    // WebView Container
-                    Box(modifier = Modifier.weight(1f)) { // WebView takes remaining space
+                    // WebView Container - Takes remaining space
+                    Box(modifier = Modifier.weight(1f)) {
                         AndroidView(
                             factory = { webViewContext ->
-                                // Create and configure WebView instance
+                                // Create and configure WebView
                                 WebView(webViewContext).apply {
-                                    // Basic settings
-                                    settings.javaScriptEnabled = false // Disable JS unless needed for HTML content
-                                    settings.loadWithOverviewMode = true // Zoom out to fit content
-                                    settings.useWideViewPort = true // Allow viewport meta tag
-                                    settings.builtInZoomControls = true // Enable pinch-to-zoom
-                                    settings.displayZoomControls = false // Hide +/- zoom buttons
+                                    settings.javaScriptEnabled = false // Security: Disable JS if not needed
+                                    settings.loadWithOverviewMode = true // Zoom out
+                                    settings.useWideViewPort = true // Use viewport meta tag
+                                    settings.builtInZoomControls = true // Allow pinch zoom
+                                    settings.displayZoomControls = false // Hide +/- buttons
 
-                                    // WebViewClient to handle events within the WebView
+                                    // Handle loading errors and logging
                                     webViewClient = object : WebViewClient() {
                                         override fun onReceivedError(
-                                            view: WebView?,
-                                            request: WebResourceRequest?,
-                                            error: WebResourceError?
+                                            view: WebView?, request: WebResourceRequest?, error: WebResourceError?
                                         ) {
                                             super.onReceivedError(view, request, error)
-                                            // Log the error in detail
-                                            val errorDescription = if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
-                                                error?.description ?: "Unknown error"
-                                            } else {
-                                                "Unknown error"
-                                            }
-                                            val errorCode = if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
-                                                error?.errorCode ?: -1
-                                            } else {
-                                                -1
-                                            }
-                                            val failingUrl = request?.url?.toString() ?: assetPath
-                                            Log.e("GrammarDialog", "WebView Error ($errorCode: $errorDescription) loading $failingUrl")
-
-                                            // Load fallback HTML directly on error
-                                            // Use the assetPath as baseURL so relative CSS path still works
-                                            view?.loadDataWithBaseURL(assetPath, errorHtml, "text/html", "UTF-8", null)
+                                            val errorDesc = error?.description ?: "Unknown WebView error"
+                                            val errCode = error?.errorCode ?: -1
+                                            val failUrl = request?.url?.toString() ?: assetPath
+                                            Log.e("GrammarDialog", "WebView Error ($errCode: $errorDesc) loading $failUrl")
+                                            // Load fallback HTML, ensuring CSS can be resolved
+                                            view?.loadDataWithBaseURL(errorBaseUrl, errorHtml, "text/html", "UTF-8", null)
                                         }
 
                                         override fun onPageFinished(view: WebView?, url: String?) {
                                             super.onPageFinished(view, url)
-                                            // Log success or if the error page was loaded
                                             Log.d("GrammarDialog", "WebView finished loading: $url")
                                         }
                                     }
-                                    // Load the target HTML file from assets
+                                    // Load the dynamically constructed asset path
                                     loadUrl(assetPath)
                                 }
                             },
