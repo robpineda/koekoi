@@ -1,1752 +1,702 @@
 [
   {
-    "spoken": "雷鳴が轟くが早いか、激しい雨が地上に降り注ぎ始めた。",
-    "expected": "雷鳴が轟くが早いか、激しい雨が地上に降り注ぎ始めた。",
-    "reading": "らいめいがとどろくがはやいか、はげしいあめがちじょうにふりそそぎはじめた。",
-    "english": "As soon as the thunder roared, heavy rain began to pour down on the ground.",
+    "spoken": "ベルが鳴るが早いか、生徒たちは教室を飛び出した。",
+    "expected": "ベルが鳴るが早いか、生徒たちは教室を飛び出した。",
+    "reading": "べるがなるがはやいか、せいとたちはきょうしつをとびだした。",
+    "english": "As soon as the bell rang, the students rushed out of the classroom.",
     "grammar": "〜が早いか"
   },
   {
-    "spoken": "社長が部屋に入るが早いか、社員たちは一斉に立ち上がり挨拶した。",
-    "expected": "社長が部屋に入るが早いか、社員たちは一斉に立ち上がり挨拶した。",
-    "reading": "しゃちょうがへやにはいるがはやいか、しゃいんたちはいっせいにたちあがりあいさつした。",
-    "english": "No sooner had the company president entered the room than the employees all stood up and greeted him.",
+    "spoken": "彼は「さよなら」を言うが早いか、電話を切った。",
+    "expected": "彼は「さよなら」を言うが早いか、電話を切った。",
+    "reading": "かれは「さよなら」をいうがはやいか、でんわをきった。",
+    "english": "No sooner had he said \"goodbye\" than he hung up the phone.",
     "grammar": "〜が早いか"
   },
   {
-    "spoken": "発表が終わるが早いか、会場からは割れんばかりの拍手が起こった。",
-    "expected": "発表が終わるが早いか、会場からは割れんばかりの拍手が起こった。",
-    "reading": "はっぴょうがおわるがはやいか、かいじょうからはわれんばかりのはくしゅがおこった。",
-    "english": "As soon as the presentation finished, thunderous applause erupted from the venue.",
+    "spoken": "雨が止むが早いか、子供たちは外へ遊びに飛び出した。",
+    "expected": "雨が止むが早いか、子供たちは外へ遊びに飛び出した。",
+    "reading": "あめがやむがはやいか、こどもたちはそとへあそびにとびだした。",
+    "english": "As soon as the rain stopped, the children dashed outside to play.",
     "grammar": "〜が早いか"
   },
   {
-    "spoken": "彼はベッドに横になるが早いか、深い眠りに落ちてしまった。",
-    "expected": "彼はベッドに横になるが早いか、深い眠りに落ちてしまった。",
-    "reading": "かれはべっどによこになるがはやいか、ふかいねむりにおちてしまった。",
-    "english": "Hardly had he lain down on the bed when he fell fast asleep.",
+    "spoken": "店が開くが早いか、限定商品を求める客が殺到した。",
+    "expected": "店が開くが早いか、限定商品を求める客が殺到した。",
+    "reading": "みせがあくがはやいか、げんていしょうひんをもとめるきゃくがさっとうした。",
+    "english": "As soon as the store opened, customers seeking limited edition products flooded in.",
     "grammar": "〜が早いか"
   },
   {
-    "spoken": "飛行機が着陸するが早いか、乗客たちは荷物を取り出し始めた。",
-    "expected": "飛行機が着陸するが早いか、乗客たちは荷物を取り出し始めた。",
-    "reading": "ひこうきがちゃくりくするがはやいか、じょうきゃくたちはにもつをとりだしはじめた。",
-    "english": "As soon as the airplane landed, the passengers began to retrieve their luggage.",
-    "grammar": "〜が早いか"
-  },
-  {
-    "spoken": "緊急地震速報が鳴るが早いか、人々は机の下に隠れようとした。",
-    "expected": "緊急地震速報が鳴るが早いか、人々は机の下に隠れようとした。",
-    "reading": "きんきゅうじしんそくほうがなるがはやいか、ひとびとはつくえのしたにかくはようとした。",
-    "english": "No sooner did the earthquake early warning sound than people tried to hide under their desks.",
-    "grammar": "〜が早いか"
-  },
-  {
-    "spoken": "先生が質問を言い終えるが早いか、一番前の生徒が手を挙げた。",
-    "expected": "先生が質問を言い終えるが早いか、一番前の生徒が手を挙げた。",
-    "reading": "せんせいがしつもんをいいおえるがはやいか、いちばんまえのせいとがてをあげた。",
-    "english": "As soon as the teacher finished asking the question, the student in the very front raised their hand.",
-    "grammar": "〜が早いか"
-  },
-  {
-    "spoken": "スタートの合図があるが早いか、選手たちは一斉に駆け出した。",
-    "expected": "スタートの合図があるが早いか、選手たちは一斉に駆け出した。",
-    "reading": "すたーとのあいずがあるがはやいか、せんしゅたちはいっせいにはしりだした。",
-    "english": "The moment the starting signal was given, the athletes all dashed off at once.",
-    "grammar": "〜が早いか"
-  },
-  {
-    "spoken": "彼は電話を切るが早いか、急いで家を飛び出していった。",
-    "expected": "彼は電話を切るが早いか、急いで家を飛び出していった。",
-    "reading": "かれはでんわをきるがはやいか、いそいでいえをとびだしていった。",
-    "english": "As soon as he hung up the phone, he hastily rushed out of the house.",
-    "grammar": "〜が早いか"
-  },
-  {
-    "spoken": "授業終了のチャイムが鳴るが早いか、学生たちは教科書を鞄に詰め込んだ。",
-    "expected": "授業終了のチャイムが鳴るが早いか、学生たちは教科書を鞄に詰め込んだ。",
-    "reading": "じゅぎょうしゅうりょうのちゃいむがなるがはやいか、がくせいたちはきょうかしょをかばんにつめこんだ。",
-    "english": "No sooner did the bell signaling the end of class ring than the students stuffed their textbooks into their bags.",
-    "grammar": "〜が早いか"
-  },
-  {
-    "spoken": "彼は舞台に登場するや否や、観客から大きな歓声が上がった。",
-    "expected": "彼は舞台に登場するや否や、観客から大きな歓声が上がった。",
-    "reading": "かれはぶたいにとうじょうするやいなや、かんきゃくからおおきなかんせいがあがった。",
-    "english": "The moment he appeared on stage, loud cheers rose from the audience.",
+    "spoken": "彼はドアを開けるや否や、部屋の中に駆け込んだ。",
+    "expected": "彼はドアを開けるや否や、部屋の中に駆け込んだ。",
+    "reading": "かれはどあをあけるやいなや、へやのなかにかけこんだ。",
+    "english": "Hardly had he opened the door when he rushed into the room.",
     "grammar": "〜や、〜や否や"
   },
   {
-    "spoken": "そのニュースが報道されるや否や、関連企業の株価は急落した。",
-    "expected": "そのニュースが報道されるや否や、関連企業の株価は急落した。",
-    "reading": "そのにゅーすがほうどうされるやいなや、かんれんきぎょうのかぶかはきゅうらくした。",
-    "english": "As soon as that news was reported, the stock prices of related companies plummeted.",
+    "spoken": "電車がホームに着くや否や、乗客が一斉に降り始めた。",
+    "expected": "電車がホームに着くや否や、乗客が一斉に降り始めた。",
+    "reading": "でんしゃがほーむにつくやいなや、じょうきゃくがいっせいにおりはじめた。",
+    "english": "The moment the train arrived at the platform, passengers started getting off all at once.",
     "grammar": "〜や、〜や否や"
   },
   {
-    "spoken": "電車が駅に到着するや否や、待っていた乗客が一斉に乗り込んだ。",
-    "expected": "電車が駅に到着するや否や、待っていた乗客が一斉に乗り込んだ。",
-    "reading": "でんしゃがえきにとうちゃくするやいなや、まっていたじょうきゃくがいっせいにのりこんだ。",
-    "english": "Hardly had the train arrived at the station when the waiting passengers all boarded at once.",
+    "spoken": "首相が演説を終えるや、会場は拍手に包まれた。",
+    "expected": "首相が演説を終えるや、会場は拍手に包まれた。",
+    "reading": "しゅしょうがえんぜつをおえるや、かいじょうははくしゅにつつまれた。",
+    "english": "As soon as the Prime Minister finished his speech, the venue erupted in applause.",
     "grammar": "〜や、〜や否や"
   },
   {
-    "spoken": "犯人は警察官の姿を見るや否や、裏口から逃走を図った。",
-    "expected": "犯人は警察官の姿を見るや否や、裏口から逃走を図った。",
-    "reading": "はんにんはけいさつかんのすがたをみるやいなや、うらぐちからとうそうをはかった。",
-    "english": "The moment the criminal saw the police officer, they attempted to escape through the back door.",
+    "spoken": "合格発表の掲示板を見るや、彼は喜びの声を上げた。",
+    "expected": "合格発表の掲示板を見るや、彼は喜びの声を上げた。",
+    "reading": "ごうかくはっぴょうのけいじばんをみるや、かれはよろこびのこえをあげた。",
+    "english": "The instant he saw the pass list notice board, he let out a cry of joy.",
     "grammar": "〜や、〜や否や"
   },
   {
-    "spoken": "赤ちゃんは母親の声を聞くや否や、泣き止んで笑顔を見せた。",
-    "expected": "赤ちゃんは母親の声を聞くや否や、泣き止んで笑顔を見せた。",
-    "reading": "あかちゃんはははおやのこえをきくやいなや、なきやんでえがおをみせた。",
-    "english": "As soon as the baby heard its mother's voice, it stopped crying and showed a smile.",
-    "grammar": "〜や、〜や否や"
-  },
-  {
-    "spoken": "火災報知器が鳴るや否や、従業員たちは避難経路を確認し始めた。",
-    "expected": "火災報知器が鳴るや否や、従業員たちは避難経路を確認し始めた。",
-    "reading": "かさいほうちきがなるやいなや、じゅうぎょういんたちはひなんけいろをかくにんしはじめた。",
-    "english": "The moment the fire alarm rang, the employees began to check the evacuation routes.",
-    "grammar": "〜や、〜や否や"
-  },
-  {
-    "spoken": "彼は席に着くや否や、ノートパソコンを開いて仕事に取り掛かった。",
-    "expected": "彼は席に着くや否や、ノートパソコンを開いて仕事に取り掛かった。",
-    "reading": "かれはせきにつくやいなや、のーとぱそこんをひらいてしごとにとりかかった。",
-    "english": "Hardly had he sat down when he opened his laptop and started working.",
-    "grammar": "〜や、〜や否や"
-  },
-  {
-    "spoken": "ゴールが決まるや否や、スタジアム全体が興奮のるつぼと化した。",
-    "expected": "ゴールが決まるや否や、スタジアム全体が興奮のるつぼと化した。",
-    "reading": "ごーるがきまるやいなや、すたじあむぜんたいがこうふんのるつぼとかした。",
-    "english": "As soon as the goal was scored, the entire stadium became a whirlwind of excitement.",
-    "grammar": "〜や、〜や否や"
-  },
-  {
-    "spoken": "その知らせを聞くや否や、彼女は顔面蒼白になってその場に座り込んだ。",
-    "expected": "その知らせを聞くや否や、彼女は顔面蒼白になってその場に座り込んだ。",
-    "reading": "そのしらせをきくやいなや、かのじょはがんめんそうはくになってそのばにすわりこんだ。",
-    "english": "The moment she heard the news, she turned pale and sank down on the spot.",
-    "grammar": "〜や、〜や否や"
-  },
-  {
-    "spoken": "大臣が辞任を発表するや否や、後任人事に関する憶測が飛び交った。",
-    "expected": "大臣が辞任を発表するや否や、後任人事に関する憶測が飛び交った。",
-    "reading": "だいじんがじにんをはっぴょうするやいなや、こうにんじんじにかんするおくそくがとびかった。",
-    "english": "No sooner had the minister announced their resignation than speculation about their successor began to fly around.",
-    "grammar": "〜や、〜や否や"
-  },
-  {
-    "spoken": "彼は私の顔を見るなり、何か言いたそうな表情を浮かべた。",
-    "expected": "彼は私の顔を見るなり、何か言いたそうな表情を浮かべた。",
-    "reading": "かれはわたしのかおをみるなり、なにかいいたそうなひょうじょうをうかべた。",
-    "english": "As soon as he saw my face, he put on an expression as if he wanted to say something.",
+    "spoken": "友人は私を見るなり、駆け寄ってきた。",
+    "expected": "友人は私を見るなり、駆け寄ってきた。",
+    "reading": "ゆうじんはわたしをみるなり、かけよってきた。",
+    "english": "As soon as my friend saw me, they ran up to me.",
     "grammar": "〜なり"
   },
   {
-    "spoken": "部長は電話を切るなり、厳しい口調で部下たちに指示を出し始めた。",
-    "expected": "部長は電話を切るなり、厳しい口調で部下たちに指示を出し始めた。",
-    "reading": "ぶちょうはでんわをきるなり、きびしいくちょうでぶかたちにしじをだしはじめた。",
-    "english": "Immediately after hanging up the phone, the department manager started giving instructions to subordinates in a stern tone.",
+    "spoken": "部長は部屋に入るなり、厳しい口調で話し始めた。",
+    "expected": "部長は部屋に入るなり、厳しい口調で話し始めた。",
+    "reading": "ぶちょうはへやにはいるなり、きびしいくちょうではなしはじめた。",
+    "english": "The department manager entered the room and immediately started speaking in a stern tone.",
     "grammar": "〜なり"
   },
   {
-    "spoken": "その知らせを聞くなり、彼は椅子から立ち上がって部屋を出て行った。",
-    "expected": "その知らせを聞くなり、彼は椅子から立ち上がって部屋を出て行った。",
-    "reading": "そのしらせをきくなり、かれはいすからたちあがってへやをでていった。",
-    "english": "Upon hearing that news, he stood up from his chair and left the room.",
+    "spoken": "彼は家に帰るなり、かばんを放り投げてベッドに倒れ込んだ。",
+    "expected": "彼は家に帰るなり、かばんを放り投げてベッドに倒れ込んだ。",
+    "reading": "かれはいえにかえるなり、かばんをほうりなげてべっどにたおれこんだ。",
+    "english": "Upon returning home, he tossed his bag aside and collapsed onto the bed.",
     "grammar": "〜なり"
   },
   {
-    "spoken": "彼女は玄関のドアを開けるなり、大きな声でただいまと言った。",
-    "expected": "彼女は玄関のドアを開けるなり、大きな声でただいまと言った。",
-    "reading": "かのじょはげんかんのどあをあけるなり、おおきなこえでただいまといった。",
-    "english": "As soon as she opened the front door, she loudly said, 'I'm home!'",
+    "spoken": "その作家はインスピレーションを得るなり、一気に小説を書き上げた。",
+    "expected": "その作家はインスピレーションを得るなり、一気に小説を書き上げた。",
+    "reading": "そのさっかは いんすぴれーしょんをえるなり、いっきにしょうせつをかきあげた。",
+    "english": "As soon as the author got inspiration, they wrote the entire novel in one go.",
     "grammar": "〜なり"
   },
   {
-    "spoken": "子供はプレゼントの箱を開けるなり、歓声を上げて飛び跳ねた。",
-    "expected": "子供はプレゼントの箱を開けるなり、歓声を上げて飛び跳ねた。",
-    "reading": "こどもはぷれぜんとのはこをあけるなり、かんせいをあげてとびはねた。",
-    "english": "Immediately after opening the present box, the child shouted with joy and jumped up and down.",
-    "grammar": "〜なり"
-  },
-  {
-    "spoken": "弟は帰宅するなり、自分の部屋に直行してゲームを始めた。",
-    "expected": "弟は帰宅するなり、自分の部屋に直行してゲームを始めた。",
-    "reading": "おとうとはきたくするなり、じぶんのへやにちょっこうしてげーむをはじめた。",
-    "english": "As soon as my younger brother got home, he went straight to his room and started playing games.",
-    "grammar": "〜なり"
-  },
-  {
-    "spoken": "会議が終わるなり、参加者たちは足早に会場を後にした。",
-    "expected": "会議が終わるなり、参加者たちは足早に会場を後にした。",
-    "reading": "かいぎがおわるなり、さんかしゃたちはあしばやにかいじょうをあとにした。",
-    "english": "Immediately after the meeting ended, the participants quickly left the venue.",
-    "grammar": "〜なり"
-  },
-  {
-    "spoken": "彼はその記事を読むなり、怒りに顔を赤くして拳を握りしめた。",
-    "expected": "彼はその記事を読むなり、怒りに顔を赤くして拳を握りしめた。",
-    "reading": "かれはそのきじをよむなり、いかりにかおをあかくしてこぶしをにぎりしめた。",
-    "english": "Upon reading the article, his face flushed with anger and he clenched his fists.",
-    "grammar": "〜なり"
-  },
-  {
-    "spoken": "彼女は夫の帰宅を知るなり、夕食の準備を急いで始めた。",
-    "expected": "彼女は夫の帰宅を知るなり、夕食の準備を急いで始めた。",
-    "reading": "かのじょはおっとのきたくをしるなり、ゆうしょくのじゅんびをいそいではじめた。",
-    "english": "As soon as she knew her husband was home, she hurriedly started preparing dinner.",
-    "grammar": "〜なり"
-  },
-  {
-    "spoken": "彼は授業が終わるなり、質問があると言って先生のところに駆け寄った。",
-    "expected": "彼は授業が終わるなり、質問があると言って先生のところに駆け寄った。",
-    "reading": "かれはじゅぎょうがおわるなり、しつもんがあるといってせんせいのところにかけよった。",
-    "english": "Immediately after the class ended, he ran up to the teacher saying he had a question.",
-    "grammar": "〜なり"
-  },
-  {
-    "spoken": "新しい単語を覚えるそばから忘れてしまうので、なかなか語彙力が増えない。",
-    "expected": "新しい単語を覚えるそばから忘れてしまうので、なかなか語彙力が増えない。",
-    "reading": "あたらしいいたんごをおぼえるそばからわすれてしまうので、なかなかごいりょくがふえない。",
-    "english": "I forget new words as soon as I learn them, so my vocabulary doesn't really increase.",
+    "spoken": "子供におもちゃを片付けさせるそばから、また散らかしてしまう。",
+    "expected": "子供におもちゃを片付けさせるそばから、また散らかしてしまう。",
+    "reading": "こどもにおもちゃをかたづけさせるそばから、またちらかしてしまう。",
+    "english": "No sooner do I make the child clean up their toys than they mess them up again.",
     "grammar": "〜そばから"
   },
   {
-    "spoken": "子供がおもちゃを片付けるそばから、弟がまた散らかしてしまう。",
-    "expected": "子供がおもちゃを片付けるそばから、弟がまた散らかしてしまう。",
-    "reading": "こどもがおもちゃをかたづけるそばから、おとうとがまたちらかしてしまう。",
-    "english": "No sooner does the child tidy up the toys than their younger brother messes them up again.",
+    "spoken": "新しい単語を覚えるそばから忘れていくので、なかなか語彙が増えない。",
+    "expected": "新しい単語を覚えるそばから忘れていくので、なかなか語彙が増えない。",
+    "reading": "あたらしい たんごをおぼえるそばからわすれていくので、なかなかごいがふえない。",
+    "english": "I keep forgetting new words as soon as I learn them, so my vocabulary doesn't increase easily.",
     "grammar": "〜そばから"
   },
   {
-    "spoken": "メモを取るそばから次の話題に移るので、会議の内容についていけない。",
-    "expected": "メモを取るそばから次の話題に移るので、会議の内容についていけない。",
-    "reading": "めもをとるそばからつぎのわだいにうつるので、かいぎのないようについていけない。",
-    "english": "They move on to the next topic as soon as I take notes, so I can't keep up with the meeting content.",
+    "spoken": "庭の雑草を抜くそばから、次々と生えてくる。",
+    "expected": "庭の雑草を抜くそばから、次々と生えてくる。",
+    "reading": "にわのざっそうをぬくそばから、つぎつぎとはえてくる。",
+    "english": "As soon as I pull out the weeds in the garden, more grow one after another.",
     "grammar": "〜そばから"
   },
   {
-    "spoken": "庭の雑草を抜くそばから新しい芽が出てきて、本当にきりがない。",
-    "expected": "庭の雑草を抜くそばから新しい芽が出てきて、本当にきりがない。",
-    "reading": "にわのざっそうをぬくそばからあたらしいめがでてきて、ほんとうにきりがない。",
-    "english": "As soon as I pull the weeds in the garden, new sprouts appear; it's truly endless.",
+    "spoken": "注意するそばから同じ間違いを繰り返すので、指導が難しい。",
+    "expected": "注意するそばから同じ間違いを繰り返すので、指導が難しい。",
+    "reading": "ちゅういするそばからおなじまちがいをくりかえすので、しどうがむずかしい。",
+    "english": "They repeat the same mistake right after I warn them, making guidance difficult.",
     "grammar": "〜そばから"
   },
   {
-    "spoken": "彼は約束をするそばからそれを破るので、もう誰も信用していない。",
-    "expected": "彼は約束をするそばからそれを破るので、もう誰も信用していない。",
-    "reading": "かれはやくそくをするそばからそれをやぶるので、もうだれもしんようしていない。",
-    "english": "He breaks promises as soon as he makes them, so nobody trusts him anymore.",
-    "grammar": "〜そばから"
-  },
-  {
-    "spoken": "家計簿をつけるそばから予期せぬ出費があって、計画通りにいかない。",
-    "expected": "家計簿をつけるそばから予期せぬ出費があって、計画通りにいかない。",
-    "reading": "かけいぼをつけるそばからよきせぬしゅっぴがあって、けいかくどおりにいかない。",
-    "english": "No sooner do I update the household accounts than unexpected expenses arise, making it hard to stick to the plan.",
-    "grammar": "〜そばから"
-  },
-  {
-    "spoken": "重要な点を説明するそばから、生徒たちは私語を始めてしまう。",
-    "expected": "重要な点を説明するそばから、生徒たちは私語を始めてしまう。",
-    "reading": "じゅうようなてんをせつめいするそばから、せいとたちはしごをはじめてしまう。",
-    "english": "As soon as I explain the important points, the students start chatting.",
-    "grammar": "〜そばから"
-  },
-  {
-    "spoken": "窓をきれいに拭くそばから、雨が降ってきて汚れてしまうことが多い。",
-    "expected": "窓をきれいに拭くそばから、雨が降ってきて汚れてしまうことが多い。",
-    "reading": "まどをきれいにふくそばから、あめがふってきてよごれてしまうことがおおい。",
-    "english": "Often, no sooner do I wipe the windows clean than it starts raining and they get dirty again.",
-    "grammar": "〜そばから"
-  },
-  {
-    "spoken": "ダイエットを決意するそばから、美味しそうなケーキを見てつい食べてしまう。",
-    "expected": "ダイエットを決意するそばから、美味しそうなケーキを見てつい食べてしまう。",
-    "reading": "だいえっとをけついするそばから、おいしそうなけーきをみてついたべてしまう。",
-    "english": "As soon as I resolve to go on a diet, I see a delicious-looking cake and end up eating it.",
-    "grammar": "〜そばから"
-  },
-  {
-    "spoken": "書類を整理するそばから、新しい書類がどんどんデスクに積み重なっていく。",
-    "expected": "書類を整理するそばから、新しい書類がどんどんデスクに積み重なっていく。",
-    "reading": "しょるいをせいりするそばから、あたらしいしょるいがどんどんですくにつみかさなっていく。",
-    "english": "No sooner do I organize the documents than new ones keep piling up on my desk.",
-    "grammar": "〜そばから"
-  },
-  {
-    "spoken": "日本に来てからというもの、毎日新しい発見があり、文化の違いに驚かされている。",
-    "expected": "日本に来てからというもの、毎日新しい発見があり、文化の違いに驚かされている。",
-    "reading": "にほんにきてからというもの、まいにちあたらしいはっけんがあり、ぶんかのちがいにおどろかされている。",
-    "english": "Ever since I came to Japan, there have been new discoveries every day, and I've been continually surprised by the cultural differences.",
+    "spoken": "新しい部長が就任してからというもの、職場の雰囲気が明るくなった。",
+    "expected": "新しい部長が就任してからというもの、職場の雰囲気が明るくなった。",
+    "reading": "あたらしいぶちょうがしゅうにんしてからというもの、しょくばのふんいきがあかるくなった。",
+    "english": "Ever since the new department manager took office, the workplace atmosphere has brightened up.",
     "grammar": "〜てからというもの（は）"
   },
   {
-    "spoken": "一人暮らしを始めてからというもの、親のありがたみを身にしみて感じるようになった。",
-    "expected": "一人暮らしを始めてからというもの、親のありがたみを身にしみて感じるようになった。",
-    "reading": "ひとりぐらしをはじめてからというもの、おやのありがたみをみにしみてかんじるようになった。",
-    "english": "Ever since I started living alone, I've come to keenly feel how much I appreciate my parents.",
+    "spoken": "子供が生まれてからというもの、夫婦の生活は一変した。",
+    "expected": "子供が生まれてからというもの、夫婦の生活は一変した。",
+    "reading": "こどもがうまれてからというもの、ふうふのせいかつはいっぺんした。",
+    "english": "Ever since their child was born, the couple's life has completely changed.",
     "grammar": "〜てからというもの（は）"
   },
   {
-    "spoken": "あの衝撃的な事件が起きてからというもの、町の雰囲気はすっかり変わってしまった。",
-    "expected": "あの衝撃的な事件が起きてからというもの、町の雰囲気はすっかり変わってしまった。",
-    "reading": "あのしょうげきてきなじけんがおきてからというもの、まちのふんいきはすっかりかわってしまった。",
-    "english": "Ever since that shocking incident occurred, the atmosphere of the town has completely changed.",
+    "spoken": "日本に来てからというもの、毎日が新しい発見の連続です。",
+    "expected": "日本に来てからというもの、毎日が新しい発見の連続です。",
+    "reading": "にほんにきてからというもの、まいにちがあたらしいはっけんのれんぞくです。",
+    "english": "Ever since I came to Japan, every day has been a continuous series of new discoveries.",
     "grammar": "〜てからというもの（は）"
   },
   {
-    "spoken": "新しい趣味を見つけてからというもの、休日は以前よりもずっと充実している。",
-    "expected": "新しい趣味を見つけてからというもの、休日は以前よりもずっと充実している。",
-    "reading": "あたらしいしゅみをみつけてからというもの、きゅうじつはいぜんよりもずっとじゅうじつしている。",
-    "english": "Since finding a new hobby, my weekends have become much more fulfilling than before.",
+    "spoken": "あの映画を見てからというもの、彼の人生観は大きく変わった。",
+    "expected": "あの映画を見てからというもの、彼の人生観は大きく変わった。",
+    "reading": "あのえいがをみてからというもの、かれのじんせいかんはおおきくかわった。",
+    "english": "Ever since watching that movie, his outlook on life has changed significantly.",
     "grammar": "〜てからというもの（は）"
   },
   {
-    "spoken": "子供が生まれてからというもの、夫婦の生活の中心はすっかり子供になった。",
-    "expected": "子供が生まれてからというもの、夫婦の生活の中心はすっかり子供になった。",
-    "reading": "こどもがうまれてからというもの、ふうふのせいかつのちゅうしんはすっかりこどもになった。",
-    "english": "Ever since our child was born, the center of our married life has completely shifted to the child.",
-    "grammar": "〜てからというもの（は）"
-  },
-  {
-    "spoken": "彼がチームリーダーになってからというもの、チーム全体の士気が目に見えて上がった。",
-    "expected": "彼がチームリーダーになってからというもの、チーム全体の士気が目に見えて上がった。",
-    "reading": "かれがちーむりーだーになってからというもの、ちーむぜんたいのしきがめにみえてあがった。",
-    "english": "Ever since he became the team leader, the morale of the entire team has visibly improved.",
-    "grammar": "〜てからというもの（は）"
-  },
-  {
-    "spoken": "病気を経験してからというもの、健康に対する意識が以前とは比べ物にならないほど高まった。",
-    "expected": "病気を経験してからというもの、健康に対する意識が以前とは比べ物にならないほど高まった。",
-    "reading": "びょうきをけいけんしてからというもの、けんこうにたいするいしきがいぜんとはくらべものにならないほどたかまった。",
-    "english": "Since experiencing illness, my awareness of health has become incomparably higher than before.",
-    "grammar": "〜てからというもの（は）"
-  },
-  {
-    "spoken": "インターネットが普及してからというもの、情報の入手方法が劇的に変化した。",
-    "expected": "インターネットが普及してからというもの、情報の入手方法が劇的に変化した。",
-    "reading": "いんたーねっとがふきゅうしてからというもの、じょうほうのにゅうしゅほうほうげきてきにへんかした。",
-    "english": "Ever since the internet became widespread, the way we obtain information has dramatically changed.",
-    "grammar": "〜てからというもの（は）"
-  },
-  {
-    "spoken": "長年勤めた会社を辞めてからというもの、彼は世界中を旅して回っているそうだ。",
-    "expected": "長年勤めた会社を辞めてからというもの、彼は世界中を旅して回っているそうだ。",
-    "reading": "ながねんつとめたかいしゃをやめてからというもの、かれはせかいじゅうをたびしてまわっているそうだ。",
-    "english": "I hear that ever since he quit the company he worked at for many years, he has been traveling around the world.",
-    "grammar": "〜てからというもの（は）"
-  },
-  {
-    "spoken": "彼女と出会ってからというもの、私の人生は色鮮やかなものになった気がする。",
-    "expected": "彼女と出会ってからというもの、私の人生は色鮮やかなものになった気がする。",
-    "reading": "かのじょとであってからというもの、わたしのじんせいはいろあざやかなものになったきがする。",
-    "english": "Ever since I met her, I feel like my life has become much more colorful.",
-    "grammar": "〜てからというもの（は）"
-  },
-  {
-    "spoken": "この厳しい経済状況にあって、中小企業は生き残りをかけた経営努力を続けている。",
-    "expected": "この厳しい経済状況にあって、中小企業は生き残りをかけた経営努力を続けている。",
-    "reading": "このきびしいけいざいじょうきょうにあって、ちゅうしょうきぎょうはいきのこりをかけたけいえいどりょくをつづけている。",
-    "english": "In this severe economic situation, small and medium-sized enterprises are continuing their management efforts for survival.",
+    "spoken": "この厳しい経済状況にあって、彼は新しい事業を立ち上げた。",
+    "expected": "この厳しい経済状況にあって、彼は新しい事業を立ち上げた。",
+    "reading": "このきびしいけいざいじょうきょうにあって、かれはあたらしいじぎょうをたちあげた。",
+    "english": "In the midst of these harsh economic conditions, he launched a new business.",
     "grammar": "〜にあって"
   },
   {
-    "spoken": "国際化が進む現代社会にあって、異文化理解能力は不可欠なスキルとなっている。",
-    "expected": "国際化が進む現代社会にあって、異文化理解能力は不可欠なスキルとなっている。",
-    "reading": "こくさいかがすすむげんだいしゃかいにあって、いぶんかりかいのうりょくはふかけつなすきるとなっている。",
-    "english": "In today's increasingly globalized society, cross-cultural understanding ability has become an indispensable skill.",
+    "spoken": "国際的な緊張が高まる中にあって、外交努力が続けられている。",
+    "expected": "国際的な緊張が高まる中にあって、外交努力が続けられている。",
+    "reading": "こくさいてきなきんちょうがたかまるなかにあって、がいこうどりょくがつづけられている。",
+    "english": "Amidst rising international tensions, diplomatic efforts are being continued.",
     "grammar": "〜にあって"
   },
   {
-    "spoken": "災害発生直後の混乱した状況にあって、冷静な判断と行動が求められた。",
-    "expected": "災害発生直後の混乱した状況にあって、冷静な判断と行動が求められた。",
-    "reading": "さいがいかっせいちょくごのこんらんしたじょうきょうにあって、れいせいなはんだんとうどうがもとめられた。",
-    "english": "In the chaotic situation immediately after the disaster struck, calm judgment and action were required.",
+    "spoken": "デジタル時代にあって、手書きの価値が見直されている。",
+    "expected": "デジタル時代にあって、手書きの価値が見直されている。",
+    "reading": "でじたるじだいにあって、てがきのかちがみなおされている。",
+    "english": "In this digital age, the value of handwriting is being reconsidered.",
     "grammar": "〜にあって"
   },
   {
-    "spoken": "少子高齢化という大きな課題に直面する日本にあって、社会保障制度の改革は急務である。",
-    "expected": "少子高齢化という大きな課題に直面する日本にあって、社会保障制度の改革は急務である。",
-    "reading": "しょうしこうれいかというおおきなかだいにちょくめんするにほんにあって、しゃかいほしょうせいどのかいかくはきゅうむである。",
-    "english": "For Japan, facing the major challenge of a declining birthrate and aging population, reform of the social security system is an urgent task.",
+    "spoken": "人材不足という困難な状況にあっても、彼は常に前向きな姿勢を崩さなかった。",
+    "expected": "人材不足という困難な状況にあっても、彼は常に前向きな姿勢を崩さなかった。",
+    "reading": "じんざいぶそくというこんなんなじょうきょうにあっても、かれはつねにまえむきなしせいをくずさなかった。",
+    "english": "Even in the difficult situation of a labor shortage, he always maintained a positive attitude.",
     "grammar": "〜にあって"
   },
   {
-    "spoken": "彼は会社の危機的な状況にあって、リーダーシップを発揮して難局を乗り切った。",
-    "expected": "彼は会社の危機的な状況にあって、リーダーシップを発揮して難局を乗り切った。",
-    "reading": "かれはかいしゃのききてきなじょうきょうにあって、りーだーしっぷをはっきしてなんきょくをのりきった。",
-    "english": "In the company's critical situation, he demonstrated leadership and overcame the difficulties.",
-    "grammar": "〜にあって"
-  },
-  {
-    "spoken": "情報が氾濫する現代にあって、正確な情報を見極める能力がますます重要になっている。",
-    "expected": "情報が氾濫する現代にあって、正確な情報を見極める能力がますます重要になっている。",
-    "reading": "じょうほうがはんらんするげんだいにあって、せいかくなじょうほうをみきわめるのうりょくがますますじゅうようになっている。",
-    "english": "In the modern age where information floods, the ability to discern accurate information is becoming increasingly important.",
-    "grammar": "〜にあって"
-  },
-  {
-    "spoken": "激しい競争環境にあって、独自の技術やサービスを持つことが企業の成長に繋がる。",
-    "expected": "激しい競争環境にあって、独自の技術やサービスを持つことが企業の成長に繋がる。",
-    "reading": "はげしいきょうそうかんきょうにあって、どくじのぎじゅつやさーびすをもつことがきぎょうのせいちょうにつながる。",
-    "english": "In a fierce competitive environment, having unique technology or services leads to corporate growth.",
-    "grammar": "〜にあって"
-  },
-  {
-    "spoken": "歴史的な転換期にあって、私たちは未来に向けて新たなビジョンを描く必要がある。",
-    "expected": "歴史的な転換期にあって、私たちは未来に向けて新たなビジョンを描く必要がある。",
-    "reading": "れきしてきなてんかんきにあって、わたしたちはみらいにむけてあらたなびじょんをえがくひつようがある。",
-    "english": "In this historical turning point, we need to draw a new vision for the future.",
-    "grammar": "〜にあって"
-  },
-  {
-    "spoken": "グローバルな課題が山積する世界にあって、国際協力の重要性はますます高まっている。",
-    "expected": "グローバルな課題が山積する世界にあって、国際協力の重要性はますます高まっている。",
-    "reading": "ぐろーばるなかだいがさんせきするせかいにあって、こくさいきょうりょくのじゅうようせいはますますたかまっている。",
-    "english": "In a world piled high with global challenges, the importance of international cooperation is ever-increasing.",
-    "grammar": "〜にあって"
-  },
-  {
-    "spoken": "戦後の混乱期にあっても、人々は希望を失わず復興に向けて懸命に努力した。",
-    "expected": "戦後の混乱期にあっても、人々は希望を失わず復興に向けて懸命に努力した。",
-    "reading": "せんごのこんらんきにあっても、ひとびとはきぼうをうしなわずふっこうにむけてけんめいにどりょくした。",
-    "english": "Even in the chaotic period after the war, people did not lose hope and worked hard towards reconstruction.",
-    "grammar": "〜にあって"
-  },
-  {
-    "spoken": "今回の展覧会では、彼の初期の作品を皮切りとして、年代順に代表作が展示されている。",
-    "expected": "今回の展覧会では、彼の初期の作品を皮切りとして、年代順に代表作が展示されている。",
-    "reading": "こんかいのてんらんかいでは、かれのしょきのさくひんをかわきりとして、ねんだいじゅんにだいひょうさくがてんじされている。",
-    "english": "In this exhibition, starting with his early works, representative pieces are displayed in chronological order.",
+    "spoken": "今回の展覧会を皮切りにして、全国各地で巡回展が開催される予定だ。",
+    "expected": "今回の展覧会を皮切りにして、全国各地で巡回展が開催される予定だ。",
+    "reading": "こんかいのてんらんかいをかわきりにして、ぜんこくかくちでじゅんかいてんがかいさいされるよていだ。",
+    "english": "Starting with this exhibition, traveling exhibitions are scheduled to be held in various parts of the country.",
     "grammar": "〜を皮切りに（して）、〜を皮切りとして"
   },
   {
-    "spoken": "その歌手は、地元でのコンサートを皮切りにして、全国ツアーを開始する予定だ。",
-    "expected": "その歌手は、地元でのコンサートを皮切りにして、全国ツアーを開始する予定だ。",
-    "reading": "そのかしゅは、じもとでのこんさーとをかわきりにして、ぜんこくつあーをかいしするよていだ。",
-    "english": "That singer plans to start a nationwide tour, kicking off with a concert in their hometown.",
+    "spoken": "京都での公演を皮切りとして、その劇団はヨーロッパツアーを開始した。",
+    "expected": "京都での公演を皮切りとして、その劇団はヨーロッパツアーを開始した。",
+    "reading": "きょうとでのこうえんをかわきりとして、そのげきだんはよーろっぱつあーをかいしした。",
+    "english": "Beginning with the performance in Kyoto, the theater company started its European tour.",
     "grammar": "〜を皮切りに（して）、〜を皮切りとして"
   },
   {
-    "spoken": "政府は、新しい経済政策の発表を皮切りに、次々と改革案を打ち出している。",
-    "expected": "政府は、新しい経済政策の発表を皮切りに、次々と改革案を打ち出している。",
-    "reading": "せいふは、あたらしいけいざいせいさくのはっぴょうをかわきりに、つぎつぎとかいかくあんをうちだしている。",
-    "english": "Starting with the announcement of the new economic policy, the government is launching one reform plan after another.",
+    "spoken": "この法律の制定を皮切りに、環境問題への取り組みが本格化した。",
+    "expected": "この法律の制定を皮切りに、環境問題への取り組みが本格化した。",
+    "reading": "このほうりつのせいていをかわきりに、かんきょうもんだいへのとりくみがほんかくかした。",
+    "english": "Starting with the enactment of this law, efforts to address environmental issues began in earnest.",
     "grammar": "〜を皮切りに（して）、〜を皮切りとして"
   },
   {
-    "spoken": "このアニメシリーズは、テレビ放送を皮切りとして、映画化やグッズ販売など多角的に展開された。",
-    "expected": "このアニメシリーズは、テレビ放送を皮切りとして、映画化やグッズ販売など多角的に展開された。",
-    "reading": "このあにめしりーずは、てれびほうそうをかわきりとして、えいがかやぐっずはんばいなどたかくてきにてんかいされた。",
-    "english": "This anime series, starting with its TV broadcast, developed multifaceted expansions including a movie adaptation and merchandise sales.",
+    "spoken": "彼のエッセイ集の出版を皮切りとして、多くの作家が同様のテーマで執筆し始めた。",
+    "expected": "彼のエッセイ集の出版を皮切りとして、多くの作家が同様のテーマで執筆し始めた。",
+    "reading": "かれのえっせいしゅうのしゅっぱんをかわきりとして、おおくのさっかがどうようのてーまでしっぴつしはじめた。",
+    "english": "Following the publication of his essay collection, many writers began writing on similar themes.",
     "grammar": "〜を皮切りに（して）、〜を皮切りとして"
   },
   {
-    "spoken": "その作家は、デビュー作の成功を皮切りに、数々のベストセラー小説を生み出した。",
-    "expected": "その作家は、デビュー作の成功を皮切りに、数々のベストセラー小説を生み出した。",
-    "reading": "そのさっかは、でびゅーさくのせいこうをかわきりに、かずかずのべすとせらーしょうせつをうみだした。",
-    "english": "Starting with the success of their debut work, that author has produced numerous bestselling novels.",
-    "grammar": "〜を皮切りに（して）、〜を皮切りとして"
-  },
-  {
-    "spoken": "わが社は、主力製品のモデルチェンジを皮切りとして、新たな市場戦略を展開していく方針だ。",
-    "expected": "わが社は、主力製品のモデルチェンジを皮切りとして、新たな市場戦略を展開していく方針だ。",
-    "reading": "わがしゃは、しゅりょくせいひんのもでるちぇんじをかわきりとして、あらたなしじょうせんりゃくをてんかいしていくほうしんだ。",
-    "english": "Our company plans to roll out a new market strategy, beginning with the model change of our main product.",
-    "grammar": "〜を皮切りに（して）、〜を皮切りとして"
-  },
-  {
-    "spoken": "講演会では、著名な経済学者の基調講演を皮切りに、活発なパネルディスカッションが行われた。",
-    "expected": "講演会では、著名な経済学者の基調講演を皮切りに、活発なパネルディスカッションが行われた。",
-    "reading": "こうえんかいでは、ちょめいなけいざいがくしゃのきちょうこうえんをかわきりに、かっぱつなぱねるでぃすかっしょんがおこなわれた。",
-    "english": "At the lecture meeting, starting with the keynote speech by a renowned economist, a lively panel discussion was held.",
-    "grammar": "〜を皮切りに（して）、〜を皮切りとして"
-  },
-  {
-    "spoken": "この町では、春の桜祭りを皮切りに、年間を通じて様々なイベントが開催される。",
-    "expected": "この町では、春の桜祭りを皮切りに、年間を通じて様々なイベントが開催される。",
-    "reading": "このまちでは、はるのさくらまつりをかわきりに、ねんかんをつうじてさまざまないべんとがかいさいされる。",
-    "english": "In this town, starting with the spring cherry blossom festival, various events are held throughout the year.",
-    "grammar": "〜を皮切りに（して）、〜を皮切りとして"
-  },
-  {
-    "spoken": "環境保護団体は、海岸清掃活動を皮切りにして、地域住民への啓発活動を強化していく。",
-    "expected": "環境保護団体は、海岸清掃活動を皮切りにして、地域住民への啓発活動を強化していく。",
-    "reading": "かんきょうほごだんたいは、かいがんせいそうかつどうをかわきりにして、ちいきじゅうみんへのけいはつかつどうをきょうかしていく。",
-    "english": "The environmental protection group will strengthen awareness activities for local residents, starting with coastal cleanup activities.",
-    "grammar": "〜を皮切りに（して）、〜を皮切りとして"
-  },
-  {
-    "spoken": "そのレストランチェーンは、都心部への出店を皮切りに、全国展開を目指している。",
-    "expected": "そのレストランチェーンは、都心部への出店を皮切りに、全国展開を目指している。",
-    "reading": "そのれすとらんちぇーんんは、としんぶへのしゅってんをかわきりに、ぜんこくてんかいをめざしている。",
-    "english": "That restaurant chain aims for nationwide expansion, starting with opening stores in urban centers.",
-    "grammar": "〜を皮切りに（して）、〜を皮切りとして"
-  },
-  {
-    "spoken": "この調査では、日常生活の些細な事柄から、国家レベルの重要な問題に至るまで、幅広く意見を求めた。",
-    "expected": "この調査では、日常生活の些細な事柄から、国家レベルの重要な問題に至るまで、幅広く意見を求めた。",
-    "reading": "このちょうさでは、にちじょうせいかつのささいなことがらから、こっかれべるのじゅうようなもんだいにいたるまで、はばひろくいけんをもとめた。",
-    "english": "This survey sought opinions widely, ranging from trivial matters of daily life to important national-level issues.",
+    "spoken": "この博物館は、古代の土器から現代アートに至るまで、幅広い展示品を収蔵している。",
+    "expected": "この博物館は、古代の土器から現代アートに至るまで、幅広い展示品を収蔵している。",
+    "reading": "このはくぶつかんは、こだいのどきからげんだいあーとにいたるまで、はばひろいてんじひんをしゅうぞうしている。",
+    "english": "This museum houses a wide range of exhibits, from ancient pottery all the way to contemporary art.",
     "grammar": "〜に至るまで"
   },
   {
-    "spoken": "彼のコレクションは、切手やコインといった一般的なものから、隕石の破片に至るまで多岐にわたる。",
-    "expected": "彼のコレクションは、切手やコインといった一般的なものから、隕石の破片に至るまで多岐にわたる。",
-    "reading": "かれのこれくしょんは、きってやこいんといったいっぱんてきなものから、いんせきのはへんにいたるまでたきにわたる。",
-    "english": "His collection covers a wide range, from common items like stamps and coins, all the way to meteorite fragments.",
+    "spoken": "彼は服装から言葉遣いに至るまで、完璧な紳士だった。",
+    "expected": "彼は服装から言葉遣いに至るまで、完璧な紳士だった。",
+    "reading": "かれはふくそうからことばづかいにいたるまで、かんぺきなしんしだった。",
+    "english": "He was a perfect gentleman in every respect, from his clothing down to his manner of speaking.",
     "grammar": "〜に至るまで"
   },
   {
-    "spoken": "その歴史書は、古代文明の黎明期から現代社会の成立に至るまで、人類の歩みを詳細に記述している。",
-    "expected": "その歴史書は、古代文明の黎明期から現代社会の成立に至るまで、人類の歩みを詳細に記述している。",
-    "reading": "そのれきししょは、こだいぶんめいのれいめいきからげんだいしゃかいのせいりつにいたるまで、じんるいのあゆみをしょうさいにきじゅつしている。",
-    "english": "That history book details the progress of humankind, from the dawn of ancient civilizations up to the establishment of modern society.",
+    "spoken": "日常的な買い物から不動産投資に至るまで、彼女は家計をしっかり管理している。",
+    "expected": "日常的な買い物から不動産投資に至るまで、彼女は家計をしっかり管理している。",
+    "reading": "にちじょうてきなかいものからふどうさんとうしにいたるまで、かのじょはかけいをしっかりかんりしている。",
+    "english": "From everyday shopping to real estate investment, she manages her household finances meticulously.",
     "grammar": "〜に至るまで"
   },
   {
-    "spoken": "彼女は服装から持ち物、さらには言葉遣いに至るまで、完璧なマナーを身につけている。",
-    "expected": "彼女は服装から持ち物、さらには言葉遣いに至るまで、完璧なマナーを身につけている。",
-    "reading": "かのじょはふくそうからもちもの、さらにはことばづかいにいたるまで、かんぺきなまなーをみにつけている。",
-    "english": "She has acquired perfect manners, encompassing everything from her clothing and belongings down to her way of speaking.",
+    "spoken": "その研究は、素粒子物理学から宇宙の起源に至るまで、多岐にわたる分野に影響を与えた。",
+    "expected": "その研究は、素粒子物理学から宇宙の起源に至るまで、多岐にわたる分野に影響を与えた。",
+    "reading": "そのけんきゅうは、そりゅうしぶつりがくからうちゅうのきげんにいたるまで、たきにわたるぶんやにえいきょうをあたえた。",
+    "english": "That research influenced diverse fields, ranging from particle physics all the way to the origin of the universe.",
     "grammar": "〜に至るまで"
   },
   {
-    "spoken": "この植物園では、熱帯雨林の珍しい植物から、高山植物に至るまで、世界中の様々な植物が見られる。",
-    "expected": "この植物園では、熱帯雨林の珍しい植物から、高山植物に至るまで、世界中の様々な植物が見られる。",
-    "reading": "このしょくぶつえんでは、ねったいうりんのめずらしいしょくぶつから、こうざんしょくぶつにいたるまで、せかいじゅうのさまざまなしょくぶつがみられる。",
-    "english": "In this botanical garden, you can see various plants from all over the world, from rare plants of the tropical rainforest to alpine plants.",
-    "grammar": "〜に至るまで"
-  },
-  {
-    "spoken": "彼は自分の研究テーマについて、基礎的な知識から最新の学説に至るまで、深く理解している。",
-    "expected": "彼は自分の研究テーマについて、基礎的な知識から最新の学説に至るまで、深く理解している。",
-    "reading": "かれはじぶんのけんきゅうてーまについて、きそてきなちしきからさいしんのがくせつにいたるまで、ふかくりかいしている。",
-    "english": "He has a deep understanding of his research theme, covering everything from basic knowledge to the latest academic theories.",
-    "grammar": "〜に至るまで"
-  },
-  {
-    "spoken": "その企業は、製品開発から販売戦略、アフターサービスに至るまで、顧客満足度を最優先に考えている。",
-    "expected": "その企業は、製品開発から販売戦略、アフターサービスに至るまで、顧客満足度を最優先に考えている。",
-    "reading": "そのきぎょうは、せいひんかいはつからはんばいせんりゃく、あふたーさーびすにいたるまで、こきゃくまんぞくどをさいゆうせんにかんがえている。",
-    "english": "That company prioritizes customer satisfaction in everything from product development and sales strategy down to after-sales service.",
-    "grammar": "〜に至るまで"
-  },
-  {
-    "spoken": "この博物館の展示は、原始時代の土器から現代アートに至るまで、非常に広範な時代を網羅している。",
-    "expected": "この博物館の展示は、原始時代の土器から現代アートに至るまで、非常に広範な時代を網羅している。",
-    "reading": "このはくぶつかんのてんじは、げんしじだいのどきからげんだいあーとにいたるまで、ひじょうにこうはんなじだいをもうらしている。",
-    "english": "The exhibits in this museum cover a very wide range of periods, from primitive earthenware to contemporary art.",
-    "grammar": "〜に至るまで"
-  },
-  {
-    "spoken": "詳細な計画書には、プロジェクトの目的から予算配分、リスク管理に至るまで、あらゆる側面が記載されていた。",
-    "expected": "詳細な計画書には、プロジェクトの目的から予算配分、リスク管理に至るまで、あらゆる側面が記載されていた。",
-    "reading": "しょうさいなけいかくしょには、ぷろじぇくとのもくてきからよさんはいぶん、りすくかんりにいたるまで、あらゆるそくめんがきさいされていた。",
-    "english": "The detailed plan described all aspects, from the project's objectives and budget allocation down to risk management.",
-    "grammar": "〜に至るまで"
-  },
-  {
-    "spoken": "彼は、日常会話レベルから専門的な議論に至るまで、流暢な日本語を使いこなすことができる。",
-    "expected": "彼は、日常会話レベルから専門的な議論に至るまで、流暢な日本語を使いこなすことができる。",
-    "reading": "かれは、にちじょうかいわれべるからせんもんてきなぎろんにいたるまで、りゅうちょうなにほんごをつかいこなすことができる。",
-    "english": "He can fluently handle Japanese at all levels, from daily conversation up to specialized discussions.",
-    "grammar": "〜に至るまで"
-  },
-  {
-    "spoken": "長年ご愛顧いただきましたこのサービスは、誠に勝手ながら今月末を限りに終了させていただきます。",
-    "expected": "長年ご愛顧いただきましたこのサービスは、誠に勝手ながら今月末を限りに終了させていただきます。",
-    "reading": "ながねんごあいこいただきましたこのさーびすは、まことにかってながらこんげつまつをかぎりにしゅうりょうさせていただきます。",
-    "english": "We regret to inform you that this service, which you have patronized for many years, will be discontinued at the end of this month.",
+    "spoken": "今月を限りに、この雑誌は休刊することになりました。",
+    "expected": "今月を限りに、この雑誌は休刊することになりました。",
+    "reading": "こんげつをかぎりに、このざっしはきゅうかんすることになりました。",
+    "english": "This magazine will cease publication as of the end of this month.",
     "grammar": "〜を限りに"
   },
   {
-    "spoken": "彼は今日の練習を限りに、怪我のため一時的にチームを離れることを決意した。",
-    "expected": "彼は今日の練習を限りに、怪我のため一時的にチームを離れることを決意した。",
-    "reading": "かれはきょうのれんしゅうをかぎりに、けがのためいちじてきにちーむをはなれることをけついした。",
-    "english": "He decided that after today's practice, he would temporarily leave the team due to his injury.",
+    "spoken": "本日を限りに、このレストランは閉店いたします。長年のご愛顧ありがとうございました。",
+    "expected": "本日を限りに、このレストランは閉店いたします。長年のご愛顧ありがとうございました。",
+    "reading": "ほんじつをかぎりに、このれすとらんはへいてんいたします。ながねんのごあいこありがとうございました。",
+    "english": "This restaurant will close its doors today. Thank you for your loyal patronage over the years.",
     "grammar": "〜を限りに"
   },
   {
-    "spoken": "あの老舗の菓子店は、後継者不足のため、残念ながら年内を限りに閉店することになった。",
-    "expected": "あの老舗の菓子店は、後継者不足のため、残念ながら年内を限りに閉店することになった。",
-    "reading": "あのしにせのかしてんは、こうけいしゃぶそくのため、ざんねんながらねんないをかぎりにへいてんすることになった。",
-    "english": "Unfortunately, that long-established confectionery store will close down by the end of the year due to a lack of successors.",
+    "spoken": "定年退職する今日を限りに、彼は教壇を去る。",
+    "expected": "定年退職する今日を限りに、彼は教壇を去る。",
+    "reading": "ていねんたいしょくするきょうをかぎりに、かれはきょうだんをさる。",
+    "english": "Today marks his retirement; he is leaving his teaching position.",
     "grammar": "〜を限りに"
   },
   {
-    "spoken": "健康上の理由により、彼は今シーズンを限りに現役を引退することを発表した。",
-    "expected": "健康上の理由により、彼は今シーズンを限りに現役を引退することを発表した。",
-    "reading": "けんこうじょうのりゆうにより、かれはこんしーずんをかぎりにげんえきをいんたいすることをはっぴょうした。",
-    "english": "Due to health reasons, he announced that he will retire from active play at the end of this season.",
+    "spoken": "この試合を限りに、彼は現役を引退することを表明した。",
+    "expected": "この試合を限りに、彼は現役を引退することを表明した。",
+    "reading": "このしあいをかぎりに、かれはげんえきをいんたいすることをひょうめいした。",
+    "english": "He announced that he will retire from active competition after this match.",
     "grammar": "〜を限りに"
   },
   {
-    "spoken": "本日を限りに、この部署での業務を終了し、来週からは新しい部署に異動します。",
-    "expected": "本日を限りに、この部署での業務を終了し、来週からは新しい部署に異動します。",
-    "reading": "ほんじつをかぎりに、このぶしょでのぎょうむをしゅうりょうし、らいしゅうからはあたらしいぶしょにいどうします。",
-    "english": "As of today, I will conclude my duties in this department, and from next week I will transfer to a new department.",
-    "grammar": "〜を限りに"
-  },
-  {
-    "spoken": "当店では、原材料費の高騰を受け、現在の価格での販売は本日を限りに終了いたします。",
-    "expected": "当店では、原材料費の高騰を受け、現在の価格での販売は本日を限りに終了いたします。",
-    "reading": "とうてんでは、げんざいりょうひのこうとうをうけ、げんざいのかかくでのはんばいはほんじつをかぎりにしゅうりょういたします。",
-    "english": "Due to the rise in raw material costs, sales at the current price at our store will end today.",
-    "grammar": "〜を限りに"
-  },
-  {
-    "spoken": "この奨学金制度は、予算削減のため、今年度の募集を限りに廃止されることになった。",
-    "expected": "この奨学金制度は、予算削減のため、今年度の募集を限りに廃止されることになった。",
-    "reading": "このしょうがくきんせいどは、よさんさくげんのため、こんねんどのぼしゅうをかぎりにはいしされることになった。",
-    "english": "Due to budget cuts, this scholarship system will be abolished after this fiscal year's application period.",
-    "grammar": "〜を限りに"
-  },
-  {
-    "spoken": "彼は今回の選挙への出馬を限りに、政治活動から引退する意向を示している。",
-    "expected": "彼は今回の選挙への出馬を限りに、政治活動から引退する意向を示している。",
-    "reading": "かれはこんかいのせんきょへのしゅつばをかぎりに、せいじかつどうからいんたいするいこうをしめしている。",
-    "english": "He has indicated his intention to retire from political activity after running in this election.",
-    "grammar": "〜を限りに"
-  },
-  {
-    "spoken": "３０年間続いたこの人気テレビ番組も、視聴率の低下から、来月を限りに放送を終了する。",
-    "expected": "３０年間続いたこの人気テレビ番組も、視聴率の低下から、来月を限りに放送を終了する。",
-    "reading": "さんじゅうねんかんつづいたこのにんきてれびばんぐみも、しちょうりつのていかから、らいげつをかぎりにほうそうをしゅうりょうする。",
-    "english": "This popular TV show, which has run for 30 years, will end its broadcast next month due to declining viewership ratings.",
-    "grammar": "〜を限りに"
-  },
-  {
-    "spoken": "今日を限りに甘いものを食べるのをやめて、本格的にダイエットを始めるつもりだ。",
-    "expected": "今日を限りに甘いものを食べるのをやめて、本格的にダイエットを始めるつもりだ。",
-    "reading": "きょうをかぎりにあまいものをたべるのをやめて、ほんかくてきにだいえっとをはじめるつもりだ。",
-    "english": "Starting today, I intend to stop eating sweets and begin dieting seriously.",
-    "grammar": "〜を限りに"
-  },
-  {
-    "spoken": "これをもちまして、本日の株主総会を閉会いたします。皆様ご協力ありがとうございました。",
-    "expected": "これをもちまして、本日の株主総会を閉会いたします。皆様ご協力ありがとうございました。",
-    "reading": "これをもちまして、ほんじつのきゃぶぬしそうかいをへいかいいたします。みなさまごきょうりょくありがとうございました。",
-    "english": "With this, we conclude today's general shareholders' meeting. Thank you all for your cooperation.",
+    "spoken": "これをもちまして、本日の会議を終了させていただきます。",
+    "expected": "これをもちまして、本日の会議を終了させていただきます。",
+    "reading": "これをもちまして、ほんじつのかいぎをしゅうりょうさせていただきます。",
+    "english": "With this, I would like to conclude today's meeting.",
     "grammar": "〜をもって"
   },
   {
-    "spoken": "当店は、平成３０年１２月３１日をもって、閉店させていただくことになりました。",
-    "expected": "当店は、平成３０年１２月３１日をもって、閉店させていただくことになりました。",
-    "reading": "とうてんは、へいせいさんじゅうねんじゅうにがつさんじゅういちにちをもって、へいてんさせていただくことになりました。",
-    "english": "Our store will be closing as of December 31, Heisei 30 (2018).",
+    "spoken": "最終報告書の提出をもって、このプロジェクトは完了となります。",
+    "expected": "最終報告書の提出をもって、このプロジェクトは完了となります。",
+    "reading": "さいしゅうほうこくしょのていしゅつをもって、このぷろじぇくとはかんりょうとなります。",
+    "english": "Upon submission of the final report, this project will be considered complete.",
     "grammar": "〜をもって"
   },
   {
-    "spoken": "審査の結果、以上５名の作品をもって、今年度の最優秀賞と決定いたしました。",
-    "expected": "審査の結果、以上５名の作品をもって、今年度の最優秀賞と決定いたしました。",
-    "reading": "しんさのけっか、いじょうごめいのさくひんをもって、こんねんどのさいゆうしゅうしょうとけっていいたしました。",
-    "english": "As a result of the judging, the works of the five individuals mentioned above have been selected for this fiscal year's grand prize.",
+    "spoken": "３月末日をもって、弊社は現住所から移転いたします。",
+    "expected": "３月末日をもって、弊社は現住所から移転いたします。",
+    "reading": "さんがつまつじつをもって、へいしゃはげんじゅうしょからいてんいたします。",
+    "english": "Our company will relocate from the current address as of the end of March.",
     "grammar": "〜をもって"
   },
   {
-    "spoken": "これにて、卒業証書授与式を終了いたします。卒業生の皆さんの前途を祝します。",
-    "expected": "これにて、卒業証書授与式を終了いたします。卒業生の皆さんの前途を祝します。",
-    "reading": "これにて、そつぎょうしょうしょじゅよしきをしゅうりょういたします。そつぎょうせいのみなさんのぜんとをしゅくします。",
-    "english": "Hereby, the graduation certificate award ceremony is concluded. We wish all the graduates a bright future.",
+    "spoken": "授賞式の終了をもって、今年の映画祭は閉幕となります。",
+    "expected": "授賞式の終了をもって、今年の映画祭は閉幕となります。",
+    "reading": "じゅしょうしきのしゅうりょうをもって、ことしのえいがさいはへいまくとなります。",
+    "english": "This year's film festival will conclude with the end of the awards ceremony.",
     "grammar": "〜をもって"
   },
   {
-    "spoken": "最終報告書の提出をもって、このプロジェクトに関する全ての業務は完了となります。",
-    "expected": "最終報告書の提出をもって、このプロジェクトに関する全ての業務は完了となります。",
-    "reading": "さいしゅうほうこくしょのていしゅつをもって、このぷろじぇくとにかんするすべてのぎょうむはかんりょうとなります。",
-    "english": "With the submission of the final report, all work related to this project will be complete.",
-    "grammar": "〜をもって"
-  },
-  {
-    "spoken": "誠に残念ですが、本日１７時をもって、受付業務を終了させていただきます。",
-    "expected": "誠に残念ですが、本日１７時をもって、受付業務を終了させていただきます。",
-    "reading": "まことにざんねんですが、ほんじつじゅうしちじをもって、うけつけぎょうむをしゅうりょうさせていただきます。",
-    "english": "We regret to inform you that reception services will close today at 17:00.",
-    "grammar": "〜をもって"
-  },
-  {
-    "spoken": "この法律は、公布の日から起算して６か月を経過した日をもって施行される。",
-    "expected": "この法律は、公布の日から起算して６か月を経過した日をもって施行される。",
-    "reading": "このほうりつは、こうふのひからきさんしてろっかげつをけいかしたひをもってしこうされる。",
-    "english": "This law will come into effect on the day six months have passed, calculated from the date of promulgation.",
-    "grammar": "〜をもって"
-  },
-  {
-    "spoken": "担当者の退職をもって、長年続いてきたこの研究プロジェクトは一時中断されることになった。",
-    "expected": "担当者の退職をもって、長年続いてきたこの研究プロジェクトは一時中断されることになった。",
-    "reading": "たんとうしゃのたいしょくをもって、ながねんつづいてきたこのけんきゅうぷろじぇくとはいちじちゅうだんされることになった。",
-    "english": "With the retirement of the person in charge, this long-running research project will be temporarily suspended.",
-    "grammar": "〜をもって"
-  },
-  {
-    "spoken": "株式会社山田商事は、令和５年３月３１日をもって、株式会社鈴木工業と合併いたしました。",
-    "expected": "株式会社山田商事は、令和５年３月３１日をもって、株式会社鈴木工業と合併いたしました。",
-    "reading": "かぶしきがいしゃやまだしょうじは、れいわごねんさんがつさんじゅういちにちをもって、かぶしきがいしゃすずきこうぎょうとがっぺいいたしました。",
-    "english": "Yamada Trading Co., Ltd. merged with Suzuki Industries Co., Ltd. as of March 31, Reiwa 5 (2023).",
-    "grammar": "〜をもって"
-  },
-  {
-    "spoken": "以上をもって、本日の議事は全て終了いたしました。長時間お疲れ様でした。",
-    "expected": "以上をもって、本日の議事は全て終了いたしました。長時間お疲れ様でした。",
-    "reading": "いじょうをもって、ほんじつのぎじはすべてしゅうりょういたしました。ちょうじかんおつかれさまでした。",
-    "english": "With the above, all agenda items for today have been concluded. Thank you for your hard work over this long period.",
-    "grammar": "〜をもって"
-  },
-  {
-    "spoken": "この地域の平均年収は、せいぜい４００万円といったところだと言われている。",
-    "expected": "この地域の平均年収は、せいぜい４００万円といったところだと言われている。",
-    "reading": "このちいきのへいきんねんしゅうは、せいぜいよんひゃくまんえんといったところだといわれている。",
-    "english": "It is said that the average annual income in this area is at most around 4 million yen.",
+    "spoken": "この地域の平均気温は、夏でもせいぜい25度といったところだ。",
+    "expected": "この地域の平均気温は、夏でもせいぜい25度といったところだ。",
+    "reading": "このちいきのへいきんきおんは、なつでもせいぜいにじゅうごどといったところだ。",
+    "english": "The average temperature in this region, even in summer, is about 25 degrees Celsius at most.",
     "grammar": "〜といったところだ"
   },
   {
-    "spoken": "会議の参加者は、多くても１５人といったところで、比較的小規模なものになるだろう。",
-    "expected": "会議の参加者は、多くても１５人といったところで、比較的小規模なものになるだろう。",
-    "reading": "かいぎのさんかしゃは、おおくてもじゅうごにんといったところで、ひかくてきしょうきぼなものになるだろう。",
-    "english": "The number of participants in the meeting will likely be around 15 at most, making it relatively small-scale.",
+    "spoken": "会議の参加者は、多くても30人といったところだろう。",
+    "expected": "会議の参加者は、多くても30人といったところだろう。",
+    "reading": "かいぎのさんかしゃは、おおくてもさんじゅうにんといったところだろう。",
+    "english": "The number of participants in the meeting will probably be around 30 at the most.",
     "grammar": "〜といったところだ"
   },
   {
-    "spoken": "新しいプロジェクトの予算は、現状では一千万円といったところだが、今後増える可能性もある。",
-    "expected": "新しいプロジェクトの予算は、現状では一千万円といったところだが、今後増える可能性もある。",
-    "reading": "あたらしいぷろじぇくとのよさんは、げんじょうではいっせんまんえんといったところだが、こんごふえるかのうせいもある。",
-    "english": "The budget for the new project is currently around 10 million yen, but there's a possibility it might increase in the future.",
+    "spoken": "あの新人選手の年俸は、まだ500万円といったところらしい。",
+    "expected": "あの新人選手の年俸は、まだ500万円といったところらしい。",
+    "reading": "あのしんじんせんしゅのねんぽうは、まだごひゃくまんえんといったところらしい。",
+    "english": "That rookie player's annual salary seems to be only about 5 million yen.",
     "grammar": "〜といったところだ"
   },
   {
-    "spoken": "彼が試験に合格する可能性は、五分五分といったところで、あまり楽観視できない状況だ。",
-    "expected": "彼が試験に合格する可能性は、五分五分といったところで、あまり楽観視できない状況だ。",
-    "reading": "かれがしけんにごうかくするかのうせいは、ごぶごぶといったところで、あまりらっかんしできないじょうきょうだ。",
-    "english": "His chances of passing the exam are about fifty-fifty, so it's not a situation where we can be too optimistic.",
+    "spoken": "この作業が終わるのに、あと1時間といったところでしょうか。",
+    "expected": "この作業が終わるのに、あと1時間といったところでしょうか。",
+    "reading": "このさぎょうがおわるのに、あといちじかんといったところでしょうか。",
+    "english": "It will take about another hour at most to finish this task, I suppose.",
     "grammar": "〜といったところだ"
   },
   {
-    "spoken": "このクラスの日本語能力は、中級の上、あるいは上級の下といったところだろうか。",
-    "expected": "このクラスの日本語能力は、中級の上、あるいは上級の下といったところだろうか。",
-    "reading": "このくらすのにほんごのうりょくは、ちゅうきゅうのうえ、あるいはじょうきゅうのしたといったところだろうか。",
-    "english": "The Japanese proficiency level of this class is probably somewhere around upper-intermediate or lower-advanced.",
-    "grammar": "〜といったところだ"
-  },
-  {
-    "spoken": "新製品の売上は、初月で１万個といったところで、目標にはまだ遠い。",
-    "expected": "新製品の売上は、初月で１万個といったところで、目標にはまだ遠い。",
-    "reading": "しんせいひんのうりあげは、しょげつでいちまんこといったところで、もくひょうにはまだとおい。",
-    "english": "Sales of the new product were around 10,000 units in the first month, which is still far from the target.",
-    "grammar": "〜といったところだ"
-  },
-  {
-    "spoken": "調査に協力してくれた人は、せいぜい全体の２割といったところで、十分なデータとは言えない。",
-    "expected": "調査に協力してくれた人は、せいぜい全体の２割といったところで、十分なデータとは言えない。",
-    "reading": "ちょうさにきょうりょくしてくれたひとは、せいぜいぜんたいのにわりといったところで、じゅうぶんなでーたとはいえない。",
-    "english": "The number of people who cooperated with the survey was at most about 20% of the total, which cannot be considered sufficient data.",
-    "grammar": "〜といったところだ"
-  },
-  {
-    "spoken": "彼がこの仕事にかけられる時間は、１日に２、３時間といったところだろう。",
-    "expected": "彼がこの仕事にかけられる時間は、１日に２、３時間といったところだろう。",
-    "reading": "かれがこのしごとにかけられるじかんは、いちにちにに、さんじかんといったところだろう。",
-    "english": "The time he can spend on this job is probably around two or three hours a day.",
-    "grammar": "〜といったところだ"
-  },
-  {
-    "spoken": "海外旅行に行けるのは、まあ年に一回といったところで、頻繁には行けない。",
-    "expected": "海外旅行に行けるのは、まあ年に一回といったところで、頻繁には行けない。",
-    "reading": "かいがいりょこうにいけるのは、まあねんにいっかいといったところで、ひんぱんにはいけない。",
-    "english": "I can go on overseas trips about once a year at best; I can't go frequently.",
-    "grammar": "〜といったところだ"
-  },
-  {
-    "spoken": "この問題の解決にかかる期間は、早くても半年といったところで、長期戦を覚悟する必要がある。",
-    "expected": "この問題の解決にかかる期間は、早くても半年といったところで、長期戦を覚悟する必要がある。",
-    "reading": "このもんだいのかいけつにかかるきかんは、はやくてもはんとしといったところで、ちょうきせんをかくごするひつようがある。",
-    "english": "The time needed to solve this problem will be at least half a year, so we need to be prepared for a long haul.",
-    "grammar": "〜といったところだ"
-  },
-  {
-    "spoken": "この難解な問題を解決できる人物は、現代において彼をおいて他にいないだろう。",
-    "expected": "この難解な問題を解決できる人物は、現代において彼をおいて他にいないだろう。",
-    "reading": "このなんかいなもんだいをかいけつできるじんぶつは、げんだいにおいてかれをおいてほかにいないだろう。",
-    "english": "There is probably no one else in modern times besides him who can solve this difficult problem.",
+    "spoken": "この難役をこなせる俳優は、彼をおいて他にいないだろう。",
+    "expected": "この難役をこなせる俳優は、彼をおいて他にいないだろう。",
+    "reading": "このなんやくをこなせるはいゆうは、かれをおいてほかにいないだろう。",
+    "english": "There is probably no other actor besides him who could handle this difficult role.",
     "grammar": "〜をおいて"
   },
   {
-    "spoken": "日本のアニメ文化を世界に広めた功績は、宮崎駿監督をおいて語ることはできない。",
-    "expected": "日本のアニメ文化を世界に広めた功績は、宮崎駿監督をおいて語ることはできない。",
-    "reading": "にほんのあにめぶんかをせかいにひろめたこうせきは、みやざきはやおかんとくをおいてかたることはできない。",
-    "english": "When talking about the achievement of spreading Japanese anime culture worldwide, one cannot omit Director Hayao Miyazaki.",
+    "spoken": "日本の伝統文化の美しさを体現しているのは、京都をおいて考えられない。",
+    "expected": "日本の伝統文化の美しさを体現しているのは、京都をおいて考えられない。",
+    "reading": "にほんのでんとうぶんかのうつくしさをたいげんしているのは、きょうとをおいてかんがえられない。",
+    "english": "When it comes to embodying the beauty of Japanese traditional culture, Kyoto is second to none.",
     "grammar": "〜をおいて"
   },
   {
-    "spoken": "この分野で彼女の右に出る者は、現在の学界において彼女をおいて他には考えられない。",
-    "expected": "この分野で彼女の右に出る者は、現在の学界において彼女をおいて他には考えられない。",
-    "reading": "このぶんやでかのじょのみぎにでるものは、げんざいのがっかいにおいてかのじょをおいてほかにはかんがえられない。",
-    "english": "In the current academic world, it's unthinkable that anyone else besides her could surpass her in this field.",
+    "spoken": "次期社長にふさわしい人物は、現副社長をおいて他にいない。",
+    "expected": "次期社長にふさわしい人物は、現副社長をおいて他にいない。",
+    "reading": "じきしゃちょうにふさわしいじんぶつは、げんふくしゃちょうをおいてほかにいない。",
+    "english": "There is no one more suitable for the next company president than the current vice president.",
     "grammar": "〜をおいて"
   },
   {
-    "spoken": "チームを優勝に導くことができるキャプテンは、経験と実力を兼ね備えた彼をおいて他にいない。",
-    "expected": "チームを優勝に導くことができるキャプテンは、経験と実力を兼ね備えた彼をおいて他にいない。",
-    "reading": "ちーむをゆうしょうにみちびくことができるきゃぷてんは、けいけんとじつりょくをかねそなえたかれをおいてほかにいない。",
-    "english": "There is no other captain besides him, who combines both experience and ability, capable of leading the team to victory.",
+    "spoken": "世界平和に貢献できる指導者は、彼女をおいていないと多くの人が信じている。",
+    "expected": "世界平和に貢献できる指導者は、彼女をおいていないと多くの人が信じている。",
+    "reading": "せかいへいわにこうけんできるしどうしゃは、かのじょをおいていないとおおくのひとがしんじている。",
+    "english": "Many people believe that she is the only leader capable of contributing to world peace.",
     "grammar": "〜をおいて"
   },
   {
-    "spoken": "こんなにも美しい夕日が見られる場所は、世界広しといえどもここをおいて他にはないだろう。",
-    "expected": "こんなにも美しい夕日が見られる場所は、世界広しといえどもここをおいて他にはないだろう。",
-    "reading": "こんなにもうつくしいゆうひがみられるばしょは、せかいひろしといえどもここをおいてほかにはないだろう。",
-    "english": "Even in the wide world, there's likely no other place besides this one where such a beautiful sunset can be seen.",
-    "grammar": "〜をおいて"
-  },
-  {
-    "spoken": "次期社長として会社を任せられるのは、長年の功績と人望のある専務をおいて他にいない。",
-    "expected": "次期社長として会社を任せられるのは、長年の功績と人望のある専務をおいて他にいない。",
-    "reading": "じきしゃちょうとしてかいしゃをまかせられるのは、ながねんのこうせきとじんぼうのあるせんむをおいてほかにいない。",
-    "english": "The only person who can be entrusted with the company as the next president is the senior managing director, who has long-standing achievements and popularity.",
-    "grammar": "〜をおいて"
-  },
-  {
-    "spoken": "この複雑な手術を成功させられる外科医は、日本国内では彼をおいて数名しかいないと言われている。",
-    "expected": "この複雑な手術を成功させられる外科医は、日本国内では彼をおいて数名しかいないと言われている。",
-    "reading": "このふくざつなしゅじゅつをせいこうさせられるげかいは、にほんこくないではかれをおいてすうめいしかいないといわれている。",
-    "english": "It is said that there are only a few surgeons in Japan, besides him, who can successfully perform this complex operation.",
-    "grammar": "〜をおいて"
-  },
-  {
-    "spoken": "伝統的な技術を継承し、次世代に伝えていける職人は、彼のような存在をおいて考えられない。",
-    "expected": "伝統的な技術を継承し、次世代に伝えていける職人は、彼のような存在をおいて考えられない。",
-    "reading": "でんとうてきなぎじゅつをけいしょうし、じせだいにつたえていけるしょくにんは、かれのようあそんざいをおいてかんがえられない。",
-    "english": "It's unthinkable that anyone other than someone like him could inherit traditional techniques and pass them down to the next generation.",
-    "grammar": "〜をおいて"
-  },
-  {
-    "spoken": "ピアノの演奏にかけては、彼女の表現力と技術は卓越しており、同世代では彼女をおいて並ぶ者はいない。",
-    "expected": "ピアノの演奏にかけては、彼女の表現力と技術は卓越しており、同世代では彼女をおいて並ぶ者はいない。",
-    "reading": "ぴあののえんそうにかけては、かのじょのひょうげんりょくとぎじゅつはたくえつしており、どうせだいではかのじょをおいてならぶものはいない。",
-    "english": "When it comes to piano performance, her expressiveness and technique are outstanding; among her generation, there is no one who can match her.",
-    "grammar": "〜をおいて"
-  },
-  {
-    "spoken": "この街の復興に尽力し、住民から深く信頼されている人物といえば、市長をおいて他にいないでしょう。",
-    "expected": "この街の復興に尽力し、住民から深く信頼されている人物といえば、市長をおいて他にいないでしょう。",
-    "reading": "このまちのふっこうにじんりょくし、じゅうみんからふかくしんらいされているじんぶつといえば、しちょうをおいてほかにいないでしょう。",
-    "english": "Speaking of a person who has dedicated themselves to the reconstruction of this town and is deeply trusted by the residents, it must be the mayor.",
-    "grammar": "〜をおいて"
-  },
-  {
-    "spoken": "この老舗旅館ならではの、きめ細やかなおもてなしと静寂な空間は、都会の喧騒を忘れさせてくれる。",
-    "expected": "この老舗旅館ならではの、きめ細やかなおもてなしと静寂な空間は、都会の喧騒を忘れさせてくれる。",
-    "reading": "このしにせりょかんならではの、きめこまやかなおもてなしとせいじゃくなくうかんは、とかいのけんそうをわすれさせてくれる。",
-    "english": "The meticulous hospitality and tranquil space, unique to this long-established inn, allow one to forget the hustle and bustle of the city.",
+    "spoken": "この繊細な味付けは、熟練した料理人ならではの技だ。",
+    "expected": "この繊細な味付けは、熟練した料理人ならではの技だ。",
+    "reading": "このせんさいなあじつけは、じゅくれんしたりょうりにんならではのわざだ。",
+    "english": "This delicate seasoning is a skill unique to an experienced chef.",
     "grammar": "〜ならでは"
   },
   {
-    "spoken": "京都ならではの美しい庭園と歴史的建造物は、訪れる多くの観光客を魅了し続けている。",
-    "expected": "京都ならではの美しい庭園と歴史的建造物は、訪れる多くの観光客を魅了し続けている。",
-    "reading": "きょうとならではのうつくしいていえんとれきしてきけんぞうぶつは、おとずれるおおくのかんこうきゃくをみりょうしつづけている。",
-    "english": "The beautiful gardens and historical buildings, characteristic of Kyoto, continue to fascinate many visiting tourists.",
+    "spoken": "手作りの温かみは、大量生産品にはない、この店ならではの魅力だ。",
+    "expected": "手作りの温かみは、大量生産品にはない、この店ならではの魅力だ。",
+    "reading": "てづくりのぬくもりは、たいりょうせいさんひんにはない、このみせならではのみりょくだ。",
+    "english": "The warmth of handmade goods is a charm unique to this shop, not found in mass-produced items.",
     "grammar": "〜ならでは"
   },
   {
-    "spoken": "熟練した職人ならではの技によって生み出された工芸品は、芸術品のような輝きを放っている。",
-    "expected": "熟練した職人ならではの技によって生み出された工芸品は、芸術品のような輝きを放っている。",
-    "reading": "じゅくれんしたしょくにんならではのわざによってうみだされたこうげいひんは、げいじゅつひんのようなかがやきをはなっている。",
-    "english": "The craftworks created by the skill unique to experienced artisans emit a brilliance like works of art.",
+    "spoken": "この景色は、山頂まで登った者ならではの特権だ。",
+    "expected": "この景色は、山頂まで登った者ならではの特権だ。",
+    "reading": "このけしきは、さんちょうまでのぼったものならではのとっけんだ。",
+    "english": "This view is a special privilege only for those who have climbed to the summit.",
     "grammar": "〜ならでは"
   },
   {
-    "spoken": "この地域ならではの新鮮な海の幸を使った料理は、他では決して味わえない格別の美味しさだ。",
-    "expected": "この地域ならではの新鮮な海の幸を使った料理は、他では決して味わえない格別の美味しさだ。",
-    "reading": "このちいきならではのしんせんなうみのさちをつかったりょうりは、ほかではけっしてあじわえないかくべつのおいしさだ。",
-    "english": "The dishes using fresh seafood unique to this region have an exceptional deliciousness that cannot be tasted elsewhere.",
+    "spoken": "彼ならではの発想が、このプロジェクトを成功に導いた。",
+    "expected": "彼ならではの発想が、このプロジェクトを成功に導いた。",
+    "reading": "かれならではのはっそうが、このぷろじぇくとをせいこうにみちびいた。",
+    "english": "His unique ideas led this project to success.",
     "grammar": "〜ならでは"
   },
   {
-    "spoken": "子供ならではの純粋な発想や質問に、大人たちは時としてっとさせられることがある。",
-    "expected": "子供ならではの純粋な発想や質問に、大人たちは時としてっとさせられることがある。",
-    "reading": "こどもならではのじゅんすいなはっそうやしつもんに、おとなたちはときとしてはっとさせられることがある。",
-    "english": "Adults are sometimes taken aback by the pure ideas and questions that only children can come up with.",
-    "grammar": "〜ならでは"
-  },
-  {
-    "spoken": "彼ならではのユニークな視点と分析力が、この研究プロジェクトを成功に導いた。",
-    "expected": "彼ならではのユニークな視点と分析力が、この研究プロジェクトを成功に導いた。",
-    "reading": "かれならではのゆにーくなしてんとぶんせきりょくが、このけんきゅうぷろじぇくとをせいこうにみちびいた。",
-    "english": "His unique perspective and analytical skills, characteristic of him, led this research project to success.",
-    "grammar": "〜ならでは"
-  },
-  {
-    "spoken": "現地の人々との交流を通じて得られる体験は、パッケージツアーならでは味わえない貴重なものだ。",
-    "expected": "現地の人々との交流を通じて得られる体験は、パッケージツアーならでは味わえない貴重なものだ。",
-    "reading": "げんちのひとびととのこうりゅうをつうじてえられるたいけんは、ぱっけーじつあーならではあじわえないきちょうなものだ。",
-    "english": "The experiences gained through interacting with local people are precious things that cannot be experienced through package tours.",
-    "grammar": "〜ならでは"
-  },
-  {
-    "spoken": "この小さな島ならではの、ゆったりとした時間の流れと温かい人間関係が心を癒してくれる。",
-    "expected": "この小さな島ならではの、ゆったりとした時間の流れと温かい人間関係が心を癒してくれる。",
-    "reading": "このちいさなしまならではの、ゆったりとしたじかんのながれとあたたかいにんげんかんけいがこころをいやしてくれる。",
-    "english": "The leisurely flow of time and warm human relationships, unique to this small island, soothe the heart.",
-    "grammar": "〜ならでは"
-  },
-  {
-    "spoken": "彼女ならではの繊細な感性で描かれた絵画は、多くの人々の共感を呼んでいる。",
-    "expected": "彼女ならではの繊細な感性で描かれた絵画は、多くの人々の共感を呼んでいる。",
-    "reading": "かのじょならではのせんさいなかんせいでえがかれたかいがは、おおくのひとびとのきょうかんをよんでいる。",
-    "english": "The paintings drawn with her delicate sensibility, unique to her, resonate with many people.",
-    "grammar": "〜ならでは"
-  },
-  {
-    "spoken": "長年の経験を持つベテランならではの的確なアドバイスは、若手社員にとって非常に有益だ。",
-    "expected": "長年の経験を持つベテランならではの的確なアドバイスは、若手社員にとって非常に有益だ。",
-    "reading": "ながねんのけいけんをもつべてらんならではのてきかくなあどばいすは、わかてしゃいんにとってひじょうにゆうえきだ。",
-    "english": "The pertinent advice, characteristic of a veteran with many years of experience, is extremely beneficial for young employees.",
-    "grammar": "〜ならでは"
-  },
-  {
-    "spoken": "彼の活躍は国内にとどまらず、海外の学会でも高く評価され、多くの賞を受賞している。",
-    "expected": "彼の活躍は国内にとどまらず、海外の学会でも高く評価され、多くの賞を受賞している。",
-    "reading": "かれのかつやくはこくないにとどまらず、かいがいのがっかいでもたかくひょうかされ、おおくのしょうをじゅしょうしている。",
-    "english": "His contributions are not limited to Japan; they are highly evaluated at overseas academic conferences as well, and he has received many awards.",
+    "spoken": "このアニメの人気は国内にとどまらず、海外にも広がっている。",
+    "expected": "このアニメの人気は国内にとどまらず、海外にも広がっている。",
+    "reading": "このあにめの にんきはこくないにとどまらず、かいがいにもひろがっている。",
+    "english": "The popularity of this anime is not limited to Japan, but is spreading overseas as well.",
     "grammar": "〜にとどまらず"
   },
   {
-    "spoken": "この技術の影響は、医療分野にとどまらず、農業や工業など様々な産業に及ぶ可能性がある。",
-    "expected": "この技術の影響は、医療分野にとどまらず、農業や工業など様々な産業に及ぶ可能性がある。",
-    "reading": "このぎじゅつのえいきょうは、いりょうぶんやにとどまらず、のうぎょうやこうぎょうなどさまざまなさんぎょうにおよぶかのうせいがある。",
-    "english": "The impact of this technology is not confined to the medical field; it may potentially extend to various industries such as agriculture and manufacturing.",
+    "spoken": "環境問題の影響は、一地域にとどまらず、地球規模で考えなければならない。",
+    "expected": "環境問題の影響は、一地域にとどまらず、地球規模で考えなければならない。",
+    "reading": "かんきょうもんだいのえいきょうは、いちちいきにとどまらず、ちきゅうきぼでかんがえなければならない。",
+    "english": "The impact of environmental problems is not confined to one region; we must think on a global scale.",
     "grammar": "〜にとどまらず"
   },
   {
-    "spoken": "環境問題への関心は、一部の専門家にとどまらず、一般市民の間でも急速に高まっている。",
-    "expected": "環境問題への関心は、一部の専門家にとどまらず、一般市民の間でも急速に高まっている。",
-    "reading": "かんきょうもんだいへのかんしんは、いちぶのせんもんかにとどまらず、いっぱんしみんのあいだでもきゅうそくにたかまっている。",
-    "english": "Interest in environmental issues is not limited to some experts; it is rapidly increasing among the general public as well.",
+    "spoken": "彼の活動は音楽にとどまらず、俳優や社会活動家としても知られている。",
+    "expected": "彼の活動は音楽にとどまらず、俳優や社会活動家としても知られている。",
+    "reading": "かれのかつどうはおんがくにとどまらず、はいゆうやしゃかいかつどうかとしても しられている。",
+    "english": "His activities extend beyond music; he is also known as an actor and social activist.",
     "grammar": "〜にとどまらず"
   },
   {
-    "spoken": "その企業の事業展開は、アジア市場にとどまらず、ヨーロッパや北米にも拡大している。",
-    "expected": "その企業の事業展開は、アジア市場にとどまらず、ヨーロッパや北米にも拡大している。",
-    "reading": "そのきぎょうのじぎょうてんかいは、あじあしじょうにとどまらず、よーろっぱやほくべいにもかくだいしている。",
-    "english": "That company's business development is not confined to the Asian market; it is also expanding into Europe and North America.",
+    "spoken": "この技術は医療分野にとどまらず、様々な産業への応用が期待されている。",
+    "expected": "この技術は医療分野にとどまらず、様々な産業への応用が期待されている。",
+    "reading": "このぎじゅつはいりょうぶんやにとどまらず、さまざまなさんぎょうへのおうようがきたいされている。",
+    "english": "This technology is expected to be applied not only in the medical field but also in various other industries.",
     "grammar": "〜にとどまらず"
   },
   {
-    "spoken": "彼女の才能は、音楽にとどまらず、絵画や文学の分野でも非凡なものを見せている。",
-    "expected": "彼女の才能は、音楽にとどまらず、絵画や文学の分野でも非凡なものを見せている。",
-    "reading": "かのじょのさいのうは、おんがくにとどまらず、かいがやぶんがくのぶんやでもひぼんなものをみせている。",
-    "english": "Her talent is not limited to music; she shows extraordinary ability in the fields of painting and literature as well.",
-    "grammar": "〜にとどまらず"
-  },
-  {
-    "spoken": "この祭りの影響力は、地域社会にとどまらず、全国的な観光客誘致にも貢献している。",
-    "expected": "この祭りの影響力は、地域社会にとどまらず、全国的な観光客誘致にも貢献している。",
-    "reading": "このまつりのえいきょうりょくは、ちいきしゃかいにとどまらず、ぜんこくてきなかんこうきゃくゆうちにもこうけんしている。",
-    "english": "The influence of this festival extends beyond the local community, contributing also to attracting tourists nationwide.",
-    "grammar": "〜にとどまらず"
-  },
-  {
-    "spoken": "高齢化社会の問題は、日本にとどまらず、多くの先進国共通の課題となっている。",
-    "expected": "高齢化社会の問題は、日本にとどまらず、多くの先進国共通の課題となっている。",
-    "reading": "こうれいかしゃかいのもんだいは、にほんんいとどまらず、おおくのせんしんこくきょうつうのかだいとなっている。",
-    "english": "The problem of an aging society is not limited to Japan; it has become a common issue for many developed countries.",
-    "grammar": "〜にとどまらず"
-  },
-  {
-    "spoken": "彼の研究成果は、学術界にとどまらず、実社会における応用も期待されている。",
-    "expected": "彼の研究成果は、学術界にとどまらず、実社会における応用も期待されている。",
-    "reading": "かれのけんきゅうせいかは、がくじゅつかいにとどまらず、じっしゃかいにおけるおうようもきたいされている。",
-    "english": "His research findings are expected to have applications not only within the academic world but also in the real world.",
-    "grammar": "〜にとどまらず"
-  },
-  {
-    "spoken": "インターネットの普及は、情報の伝達速度にとどまらず、人々の生活様式そのものを変えた。",
-    "expected": "インターネットの普及は、情報の伝達速度にとどまらず、人々の生活様式そのものを変えた。",
-    "reading": "いんたーねっとのふきゅうは、じょうほうのでんたつそくどにとどまらず、ひとびとのせいかつようしきそのものをかえた。",
-    "english": "The spread of the internet has changed not only the speed of information transmission but also people's very lifestyles.",
-    "grammar": "〜にとどまらず"
-  },
-  {
-    "spoken": "このプロジェクトの成功は、参加者個人の成長にとどまらず、組織全体の活性化にも繋がった。",
-    "expected": "このプロジェクトの成功は、参加者個人の成長にとどまらず、組織全体の活性化にも繋がった。",
-    "reading": "このぷろじぇくとのせいこうは、さんかしゃこじんのせいちょうにとどまらず、そしきぜんたいのかっせいかにもつながった。",
-    "english": "The success of this project led not only to the personal growth of the participants but also to the revitalization of the entire organization.",
-    "grammar": "〜にとどまらず"
-  },
-  {
-    "spoken": "彼は英語はおろか、フランス語やスペイン語など複数の言語を流暢に話すことができる。",
-    "expected": "彼は英語はおろか、フランス語やスペイン語など複数の言語を流暢に話すことができる。",
-    "reading": "かれはえいごはおろか、ふらんすごやすぺいんごなどふくすうのげんごをりゅうちょうにはなすことができる。",
-    "english": "He can speak fluently not only English, but also multiple languages such as French and Spanish.",
+    "spoken": "彼は敬語はおろか、日常会話もおぼつかない。",
+    "expected": "彼は敬語はおろか、日常会話もおぼつかない。",
+    "reading": "かれはけいごはおろか、にちじょうかいわもおぼつかない。",
+    "english": "He struggles with everyday conversation, let alone polite language (keigo).",
     "grammar": "〜はおろか"
   },
   {
-    "spoken": "その村では、バスはおろか、電車も通っておらず、交通の便が非常に悪い。",
-    "expected": "その村では、バスはおろか、電車も通っておらず、交通の便が非常に悪い。",
-    "reading": "そのむらでは、ばすはおろか、でんしゃもとおっておらず、こうつうのべんがひじょうにわるい。",
-    "english": "In that village, let alone buses, even trains don't run, making transportation very inconvenient.",
+    "spoken": "病状が悪化し、食事はおろか、水を飲むことさえ困難になった。",
+    "expected": "病状が悪化し、食事はおろか、水を飲むことさえ困難になった。",
+    "reading": "びょうじょうがあっかし、しょくじはおろか、みずをのむことさえこんなんになった。",
+    "english": "His condition worsened, making it difficult even to drink water, let alone eat.",
     "grammar": "〜はおろか"
   },
   {
-    "spoken": "彼は自分のことはおろか、家族のことさえ全く顧みない利己的な人間だ。",
-    "expected": "彼は自分のことはおろか、家族のことさえ全く顧みない利己的な人間だ。",
-    "reading": "かれはじぶんのことはおろか、かぞくのことさえまったくかえりみないりこてきなにんげんだ。",
-    "english": "He is a selfish person who doesn't care at all about his family, let alone himself.",
+    "spoken": "その会社はボーナスはおろか、毎月の給料さえ遅れがちだ。",
+    "expected": "その会社はボーナスはおろか、毎月の給料さえ遅れがちだ。",
+    "reading": "そのかいしゃはぼーなすはおろか、まいつきのきゅうりょうさえおくれがちだ。",
+    "english": "That company often delays monthly salaries, let alone bonuses.",
     "grammar": "〜はおろか"
   },
   {
-    "spoken": "怪我のため、彼は歩くことはおろか、ベッドから起き上がることさえ困難な状態だった。",
-    "expected": "怪我のため、彼は歩くことはおろか、ベッドから起き上がることさえ困難な状態だった。",
-    "reading": "けがのため、かれはあるくことはおろか、べっどからおきあがることさえこんなんなじょうたいだった。",
-    "english": "Due to his injury, he was in a state where it was difficult even to get out of bed, let alone walk.",
+    "spoken": "忙しくて、旅行はおろか、近所の散歩をする時間もない。",
+    "expected": "忙しくて、旅行はおろか、近所の散歩をする時間もない。",
+    "reading": "いそがしくて、りょこうはおろか、きんじょのさんぽをするじかんもない。",
+    "english": "I'm so busy I don't even have time for a walk in the neighborhood, let alone travel.",
     "grammar": "〜はおろか"
   },
   {
-    "spoken": "その会社は経営不振で、ボーナスはおろか、毎月の給料さえ支払いが遅れているらしい。",
-    "expected": "その会社は経営不振で、ボーナスはおろか、毎月の給料さえ支払いが遅れているらしい。",
-    "reading": "そのかいしゃはけいえいふしんで、ぼーなすはおろか、まいつきのきゅうりょうさえしはらいがおくれているらしい。",
-    "english": "Due to poor management, that company is reportedly late in paying even monthly salaries, let alone bonuses.",
-    "grammar": "〜はおろか"
-  },
-  {
-    "spoken": "彼は極度の人見知りで、人前で話すことはおろか、知らない人と目を合わせることすらできない。",
-    "expected": "彼は極度の人見知りで、人前で話すことはおろか、知らない人と目を合わせることすらできない。",
-    "reading": "かれはきょくどのひとみしりで、ひとまえではなすことはおろか、しらないひととめをあわせることすらできない。",
-    "english": "He is extremely shy; he can't even make eye contact with strangers, let alone speak in public.",
-    "grammar": "〜はおろか"
-  },
-  {
-    "spoken": "忙しすぎて、昼食はおろか、水を飲む時間さえないほどだった。",
-    "expected": "忙しすぎて、昼食はおろか、水を飲む時間さえないほどだった。",
-    "reading": "いそがしすぎて、ちゅうしょくはおろか、みずをのむじかんさえないほどだった。",
-    "english": "I was so busy that I didn't even have time to drink water, let alone eat lunch.",
-    "grammar": "〜はおろか"
-  },
-  {
-    "spoken": "彼はギャンブルで財産を失い、家はおろか、着る物にも困る生活を送っている。",
-    "expected": "彼はギャンブルで財産を失い、家はおろか、着る物にも困る生活を送っている。",
-    "reading": "かれはぎゃんぶるでざいさんをうしない、いえはおろか、きるものにもこまるせいかつをおくっている。",
-    "english": "He lost his fortune through gambling and is living a life where he lacks even clothes to wear, let alone a house.",
-    "grammar": "〜はおろか"
-  },
-  {
-    "spoken": "この地域の子供たちは、パソコンはおろか、スマートフォンさえ持っていない子が多い。",
-    "expected": "この地域の子供たちは、パソコンはおろか、スマートフォンさえ持っていない子が多い。",
-    "reading": "このちいきのこどもたちは、ぱそこんはおろか、すまーとふぉんさえもっていないこがおおい。",
-    "english": "Many children in this region don't even own a smartphone, let alone a personal computer.",
-    "grammar": "〜はおろか"
-  },
-  {
-    "spoken": "彼は漢字はおろか、ひらがなやカタカナを読むことさえ難しいようです。",
-    "expected": "彼は漢字はおろか、ひらがなやカタカナを読むことさえ難しいようです。",
-    "reading": "かれはかんじはおろか、ひらがなやかたかなをよむことさえむずかしいようです。",
-    "english": "It seems difficult for him even to read hiragana and katakana, let alone kanji.",
-    "grammar": "〜はおろか"
-  },
-  {
-    "spoken": "このレストランは、料理の味もさることながら、店内の雰囲気や接客サービスも素晴らしい。",
-    "expected": "このレストランは、料理の味もさることながら、店内の雰囲気や接客サービスも素晴らしい。",
-    "reading": "このれすとらんは、りょうりのあじもさることながら、てんないのふんいきやせっきゃくさーびすもすばらしい。",
-    "english": "While the taste of the food at this restaurant is excellent, the ambiance and customer service are also wonderful.",
+    "spoken": "このレストランは料理の味もさることながら、店内の雰囲気が素晴らしい。",
+    "expected": "このレストランは料理の味もさることながら、店内の雰囲気が素晴らしい。",
+    "reading": "このれすとらんはりょうりのあじもさることながら、てんないのふんいきがすばらしい。",
+    "english": "While the food at this restaurant is certainly delicious, the atmosphere inside is also wonderful.",
     "grammar": "〜もさることながら"
   },
   {
-    "spoken": "彼女は、学業成績もさることながら、スポーツにおいても目覚ましい才能を発揮している。",
-    "expected": "彼女は、学業成績もさることながら、スポーツにおいても目覚ましい才能を発揮している。",
-    "reading": "かのじょは、がくぎょうせいせきもさることながら、すぽーつにおいてもめざましいさいのうをはっきしている。",
-    "english": "While her academic performance is notable, she also demonstrates remarkable talent in sports.",
+    "spoken": "彼女は成績優秀なこともさることながら、その人柄で多くの人に慕われている。",
+    "expected": "彼女は成績優秀なこともさることながら、その人柄で多くの人に慕われている。",
+    "reading": "かのじょはせいせきゆうしゅうなこともさることながら、そのひとがらでおおくのひとにしたわれている。",
+    "english": "Not only does she have excellent grades, but she is also admired by many for her personality.",
     "grammar": "〜もさることながら"
   },
   {
-    "spoken": "新製品の機能性もさることながら、その洗練されたデザインが多くの消費者を惹きつけている。",
-    "expected": "新製品の機能性もさることながら、その洗練されたデザインが多くの消費者を惹きつけている。",
-    "reading": "しんせいひんのきのうせいもさることながら、そのせんれんされたでざいんがおおくのしょうひしゃをひきつけている。",
-    "english": "While the functionality of the new product is certainly good, its sophisticated design is attracting many consumers.",
+    "spoken": "デザインもさることながら、この製品は機能性の高さが評価されている。",
+    "expected": "デザインもさることながら、この製品は機能性の高さが評価されている。",
+    "reading": "でざいんもさることながら、このせいひんはきのうせいのたかさがひょうかされている。",
+    "english": "While the design is noteworthy, this product is highly praised for its functionality.",
     "grammar": "〜もさることながら"
   },
   {
-    "spoken": "彼のリーダーシップもさることながら、チームメンバー一人ひとりの努力がプロジェクト成功の鍵だった。",
-    "expected": "彼のリーダーシップもさることながら、チームメンバー一人ひとりの努力がプロジェクト成功の鍵だった。",
-    "reading": "かれのりーだーしっぷもさることながら、ちーむめんばーひとりひとりのどりょくがぷろじぇくとせいこうのかぎだった。",
-    "english": "While his leadership was important, the efforts of each individual team member were the key to the project's success.",
+    "spoken": "親の経済力もさることながら、本人の努力が合格につながった。",
+    "expected": "親の経済力もさることながら、本人の努力が合格につながった。",
+    "reading": "おやのけいざいりょくもさることながら、ほんにんのどりょくがごうかくにつながった。",
+    "english": "While the parents' financial resources were a factor, the individual's own effort led to their success in passing.",
     "grammar": "〜もさることながら"
   },
   {
-    "spoken": "この地域の自然の美しさもさることながら、そこに住む人々の温かい人柄も大きな魅力だ。",
-    "expected": "この地域の自然の美しさもさることながら、そこに住む人々の温かい人柄も大きな魅力だ。",
-    "reading": "このちいきのしぜんのうつくしさもさることながら、そこにすむひとびとのあたたかいひとがらもおおきなみりょくだ。",
-    "english": "While the natural beauty of this region is undeniable, the warm personalities of the people living there are also a major attraction.",
-    "grammar": "〜もさることながら"
-  },
-  {
-    "spoken": "その歴史的建造物の荘厳さもさることながら、細部にまで施された精巧な装飾に目を奪われる。",
-    "expected": "その歴史的建造物の荘厳さもさることながら、細部にまで施された精巧な装飾に目を奪われる。",
-    "reading": "そのれきしてきけんぞうぶつのそうごんさもさることながら、さいぶにまでほどこされたせいこうなそうしょくにめをうばわれる。",
-    "english": "While the grandeur of the historical building is impressive, one is captivated by the elaborate decorations applied even to the finest details.",
-    "grammar": "〜もさることながら"
-  },
-  {
-    "spoken": "作家の文章力もさることながら、物語の独創的な発想と構成力が高く評価されている。",
-    "expected": "作家の文章力もさることながら、物語の独創的な発想と構成力が高く評価されている。",
-    "reading": "さっかのぶんしょうりょくもさることながら、ものがたりのどくそうてきなはっそうとこうせいりょくがたかくひょうかされている。",
-    "english": "While the author's writing skill is noteworthy, the story's original ideas and structural power are highly praised.",
-    "grammar": "〜もさることながら"
-  },
-  {
-    "spoken": "最新技術の導入による効率化もさることながら、従業員のモチベーション向上が生産性向上に繋がった。",
-    "expected": "最新技術の導入による効率化もさることながら、従業員のモチベーション向上が生産性向上に繋がった。",
-    "reading": "さいしんぎじゅつのどうにゅうによるこうりつかもさることながら、じゅうぎょういんのもちべーしょんこうじょうがせいさんせいこうじょうにつながった。",
-    "english": "While efficiency improved due to the introduction of the latest technology, the increase in employee motivation also led to higher productivity.",
-    "grammar": "〜もさることながら"
-  },
-  {
-    "spoken": "親からの経済的な援助もさることながら、精神的な支えが彼にとっては何よりも大きかった。",
-    "expected": "親からの経済的な援助もさることながら、精神的な支えが彼にとっては何よりも大きかった。",
-    "reading": "おやからのけいざいてきなえんじょもさることながら、せいしんてきなささえがかれにとってはなによりもおおきかった。",
-    "english": "While the financial support from his parents was significant, the emotional support was, more than anything, the greatest thing for him.",
-    "grammar": "〜もさることながら"
-  },
-  {
-    "spoken": "この映画は、映像の美しさもさることながら、観客の心に深く響くストーリーが高く評価されている。",
-    "expected": "この映画は、映像の美しさもさることながら、観客の心に深く響くストーリーが高く評価されている。",
-    "reading": "このえいがは、えいぞうのうつくしさもさることながら、かんきゃくのこころにふかくひびくすとーりーがたかくひょうかされている。",
-    "english": "While the visual beauty of this movie is remarkable, the story that deeply resonates with the audience's hearts is highly acclaimed.",
-    "grammar": "〜もさることながら"
-  },
-  {
-    "spoken": "進路について悩んでいるなら、先生なり先輩なりに相談してみてはどうですか。",
-    "expected": "進路について悩んでいるなら、先生なり先輩なりに相談してみてはどうですか。",
-    "reading": "しんろについてなやんでいるなら、せんせいなりせんぱいなりにそうだんしてみてはどうですか。",
-    "english": "If you're worried about your future path, why not try consulting with a teacher or a senior student?",
+    "spoken": "分からないことがあれば、先生に聞くなり、自分で調べるなりしてください。",
+    "expected": "分からないことがあれば、先生に聞くなり、自分で調べるなりしてください。",
+    "reading": "わからないことがあれば、せんせいにきくなり、じぶんでしらべるなりしてください。",
+    "english": "If there's something you don't understand, please either ask the teacher or look it up yourself.",
     "grammar": "〜なり…なり"
   },
   {
-    "spoken": "気分転換が必要なら、散歩するなり音楽を聴くなり、何か好きなことをしてリラックスしてください。",
-    "expected": "気分転換が必要なら、散歩するなり音楽を聴くなり、何か好きなことをしてリラックスしてください。",
-    "reading": "きぶんてんかんがひつようなら、さんぽするなりおんがくをきくなり、なにかすきなことをしてりらっくすしてください。",
-    "english": "If you need a change of pace, please relax by doing something you like, such as going for a walk or listening to music.",
+    "spoken": "気分転換に、散歩するなり音楽を聴くなりしたらどうですか。",
+    "expected": "気分転換に、散歩するなり音楽を聴くなりしたらどうですか。",
+    "reading": "きぶんてんかんに、さんぽするなりおんがくをきくなりしたらどうですか。",
+    "english": "For a change of pace, how about going for a walk or listening to music?",
     "grammar": "〜なり…なり"
   },
   {
-    "spoken": "分からないことがあれば、自分で調べるなり、詳しい人に聞くなりして解決するように努めなさい。",
-    "expected": "分からないことがあれば、自分で調べるなり、詳しい人に聞くなりして解決するように努めなさい。",
-    "reading": "わからないことがあれば、じぶんでしらべるなり、くわしいひとにきくなりしてかいけつするようにつとめなさい。",
-    "english": "If there's something you don't understand, make an effort to resolve it, for instance by looking it up yourself or asking someone knowledgeable.",
+    "spoken": "この書類は、メールで送るなり、直接手渡すなりして、明日中に提出してください。",
+    "expected": "この書類は、メールで送るなり、直接手渡すなりして、明日中に提出してください。",
+    "reading": "このしょるいは、めーるでおくるなり、ちょくせつてわたすなりして、あしたじゅうにていしゅつしてください。",
+    "english": "Please submit this document by tomorrow, either by sending it via email or handing it over directly.",
     "grammar": "〜なり…なり"
   },
   {
-    "spoken": "休日は家でゆっくり過ごすなり、友達と遊びに出かけるなり、自分の好きなように時間を使いたい。",
-    "expected": "休日は家でゆっくり過ごすなり、友達と遊びに出かけるなり、自分の好きなように時間を使いたい。",
-    "reading": "きゅうじつはいえでゆっくりすごすなり、ともだちとあそびにでかけるなり、じぶんのすきなようにじかんをつかいたい。",
-    "english": "On holidays, I want to spend my time as I like, whether it's relaxing at home or going out with friends.",
+    "spoken": "週末は家でゆっくりするなり、友達と出かけるなり、自由に過ごしたい。",
+    "expected": "週末は家でゆっくりするなり、友達と出かけるなり、自由に過ごしたい。",
+    "reading": "しゅうまつはいえでゆっくりするなり、ともだちとでかけるなり、じゆうにすごしたい。",
+    "english": "On the weekend, I want to spend my time freely, whether it's relaxing at home or going out with friends.",
     "grammar": "〜なり…なり"
   },
   {
-    "spoken": "緊急時には、電話なりメールなり、どんな方法でもいいからすぐに連絡してください。",
-    "expected": "緊急時には、電話なりメールなり、どんな方法でもいいからすぐに連絡してください。",
-    "reading": "きんきゅうじには、でんわなりめーるなり、どんなほうほうでもいいからすぐにれんらくしてください。",
-    "english": "In an emergency, please contact me immediately by any means possible, like phone or email.",
-    "grammar": "〜なり…なり"
+    "spoken": "理由が何であれ、約束を破ることは許されない。",
+    "expected": "理由が何であれ、約束を破ることは許されない。",
+    "reading": "りゆうがなんであれ、やくそくをやぶることはゆるされない。",
+    "english": "Whatever the reason may be, breaking a promise is unacceptable.",
+    "grammar": "〜であれ…であれ。〜であろうと…であろうと。"
   },
   {
-    "spoken": "会議の資料作成は、分担するなり協力するなりして、効率よく進めましょう。",
-    "expected": "会議の資料作成は、分担するなり協力するなりして、効率よく進めましょう。",
-    "reading": "かいぎのしりょうさくせいは、ぶんたんするなりきょうりょくするなりして、こうりつよくすすめましょう。",
-    "english": "Let's proceed efficiently with creating the meeting materials, perhaps by dividing the work or cooperating.",
-    "grammar": "〜なり…なり"
+    "spoken": "プロであろうとアマチュアであろうと、スポーツマンシップは守るべきだ。",
+    "expected": "プロであろうとアマチュアであろうと、スポーツマンシップは守るべきだ。",
+    "reading": "ぷろであろうとあまちゅあであろうと、すぽーつまんしっぷはまもるべきだ。",
+    "english": "Whether professional or amateur, sportsmanship should be upheld.",
+    "grammar": "〜であれ…であれ。〜であろうと…であろうと。"
   },
   {
-    "spoken": "もっと日本語が上手になりたいなら、新聞を読むなりニュースを見るなりして、語彙を増やす努力が必要だ。",
-    "expected": "もっと日本語が上手になりたいなら、新聞を読むなりニュースを見るなりして、語彙を増やす努力が必要だ。",
-    "reading": "もっとにほんごがじょうずになりたいなら、しんぶんをよむなりにゅーすをみるなりして、ごいをふやすどりょくがひつようだ。",
-    "english": "If you want to become better at Japanese, you need to make an effort to increase your vocabulary, for example by reading newspapers or watching the news.",
-    "grammar": "〜なり…なり"
+    "spoken": "晴天であれ雨天であれ、イベントは予定通り開催されます。",
+    "expected": "晴天であれ雨天であれ、イベントは予定通り開催されます。",
+    "reading": "せいてんであれうてんであれ、いべんとはよていどおりかいさいされます。",
+    "english": "Regardless of whether it's sunny or rainy, the event will be held as scheduled.",
+    "grammar": "〜であれ…であれ。〜であろうと…であろうと。"
   },
   {
-    "spoken": "夕食の準備が面倒なら、外食するなり出前を取るなり、たまには楽をしてもいいと思う。",
-    "expected": "夕食の準備が面倒なら、外食するなり出前を取るなり、たまには楽をしてもいいと思う。",
-    "reading": "ゆうしょくのじゅんびがめんどうなら、がいしょくするなりでまえをとるなり、たまにはらくをしてもいいとおもう。",
-    "english": "If preparing dinner is a hassle, I think it's okay to take it easy sometimes, like eating out or ordering delivery.",
-    "grammar": "〜なり…なり"
+    "spoken": "大人であれ子供であれ、公共の場でのマナーは守る必要がある。",
+    "expected": "大人であれ子供であれ、公共の場でのマナーは守る必要がある。",
+    "reading": "おとナであれこどもであれ、こうきょうのばでのまなーはまもるひつようがある。",
+    "english": "Whether adult or child, it is necessary to observe manners in public places.",
+    "grammar": "〜であれ…であれ。〜であろうと…であろうと。"
   },
   {
-    "spoken": "提案に対して意見があるなら、遠慮せずに言うなり、改善案を出すなりしてほしい。",
-    "expected": "提案に対して意見があるなら、遠慮せずに言うなり、改善案を出すなりしてほしい。",
-    "reading": "ていあんにたいしていけんがあるなら、えんりょせずにいうなり、かいぜんあんをだすなりしてほしい。",
-    "english": "If you have opinions on the proposal, I want you to either state them without hesitation or suggest improvements.",
-    "grammar": "〜なり…なり"
-  },
-  {
-    "spoken": "疲れている時は、無理せず昼寝をするなり、早めに寝るなりして、十分な休息を取ることが大切だ。",
-    "expected": "疲れている時は、無理せず昼寝をするなり、早めに寝るなりして、十分な休息を取ることが大切だ。",
-    "reading": "つかれているときは、むりせずひるねをするなり、はやめにねるなりして、じゅうぶんなきゅうそくをとることがたいせつだ。",
-    "english": "When you are tired, it's important to get enough rest without pushing yourself, for instance by taking a nap or going to bed early.",
-    "grammar": "〜なり…なり"
-  },
-  {
-    "spoken": "経験者であれ初心者であれ、この研修プログラムは全ての従業員にとって有益なものとなるだろう。",
-    "expected": "経験者であれ初心者であれ、この研修プログラムは全ての従業員にとって有益なものとなるだろう。",
-    "reading": "けいけんしゃであれしょしんしゃであれ、このけんしゅうぷろぐらむはすべてのじゅうぎょういんにとってゆうえきなものとなるだろう。",
-    "english": "Whether experienced or a beginner, this training program will likely be beneficial for all employees.",
-    "grammar": "〜であれ…であれ、〜であろうと…であろうと"
-  },
-  {
-    "spoken": "理由が何であれ、約束を破ったことに対しては、誠意を持って謝罪すべきだ。",
-    "expected": "理由が何であれ、約束を破ったことに対しては、誠意を持って謝罪すべきだ。",
-    "reading": "りゆうがなんであれ、やくそくをやぶったことにたいしては、せいいをもってしゃざいすべきだ。",
-    "english": "Whatever the reason may be, you should sincerely apologize for breaking the promise.",
-    "grammar": "〜であれ…であれ、〜であろうと…であろうと"
-  },
-  {
-    "spoken": "賛成であろうと反対であろうと、会議では全員が自分の意見を表明する機会を持つべきだ。",
-    "expected": "賛成であろうと反対であろうと、会議では全員が自分の意見を表明する機会を持つべきだ。",
-    "reading": "さんせいであろうとはんたいであろうと、かいぎではぜんいんがじぶんのいけんをひょうめするきかいをもつべきだ。",
-    "english": "Whether they agree or disagree, everyone should have the opportunity to express their opinion in the meeting.",
-    "grammar": "〜であれ…であれ、〜であろうと…であろうと"
-  },
-  {
-    "spoken": "晴天であれ雨天であれ、明日の遠足は予定通り実施されることになっている。",
-    "expected": "晴天であれ雨天であれ、明日の遠足は予定通り実施されることになっている。",
-    "reading": "せいてんであれうてんであれ、あしたのえんそくはよていどおりじっしされることになっている。",
-    "english": "Whether it's sunny or rainy, tomorrow's field trip is scheduled to be held as planned.",
-    "grammar": "〜であれ…であれ、〜であろうと…であろうと"
-  },
-  {
-    "spoken": "成功であろうと失敗であろうと、挑戦した経験そのものが将来の糧となるはずだ。",
-    "expected": "成功であろうと失敗であろうと、挑戦した経験そのものが将来の糧となるはずだ。",
-    "reading": "せいこうであろうとしっぱいであろうと、ちょうせんしたけいけんそのものがしょうらいのかてとなるはずだ。",
-    "english": "Whether it results in success or failure, the experience of having tried itself should become nourishment for the future.",
-    "grammar": "〜であれ…であれ、〜であろうと…であろうと"
-  },
-  {
-    "spoken": "子供であれ大人であれ、公共の場でのマナーを守ることは社会の一員として当然の義務だ。",
-    "expected": "子供であれ大人であれ、公共の場でのマナーを守ることは社会の一員として当然の義務だ。",
-    "reading": "こどもであれおとなであれ、こうきょうのばでのまなーをまもることはしゃかいのいちいんとしてとうぜんのぎむだ。",
-    "english": "Whether a child or an adult, observing manners in public places is a natural duty as a member of society.",
-    "grammar": "〜であれ…であれ、〜であろうと…であろうと"
-  },
-  {
-    "spoken": "国内企業であろうと外資系企業であろうと、法律を遵守し、公正な競争を行う必要がある。",
-    "expected": "国内企業であろうと外資系企業であろうと、法律を遵守し、公正な競争を行う必要がある。",
-    "reading": "こくないきぎょうであろうとがいしけいきぎょうであろうと、ほうりつをじゅんしゅし、こうせいなきょうそうをおこなうひつようがある。",
-    "english": "Whether a domestic company or a foreign-affiliated company, it is necessary to comply with the law and engage in fair competition.",
-    "grammar": "〜であれ…であれ、〜であろうと…であろうと"
-  },
-  {
-    "spoken": "どんなに困難な状況であれ、希望を捨てずに前向きに努力し続けることが大切だ。",
-    "expected": "どんなに困難な状況であれ、希望を捨てずに前向きに努力し続けることが大切だ。",
-    "reading": "どんなにこんなんなじょうきょうであれ、きぼうをすてずにまえむきにどりょくしつづけることがたいせつだ。",
-    "english": "No matter how difficult the situation may be, it is important to continue striving forward positively without abandoning hope.",
-    "grammar": "〜であれ…であれ、〜であろうと…であろうと"
-  },
-  {
-    "spoken": "専門家であろうと素人であろうと、この問題について自由に意見交換できる場を設けたい。",
-    "expected": "専門家であろうと素人であろうと、この問題について自由に意見交換できる場を設けたい。",
-    "reading": "せんもんかであろうとしろうとであろうと、このもんだいについてじゆうにいけんこうかんできるばをもうけたい。",
-    "english": "Whether an expert or a layperson, I want to establish a forum where opinions on this issue can be freely exchanged.",
-    "grammar": "〜であれ…であれ、〜であろうと…であろうと"
-  },
-  {
-    "spoken": "新品であれ中古品であれ、購入する前に品質をしっかり確認することが賢明だ。",
-    "expected": "新品であれ中古品であれ、購入する前に品質をしっかり確認することが賢明だ。",
-    "reading": "しんぴんであれちゅうこひんであれ、こうにゅうするまえにひんしつをしっかりかくにんすることがけんめいだ。",
-    "english": "Whether it's new or used, it is wise to thoroughly check the quality before purchasing.",
-    "grammar": "〜であれ…であれ、〜であろうと…であろうと"
-  },
-  {
-    "spoken": "彼の部屋は、服といい本といい、あらゆる物が床に散乱していて足の踏み場もない。",
-    "expected": "彼の部屋は、服といい本といい、あらゆる物が床に散乱していて足の踏み場もない。",
-    "reading": "かれのへやは、ふくといいほんといい、あらゆるものがゆかにさんらんしていてあしのふみばもない。",
-    "english": "His room is such a mess, with clothes and books and everything scattered on the floor, there's nowhere to step.",
+    "spoken": "この庭園は、石の配置といい、木の剪定といい、実に見事だ。",
+    "expected": "この庭園は、石の配置といい、木の剪定といい、実に見事だ。",
+    "reading": "このていえんは、いしのはいちといい、きのせんていといい、じつにみごとだ。",
+    "english": "This garden is truly magnificent, from the arrangement of the stones to the pruning of the trees.",
     "grammar": "〜といい…といい"
   },
   {
-    "spoken": "この庭園は、木々の緑といい池の水の青さといい、見事に調和が取れていて美しい。",
-    "expected": "この庭園は、木々の緑といい池の水の青さといい、見事に調和が取れていて美しい。",
-    "reading": "このていえんは、きぎのみどりといいいけのみずのあおさといい、みごとにちょうわがとれていてうつくしい。",
-    "english": "This garden is beautiful, with the green of the trees and the blue of the pond water perfectly harmonized.",
+    "spoken": "彼の描く絵は、色彩といい、構図といい、独創性に溢れている。",
+    "expected": "彼の描く絵は、色彩といい、構図といい、独創性に溢れている。",
+    "reading": "かれのえがくえは、しきさいといい、こうずといい、どくそうせいにあふれている。",
+    "english": "The pictures he draws, both in color and composition, are full of originality.",
     "grammar": "〜といい…といい"
   },
   {
-    "spoken": "彼女の作る料理は、見た目といい香りといい、食欲をそそるものばかりだ。",
-    "expected": "彼女の作る料理は、見た目といい香りといい、食欲をそそるものばかりだ。",
-    "reading": "かのじょのつくるりょうりは、みためといいかおりといい、しょくよくをそそるものばかりだ。",
-    "english": "The dishes she makes, both in appearance and aroma, are all appetizing.",
+    "spoken": "このホテルは、部屋の清潔さといい、従業員の対応といい、申し分ない。",
+    "expected": "このホテルは、部屋の清潔さといい、従業員の対応といい、申し分ない。",
+    "reading": "このほてるは、へやのせいけつさといい、じゅうぎょういんのたいおうといい、もうしぶんない。",
+    "english": "This hotel is impeccable, both in the cleanliness of the rooms and the service of the staff.",
     "grammar": "〜といい…といい"
   },
   {
-    "spoken": "そのホテルは、部屋の広さといい設備の充実度といい、料金に見合うだけの価値がある。",
-    "expected": "そのホテルは、部屋の広さといい設備の充実度といい、料金に見合うだけの価値がある。",
-    "reading": "そのほてるは、へやのひろさといいせつびのじゅうじつどといい、りょうきんにみあうだけのかちがある。",
-    "english": "That hotel, considering the room size and the completeness of facilities, is worth the price.",
+    "spoken": "あの兄弟は、顔といい、声といい、そっくりだ。",
+    "expected": "あの兄弟は、顔といい、声といい、そっくりだ。",
+    "reading": "あのきょうだいは、かおといい、こえといい、そっくりだ。",
+    "english": "Those brothers look and sound exactly alike.",
     "grammar": "〜といい…といい"
   },
   {
-    "spoken": "彼は、運動神経といい頭の回転の速さといい、何をやらせても人並み以上にこなしてしまう。",
-    "expected": "彼は、運動神経といい頭の回転の速さといい、何をやらせても人並み以上にこなしてしまう。",
-    "reading": "かれは、うんどうしんけいといいあたまのかいてんのはやさといい、なにをやらせてもひとなみいじょうにこなしてしまう。",
-    "english": "He handles everything better than average, whether it's his athletic ability or his quick thinking.",
-    "grammar": "〜といい…といい"
-  },
-  {
-    "spoken": "この海岸は、砂浜の白さといい海の透明度といい、国内でも有数の美しさを誇っている。",
-    "expected": "この海岸は、砂浜の白さといい海の透明度といい、国内でも有数の美しさを誇っている。",
-    "reading": "このかいがんは、すなはまのしろさといいいくみのとうめいどといい、こくないでもゆうすうのうつくしさをほこっている。",
-    "english": "This coast boasts some of the best beauty in the country, considering the whiteness of the sandy beach and the clarity of the sea.",
-    "grammar": "〜といい…といい"
-  },
-  {
-    "spoken": "新しく開店したカフェは、コーヒーの味といい店内の雰囲気といい、私の好みにぴったりだった。",
-    "expected": "新しく開店したカフェは、コーヒーの味といい店内の雰囲気といい、私の好みにぴったりだった。",
-    "reading": "あたらしくかいてんしたかふぇは、こーひーのあじといいいてんないのふんいきといい、わたしのこのみにぴったりだった。",
-    "english": "The newly opened cafe was perfect for my taste, both in the coffee flavor and the shop's atmosphere.",
-    "grammar": "〜といい…といい"
-  },
-  {
-    "spoken": "彼のプレゼンテーションは、内容の深さといい話し方の説得力といい、聴衆を感心させた。",
-    "expected": "彼のプレゼンテーションは、内容の深さといい話し方の説得力といい、聴衆を感心させた。",
-    "reading": "かれのぷれぜんてーしょんは、ないようのふかさといいはなしかたのせっとくりょくといい、ちょうしゅうをかんしんさせた。",
-    "english": "His presentation impressed the audience with both the depth of its content and the persuasiveness of his delivery.",
-    "grammar": "〜といい…といい"
-  },
-  {
-    "spoken": "あの俳優は、演技力といい容姿といい、多くのファンを魅了する要素を持っている。",
-    "expected": "あの俳優は、演技力といい容姿といい、多くのファンを魅了する要素を持っている。",
-    "reading": "あのはいゆうは、えんぎりょくといいようしといい、おおくのふぁんをみりょうするようそをもっている。",
-    "english": "That actor possesses elements that attract many fans, both in acting ability and appearance.",
-    "grammar": "〜といい…といい"
-  },
-  {
-    "spoken": "この温泉旅館は、泉質の良さといい露天風呂からの景色といい、最高のリラクゼーションを提供してくれる。",
-    "expected": "この温泉旅館は、泉質の良さといい露天風呂からの景色といい、最高のリラクゼーションを提供してくれる。",
-    "reading": "このおんせんりょかんは、せんしつのよさといいろてんぶろからのけしきといい、さいこうのりらくぜーしょんをていきょうしてくれる。",
-    "english": "This hot spring inn offers supreme relaxation, considering the quality of the spring water and the view from the open-air bath.",
-    "grammar": "〜といい…といい"
-  },
-  {
-    "spoken": "夏休み中は、海岸といわず山といわず、どこも家族連れの観光客で賑わっていた。",
-    "expected": "夏休み中は、海岸といわず山といわず、どこも家族連れの観光客で賑わっていた。",
-    "reading": "なつやすみちゅうは、かいがんといわずやまといわず、どこもかぞくづれのかんこうきゃくでにぎわっていた。",
-    "english": "During the summer vacation, everywhere, be it the coast or the mountains, was bustling with tourists accompanied by their families.",
+    "spoken": "彼は平日といわず週末といわず、いつも研究に没頭している。",
+    "expected": "彼は平日といわず週末といわず、いつも研究に没頭している。",
+    "reading": "かれはへいじつといわずしゅうまつといわず、いつもけんきゅうにぼっとうしている。",
+    "english": "He is always absorbed in his research, weekdays and weekends alike.",
     "grammar": "〜といわず…といわず"
   },
   {
-    "spoken": "彼は、手といわず足といわず、全身泥だらけになってサッカーの練習に打ち込んでいる。",
-    "expected": "彼は、手といわず足といわず、全身泥だらけになってサッカーの練習に打ち込んでいる。",
-    "reading": "かれは、てといわずあしといわず、ぜんしんどろだらけになってさっかーのれんしゅうにうちこんでいる。",
-    "english": "He is devoted to soccer practice, covered in mud all over, not just his hands and feet.",
+    "spoken": "そのアイドルは、テレビといわず雑誌といわず、見ない日はないほどの人気だ。",
+    "expected": "そのアイドルは、テレビといわず雑誌といわず、見ない日はないほどの人気だ。",
+    "reading": "そのあいどるは、てれびといわずざっしといわず、みないひはないほどのにんきだ。",
+    "english": "That idol is so popular you see them everywhere, on TV, in magazines, every single day.",
     "grammar": "〜といわず…といわず"
   },
   {
-    "spoken": "大雨の後、庭は木の葉といわず小枝といわず、様々なものが散乱していた。",
-    "expected": "大雨の後、庭は木の葉といわず小枝といわず、様々なものが散乱していた。",
-    "reading": "おおあめのあと、にわはきのはといわずこえだといわず、さまざまなものがさんらんしていた。",
-    "english": "After the heavy rain, the garden was littered with various things, tree leaves and small branches included.",
+    "spoken": "壁といわず床といわず、子供の落書きだらけだ。",
+    "expected": "壁といわず床といわず、子供の落書きだらけだ。",
+    "reading": "かべといわずゆかといわず、こどものらくがきだらけだ。",
+    "english": "There's children's graffiti everywhere, on the walls, on the floor, you name it.",
     "grammar": "〜といわず…といわず"
   },
   {
-    "spoken": "子供は、壁といわず床といわず、家中いたるところにクレヨンで落書きをしてしまった。",
-    "expected": "子供は、壁といわず床といわず、家中いたるところにクレヨンで落書きをしてしまった。",
-    "reading": "こどもは、かべといわずゆかといわず、いえじゅういたるところにくれよんでらくがきをしてしまった。",
-    "english": "The child scribbled with crayons everywhere in the house, on the walls, on the floor, you name it.",
+    "spoken": "手といわず足といわず、彼は泥まみれになって畑仕事をしていた。",
+    "expected": "手といわず足といわず、彼は泥まみれになって畑仕事をしていた。",
+    "reading": "てといわずあしといわず、かれはどろまみれになってはたけしごとをしていた。",
+    "english": "He was covered in mud from head to toe (lit. hands and feet) doing farm work.",
     "grammar": "〜といわず…といわず"
   },
   {
-    "spoken": "選挙期間中は、朝といわず夜といわず、候補者の名前を連呼する選挙カーが走り回っていた。",
-    "expected": "選挙期間中は、朝といわず夜といわず、候補者の名前を連呼する選挙カーが走り回っていた。",
-    "reading": "せんきょきかんちゅうは、あさといわずよるといわず、こうほしゃのなまえをれんこするせんきょかーがはしりまわっていた。",
-    "english": "During the election period, campaign vehicles repeating candidates' names were driving around constantly, morning and night.",
-    "grammar": "〜といわず…といわず"
-  },
-  {
-    "spoken": "年末の大掃除では、部屋の隅といわず窓といわず、徹底的にきれいにしなければならない。",
-    "expected": "年末の大掃除では、部屋の隅といわず窓といわず、徹底的にきれいにしなければならない。",
-    "reading": "ねんまつののおおそうじでは、へやのすみといわずまどといわず、てっていてきにきれいにしなければならない。",
-    "english": "In the year-end big cleaning, we have to thoroughly clean everything, the corners of the rooms, the windows, etc.",
-    "grammar": "〜といわず…といわず"
-  },
-  {
-    "spoken": "その人気アイドルは、国内といわず海外といわず、どこへ行ってもファンに囲まれる。",
-    "expected": "その人気アイドルは、国内といわず海外といわず、どこへ行ってもファンに囲まれる。",
-    "reading": "そのにんきあいどるは、こくないといわずかいがいといわず、どこへいってもふぁんにかこまれる。",
-    "english": "That popular idol is surrounded by fans wherever they go, both domestically and internationally.",
-    "grammar": "〜といわず…といわず"
-  },
-  {
-    "spoken": "彼は仕事熱心で、平日といわず週末といわず、常に会社のことを考えているようだ。",
-    "expected": "彼は仕事熱心で、平日といわず週末といわず、常に会社のことを考えているようだ。",
-    "reading": "かれはしごとねっしんで、へいじつといわずしゅうまつといわず、つねにかいしゃのことをかんがえているようだ。",
-    "english": "He is hardworking and seems to always be thinking about the company, whether it's weekdays or weekends.",
-    "grammar": "〜といわず…といわず"
-  },
-  {
-    "spoken": "このレストランのシェフは、食材といわず調理法といわず、全てにこだわりを持っている。",
-    "expected": "このレストランのシェフは、食材といわず調理法といわず、全てにこだわりを持っている。",
-    "reading": "このれすとらんのしぇふは、しょくざいといわずちょうりほうといわず、すべてにこだわりをもっている。",
-    "english": "The chef at this restaurant is particular about everything, including ingredients and cooking methods.",
-    "grammar": "〜といわず…といわず"
-  },
-  {
-    "spoken": "彼は友人といわず知人といわず、困っている人がいれば誰にでも手を差し伸べる親切な人だ。",
-    "expected": "彼は友人といわず知人といわず、困っている人がいれば誰にでも手を差し伸べる親切な人だ。",
-    "reading": "かれはゆうじんといわずちじんといわず、こまっているひとがいればだれにでもてをさしのべるしんせつなひとだ。",
-    "english": "He is a kind person who lends a hand to anyone in need, be they friends or acquaintances.",
-    "grammar": "〜といわず…といわず"
-  },
-  {
-    "spoken": "明日の試合の結果いかんでは、チームが決勝トーナメントに進出できるかどうかが決まる。",
-    "expected": "明日の試合の結果いかんでは、チームが決勝トーナメントに進出できるかどうかが決まる。",
-    "reading": "あしたのしあいのけっかいかんでは、ちーむがけっしょうとーなめんとにしんしゅつできるかどうかがきまる。",
-    "english": "Depending on the result of tomorrow's match, it will be decided whether the team can advance to the final tournament.",
+    "spoken": "明日の試合の結果いかんで、決勝トーナメントに進めるかどうかが決まる。",
+    "expected": "明日の試合の結果いかんで、決勝トーナメントに進めるかどうかが決まる。",
+    "reading": "あしたのしあいのけっかいかんで、けっしょうとーなめんと にすすめ るかどうかがきまる。",
+    "english": "Whether we advance to the final tournament depends on the outcome of tomorrow's match.",
     "grammar": "〜いかんだ"
   },
   {
-    "spoken": "今後の政府の対応いかんでは、国民の生活に大きな影響が及ぶ可能性がある。",
-    "expected": "今後の政府の対応いかんでは、国民の生活に大きな影響が及ぶ可能性がある。",
-    "reading": "こんごのせいふのたいおういかんでは、こくみんのせいかつにおおきなえいきょうがおよぶかのうせいがある。",
-    "english": "Depending on the government's future response, there is a possibility of a major impact on citizens' lives.",
+    "spoken": "検査の結果いかんでは、手術が必要になるかもしれない。",
+    "expected": "検査の結果いかんでは、手術が必要になるかもしれない。",
+    "reading": "けんさのけっかいかんでは、しゅじゅつがひつよう になるかもしれない。",
+    "english": "Depending on the test results, surgery might be necessary.",
     "grammar": "〜いかんだ"
   },
   {
-    "spoken": "採用試験の成績いかんでは、希望する部署に配属されないこともあり得る。",
-    "expected": "採用試験の成績いかんでは、希望する部署に配属されないこともあり得る。",
-    "reading": "さいようしけんのせいせきいかんでは、きぼうするぶしょにはいぞくされないこともありえる。",
-    "english": "Depending on your performance in the recruitment examination, it's possible you may not be assigned to your desired department.",
+    "spoken": "交渉次第いかんでは、もっと有利な条件を引き出せる可能性がある。",
+    "expected": "交渉次第いかんでは、もっと有利な条件を引き出せる可能性がある。",
+    "reading": "こうしょうしだいいかんでは、もっとゆうりなじょうけんをひきだせるかのうせいがある。",
+    "english": "Depending on the negotiations, there's a possibility we can secure more favorable terms.",
     "grammar": "〜いかんだ"
   },
   {
-    "spoken": "会議での決定いかんでは、プロジェクトの計画を大幅に見直す必要が出てくるかもしれない。",
-    "expected": "会議での決定いかんでは、プロジェクトの計画を大幅に見直す必要が出てくるかもしれない。",
-    "reading": "かいぎでのけっていいかんでは、ぷろじぇくとのけいかくをおおはばにみなおすひつようがでてくるかもしれない。",
-    "english": "Depending on the decision made at the meeting, it might become necessary to drastically revise the project plan.",
+    "spoken": "今後の業績いかんで、ボーナスの額が決まる。",
+    "expected": "今後の業績いかんで、ボーナスの額が決まる。",
+    "reading": "こんごのぎょうせきいかんで、ぼーなすのがくがきまる。",
+    "english": "The amount of the bonus will be determined by future business performance.",
     "grammar": "〜いかんだ"
   },
   {
-    "spoken": "本人の努力いかんでは、難関大学への合格も決して不可能ではないだろう。",
-    "expected": "本人の努力いかんでは、難関大学への合格も決して不可能ではないだろう。",
-    "reading": "ほんにんのどりょくいかんでは、なんかんんだいがくへのごうかくもけっしてふかのうではないだろう。",
-    "english": "Depending on the person's own effort, passing the entrance exam for a highly competitive university is certainly not impossible.",
-    "grammar": "〜いかんだ"
-  },
-  {
-    "spoken": "検査の結果いかんでは、手術が必要になるかどうか判断されることになる。",
-    "expected": "検査の結果いかんでは、手術が必要になるかどうか判断されることになる。",
-    "reading": "けんさのけっかいかんでは、しゅじゅつがひつようになるかどうかはんだんされることになる。",
-    "english": "Depending on the test results, it will be determined whether surgery is necessary.",
-    "grammar": "〜いかんだ"
-  },
-  {
-    "spoken": "今後の景気動向いかんでは、企業の設備投資計画が変更される可能性も否定できない。",
-    "expected": "今後の景気動向いかんでは、企業の設備投資計画が変更される可能性も否定できない。",
-    "reading": "こんごのけいきどうこういかんでは、きぎょうのせつびとうしけいかくがへんこうされるかのうせいもひていできない。",
-    "english": "Depending on future economic trends, the possibility that companies' capital investment plans may change cannot be denied.",
-    "grammar": "〜いかんだ"
-  },
-  {
-    "spoken": "交渉の進展いかんでは、両国の関係改善に向けた新たな一歩となるかもしれない。",
-    "expected": "交渉の進展いかんでは、両国の関係改善に向けた新たな一歩となるかもしれない。",
-    "reading": "こうしょうのしんてんいかんでは、りょうこくのかんけいかいぜんにむけたあらたないっぽとなるかもしれない。",
-    "english": "Depending on the progress of negotiations, it might become a new step towards improving relations between the two countries.",
-    "grammar": "〜いかんだ"
-  },
-  {
-    "spoken": "君の態度いかんでは、今回の件について寛大な処置をとることも考えている。",
-    "expected": "君の態度いかんでは、今回の件について寛大な処置をとることも考えている。",
-    "reading": "きみのたいどいかんでは、こんかいのけんについてかんだいなしょちをとることもかんがえている。",
-    "english": "Depending on your attitude, I am considering taking lenient measures regarding this matter.",
-    "grammar": "〜いかんだ"
-  },
-  {
-    "spoken": "来週のプレゼンテーションの出来栄えいかんでは、君の昇進が決まるかもしれない重要な機会だ。",
-    "expected": "来週のプレゼンテーションの出来栄えいかんでは、君の昇進が決まるかもしれない重要な機会だ。",
-    "reading": "らいしゅうのぷれぜんてーしょんのできばえいかんでは、きみのしょうしんがきまるかもしれないじゅうようなきかいだ。",
-    "english": "Depending on how well next week's presentation goes, it's an important opportunity where your promotion might be decided.",
-    "grammar": "〜いかんだ"
-  },
-  {
-    "spoken": "理由のいかんにかかわらず、許可なく会社の備品を持ち出すことは固く禁じられています。",
-    "expected": "理由のいかんにかかわらず、許可なく会社の備品を持ち出すことは固く禁じられています。",
-    "reading": "りゆうのいかんにかかわらず、きょかなくかいしゃのびひんをもちだすことはかたくきんじられています。",
-    "english": "Regardless of the reason, taking company equipment without permission is strictly prohibited.",
+    "spoken": "理由のいかんにかかわらず、締め切りは厳守してください。",
+    "expected": "理由のいかんにかかわらず、締め切りは厳守してください。",
+    "reading": "りゆうのいかんにかかわらず、しめきりはげんしゅしてください。",
+    "english": "Regardless of the reason, please strictly observe the deadline.",
     "grammar": "〜いかんにかかわらず・いかんによらず・いかんをとわず"
   },
   {
-    "spoken": "年齢や性別のいかんをとわず、能力のある人には積極的に重要なポストを任せるべきだ。",
-    "expected": "年齢や性別のいかんをとわず、能力のある人には積極的に重要なポストを任せるべきだ。",
-    "reading": "ねんれいやせいべつのいかんをとわず、のうりょくのあるひとにはせっきょくてきにじゅうようなぽすとをまかせるべきだ。",
-    "english": "Regardless of age or gender, capable individuals should be actively entrusted with important positions.",
+    "spoken": "国籍のいかんによらず、応募資格を満たすすべての人が採用試験を受けられます。",
+    "expected": "国籍のいかんによらず、応募資格を満たすすべての人が採用試験を受けられます。",
+    "reading": "こくせきのいかんによらず、おうぼしかくをみたすすべてのひとがさいようしけんをうけられます。",
+    "english": "Regardless of nationality, anyone who meets the application requirements can take the employment exam.",
     "grammar": "〜いかんにかかわらず・いかんによらず・いかんをとわず"
   },
   {
-    "spoken": "調査結果のいかんによらず、我々は当初の計画通りプロジェクトを推進していくつもりだ。",
-    "expected": "調査結果のいかんによらず、我々は当初の計画通りプロジェクトを推進していくつもりだ。",
-    "reading": "ちょうさけっかのいかんによらず、われわれはとうしょのけいかくどおりぷろじぇくとをすいしんしていくつもりだ。",
-    "english": "Regardless of the survey results, we intend to proceed with the project as originally planned.",
+    "spoken": "天候のいかんをとわず、明日のハイキングは決行します。",
+    "expected": "天候のいかんをとわず、明日のハイキングは決行します。",
+    "reading": "てんこうのいかんをとわず、あしたのはいきんぐはけっこうします。",
+    "english": "Regardless of the weather, tomorrow's hike will proceed as planned.",
     "grammar": "〜いかんにかかわらず・いかんによらず・いかんをとわず"
   },
   {
-    "spoken": "天候のいかんにかかわらず、明日のマラソン大会は予定通り開催されるとのことです。",
-    "expected": "天候のいかんにかかわらず、明日のマラソン大会は予定通り開催されるとのことです。",
-    "reading": "てんこうのいかんにかかわらず、あしたのまらそんたいかいはよていどおりかいさいされるとのことです。",
-    "english": "I've heard that tomorrow's marathon will be held as scheduled, regardless of the weather.",
+    "spoken": "支持政党のいかんにかかわらず、選挙には行くべきだ。",
+    "expected": "支持政党のいかんにかかわらず、選挙には行くべきだ。",
+    "reading": "しじせいとうのいかんにかかわらず、せんきょにはいくべきだ。",
+    "english": "Regardless of which political party one supports, one should go vote in the election.",
     "grammar": "〜いかんにかかわらず・いかんによらず・いかんをとわず"
   },
   {
-    "spoken": "参加者の経験のいかんをとわず、このワークショップは誰にとっても学びの多い機会となるでしょう。",
-    "expected": "参加者の経験のいかんをとわず、このワークショップは誰にとっても学びの多い機会となるでしょう。",
-    "reading": "さんかしゃのけいけんのいかんをとわず、このわーくしょっぷはだれにとってもまなびのおおいきかいとなるでしょう。",
-    "english": "Regardless of the participants' experience, this workshop will likely be a learning opportunity for everyone.",
-    "grammar": "〜いかんにかかわらず・いかんによらず・いかんをとわず"
-  },
-  {
-    "spoken": "国籍のいかんにかかわらず、この施設は全ての人々に開かれており、自由に利用できます。",
-    "expected": "国籍のいかんにかかわらず、この施設は全ての人々に開かれており、自由に利用できます。",
-    "reading": "こくせきのいかんにかかわらず、このしせつはすべてのひとびとにひらかれており、じゆうにりようできます。",
-    "english": "Regardless of nationality, this facility is open to all people and can be used freely.",
-    "grammar": "〜いかんにかかわらず・いかんによらず・いかんをとわず"
-  },
-  {
-    "spoken": "賛否のいかんによらず、この問題については、徹底的に議論を尽くす必要がある。",
-    "expected": "賛否のいかんによらず、この問題については、徹底的に議論を尽くす必要がある。",
-    "reading": "さんぴのいかんによらず、このもんだいについては、てっていてきにぎろんをつくすひつようがある。",
-    "english": "Regardless of agreement or disagreement, it is necessary to thoroughly discuss this issue.",
-    "grammar": "〜いかんにかかわらず・いかんによらず・いかんをとわず"
-  },
-  {
-    "spoken": "学歴のいかんをとわず、実力と意欲のある人材を積極的に採用していく方針です。",
-    "expected": "学歴のいかんをとわず、実力と意欲のある人材を積極的に採用していく方針です。",
-    "reading": "がくれきのいかんをとわず、じつりょくとよくのあるじんざいをせっきょくてきにさいようしていくほうしんです。",
-    "english": "Our policy is to actively hire talented individuals with ability and motivation, regardless of their educational background.",
-    "grammar": "〜いかんにかかわらず・いかんによらず・いかんをとわず"
-  },
-  {
-    "spoken": "理由のいかんによらず、一度提出された書類の内容を変更することはできません。",
-    "expected": "理由のいかんによらず、一度提出された書類の内容を変更することはできません。",
-    "reading": "りゆうのいかんによらず、いちどていしゅつされたしょるいのないようをへんこうすることはできません。",
-    "english": "Regardless of the reason, the content of documents once submitted cannot be changed.",
-    "grammar": "〜いかんにかかわらず・いかんによらず・いかんをとわず"
-  },
-  {
-    "spoken": "試合の結果のいかんにかかわらず、選手たちの健闘を称えたいと思います。",
-    "expected": "試合の結果のいかんにかかわらず、選手たちの健闘を称えたいと思います。",
-    "reading": "しあいのけっかのいかんにかかわらず、せんしゅたちのけんとうをたたえたいとおもいます。",
-    "english": "Regardless of the match results, I want to praise the players for their good fight.",
-    "grammar": "〜いかんにかかわらず・いかんによらず・いかんをとわず"
-  },
-  {
-    "spoken": "彼は、度重なる困難や批判をものともせずに、自らの信念を貫き通した。",
-    "expected": "彼は、度重なる困難や批判をものともせずに、自らの信念を貫き通した。",
-    "reading": "かれは、たびかさなるこんなんやひはんをものともせずに、みずからのしんねんをつらぬきとおした。",
-    "english": "He stuck to his beliefs, undeterred by repeated difficulties and criticism.",
+    "spoken": "彼は足の怪我をものともせずに、マラソンを完走した。",
+    "expected": "彼は足の怪我をものともせずに、マラソンを完走した。",
+    "reading": "かれはあしのけがをものともせずに、まらそんをかんそうした。",
+    "english": "He completed the marathon, making nothing of his leg injury.",
     "grammar": "〜をものともせず（に）"
   },
   {
-    "spoken": "救助隊は、激しい吹雪をものともせずに、遭難者の捜索活動を続けた。",
-    "expected": "救助隊は、激しい吹雪をものともせずに、遭難者の捜索活動を続けた。",
-    "reading": "きゅうじょたいは、はげしいふぶきをものともせずに、そうなんしゃのそうさくかつどうをつづけた。",
-    "english": "The rescue team continued the search operation for the missing person, defying the fierce blizzard.",
+    "spoken": "その登山家は、厳しい自然条件をものともせず、前人未到の山頂を目指した。",
+    "expected": "その登山家は、厳しい自然条件をものともせず、前人未到の山頂を目指した。",
+    "reading": "そのとざんかは、きびしいしぜんじょうけんをものともせず、ぜんじんみとうのさんちょうをめざした。",
+    "english": "That mountaineer aimed for the unclimbed summit, undeterred by the harsh natural conditions.",
     "grammar": "〜をものともせず（に）"
   },
   {
-    "spoken": "若い選手たちは、格上の強豪チームをものともせずに、果敢に攻め続けた。",
-    "expected": "若い選手たちは、格上の強豪チームをものともせずに、果敢に攻め続けた。",
-    "reading": "わかいせんしゅたちは、かくうえのきょうごうちーむをものともせずに、かかんにせめつづけた。",
-    "english": "The young players continued to attack bravely, undaunted by the higher-ranked powerhouse team.",
+    "spoken": "周囲の反対をものともせずに、彼女は自分の夢を追い続けた。",
+    "expected": "周囲の反対をものともせずに、彼女は自分の夢を追い続けた。",
+    "reading": "しゅういのはんたいをものともせずに、かのじょはじぶんのゆめをおいつづけた。",
+    "english": "Ignoring the opposition from those around her, she continued to pursue her dream.",
     "grammar": "〜をものともせず（に）"
   },
   {
-    "spoken": "彼女は、周囲の反対や偏見をものともせずに、自分の夢を追い続けている。",
-    "expected": "彼女は、周囲の反対や偏見をものともせずに、自分の夢を追い続けている。",
-    "reading": "かのじょは、しゅういのはんたいやへんけんをものともせずに、じぶんのゆめをおいつづけている。",
-    "english": "She continues to pursue her dream, undeterred by the opposition and prejudice from those around her.",
+    "spoken": "高齢をものともせずに、彼は新しい技術を学び続けている。",
+    "expected": "高齢をものともせずに、彼は新しい技術を学び続けている。",
+    "reading": "こうれいをものともせずに、かれはあたらしいぎじゅつをまなびつづけている。",
+    "english": "Undaunted by his advanced age, he continues to learn new technologies.",
     "grammar": "〜をものともせず（に）"
   },
   {
-    "spoken": "その起業家は、資金不足や技術的な障壁をものともせずに、革新的な製品を開発した。",
-    "expected": "その起業家は、資金不足や技術的な障壁をものともせずに、革新的な製品を開発した。",
-    "reading": "そのきぎょうかは、しきんぶそくやぎじゅつてきなしょうへきをものともせずに、かくしんてきなせいひんをかいはつした。",
-    "english": "That entrepreneur developed an innovative product, making light of funding shortages and technical barriers.",
-    "grammar": "〜をものともせず（に）"
-  },
-  {
-    "spoken": "登山家たちは、険しい岩壁と悪天候をものともせずに、前人未到の山頂を目指した。",
-    "expected": "登山家たちは、険しい岩壁と悪天候をものともせずに、前人未到の山頂を目指した。",
-    "reading": "とざんかたちは、けわしいがんぺきとあくてんこうをものともせずに、ぜんじんみとうのさんちょうをめざした。",
-    "english": "The mountaineers aimed for the unclimbed summit, defying the steep cliff face and bad weather.",
-    "grammar": "〜をものともせず（に）"
-  },
-  {
-    "spoken": "彼は、病気による身体的なハンディキャップをものともせずに、常に明るく前向きに生きている。",
-    "expected": "彼は、病気による身体的なハンディキャップをものともせずに、常に明るく前向きに生きている。",
-    "reading": "かれは、びょうきによるしんたいてきなはんでぃきゃっぷをものともせずに、つねにあかるくまえむきにいきていいる。",
-    "english": "He lives cheerfully and positively, undeterred by the physical handicap caused by his illness.",
-    "grammar": "〜をものともせず（に）"
-  },
-  {
-    "spoken": "ジャーナリストは、危険な紛争地域での取材をものともせずに、真実を伝えようと努力した。",
-    "expected": "ジャーナリストは、危険な紛争地域での取材をものともせずに、真実を伝えようと努力した。",
-    "reading": "じゃーなりすとは、きけんなふんそうちいきでのしゅざいをものともせずに、しんじつをつたえようとどりょくした。",
-    "english": "The journalist strove to report the truth, undeterred by covering news in a dangerous conflict zone.",
-    "grammar": "〜をものともせず（に）"
-  },
-  {
-    "spoken": "その小さな町工場は、大企業の圧力や市場の変化をものともせずに、独自の技術を守り続けている。",
-    "expected": "その小さな町工場は、大企業の圧力や市場の変化をものともせずに、独自の技術を守り続けている。",
-    "reading": "そのちいさなまちこうばは、だいきぎょうのあつりょくやしじょうのへんかをものともせずに、どくじのぎじゅつをまもりつづけている。",
-    "english": "That small local factory continues to protect its unique technology, undaunted by pressure from large corporations and market changes.",
-    "grammar": "〜をものともせず（に）"
-  },
-  {
-    "spoken": "子供たちは、冷たい雨が降るのをものともせずに、元気に外で遊び続けていた。",
-    "expected": "子供たちは、冷たい雨が降るのをものともせずに、元気に外で遊び続けていた。",
-    "reading": "こどもたちは、つめたいあめがふるのをものともせずに、げんきにそとであそびつづけていた。",
-    "english": "The children continued to play energetically outside, making light of the cold falling rain.",
-    "grammar": "〜をものともせず（に）"
-  },
-  {
-    "spoken": "彼は、家族や友人の心配をよそに、危険な冒険旅行に出かけることを決めた。",
-    "expected": "彼は、家族や友人の心配をよそに、危険な冒険旅行に出かけることを決めた。",
-    "reading": "かれは、かぞくやゆうじんのしんぱいをよそに、きけんなぼうけんりょこうにでかけることをきめた。",
-    "english": "Ignoring the worries of his family and friends, he decided to embark on a dangerous adventure trip.",
+    "spoken": "親の心配をよそに、子供は危険な遊びをやめようとしない。",
+    "expected": "親の心配をよそに、子供は危険な遊びをやめようとしない。",
+    "reading": "おやのしんぱいをよそに、こどもはきけんなあそびをやめようとしない。",
+    "english": "Ignoring their parents' worries, the child refuses to stop playing dangerously.",
     "grammar": "〜をよそに"
   },
   {
-    "spoken": "住民の反対運動をよそに、市当局は新しいゴミ処理施設の建設を強行した。",
-    "expected": "住民の反対運動をよそに、市当局は新しいゴミ処理施設の建設を強行した。",
-    "reading": "じゅうみんのはんたいうんどうをよそに、しとうきょくはあたらしいごみしょりしせつのけんせつをきょうこうした。",
-    "english": "Ignoring the residents' opposition movement, the city authorities pushed ahead with the construction of the new garbage disposal facility.",
+    "spoken": "住民の抗議をよそに、ダムの建設計画が進められている。",
+    "expected": "住民の抗議をよそに、ダムの建設計画が進められている。",
+    "reading": "じゅうみんのこうぎをよそに、だむのけんせつけいかくがすすめられている。",
+    "english": "Disregarding the residents' protests, the dam construction project is moving forward.",
     "grammar": "〜をよそに"
   },
   {
-    "spoken": "周囲の期待やプレッシャーをよそに、彼女は自分のペースで研究を進めている。",
-    "expected": "周囲の期待やプレッシャーをよそに、彼女は自分のペースで研究を進めている。",
-    "reading": "しゅういのきたいやぷれっしゃーをよそに、かのじょはじぶんのぺーすでけんきゅうをすすめている。",
-    "english": "Paying no heed to the expectations and pressure from those around her, she is advancing her research at her own pace.",
+    "spoken": "深刻な不況をよそに、一部の高級ブランドは売上を伸ばしている。",
+    "expected": "深刻な不況をよそに、一部の高級ブランドは売上を伸ばしている。",
+    "reading": "しんこくなふきょうをよそに、いちぶのこうきゅうぶらんどはうりあげをのばしている。",
+    "english": "Despite the serious recession, some luxury brands are increasing their sales.",
     "grammar": "〜をよそに"
   },
   {
-    "spoken": "経済危機が深刻化するのをよそに、一部の富裕層は贅沢な生活を続けている。",
-    "expected": "経済危機が深刻化するのをよそに、一部の富裕層は贅沢な生活を続けている。",
-    "reading": "けいざいききがしんこくかするのをよそに、いちぶのふゆうそうはぜいたくなせいかつをつづけている。",
-    "english": "Ignoring the deepening economic crisis, some wealthy individuals continue to live luxurious lives.",
+    "spoken": "教室の騒がしさをよそに、彼は一人静かに読書をしていた。",
+    "expected": "教室の騒がしさをよそに、彼は一人静かに読書をしていた。",
+    "reading": "きょうしつのさわがしさをよそに、かれはひとりしずかんどくしょをしていた。",
+    "english": "Ignoring the noisiness of the classroom, he was reading quietly by himself.",
     "grammar": "〜をよそに"
   },
   {
-    "spoken": "先生の注意をよそに、生徒たちは授業中もスマートフォンをいじっていた。",
-    "expected": "先生の注意をよそに、生徒たちは授業中もスマートフォンをいじっていた。",
-    "reading": "せんせいのちゅういをよそに、せいとたちはじゅぎょうちゅうもすまーとふぉんをいじっていた。",
-    "english": "Ignoring the teacher's warning, the students were playing with their smartphones even during class.",
-    "grammar": "〜をよそに"
-  },
-  {
-    "spoken": "国際社会からの非難をよそに、その国は核開発を継続する姿勢を崩していない。",
-    "expected": "国際社会からの非難をよそに、その国は核開発を継続する姿勢を崩していない。",
-    "reading": "こくさいしゃかいからのひなんをよそに、そのくにはかくかいはつをけいぞくするしせいをくずしていない。",
-    "english": "Ignoring condemnation from the international community, that country has not changed its stance on continuing nuclear development.",
-    "grammar": "〜をよそに"
-  },
-  {
-    "spoken": "親の心配をよそに、子供たちは夜遅くまで繁華街で遊び歩いていた。",
-    "expected": "親の心配をよそに、子供たちは夜遅くまで繁華街で遊び歩いていた。",
-    "reading": "おやのしんぱいをよそに、こどもたちはよるおそくまで はんかがいであそびあるいていた。",
-    "english": "Ignoring their parents' worries, the children were wandering around the entertainment district until late at night.",
-    "grammar": "〜をよそに"
-  },
-  {
-    "spoken": "専門家たちの警告をよそに、政府はリスクの高い経済政策を推し進めた。",
-    "expected": "専門家たちの警告をよそに、政府はリスクの高い経済政策を推し進めた。",
-    "reading": "せんもんかたちのけいこくをよそに、せいふはりすくのたかいけいざいせいさくをおしすすめた。",
-    "english": "Ignoring the warnings of experts, the government pushed forward with high-risk economic policies.",
-    "grammar": "〜をよそに"
-  },
-  {
-    "spoken": "彼は、同僚たちの冷ややかな視線をよそに、自分の意見を堂々と述べた。",
-    "expected": "彼は、同僚たちの冷ややかな視線をよそに、自分の意見を堂々と述べた。",
-    "reading": "かれは、どうりょうたちのひややかなしせんをよそに、じぶんのいけんをどうどうとのべた。",
-    "english": "Ignoring the cold stares of his colleagues, he stated his opinion confidently.",
-    "grammar": "〜をよそに"
-  },
-  {
-    "spoken": "緊迫した状況をよそに、彼は一人だけ落ち着き払って読書を続けていた。",
-    "expected": "緊迫した状況をよそに、彼は一人だけ落ち着き払って読書を続けていた。",
-    "reading": "きんぱくしたじょうきょうをよそに、かれはひとりだけおちつきはらってどくしょをつづけていた。",
-    "english": "Ignoring the tense situation, he alone remained perfectly calm and continued reading.",
-    "grammar": "〜をよそに"
-  },
-  {
-    "spoken": "子供ならいざしらず、大人がそんな簡単な計算もできないとは情けない。",
-    "expected": "子供ならいざしらず、大人がそんな簡単な計算もできないとは情けない。",
-    "reading": "こどもならいざしらず、おとながそんなかんたんなけいさんもできないとはなさけない。",
-    "english": "It might be understandable if it were a child, but it's pathetic that an adult can't even do such simple calculations.",
+    "spoken": "子供ならいざしらず、大人がそんな言い訳をするのは見苦しい。",
+    "expected": "子供ならいざしらず、大人がそんな言い訳をするのは見苦しい。",
+    "reading": "こどもならいざしらず、おとナがそんないいわけをするのはみぐるしい。",
+    "english": "It might be understandable if it were a child, but it's unbecoming for an adult to make such excuses.",
     "grammar": "〜ならいざしらず"
   },
   {
-    "spoken": "１０年前ならいざしらず、今時そんな古い型の携帯電話を使っている人は珍しい。",
-    "expected": "１０年前ならいざしらず、今時そんな古い型の携帯電話を使っている人は珍しい。",
-    "reading": "じゅうねんまえならいざしらず、いまどきそんなふるいかたのけいたいでんわをつかっているひとはめずらしい。",
-    "english": "Ten years ago might have been different, but nowadays it's rare to see someone using such an old model mobile phone.",
+    "spoken": "１０年前ならいざしらず、今どきその考え方は古い。",
+    "expected": "１０年前ならいざしらず、今どきその考え方は古い。",
+    "reading": "じゅうねんまえならいざしらず、いまどきそのかんがえかたはふるい。",
+    "english": "Maybe ten years ago, but that way of thinking is outdated nowadays.",
     "grammar": "〜ならいざしらず"
   },
   {
-    "spoken": "初心者ならいざしらず、経験豊富なあなたがこのような初歩的なミスをするとは信じられない。",
-    "expected": "初心者ならいざしらず、経験豊富なあなたがこのような初歩的なミスをするとは信じられない。",
-    "reading": "しょしんしゃならいざしらず、けいけんほうふなあなたがこのようなしょほてきなみすをするとはしんじられない。",
-    "english": "If you were a beginner, it might be excused, but it's unbelievable that someone as experienced as you would make such a basic mistake.",
+    "spoken": "専門家ならいざしらず、素人にこの修理は無理だろう。",
+    "expected": "専門家ならいざしらず、素人にこの修理は無理だろう。",
+    "reading": "せんもんかならいざしらず、しろうとにこのしゅうりはむりだろう。",
+    "english": "Perhaps an expert could do it, but this repair is likely impossible for an amateur.",
     "grammar": "〜ならいざしらず"
   },
   {
-    "spoken": "特別な事情があるならいざしらず、無断で会議を欠席することは許されない。",
-    "expected": "特別な事情があるならいざしらず、無断で会議を欠席することは許されない。",
-    "reading": "とくべつなじじょうがあるならいざしらず、むだんでかいぎをけっせきすることはゆるされない。",
-    "english": "Unless there are special circumstances, being absent from the meeting without notice is not permissible.",
-    "grammar": "〜ならいざしらず"
-  },
-  {
-    "spoken": "海外旅行ならいざしらず、国内の近場への旅行にそんな大金を使うのはもったいない。",
-    "expected": "海外旅行ならいざしらず、国内の近場への旅行にそんな大金を使うのはもったいない。",
-    "reading": "かいがいりょこうならいざしらず、こくないのちかばへのりょこうにそんなたいきんをつかうのはもったいない。",
-    "english": "It might make sense for an overseas trip, but it's wasteful to spend so much money on a short domestic trip nearby.",
-    "grammar": "〜ならいざしらず"
-  },
-  {
-    "spoken": "学生時代の話ならいざしらず、社会人になってまで親に頼るのはどうかと思う。",
-    "expected": "学生時代の話ならいざしらず、社会人になってまで親に頼るのはどうかと思う。",
-    "reading": "がくせいじだいのはなしならいざしらず、しゃかいじんになってまでおやにたよるのはどうかとおもう。",
-    "english": "It might be okay during student days, but I wonder about relying on parents even after becoming an adult member of society.",
-    "grammar": "〜ならいざしらず"
-  },
-  {
-    "spoken": "昔の技術ならいざしらず、現代の科学技術をもってすれば、その程度の問題は解決できるはずだ。",
-    "expected": "昔の技術ならいざしらず、現代の科学技術をもってすれば、その程度の問題は解決できるはずだ。",
-    "reading": "むかしのぎじゅつならいざしらず、げんだいのかがくぎじゅつをもってすれば、そのていどのもんだいはかいけつできるはずだ。",
-    "english": "With old technology it might have been different, but with modern science and technology, a problem of that level should be solvable.",
-    "grammar": "〜ならいざしらず"
-  },
-  {
-    "spoken": "安いホテルならいざしらず、一流ホテルでこんなに対応が悪いとはがっかりだ。",
-    "expected": "安いホテルならいざしらず、一流ホテルでこんなに対応が悪いとはがっかりだ。",
-    "reading": "やすいほてるならいざしらず、いちりゅうほてるでこんなにたいおうがわるいとはがっかりだ。",
-    "english": "If it were a cheap hotel, maybe, but I'm disappointed that the service is this bad at a first-class hotel.",
-    "grammar": "〜ならいざしらず"
-  },
-  {
-    "spoken": "自分の子供ならいざしらず、他人の子供を厳しく叱ることはなかなか難しい。",
-    "expected": "自分の子供ならいざしらず、他人の子供を厳しく叱ることはなかなか難しい。",
-    "reading": "じぶんのこどもならいざしらず、たにんのこどもをきびしくしかることはなかなかむずかしい。",
-    "english": "Scolding one's own child might be one thing, but it's quite difficult to strictly scold someone else's child.",
-    "grammar": "〜ならいざしらず"
-  },
-  {
-    "spoken": "短期間のアルバイトならいざしらず、正社員として働くなら福利厚生もしっかり確認すべきだ。",
-    "expected": "短期間のアルバイトならいざしらず、正社員として働くなら福利厚生もしっかり確認すべきだ。",
-    "reading": "たんきかんのあるばいとならいざしらず、せいしゃいんとしてはたらくならふくりこうせいもしっかりかくにんすべきだ。",
-    "english": "For a short-term part-time job it might not matter, but if you're working as a full-time employee, you should properly check the welfare benefits.",
+    "spoken": "夏休みならいざしらず、学期中に海外旅行に行くなんて考えられない。",
+    "expected": "夏休みならいざしらず、学期中に海外旅行に行くなんて考えられない。",
+    "reading": "なつやすみならいざしらず、がっきちゅうにかいがいりょこうにいくなんてかんがえられない。",
+    "english": "During summer vacation might be one thing, but going on an overseas trip during the school term is unthinkable.",
     "grammar": "〜ならいざしらず"
   }
 ]
