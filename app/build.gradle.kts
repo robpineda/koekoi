@@ -1,7 +1,27 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+}
+
+fun getLocalProperty(key: String): String {
+    val properties = Properties()
+    val localPropertiesFile = rootProject.file("local.properties")
+    if (localPropertiesFile.exists()) {
+        // Use a try-with-resources equivalent for safety
+        localPropertiesFile.inputStream().use { fis ->
+            properties.load(fis)
+        }
+    } else {
+        println("Warning: local.properties file not found at ${rootProject.projectDir}")
+    }
+    return properties.getProperty(key, "").also {
+        if (it.isEmpty()) {
+            println("Warning: Property '$key' not found in local.properties")
+        }
+    }
 }
 
 android {
@@ -19,6 +39,14 @@ android {
     }
 
     buildTypes {
+        debug {
+            buildConfigField("String", "DEEPSEEK_API_KEY", "\"${getLocalProperty("DEEPSEEK_API_KEY")}\"")
+            resValue("string", "deepseek_api_key", "\"${getLocalProperty("DEEPSEEK_API_KEY")}\"") // Optional for XML
+        }
+        release {
+            buildConfigField("String", "DEEPSEEK_API_KEY", "\"${getLocalProperty("DEEPSEEK_API_KEY")}\"")
+            resValue("string", "deepseek_api_key", "\"${getLocalProperty("DEEPSEEK_API_KEY")}\"") // Optional for XML
+        }
         release {
             isMinifyEnabled = false
             proguardFiles(
@@ -36,6 +64,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.10" // Update to latest if needed
@@ -66,6 +95,7 @@ dependencies {
     implementation("androidx.compose.runtime:runtime-livedata:1.6.0")
     implementation("androidx.navigation:navigation-compose:2.7.0")
     implementation("com.google.code.gson:gson:2.10.1")
+    implementation("com.squareup.okhttp3:okhttp:4.12.0")
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
