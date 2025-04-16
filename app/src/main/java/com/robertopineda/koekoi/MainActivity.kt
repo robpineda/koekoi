@@ -28,10 +28,6 @@ import kotlinx.coroutines.launch // Import launch
 
 class MainActivity : ComponentActivity() {
 
-    // Instance of the API service can be created here if preferred,
-    // or within the Composable as done currently. Keeping it inside for now.
-    // private val llmApiService = LlmApiService()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -45,7 +41,6 @@ class MainActivity : ComponentActivity() {
                     }
                     startActivity(intent)
                 },
-                // onGenerateAndStartGame is no longer passed, as MainScreen handles it internally
                 onShowFavorites = {
                     val intent = Intent(this, FavoritesActivity::class.java)
                     startActivity(intent)
@@ -57,14 +52,11 @@ class MainActivity : ComponentActivity() {
             )
         }
     }
-
-    // generatePhraseAndStart function removed - logic moved into MainScreen's button onClick
 }
 
 @Composable
 fun MainScreen(
     onStartGameFromAssets: (String, String, String) -> Unit,
-    // Removed onGenerateAndStartGame parameter
     onShowFavorites: () -> Unit,
     onShowSettings: () -> Unit
 ) {
@@ -75,13 +67,13 @@ fun MainScreen(
     var difficultyExpanded by remember { mutableStateOf(false) }
     var materialExpanded by remember { mutableStateOf(false) }
 
-    // New state for LLM input
+    // State for LLM input
     var llmDescription by remember { mutableStateOf("") }
     var isGenerating by remember { mutableStateOf(false) } // Loading state
 
     val context = LocalContext.current
-    val coroutineScope = rememberCoroutineScope() // Scope for launching coroutines
-    val llmApiService = remember { LlmApiService() } // Instantiate service within Composable scope
+    val coroutineScope = rememberCoroutineScope()
+    val llmApiService = remember { LlmApiService() } // Instantiate service
 
     val languageOptions = listOf("Japanese", "Korean", "Vietnamese", "Spanish")
     val difficultyOptions = when (selectedLanguage) {
@@ -96,7 +88,7 @@ fun MainScreen(
     // Reset difficulty and material when language changes
     LaunchedEffect(selectedLanguage) {
         selectedDifficulty = ""
-        selectedMaterial = "Vocabulary" // Default material
+        selectedMaterial = "Vocabulary"
     }
 
     Box(
@@ -110,27 +102,23 @@ fun MainScreen(
             modifier = Modifier.fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
+            // App Title
             Text(
                 text = "KoeKoi",
                 fontSize = 38.sp,
                 fontFamily = FontFamily.Cursive,
                 fontWeight = FontWeight.Medium,
                 color = Color(0xFFE0F7FA),
-                modifier = Modifier.padding(top = 32.dp, bottom = 24.dp)
+                modifier = Modifier.padding(top = 24.dp, bottom = 16.dp) // Adjusted padding
             )
 
-            // --- Section 1: Load from Assets ---
+            // --- General Language Selection ---
             Text(
-                text = "Practice Predefined Sets",
-                fontSize = 20.sp,
-                fontWeight = FontWeight.SemiBold,
+                text = "Which language do you want to practice?", // New Label
+                fontSize = 18.sp,
                 color = Color(0xFFE0F7FA),
-                modifier = Modifier.padding(bottom = 16.dp)
+                modifier = Modifier.padding(bottom = 8.dp)
             )
-
-            // Language Dropdown
-            Text("Language", fontSize = 16.sp, color = Color(0xFFE0F7FA))
-            Spacer(modifier = Modifier.height(4.dp))
             Box(modifier = Modifier.fillMaxWidth(0.7f)) {
                 OutlinedButton(
                     onClick = { languageExpanded = true },
@@ -155,7 +143,107 @@ fun MainScreen(
                     }
                 }
             }
-            Spacer(modifier = Modifier.height(12.dp))
+            Spacer(modifier = Modifier.height(24.dp)) // Space after language selection
+
+
+            // --- Section 1 (NEW): Generate with AI ---
+            Text(
+                text = "Generate with AI",
+                fontSize = 20.sp,
+                fontWeight = FontWeight.SemiBold,
+                color = Color(0xFFE0F7FA),
+                modifier = Modifier.padding(bottom = 16.dp)
+            )
+
+            // LLM Description Input
+            OutlinedTextField(
+                value = llmDescription,
+                onValueChange = { llmDescription = it },
+                modifier = Modifier.fillMaxWidth(0.9f),
+                label = { Text("Describe what you want to learn...") },
+                placeholder = { Text("e.g., Japanese N3 grammar for requests", color = Color(0xFF90A4AE)) },
+                singleLine = false,
+                maxLines = 3,
+                colors = OutlinedTextFieldDefaults.colors(
+                    focusedTextColor = Color(0xFFE0F7FA),
+                    unfocusedTextColor = Color(0xFFE0F7FA),
+                    focusedBorderColor = Color(0xFFFFB300),
+                    unfocusedBorderColor = Color(0xFF90A4AE),
+                    focusedLabelColor = Color(0xFFFFB300),
+                    unfocusedLabelColor = Color(0xFF90A4AE),
+                    cursorColor = Color(0xFFFFB300)
+                )
+            )
+            Spacer(modifier = Modifier.height(16.dp))
+
+            // Generate Button
+            Button(
+                onClick = {
+                    if (llmDescription.isNotBlank() && !isGenerating) {
+                        isGenerating = true
+                        coroutineScope.launch {
+                            val result = llmApiService.generatePhrase(selectedLanguage, llmDescription)
+                            launch(Dispatchers.Main) {
+                                isGenerating = false
+                                result.onSuccess { phrase ->
+                                    Toast.makeText(context, "Phrase generated!", Toast.LENGTH_SHORT).show()
+                                    val intent = Intent(context, GameActivity::class.java).apply {
+                                        putExtra("LANGUAGE", selectedLanguage)
+                                        putExtra("DIFFICULTY", "Generated")
+                                        putExtra("PHRASE", Gson().toJson(phrase))
+                                    }
+                                    context.startActivity(intent)
+                                }.onFailure { error ->
+                                    Toast.makeText(context, "Error: ${error.message ?: "Unknown error"}", Toast.LENGTH_LONG).show()
+                                    android.util.Log.e("MainScreen", "LLM Generation Failed", error)
+                                }
+                            }
+                        }
+                    } else if (isGenerating) {
+                        // Optional feedback
+                    } else {
+                        Toast.makeText(context, "Please describe what you want to learn.", Toast.LENGTH_SHORT).show()
+                    }
+                },
+                enabled = llmDescription.isNotBlank() && !isGenerating,
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = Color(0xFF1DE9B6),
+                    contentColor = Color(0xFF004D40),
+                    disabledContainerColor = Color(0xFF455A64),
+                    disabledContentColor = Color(0xFF90A4AE)
+                )
+            ) {
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    if (isGenerating) {
+                        CircularProgressIndicator(
+                            modifier = Modifier.size(20.dp),
+                            color = Color(0xFF004D40),
+                            strokeWidth = 2.dp
+                        )
+                        Spacer(Modifier.width(8.dp))
+                        Text("Generating...")
+                    } else {
+                        Text("Generate Phrase")
+                    }
+                }
+            }
+
+            Divider(
+                color = Color(0xFF455A64),
+                thickness = 1.dp,
+                modifier = Modifier
+                    .fillMaxWidth(0.8f)
+                    .padding(vertical = 24.dp) // Space around divider
+            )
+
+            // --- Section 2 (NEW): Practice Predefined Sets ---
+            Text(
+                text = "Or try our predefined sets", // Changed Label
+                fontSize = 20.sp,
+                fontWeight = FontWeight.SemiBold,
+                color = Color(0xFFE0F7FA),
+                modifier = Modifier.padding(bottom = 16.dp)
+            )
 
             // Difficulty Dropdown
             Text("Difficulty", fontSize = 16.sp, color = Color(0xFFE0F7FA))
@@ -228,11 +316,12 @@ fun MainScreen(
             Button(
                 onClick = {
                     if (selectedDifficulty.isNotEmpty()) {
-                        // Call the lambda passed from MainActivity
                         onStartGameFromAssets(selectedLanguage, selectedDifficulty, selectedMaterial)
+                    } else {
+                        Toast.makeText(context, "Please select a difficulty for predefined sets.", Toast.LENGTH_SHORT).show()
                     }
                 },
-                enabled = selectedDifficulty.isNotEmpty(),
+                enabled = selectedDifficulty.isNotEmpty(), // Enable only if difficulty is chosen
                 colors = ButtonDefaults.buttonColors(
                     containerColor = Color(0xFFFF8F00),
                     contentColor = Color(0xFFE0F7FA),
@@ -243,111 +332,13 @@ fun MainScreen(
                 Text("Start Predefined Set")
             }
 
-            Divider(
-                color = Color(0xFF455A64),
-                thickness = 1.dp,
-                modifier = Modifier
-                    .fillMaxWidth(0.8f)
-                    .padding(vertical = 24.dp)
-            )
 
-            // --- Section 2: Generate with AI ---
-            Text(
-                text = "Generate with AI",
-                fontSize = 20.sp,
-                fontWeight = FontWeight.SemiBold,
-                color = Color(0xFFE0F7FA),
-                modifier = Modifier.padding(bottom = 16.dp)
-            )
-
-            // Language selection is shared from above
-
-            // LLM Description Input
-            OutlinedTextField(
-                value = llmDescription,
-                onValueChange = { llmDescription = it },
-                modifier = Modifier.fillMaxWidth(0.9f),
-                label = { Text("Describe what you want to learn...") },
-                placeholder = { Text("e.g., Japanese N3 grammar for requests", color = Color(0xFF90A4AE)) },
-                singleLine = false,
-                maxLines = 3,
-                colors = OutlinedTextFieldDefaults.colors(
-                    focusedTextColor = Color(0xFFE0F7FA),
-                    unfocusedTextColor = Color(0xFFE0F7FA),
-                    focusedBorderColor = Color(0xFFFFB300),
-                    unfocusedBorderColor = Color(0xFF90A4AE),
-                    focusedLabelColor = Color(0xFFFFB300),
-                    unfocusedLabelColor = Color(0xFF90A4AE),
-                    cursorColor = Color(0xFFFFB300)
-                )
-            )
-            Spacer(modifier = Modifier.height(16.dp))
-
-            // Generate Button - Contains the logic directly
-            Button(
-                onClick = {
-                    if (llmDescription.isNotBlank() && !isGenerating) {
-                        isGenerating = true
-                        coroutineScope.launch {
-                            // Call the service method
-                            val result = llmApiService.generatePhrase(selectedLanguage, llmDescription)
-
-                            // Switch back to Main thread for UI updates (Toast, startActivity)
-                            // Using launch(Dispatchers.Main) is correct here
-                            launch(Dispatchers.Main) {
-                                isGenerating = false // Stop loading indicator
-                                result.onSuccess { phrase ->
-                                    Toast.makeText(context, "Phrase generated!", Toast.LENGTH_SHORT).show()
-                                    // Start GameActivity with the single generated phrase
-                                    val intent = Intent(context, GameActivity::class.java).apply {
-                                        putExtra("LANGUAGE", selectedLanguage)
-                                        putExtra("DIFFICULTY", "Generated") // Indicate source
-                                        putExtra("PHRASE", Gson().toJson(phrase))
-                                    }
-                                    context.startActivity(intent)
-
-                                }.onFailure { error ->
-                                    Toast.makeText(context, "Error: ${error.message ?: "Unknown error"}", Toast.LENGTH_LONG).show()
-                                    android.util.Log.e("MainScreen", "LLM Generation Failed", error)
-                                }
-                            }
-                        }
-                    } else if (isGenerating) {
-                        // Optionally show feedback that it's already generating
-                        // Toast.makeText(context, "Generating...", Toast.LENGTH_SHORT).show()
-                    } else {
-                        Toast.makeText(context, "Please describe what you want to learn.", Toast.LENGTH_SHORT).show()
-                    }
-                },
-                enabled = llmDescription.isNotBlank() && !isGenerating,
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = Color(0xFF1DE9B6), // Teal accent
-                    contentColor = Color(0xFF004D40), // Dark Teal text
-                    disabledContainerColor = Color(0xFF455A64),
-                    disabledContentColor = Color(0xFF90A4AE)
-                )
-            ) {
-                Row(verticalAlignment = Alignment.CenterVertically) {
-                    if (isGenerating) {
-                        CircularProgressIndicator(
-                            modifier = Modifier.size(20.dp),
-                            color = Color(0xFF004D40),
-                            strokeWidth = 2.dp
-                        )
-                        Spacer(Modifier.width(8.dp))
-                        Text("Generating...")
-                    } else {
-                        Text("Generate Phrase")
-                    }
-                }
-            }
         } // End Main Column
 
-        // Bottom Icons
+        // Bottom Icons (Remain at the bottom)
         Row(
             modifier = Modifier
                 .align(Alignment.BottomEnd),
-            // .padding(16.dp) // Padding is on the outer Box
             horizontalArrangement = Arrangement.spacedBy(16.dp)
         ) {
             IconButton(onClick = onShowFavorites, modifier = Modifier.size(48.dp)) {
