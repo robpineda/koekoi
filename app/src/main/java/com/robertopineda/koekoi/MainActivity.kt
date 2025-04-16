@@ -60,43 +60,59 @@ fun MainScreen(
     onShowFavorites: () -> Unit,
     onShowSettings: () -> Unit
 ) {
-    var selectedLanguage by remember { mutableStateOf("Japanese") }
+    // --- State Variables ---
+    var selectedLanguage by remember { mutableStateOf("Japanese") } // Default to Japanese
     var selectedDifficulty by remember { mutableStateOf("") }
     var selectedMaterial by remember { mutableStateOf("Vocabulary") }
     var languageExpanded by remember { mutableStateOf(false) }
     var difficultyExpanded by remember { mutableStateOf(false) }
     var materialExpanded by remember { mutableStateOf(false) }
 
-    // State for LLM input
+    // LLM State
     var llmDescription by remember { mutableStateOf("") }
-    var isGenerating by remember { mutableStateOf(false) } // Loading state
+    var isGenerating by remember { mutableStateOf(false) }
 
+    // --- Context, Scope, Service ---
     val context = LocalContext.current
     val coroutineScope = rememberCoroutineScope()
-    val llmApiService = remember { LlmApiService() } // Instantiate service
+    val llmApiService = remember { LlmApiService() }
 
-    val languageOptions = listOf("Japanese", "Korean", "Vietnamese", "Spanish")
+    // --- Dropdown Options ---
+    // *** UPDATED Language List ***
+    val languageOptions = listOf(
+        "Japanese", "Korean", "Spanish", "French", "German",
+        "Mandarin Chinese", "Italian", "Portuguese", "Russian",
+        "Arabic", "Hindi", "Vietnamese" // Added more languages
+    )
+    // Difficulty options depend on whether predefined assets exist for the language
     val difficultyOptions = when (selectedLanguage) {
+        // Languages WITH predefined sets
         "Japanese" -> listOf("JLPT N1", "JLPT N2", "JLPT N3", "JLPT N4", "JLPT N5")
         "Korean" -> listOf("TOPIK I", "TOPIK II")
         "Vietnamese" -> listOf("Beginner", "Intermediate", "Advanced")
         "Spanish" -> listOf("Beginner", "Intermediate", "Advanced")
+        // Languages WITHOUT predefined sets (will result in empty list)
         else -> emptyList()
     }
+    // Material options currently only relevant for Japanese assets
     val materialOptions = listOf("Vocabulary", "Grammar")
+    val isMaterialEnabled = selectedLanguage == "Japanese" // Keep this logic tied to assets
 
-    // Reset difficulty and material when language changes
+    // --- Effects ---
+    // Reset difficulty/material when language changes
     LaunchedEffect(selectedLanguage) {
         selectedDifficulty = ""
-        selectedMaterial = "Vocabulary"
+        selectedMaterial = "Vocabulary" // Reset to default
+        llmDescription = "" // Optionally clear description too, or keep it
     }
 
+    // --- UI ---
     Box(
         modifier = Modifier
             .fillMaxSize()
             .background(Color(0xFF007893)) // Teal background
             .padding(WindowInsets.systemBars.asPaddingValues())
-            .padding(16.dp) // Add overall padding
+            .padding(16.dp)
     ) {
         Column(
             modifier = Modifier.fillMaxSize(),
@@ -109,17 +125,17 @@ fun MainScreen(
                 fontFamily = FontFamily.Cursive,
                 fontWeight = FontWeight.Medium,
                 color = Color(0xFFE0F7FA),
-                modifier = Modifier.padding(top = 24.dp, bottom = 16.dp) // Adjusted padding
+                modifier = Modifier.padding(top = 24.dp, bottom = 16.dp)
             )
 
             // --- General Language Selection ---
             Text(
-                text = "Which language do you want to practice?", // New Label
+                text = "Which language do you want to practice?",
                 fontSize = 18.sp,
                 color = Color(0xFFE0F7FA),
                 modifier = Modifier.padding(bottom = 8.dp)
             )
-            Box(modifier = Modifier.fillMaxWidth(0.7f)) {
+            Box(modifier = Modifier.fillMaxWidth(0.8f)) { // Slightly wider box
                 OutlinedButton(
                     onClick = { languageExpanded = true },
                     modifier = Modifier.fillMaxWidth(),
@@ -129,7 +145,7 @@ fun MainScreen(
                 DropdownMenu(
                     expanded = languageExpanded,
                     onDismissRequest = { languageExpanded = false },
-                    modifier = Modifier.background(Color(0xFF015D73)).fillMaxWidth(0.7f)
+                    modifier = Modifier.background(Color(0xFF015D73)).fillMaxWidth(0.8f) // Match button width
                 ) {
                     languageOptions.forEach { language ->
                         DropdownMenuItem(
@@ -143,10 +159,9 @@ fun MainScreen(
                     }
                 }
             }
-            Spacer(modifier = Modifier.height(24.dp)) // Space after language selection
+            Spacer(modifier = Modifier.height(24.dp))
 
-
-            // --- Section 1 (NEW): Generate with AI ---
+            // --- Section 1: Generate with AI ---
             Text(
                 text = "Generate with AI",
                 fontSize = 20.sp,
@@ -154,14 +169,12 @@ fun MainScreen(
                 color = Color(0xFFE0F7FA),
                 modifier = Modifier.padding(bottom = 16.dp)
             )
-
-            // LLM Description Input
             OutlinedTextField(
                 value = llmDescription,
                 onValueChange = { llmDescription = it },
                 modifier = Modifier.fillMaxWidth(0.9f),
                 label = { Text("Describe what you want to learn...") },
-                placeholder = { Text("e.g., Japanese N3 grammar for requests", color = Color(0xFF90A4AE)) },
+                placeholder = { Text("e.g., French past tense verbs", color = Color(0xFF90A4AE)) },
                 singleLine = false,
                 maxLines = 3,
                 colors = OutlinedTextFieldDefaults.colors(
@@ -175,8 +188,6 @@ fun MainScreen(
                 )
             )
             Spacer(modifier = Modifier.height(16.dp))
-
-            // Generate Button
             Button(
                 onClick = {
                     if (llmDescription.isNotBlank() && !isGenerating) {
@@ -199,70 +210,57 @@ fun MainScreen(
                                 }
                             }
                         }
-                    } else if (isGenerating) {
-                        // Optional feedback
-                    } else {
-                        Toast.makeText(context, "Please describe what you want to learn.", Toast.LENGTH_SHORT).show()
-                    }
+                    } else if (isGenerating) { /* Optional feedback */ }
+                    else { Toast.makeText(context, "Please describe what you want to learn.", Toast.LENGTH_SHORT).show() }
                 },
                 enabled = llmDescription.isNotBlank() && !isGenerating,
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = Color(0xFF1DE9B6),
-                    contentColor = Color(0xFF004D40),
-                    disabledContainerColor = Color(0xFF455A64),
-                    disabledContentColor = Color(0xFF90A4AE)
+                    containerColor = Color(0xFF1DE9B6), contentColor = Color(0xFF004D40),
+                    disabledContainerColor = Color(0xFF455A64), disabledContentColor = Color(0xFF90A4AE)
                 )
             ) {
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     if (isGenerating) {
-                        CircularProgressIndicator(
-                            modifier = Modifier.size(20.dp),
-                            color = Color(0xFF004D40),
-                            strokeWidth = 2.dp
-                        )
+                        CircularProgressIndicator(Modifier.size(20.dp), color = Color(0xFF004D40), strokeWidth = 2.dp)
                         Spacer(Modifier.width(8.dp))
                         Text("Generating...")
-                    } else {
-                        Text("Generate Phrase")
-                    }
+                    } else { Text("Generate Phrase") }
                 }
             }
 
             Divider(
-                color = Color(0xFF455A64),
-                thickness = 1.dp,
-                modifier = Modifier
-                    .fillMaxWidth(0.8f)
-                    .padding(vertical = 24.dp) // Space around divider
+                color = Color(0xFF455A64), thickness = 1.dp,
+                modifier = Modifier.fillMaxWidth(0.8f).padding(vertical = 24.dp)
             )
 
-            // --- Section 2 (NEW): Practice Predefined Sets ---
+            // --- Section 2: Practice Predefined Sets ---
             Text(
-                text = "Or try our predefined sets", // Changed Label
+                text = "Or try our predefined sets",
                 fontSize = 20.sp,
                 fontWeight = FontWeight.SemiBold,
                 color = Color(0xFFE0F7FA),
                 modifier = Modifier.padding(bottom = 16.dp)
             )
 
-            // Difficulty Dropdown
-            Text("Difficulty", fontSize = 16.sp, color = Color(0xFFE0F7FA))
+            // Difficulty Dropdown (Enabled only if options exist)
+            val difficultyEnabled = difficultyOptions.isNotEmpty()
+            Text("Difficulty", fontSize = 16.sp, color = if (difficultyEnabled) Color(0xFFE0F7FA) else Color(0xFF90A4AE))
             Spacer(modifier = Modifier.height(4.dp))
-            Box(modifier = Modifier.fillMaxWidth(0.7f)) {
+            Box(modifier = Modifier.fillMaxWidth(0.8f)) { // Match language box width
                 OutlinedButton(
-                    onClick = { if (difficultyOptions.isNotEmpty()) difficultyExpanded = true },
+                    onClick = { if (difficultyEnabled) difficultyExpanded = true },
                     modifier = Modifier.fillMaxWidth(),
-                    enabled = difficultyOptions.isNotEmpty(),
+                    enabled = difficultyEnabled,
                     colors = ButtonDefaults.outlinedButtonColors(
-                        contentColor = if (difficultyOptions.isNotEmpty()) Color(0xFFFFB300) else Color(0xFF90A4AE),
+                        contentColor = if (difficultyEnabled) Color(0xFFFFB300) else Color(0xFF90A4AE),
                         disabledContentColor = Color(0xFF90A4AE)
                     ),
-                    border = BorderStroke(1.dp, if (difficultyOptions.isNotEmpty()) Color(0xFFFFB300) else Color(0xFF455A64))
-                ) { Text(if (selectedDifficulty.isEmpty()) "Choose Difficulty" else selectedDifficulty) }
+                    border = BorderStroke(1.dp, if (difficultyEnabled) Color(0xFFFFB300) else Color(0xFF455A64))
+                ) { Text(if (selectedDifficulty.isEmpty() && difficultyEnabled) "Choose Difficulty" else if (!difficultyEnabled) "N/A for this language" else selectedDifficulty) }
                 DropdownMenu(
                     expanded = difficultyExpanded,
                     onDismissRequest = { difficultyExpanded = false },
-                    modifier = Modifier.background(Color(0xFF015D73)).fillMaxWidth(0.7f)
+                    modifier = Modifier.background(Color(0xFF015D73)).fillMaxWidth(0.8f)
                 ) {
                     difficultyOptions.forEach { difficulty ->
                         DropdownMenuItem(
@@ -278,11 +276,10 @@ fun MainScreen(
             }
             Spacer(modifier = Modifier.height(12.dp))
 
-            // Material Dropdown
-            val isMaterialEnabled = selectedLanguage == "Japanese"
+            // Material Dropdown (Only for Japanese assets)
             Text("Material", fontSize = 16.sp, color = if(isMaterialEnabled) Color(0xFFE0F7FA) else Color(0xFF90A4AE))
             Spacer(modifier = Modifier.height(4.dp))
-            Box(modifier = Modifier.fillMaxWidth(0.7f)) {
+            Box(modifier = Modifier.fillMaxWidth(0.8f)) { // Match language box width
                 OutlinedButton(
                     onClick = { if (isMaterialEnabled) materialExpanded = true },
                     modifier = Modifier.fillMaxWidth(),
@@ -292,11 +289,11 @@ fun MainScreen(
                         disabledContentColor = Color(0xFF90A4AE)
                     ),
                     border = BorderStroke(1.dp, if (isMaterialEnabled) Color(0xFFFFB300) else Color(0xFF455A64))
-                ) { Text(selectedMaterial) }
+                ) { Text(if (isMaterialEnabled) selectedMaterial else "N/A for this language") }
                 DropdownMenu(
                     expanded = materialExpanded,
                     onDismissRequest = { materialExpanded = false },
-                    modifier = Modifier.background(Color(0xFF015D73)).fillMaxWidth(0.7f)
+                    modifier = Modifier.background(Color(0xFF015D73)).fillMaxWidth(0.8f)
                 ) {
                     materialOptions.forEach { material ->
                         DropdownMenuItem(
@@ -312,7 +309,7 @@ fun MainScreen(
             }
             Spacer(modifier = Modifier.height(16.dp))
 
-            // Start Game Button (Assets)
+            // Start Predefined Set Button (Enabled only if difficulty selected)
             Button(
                 onClick = {
                     if (selectedDifficulty.isNotEmpty()) {
@@ -321,24 +318,21 @@ fun MainScreen(
                         Toast.makeText(context, "Please select a difficulty for predefined sets.", Toast.LENGTH_SHORT).show()
                     }
                 },
-                enabled = selectedDifficulty.isNotEmpty(), // Enable only if difficulty is chosen
+                enabled = selectedDifficulty.isNotEmpty(), // Crucial: Only enable if a difficulty is actually selected
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = Color(0xFFFF8F00),
-                    contentColor = Color(0xFFE0F7FA),
-                    disabledContainerColor = Color(0xFF455A64),
-                    disabledContentColor = Color(0xFF90A4AE)
+                    containerColor = Color(0xFFFF8F00), contentColor = Color(0xFFE0F7FA),
+                    disabledContainerColor = Color(0xFF455A64), disabledContentColor = Color(0xFF90A4AE)
                 )
             ) {
                 Text("Start Predefined Set")
             }
-
+            Spacer(modifier = Modifier.height(16.dp)) // Add some space at the bottom
 
         } // End Main Column
 
-        // Bottom Icons (Remain at the bottom)
+        // Bottom Icons
         Row(
-            modifier = Modifier
-                .align(Alignment.BottomEnd),
+            modifier = Modifier.align(Alignment.BottomEnd),
             horizontalArrangement = Arrangement.spacedBy(16.dp)
         ) {
             IconButton(onClick = onShowFavorites, modifier = Modifier.size(48.dp)) {
