@@ -62,22 +62,6 @@ class GameActivity : ComponentActivity() {
     // --- Activity Result Launcher for Permissions ---
     private lateinit var requestPermissionLauncher: ActivityResultLauncher<String>
 
-    private fun initializePermissionLauncher() {
-        requestPermissionLauncher =
-            registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted: Boolean ->
-                if (isGranted) {
-                    Log.d("GameActivity", "RECORD_AUDIO permission granted.")
-                } else {
-                    Log.w("GameActivity", "RECORD_AUDIO permission denied.")
-                    Toast.makeText(
-                        this,
-                        "Audio permission is required to practice speaking.",
-                        Toast.LENGTH_LONG
-                    ).show()
-                }
-            }
-    }
-
     // --- Data Classes and Properties ---
     data class Phrase(
         val spoken: String,
@@ -131,20 +115,25 @@ class GameActivity : ComponentActivity() {
             }
             Log.e("GameActivity", "Speech error details: $errorMessage")
             currentOnResult?.invoke(errorMessage) // Pass error message to UI
-            currentOnSpeechEnded?.invoke() // Signal end on error
         }
 
-        override fun onBeginningOfSpeech() { Log.d("GameActivity", "Speech began") }
-        override fun onEndOfSpeech() { Log.d("GameActivity", "Speech ended"); currentOnSpeechEnded?.invoke() }
+        override fun onBeginningOfSpeech() {
+            Log.d("GameActivity", "Speech began")
+        }
+        override fun onEndOfSpeech() {
+            Log.d("GameActivity", "Speech ended");
+            currentOnSpeechEnded?.invoke()
+        }
         override fun onRmsChanged(rmsdB: Float) {}
         override fun onBufferReceived(buffer: ByteArray?) {}
-        override fun onEvent(eventType: Int, params: Bundle?) { Log.d("GameActivity", "Speech event: $eventType") }
+        override fun onEvent(eventType: Int, params: Bundle?) {
+            Log.d("GameActivity", "Speech event: $eventType")
+        }
     }
 
     // --- Lifecycle Methods ---
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        initializePermissionLauncher()
 
         // Retrieve intent extras
         selectedLanguage = intent.getStringExtra("LANGUAGE") ?: "Japanese"
@@ -215,13 +204,15 @@ class GameActivity : ComponentActivity() {
             GameScreen(
                 phrases = phrases,
                 selectedLanguage = selectedLanguage,
-                onStartListening = ::startListening, // Use function reference
+                onStartListening = { index, onResult, onSpeechEnded ->
+                    startListening(index, onResult, onSpeechEnded)
+                },
                 onQuit = { finish() },
-                onDestroyRecognizer = { if(::speechRecognizer.isInitialized) speechRecognizer.destroy() }
+                onDestroyRecognizer = { speechRecognizer.destroy() }
             )
         }
 
-        requestAudioPermission() // Check permission status on create
+        requestAudioPermission()
     }
 
     override fun onDestroy() {
@@ -244,38 +235,15 @@ class GameActivity : ComponentActivity() {
     }
 
     private fun createSpeechRecognizer(): SpeechRecognizer {
-        if (!SpeechRecognizer.isRecognitionAvailable(this)) {
-            Log.e("GameActivity", "Speech recognition NOT AVAILABLE on this device.")
-            throw IllegalStateException("Speech recognition service is not available.")
-        }
         val recognizer = SpeechRecognizer.createSpeechRecognizer(this)
         recognizer.setRecognitionListener(speechListener)
-        Log.d("GameActivity", "SpeechRecognizer created successfully.")
         return recognizer
     }
 
     // Requests audio permission using the Activity Result API launcher
     private fun requestAudioPermission() {
-        when {
-            ContextCompat.checkSelfPermission(
-                this,
-                Manifest.permission.RECORD_AUDIO
-            ) == PackageManager.PERMISSION_GRANTED -> {
-                // Permission is already granted
-                Log.d("GameActivity", "RECORD_AUDIO permission already granted.")
-            }
-            shouldShowRequestPermissionRationale(Manifest.permission.RECORD_AUDIO) -> {
-                // Explain why the permission is needed (e.g., in a dialog) then request
-                Log.i("GameActivity", "Showing permission rationale for RECORD_AUDIO.")
-                // Example: Show a simple Toast explanation before requesting
-                Toast.makeText(this,"Microphone access is needed to recognize your speech.", Toast.LENGTH_LONG).show()
-                requestPermissionLauncher.launch(Manifest.permission.RECORD_AUDIO)
-            }
-            else -> {
-                // No explanation needed; request the permission directly
-                Log.d("GameActivity", "Requesting RECORD_AUDIO permission.")
-                requestPermissionLauncher.launch(Manifest.permission.RECORD_AUDIO)
-            }
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
+            requestPermissions(arrayOf(Manifest.permission.RECORD_AUDIO), 1)
         }
     }
 
@@ -407,256 +375,224 @@ class GameActivity : ComponentActivity() {
     }
 
     // --- GameScreen Composable ---
+    // GameScreen Composable (Accepts selectedLanguage)
     @Composable
     fun GameScreen(
         phrases: List<Phrase>,
-        selectedLanguage: String,
+        selectedLanguage: String, // Now receives the selected language
         onStartListening: suspend (Int, (String) -> Unit, () -> Unit) -> Unit,
         onQuit: () -> Unit,
         onDestroyRecognizer: () -> Unit
     ) {
-        // State variables for the UI
+        // Existing state variables
         var currentIndex by remember { mutableStateOf(0) }
         var spokenText by remember { mutableStateOf("") }
         var isCorrect by remember { mutableStateOf<Boolean?>(null) }
         var showResult by remember { mutableStateOf(false) }
         var showHelp by remember { mutableStateOf(false) }
         var speechEnded by remember { mutableStateOf(false) }
-        var lastPartialText by remember { mutableStateOf("") } // Store last partial for comparison logic
-        var isRecording by remember { mutableStateOf(false) } // Track if mic is actively listening
+        var lastPartialText by remember { mutableStateOf("") }
+        var isRecording by remember { mutableStateOf(false) }
         val context = LocalContext.current
-        var showGrammarDialog by remember { mutableStateOf(false) } // State for grammar popup
 
-        // Handle empty/error phrases list gracefully
+        // State for grammar dialog
+        var showGrammarDialog by remember { mutableStateOf(false) }
+
+        // Handle empty/error phrases list
         if (phrases.isEmpty() || phrases[0].spoken.startsWith("Error:")) {
-            LaunchedEffect(Unit) { // Show toast on main thread if error detected
-                if (phrases.isNotEmpty() && phrases[0].spoken.startsWith("Error:")) {
-                    Toast.makeText(context, phrases[0].english, Toast.LENGTH_LONG).show()
-                } else if (phrases.isEmpty()) {
-                    Toast.makeText(context, "No phrases available.", Toast.LENGTH_LONG).show()
-                }
-            }
-            // Display an error message and a back button
             Box(
-                modifier = Modifier.fillMaxSize().background(Color(0xFF212121)), // Dark background for error
+                modifier = Modifier
+                    .fillMaxSize()
+                    .background(Color(0xFF212121)),
                 contentAlignment = Alignment.Center
             ) {
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
                     Text(
-                        phrases.getOrNull(0)?.spoken ?: "No Phrases Found",
-                        color = Color(0xFFE0F7FA), fontSize = 20.sp, textAlign = TextAlign.Center,
+                        phrases.getOrNull(0)?.spoken ?: "No phrases found.",
+                        color = Color.White, fontSize = 20.sp, textAlign = TextAlign.Center,
                         modifier = Modifier.padding(horizontal = 16.dp)
                     )
                     Spacer(Modifier.height(8.dp))
                     Text(
-                        phrases.getOrNull(0)?.english ?: "Please go back and select another set or generate a phrase.",
+                        phrases.getOrNull(0)?.english ?: "Please check assets or logs.",
                         color = Color.Gray, fontSize = 16.sp, textAlign = TextAlign.Center,
                         modifier = Modifier.padding(horizontal = 16.dp)
                     )
-                    Spacer(Modifier.height(20.dp))
-                    Button(
-                        onClick = onQuit,
-                        colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFFF8F00)) // Use theme color
-                    ) { Text("Back", color = Color(0xFFE0F7FA)) }
+                    Button(onClick = onQuit, modifier = Modifier.padding(top = 20.dp)) { Text("Back") }
                 }
             }
-            // Ensure recognizer is destroyed if leaving due to error
-            DisposableEffect(Unit) { onDispose { onDestroyRecognizer() } }
-            return // Stop rendering the rest of the GameScreen UI
+            return
         }
 
-        // Ensure currentIndex remains valid (e.g., if list changes)
+        // Ensure currentIndex is valid
         LaunchedEffect(phrases) {
             if (currentIndex >= phrases.size && phrases.isNotEmpty()) {
-                Log.w("GameScreen", "currentIndex $currentIndex OOB for list (size ${phrases.size}), resetting to 0")
+                Log.w("GameScreen", "currentIndex $currentIndex OOB for new list (size ${phrases.size}), reset to 0")
                 currentIndex = 0
-            } else if (phrases.isEmpty()){
-                Log.w("GameScreen", "Phrase list became empty during LaunchedEffect check.")
-                // Error state above should handle this, but log just in case
             }
         }
-
-        // Get current phrase safely, check index validity again just in case
-        val currentPhrase = if (currentIndex < phrases.size) phrases[currentIndex] else {
-            // This fallback should ideally not be needed if index/list checks work
-            Log.e("GameScreen", "Fallback triggered: currentIndex $currentIndex >= phrases.size ${phrases.size}")
-            phrases.first()
+        if (phrases.isEmpty()) { // Re-check after effect
+            Box(
+                Modifier.fillMaxSize().background(Color(0xFF212121)), Alignment.Center
+            ) {
+                Text("No phrases remaining.", color = Color.White, fontSize = 20.sp)
+                Button(onClick = onQuit, modifier = Modifier.padding(top = 20.dp)) { Text("Back") }
+            }
+            return
         }
 
-        // State for favorite/learned status and confirmation dialog
+        // Get current phrase and dependent states
+        val currentPhrase = phrases[currentIndex]
         var isFavorite by remember(currentPhrase) { mutableStateOf(isPhraseFavorite(currentPhrase, selectedLanguage, context)) }
         var isLearned by remember(currentPhrase) { mutableStateOf(isPhraseLearned(currentPhrase, selectedLanguage, context)) }
         var showLearnConfirmation by remember { mutableStateOf(false) }
 
-        // Animate background color based on correctness
+        // Background color animation
         val backgroundColor by animateColorAsState(
             targetValue = when (isCorrect) {
-                true -> Color(0xFF4CAF50) // Green for correct
-                false -> Color(0xFFE57373) // Red for incorrect
-                null -> Color(0xFF007893) // Default Teal background
+                true -> Color(0xFF4CAF50)
+                false -> Color(0xFFE57373)
+                null -> Color(0xFF212121)
             },
-            animationSpec = tween(durationMillis = 400), label = "BackgroundColorAnim"
+            animationSpec = tween(durationMillis = 300)
         )
 
-        // Coroutine scope and media players (remember ensures they persist across recompositions)
+        // Coroutine scope and media players
         val coroutineScope = rememberCoroutineScope()
-        val speakMediaPlayer = remember(context) { try { MediaPlayer.create(context, R.raw.speak) } catch (e:Exception) { null } }
-        val correctMediaPlayer = remember(context) { try { MediaPlayer.create(context, R.raw.correct) } catch (e:Exception) { null } }
+        val speakMediaPlayer = remember { MediaPlayer.create(context, R.raw.speak) }
+        val correctMediaPlayer = remember { MediaPlayer.create(context, R.raw.correct) }
 
-        // Cleanup MediaPlayers and Recognizer when the Composable leaves the screen
+        // DisposableEffect
         DisposableEffect(Unit) {
             onDispose {
-                speakMediaPlayer?.release()
-                correctMediaPlayer?.release()
-                Log.d("GameScreen", "MediaPlayers released via DisposableEffect")
-                onDestroyRecognizer() // Ensure recognizer is stopped/destroyed
+                speakMediaPlayer.release()
+                correctMediaPlayer.release()
             }
         }
 
-        // Kuromoji Tokenizer instance (initialized only if needed for Japanese)
-        val japaneseTokenizer by remember {
-            mutableStateOf(
-                if (selectedLanguage == "Japanese") {
-                    try { Tokenizer.Builder().build() } catch (e: Exception) {
-                        Log.e("GameScreen", "Failed to initialize Kuromoji Tokenizer", e)
-                        null // Handle initialization failure
-                    }
-                } else null
-            )
-        }
-
-        // Normalization function (handles basic punctuation/case and Japanese reading)
-        suspend fun normalizeText(text: String): String {
-            if (text.isBlank()) return ""
-            // 1. Basic normalization for all languages
-            val basicNormalized = text.replace("[\\s、。？！.,;:\"'()\\[\\]{}<>]".toRegex(), "").lowercase()
-
-            // 2. Japanese specific: Convert to reading using Kuromoji
-            return if (selectedLanguage == "Japanese" && japaneseTokenizer != null) {
-                withContext(Dispatchers.Default) { // Run Kuromoji off the main thread
+        // toReading function
+        suspend fun toReading(text: String): String {
+            return if (selectedLanguage == "Japanese") {
+                withContext(Dispatchers.Default) {
                     try {
-                        val tokens: List<Token> = japaneseTokenizer!!.tokenize(basicNormalized)
-                        // Join tokens using reading if available, else surface form. Handle "*" reading.
-                        tokens.joinToString("") { token ->
-                            token.reading?.takeIf { it != "*" } ?: token.surface
-                        }.also { reading ->
-                            Log.d("GameScreen", "Kuromoji Norm: '$text' -> '$basicNormalized' -> '$reading'")
-                        }
+                        // Ensure tokenizer is initialized - consider making it a member if performance is critical
+                        val tokenizer = Tokenizer.Builder().build()
+                        val tokens: List<Token> = tokenizer.tokenize(text)
+                        tokens.joinToString("") { it.reading ?: it.surface }
                     } catch (e: Exception) {
-                        Log.e("GameScreen", "Kuromoji tokenization error for '$basicNormalized'", e)
-                        basicNormalized // Fallback to basic normalization on error
+                        Log.e("GameScreen", "Kuromoji tokenization error", e)
+                        text // fallback
                     }
                 }
             } else {
-                // Only basic normalization for other languages
-                Log.d("GameScreen", "Basic Norm: '$text' -> '$basicNormalized'")
-                basicNormalized
+                text
             }
         }
 
-        // LaunchedEffect to process spoken text results (including partials)
+
+        // LaunchedEffect for processing spoken text
         LaunchedEffect(spokenText, speechEnded) {
-            if (spokenText.isNotEmpty() && spokenText != "Listening..." && !spokenText.startsWith("Error")) {
-                val expected = currentPhrase.expected
-                val normalizedExpected = normalizeText(expected)
-                val normalizedSpoken = normalizeText(spokenText)
-
-                if (normalizedExpected.isBlank()) { // Safety check
-                    Log.e("GameScreen", "Normalized expected text is blank for phrase: ${currentPhrase.spoken}")
-                    return@LaunchedEffect
+            if (spokenText.isNotEmpty() && spokenText != "Listening..." && currentIndex < phrases.size) {
+                val phrase = phrases[currentIndex]
+                val expected = phrase.expected
+                val normalizedExpected = withContext(Dispatchers.IO) {
+                    toReading(expected.replace("[\\s、。？！]".toRegex(), "")).lowercase()
                 }
-
-                val isFinalResult = speechEnded // Flag indicating if speech recognizer finished
-                Log.d("GameScreen", "Processing: SpokenNorm='$normalizedSpoken', ExpectedNorm='$normalizedExpected', Ended=$isFinalResult")
-
-                if (normalizedExpected == normalizedSpoken) {
-                    // Correct match found
-                    Log.d("GameScreen", "Correct match.")
-                    if (isCorrect != true) { // Play sound only on the first transition to correct
-                        correctMediaPlayer?.start()
-                    }
-                    isCorrect = true
+                val normalizedSpoken = withContext(Dispatchers.IO) {
+                    toReading(spokenText.replace("[\\s、。？！]".toRegex(), "")).lowercase()
+                }
+                Log.d("GameScreen", "Comparing: SpokenNorm='$normalizedSpoken' vs ExpectedNorm='$normalizedExpected'")
+                val isError = spokenText.contains("error", ignoreCase = true) ||
+                        spokenText == "No match found. Try again." ||
+                        spokenText == "No speech input. Speak louder."
+                if (isError) {
+                    Log.d("GameScreen", "Error detected: $spokenText")
+                    isCorrect = false
                     showResult = true
-                    showHelp = true // Automatically show help on correct answer
-                    isRecording = false // Turn off recording indicator
+                    isRecording = false
+                    delay(1500)
+                    spokenText = ""
+                    isCorrect = null
+                    showResult = false
+                    lastPartialText = ""
                 } else {
-                    // Not a perfect match, check partials and final state
                     val isPrefix = normalizedSpoken.isNotEmpty() && normalizedExpected.startsWith(normalizedSpoken)
-
-                    if (!isPrefix && normalizedSpoken.isNotEmpty()) {
-                        // If the partial result is already wrong (not a prefix)
-                        Log.d("GameScreen", "Incorrect partial (not a prefix): '$normalizedSpoken'")
-                        isCorrect = false
-                        showResult = true // Show incorrect status immediately
+                    val matches = normalizedExpected == normalizedSpoken
+                    Log.d("GameScreen", "Match=$matches, Prefix=$isPrefix, Ended=$speechEnded")
+                    if (matches) {
+                        Log.d("GameScreen", "Correct match.")
+                        isCorrect = true
+                        showResult = true
+                        showHelp = true
                         isRecording = false
-                        // No need to wait for speechEnded if it already diverged
-                    } else if (isFinalResult) {
-                        // If speech ended and it wasn't a perfect match (even if it was a prefix)
-                        Log.d("GameScreen", "Incorrect final result (speech ended, no full match).")
+                        correctMediaPlayer.start()
+                    } else if (speechEnded && !matches) {
+                        Log.d("GameScreen", "Incorrect result after speech ended.")
                         isCorrect = false
                         showResult = true
                         isRecording = false
+                    } else if (!isPrefix && normalizedSpoken.isNotEmpty()) {
+                        Log.d("GameScreen", "Partial not prefix: $normalizedSpoken")
+                        lastPartialText = spokenText
+                        if (speechEnded) {
+                            isCorrect = false
+                            showResult = true
+                            isRecording = false
+                        }
                     } else {
-                        // Partial result is still a potential prefix, keep listening/waiting
-                        Log.d("GameScreen", "Partial is prefix or empty: '$normalizedSpoken'. Waiting...")
-                        // isCorrect remains null, showResult remains false
+                        Log.d("GameScreen", "Partial is prefix or empty.")
+                        lastPartialText = spokenText
                     }
                 }
-                lastPartialText = spokenText // Always update the last seen partial text
-
-            } else if (spokenText.startsWith("Error")) {
-                // Handle error messages from the recognizer
-                Log.d("GameScreen", "Error message received from recognizer: $spokenText")
-                isCorrect = false
-                showResult = true
-                isRecording = false
-                // Optionally clear the error message after a delay or on mic press
             }
         }
 
-        // LaunchedEffect to reset state when the phrase (currentIndex or phrases list) changes
-        LaunchedEffect(currentIndex, phrases) {
-            if (currentIndex >= 0 && currentIndex < phrases.size) {
-                Log.d("GameScreen", "Index/Phrase changed to: $currentIndex - '${phrases[currentIndex].spoken}'")
-                // Reset all relevant UI state for the new phrase
-                spokenText = ""
-                isCorrect = null
-                showResult = false
-                showHelp = false
-                speechEnded = false
-                lastPartialText = ""
-                isRecording = false
-                // Update favorite/learned status based on the new phrase
-                isFavorite = isPhraseFavorite(phrases[currentIndex], selectedLanguage, context)
-                isLearned = isPhraseLearned(phrases[currentIndex], selectedLanguage, context)
-            }
+
+        // LaunchedEffect for currentIndex changes
+        LaunchedEffect(currentIndex) {
+            Log.d("GameScreen", "Index changed: $currentIndex")
+            spokenText = ""
+            isCorrect = null
+            showResult = false
+            showHelp = false
+            speechEnded = false
+            lastPartialText = ""
+            isRecording = false
         }
 
-        // --- Main UI Box ---
+        // Main UI Box
         Box(
             modifier = Modifier
                 .fillMaxSize()
-                .background(backgroundColor) // Apply animated background
-                .padding(WindowInsets.systemBars.asPaddingValues()) // Handle system bars
+                .background(backgroundColor)
+                .padding(WindowInsets.systemBars.asPaddingValues()) // Respect system insets
         ) {
-            // --- Top Buttons ---
             // Back Button
             IconButton(
                 onClick = onQuit,
-                modifier = Modifier.align(Alignment.TopStart).padding(8.dp)
+                modifier = Modifier
+                    .align(Alignment.TopStart)
+                    .padding(8.dp)
             ) {
-                Icon(Icons.Filled.ArrowBack, "Quit", tint = Color(0xFFE0F7FA), modifier = Modifier.size(24.dp))
+                Icon(
+                    imageVector = Icons.Filled.ArrowBack,
+                    contentDescription = "Quit",
+                    tint = Color(0xFFE0F7FA),
+                    modifier = Modifier.size(24.dp)
+                )
             }
 
             // Top Right Icons Row (Favorite & Learned)
             Row(
-                modifier = Modifier.align(Alignment.TopEnd).padding(8.dp),
+                modifier = Modifier
+                    .align(Alignment.TopEnd)
+                    .padding(8.dp),
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
                 // Favorite Button
                 IconButton(
                     onClick = {
-                        val phraseToToggle = currentPhrase
+                        val phraseToToggle = phrases[currentIndex]
                         if (isFavorite) {
                             removeFavoritePhrase(phraseToToggle, selectedLanguage, context)
                             Toast.makeText(context, "Removed from favorites", Toast.LENGTH_SHORT).show()
@@ -679,14 +615,14 @@ class GameActivity : ComponentActivity() {
                 // Learned Button
                 IconButton(
                     onClick = {
-                        val phraseToToggle = currentPhrase
+                        val phraseToToggle = phrases[currentIndex]
                         if (!isLearned) {
-                            showLearnConfirmation = true // Show confirmation dialog first
+                            showLearnConfirmation = true // Show confirmation dialog
                         } else {
-                            // If already learned, remove instantly (unlearn)
+                            // If already learned, remove instantly
                             removeLearnedPhrase(phraseToToggle, selectedLanguage, context)
                             isLearned = false
-                            Toast.makeText(context, "Marked as 'not learned'", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(context, "Removed from learned phrases", Toast.LENGTH_SHORT).show()
                         }
                     },
                     modifier = Modifier.size(40.dp)
@@ -704,236 +640,178 @@ class GameActivity : ComponentActivity() {
             if (showLearnConfirmation) {
                 AlertDialog(
                     onDismissRequest = { showLearnConfirmation = false },
-                    title = { Text("Mark as Learned?", color = Color(0xFFE0F7FA)) },
-                    text = { Text("Marking this phrase as learned will hide it from future predefined sets. You can review learned phrases in Settings.", color = Color(0xFFE0F7FA)) },
+                    title = { Text("Confirm Learning", color = Color(0xFFE0F7FA)) },
+                    text = { Text("Have you fully learned this phrase? It will no longer appear in the game.", color = Color(0xFFE0F7FA)) },
                     confirmButton = {
                         Button(
                             onClick = {
-                                val phraseToLearn = currentPhrase
+                                val phraseToLearn = phrases[currentIndex]
                                 addLearnedPhrase(phraseToLearn, selectedLanguage, context)
                                 isLearned = true
                                 showLearnConfirmation = false
-                                Toast.makeText(context, "Marked as learned", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(context, "Added to learned phrases", Toast.LENGTH_SHORT).show()
 
-                                // Move to the next phrase only if multiple phrases exist (i.e., loaded from assets)
-                                if (phrases.size > 1) {
-                                    val nextIndex = (currentIndex + 1) % phrases.size // Safe wrap-around
-                                    currentIndex = nextIndex
-                                } else {
-                                    // If it was the only phrase (generated), stay on screen. User can use "Done" button.
-                                    Log.d("GameScreen", "Learned the only phrase. Staying on screen.")
+                                val nextIndex = (currentIndex + 1).let {
+                                    if (it >= phrases.size) 0 else it // Wrap around
                                 }
+                                currentIndex = nextIndex // Update state to trigger effects
                             },
                             colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFFF8F00))
-                        ) { Text("Yes, Mark Learned", color = Color(0xFFE0F7FA)) }
+                        ) { Text("Yes", color = Color(0xFFE0F7FA)) }
                     },
                     dismissButton = {
                         Button(
                             onClick = { showLearnConfirmation = false },
                             colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF015D73))
-                        ) { Text("Cancel", color = Color(0xFFE0F7FA)) }
+                        ) { Text("No", color = Color(0xFFE0F7FA)) }
                     },
-                    containerColor = Color(0xFF015D73) // Dialog background color
+                    containerColor = Color(0xFF015D73) // Dialog background
                 )
             }
 
-            // --- Central Content Area ---
+
+            // Central Content Column
             Column(
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(horizontal = 16.dp)
-                    // Adjust padding to prevent overlap with fixed top/bottom elements
-                    .padding(top = 60.dp, bottom = 180.dp),
-                verticalArrangement = Arrangement.Center, // Center content vertically
+                    .padding(horizontal = 16.dp, vertical = 8.dp), // Original padding
+                verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
+                // Spacer to push content down from top icons
+                Spacer(modifier = Modifier.height(16.dp))
 
                 // Correct/Incorrect Animation Icon
                 AnimatedVisibility(
                     visible = showResult && isCorrect != null,
                     enter = scaleIn(animationSpec = tween(300)),
-                    exit = fadeOut(animationSpec = tween(150))
+                    exit = fadeOut()
                 ) {
                     Box(
-                        modifier = Modifier.size(80.dp).padding(bottom=20.dp), // Space below icon
+                        modifier = Modifier.size(80.dp),
                         contentAlignment = Alignment.Center
                     ) {
                         val circleProgress by animateFloatAsState(
                             targetValue = if (showResult && isCorrect != null) 1f else 0f,
-                            animationSpec = tween(durationMillis = 500), label = "ResultCircleProgress"
+                            animationSpec = tween(durationMillis = 500)
                         )
-                        // Draw the progress circle
                         Canvas(modifier = Modifier.size(80.dp)) {
                             val diameter = size.minDimension
                             drawArc(
-                                color = Color(0xFFE0F7FA).copy(alpha = 0.7f),
-                                startAngle = -90f, sweepAngle = 360f * circleProgress,
+                                color = Color(0xFFE0F7FA), startAngle = -90f, sweepAngle = 360f * circleProgress,
                                 useCenter = false, style = Stroke(width = 4.dp.toPx()), size = Size(diameter, diameter),
                                 topLeft = Offset((size.width - diameter) / 2, (size.height - diameter) / 2)
                             )
                         }
-                        // Display Check or Close icon based on correctness
                         Icon(
-                            imageVector = if (isCorrect == true) Icons.Filled.CheckCircle else Icons.Filled.Cancel,
-                            contentDescription = if (isCorrect == true) "Correct" else "Incorrect",
-                            tint = Color(0xFFE0F7FA),
-                            modifier = Modifier.size(40.dp).alpha(if (circleProgress > 0.5f) 1f else 0f) // Fade icon in
+                            imageVector = if (isCorrect == true) Icons.Filled.Check else Icons.Filled.Close,
+                            contentDescription = if (isCorrect == true) "Correct" else "Incorrect", tint = Color(0xFFE0F7FA),
+                            modifier = Modifier.size(40.dp).alpha(if (circleProgress > 0.5f) 1f else 0f)
                         )
                     }
                 }
 
+                // Spacer between animation and text
+                Spacer(modifier = Modifier.height(40.dp))
+
                 // Phrase Text (Spoken form)
                 Text(
-                    text = currentPhrase.spoken,
-                    fontSize = 28.sp, // Larger font size for the main phrase
+                    text = currentPhrase.spoken, // Use checked phrase
+                    fontSize = 24.sp,
                     textAlign = TextAlign.Center,
-                    color = Color(0xFFE0F7FA), // Light Cyan text color
-                    modifier = Modifier.padding(bottom = 16.dp) // Space below the phrase
+                    color = Color(0xFFE0F7FA)
                 )
 
-                // Hiragana/Reading Display (Conditional)
+                // Spacer
+                Spacer(modifier = Modifier.height(16.dp))
+
+                // Hiragana Reading (Conditional)
                 AnimatedVisibility(
-                    visible = showHelp && selectedLanguage == "Japanese" && currentPhrase.reading.isNotBlank(),
+                    visible = showHelp && selectedLanguage == "Japanese",
                     enter = fadeIn(), exit = fadeOut()
                 ) {
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                        Text(text = "Reading", fontSize = 14.sp, color = Color(0xFFB0BEC5)) // Label color
+                        Text(text = "Hiragana", fontSize = 14.sp, color = Color(0xFFE0F7FA))
                         Text(
                             text = currentPhrase.reading, fontSize = 18.sp,
                             textAlign = TextAlign.Center, color = Color(0xFFE0F7FA)
                         )
-                        Spacer(modifier = Modifier.height(8.dp)) // Space after reading
                     }
                 }
 
-                // English Translation Display (Conditional)
+                // Spacer
+                Spacer(modifier = Modifier.height(24.dp))
+
+                // English Translation (Conditional)
                 AnimatedVisibility(
                     visible = showHelp,
                     enter = fadeIn(), exit = fadeOut()
                 ) {
-                    Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                        Text(text = "Meaning", fontSize = 14.sp, color = Color(0xFFB0BEC5)) // Label color
-                        Text(
-                            text = currentPhrase.english, fontSize = 18.sp, fontStyle = FontStyle.Italic,
-                            textAlign = TextAlign.Center, color = Color(0xFFE0F7FA)
-                        )
-                    }
-                }
-            } // End Central Content Column
-
-            // --- Bottom UI Elements ---
-            // Spoken Text Display (User's input)
-            Text(
-                // Show text only while recording or after a result is displayed
-                text = if (isRecording || showResult) spokenText else "",
-                fontSize = 18.sp,
-                textAlign = TextAlign.Center,
-                color = Color(0xFFE0F7FA).copy(alpha = 0.8f), // Slightly transparent
-                modifier = Modifier
-                    .align(Alignment.BottomCenter)
-                    .padding(bottom = 110.dp) // Position above the mic button
-                    .fillMaxWidth(0.8f) // Limit width to avoid edge overlap
-            )
-
-            // Microphone Button
-            Box( // Wrapper Box for alignment and padding
-                modifier = Modifier.align(Alignment.BottomCenter).padding(bottom = 20.dp)
-            ) {
-                // Animate mic button color based on recording state
-                val micButtonColor by animateColorAsState(
-                    targetValue = if (isRecording) Color(0xFFFF5252) else Color(0xFFFFB300), // Red while recording, Amber otherwise
-                    animationSpec = tween(200), label = "MicColorAnim"
-                )
-                IconButton(
-                    onClick = {
-                        if (!isRecording && !showResult) {
-                            // Start recording: reset state, play sound, launch listener
-                            spokenText = ""
-                            isCorrect = null
-                            speechEnded = false
-                            lastPartialText = ""
-                            isRecording = true
-                            speakMediaPlayer?.start()
-                            coroutineScope.launch {
-                                onStartListening(currentIndex,
-                                    { result -> if (isRecording) spokenText = result }, // Update text if still recording
-                                    {
-                                        if (isRecording) { // Only update state if we were actually recording
-                                            isRecording = false
-                                            speechEnded = true
-                                            Log.d("GameScreen", "Speech ended callback triggered while recording was true.")
-                                        } else {
-                                            Log.d("GameScreen", "Speech ended callback triggered but recording was already false.")
-                                        }
-                                    }
-                                )
-                            }
-                        } else if (showResult) {
-                            // Reset state if mic pressed while showing a result (allows retry)
-                            Log.d("GameScreen", "Mic pressed while showing result. Resetting state for retry.")
-                            spokenText = ""
-                            isCorrect = null
-                            showResult = false
-                            speechEnded = false
-                            lastPartialText = ""
-                            isRecording = false // Ensure recording is stopped
-                            // User needs to tap again to actually start recording
-                        } else {
-                            Log.d("GameScreen", "Mic clicked while already recording. Ignored.")
-                            // Optional: Add visual feedback like a shake animation
-                        }
-                    },
-                    modifier = Modifier
-                        .size(70.dp)
-                        .background(micButtonColor, CircleShape)
-                        // Add pulsing effect when recording
-                        .then(
-                            if (isRecording) {
-                                val infiniteTransition = rememberInfiniteTransition(label = "MicPulse")
-                                val scale by infiniteTransition.animateFloat(
-                                    initialValue = 1f, targetValue = 1.1f,
-                                    animationSpec = infiniteRepeatable(
-                                        animation = tween(600, easing = LinearEasing),
-                                        repeatMode = RepeatMode.Reverse
-                                    ), label = "MicScale"
-                                )
-                                Modifier.graphicsLayer(scaleX = scale, scaleY = scale)
-                            } else Modifier // Apply no transformation if not recording
-                        )
-                ) {
-                    Icon(
-                        // Show replay icon if result is shown, otherwise mic icon
-                        imageVector = if (showResult) Icons.Filled.Replay else Icons.Filled.Mic,
-                        contentDescription = if (showResult) "Try Again" else "Speak",
-                        tint = Color(0xFFE0F7FA),
-                        modifier = Modifier.size(36.dp)
+                    Text(
+                        text = currentPhrase.english, fontSize = 18.sp, fontStyle = FontStyle.Italic,
+                        textAlign = TextAlign.Center, color = Color(0xFFE0F7FA)
                     )
                 }
-            } // End Mic Button wrapper
+                // Spacer(modifier = Modifier.weight(1f)) // Removed or adjust if needed for spoken text position
+            }
+
+            // Spoken Text Display
+            Text(
+                text = spokenText, fontSize = 18.sp, textAlign = TextAlign.Center, color = Color(0xFFE0F7FA),
+                modifier = Modifier.align(Alignment.BottomCenter).padding(bottom = 150.dp) // Original position
+            )
+
+            // Mic Button
+            IconButton(
+                onClick = {
+                    if (!isRecording) {
+                        spokenText = ""
+                        isCorrect = null
+                        showResult = false
+                        speechEnded = false
+                        lastPartialText = ""
+                        isRecording = true
+                        speakMediaPlayer.start()
+                        coroutineScope.launch {
+                            onStartListening(currentIndex, { result -> spokenText = result }, {
+                                isRecording = false
+                                speechEnded = true
+                                Log.d("GameScreen", "Speech ended callback triggered")
+                            })
+                        }
+                    } else {
+                        Log.d("GameScreen", "Mic clicked while already recording.")
+                    }
+                },
+                modifier = Modifier.align(Alignment.BottomCenter).padding(16.dp).size(70.dp)
+                    .background(if (isRecording) Color(0xFFFF9999) else Color(0xFFFFB300), CircleShape)
+            ) {
+                Icon(Icons.Filled.Mic, "Speak", tint = Color(0xFFE0F7FA), modifier = Modifier.size(36.dp))
+            }
 
             // Row for Bottom End Buttons (Grammar + Help)
             Row(
-                modifier = Modifier.align(Alignment.BottomEnd).padding(16.dp),
+                modifier = Modifier
+                    .align(Alignment.BottomEnd)
+                    .padding(16.dp), // Overall padding for the row
                 horizontalArrangement = Arrangement.spacedBy(8.dp) // Space between buttons
             ) {
                 // Grammar Info Button
                 OutlinedIconButton(
                     onClick = {
                         if (currentPhrase.grammar.isNotBlank()) {
-                            showGrammarDialog = true
+                            showGrammarDialog = true // Show dialog
                         } else {
-                            Toast.makeText(context, "No specific grammar point for this phrase.", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(context, "No grammar point specified.", Toast.LENGTH_SHORT).show()
                         }
                     },
-                    modifier = Modifier.size(48.dp), // Consistent size
-                    // Enable button only if grammar field is not blank
-                    enabled = currentPhrase.grammar.isNotBlank(),
-                    border = BorderStroke(1.dp, if (currentPhrase.grammar.isNotBlank()) Color(0xFFFFB300) else Color(0xFF455A64))
+                    modifier = Modifier.size(48.dp), // Match help button size
+                    border = BorderStroke(1.dp, Color(0xFFFF8F00)),
+                    enabled = currentPhrase.grammar.isNotBlank()
                 ) {
                     Icon(
-                        imageVector = Icons.Filled.MenuBook,
-                        contentDescription = "Show Grammar Info",
-                        tint = if (currentPhrase.grammar.isNotBlank()) Color(0xFFE0F7FA) else Color(0xFF90A4AE), // Dim if disabled
+                        imageVector = Icons.Filled.MenuBook, contentDescription = "Show Grammar Info",
+                        tint = if (currentPhrase.grammar.isNotBlank()) Color(0xFFE0F7FA) else Color.Gray,
                         modifier = Modifier.size(24.dp)
                     )
                 }
@@ -941,72 +819,45 @@ class GameActivity : ComponentActivity() {
                 // Help Button
                 OutlinedIconButton(
                     onClick = { showHelp = !showHelp },
-                    modifier = Modifier.size(48.dp),
-                    border = BorderStroke(1.dp, Color(0xFFFFB300)) // Always Amber border
+                    modifier = Modifier.size(48.dp), // Consistent size
+                    border = BorderStroke(1.dp, Color(0xFFFF8F00))
                 ) {
                     Icon(
-                        // Toggle icon based on help visibility state
-                        imageVector = if (showHelp) Icons.Default.Help else Icons.Default.HelpOutline,
-                        contentDescription = "Show/Hide Help",
-                        tint = Color(0xFFE0F7FA), // Light cyan tint
-                        modifier = Modifier.size(24.dp)
+                        imageVector = Icons.Default.HelpOutline, contentDescription = "Show Help",
+                        tint = Color(0xFFE0F7FA), modifier = Modifier.size(24.dp)
                     )
                 }
             }
 
-            // Skip/Next/Done Button (Bottom Start)
+            // Skip/Next Button
             OutlinedButton(
                 onClick = {
-                    // 1. Always reset state before moving
                     spokenText = ""
                     isCorrect = null
                     showResult = false
                     speechEnded = false
                     lastPartialText = ""
                     isRecording = false
-                    // Stop any active listening
-                    if (::speechRecognizer.isInitialized) {
-                        try {
-                            speechRecognizer.stopListening()
-                            speechRecognizer.cancel()
-                        } catch (e: Exception) { Log.e("GameScreen", "Error stopping/cancelling recognizer on skip", e) }
-                    }
-
-                    // 2. Determine action based on number of phrases
-                    if (phrases.size > 1) {
-                        // If multiple phrases (from assets), move to the next one
-                        val nextIndex = (currentIndex + 1) % phrases.size // Wrap around
-                        currentIndex = nextIndex
-                    } else {
-                        // If only one phrase (generated), treat as "Done" and quit
-                        Toast.makeText(context, "Last phrase practiced.", Toast.LENGTH_SHORT).show()
-                        onQuit() // Go back to main menu
-                    }
+                    val nextIndex = (currentIndex + 1).let { if (it >= phrases.size) 0 else it }
+                    currentIndex = nextIndex // Update state to trigger effects
                 },
                 modifier = Modifier.align(Alignment.BottomStart).padding(16.dp),
-                border = BorderStroke(1.dp, Color(0xFFFFB300)), // Amber border
-                colors = ButtonDefaults.outlinedButtonColors(contentColor = Color(0xFFE0F7FA)) // Light cyan text
+                border = BorderStroke(1.dp, Color(0xFFFF8F00)),
+                colors = ButtonDefaults.outlinedButtonColors(contentColor = Color(0xFFE0F7FA))
             ) {
-                // Change button text dynamically
-                Text(
-                    when {
-                        isCorrect == true && showResult && phrases.size > 1 -> "Next" // Correct answer, more phrases
-                        phrases.size > 1 -> "Skip" // Not correct or no result yet, more phrases
-                        else -> "Done" // Only one phrase left (or shown)
-                    }
-                )
+                Text(if (isCorrect == true && showResult) "Next" else "Skip")
             }
 
-            // Grammar Explanation Dialog
+            // Grammar Dialog - Call updated GrammarDialog passing selectedLanguage
             if (showGrammarDialog) {
                 GrammarDialog(
                     grammarPoint = currentPhrase.grammar,
-                    language = selectedLanguage, // Pass language for correct path finding
+                    language = selectedLanguage, // Pass the selected language here
                     onDismiss = { showGrammarDialog = false }
                 )
             }
-        } // End of Main Box (Root UI)
-    } // End of GameScreen Composable
+        } // End of Main Box
+    } // End of GameScreen Composable // End of GameScreen Composable
 
     // --- SharedPreferences Functions ---
     // (Add/Remove/Check Favorite/Learned - Implementations remain the same)
