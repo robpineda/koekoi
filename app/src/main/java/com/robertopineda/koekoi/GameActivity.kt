@@ -17,7 +17,6 @@ import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.result.ActivityResultLauncher
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.animation.*
 import androidx.compose.animation.core.*
 import androidx.compose.foundation.BorderStroke
@@ -37,7 +36,6 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.drawscope.Stroke
-import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.style.TextAlign
@@ -59,9 +57,6 @@ import java.io.InputStreamReader
 
 class GameActivity : ComponentActivity() {
 
-    // --- Activity Result Launcher for Permissions ---
-    private lateinit var requestPermissionLauncher: ActivityResultLauncher<String>
-
     // --- Data Classes and Properties ---
     data class Phrase(
         val spoken: String,
@@ -73,7 +68,7 @@ class GameActivity : ComponentActivity() {
 
     private lateinit var phrases: List<Phrase>
     private lateinit var speechRecognizer: SpeechRecognizer
-    private lateinit var mediaPlayer: MediaPlayer // For 'speak' sound
+    private lateinit var mediaPlayer: MediaPlayer
     private var currentOnResult: ((String) -> Unit)? = null
     private var currentOnSpeechEnded: (() -> Unit)? = null
     private lateinit var selectedLanguage: String
@@ -114,7 +109,7 @@ class GameActivity : ComponentActivity() {
                 else -> "Unknown error $error"
             }
             Log.e("GameActivity", "Speech error details: $errorMessage")
-            currentOnResult?.invoke(errorMessage) // Pass error message to UI
+            currentOnResult?.invoke(errorMessage)
         }
 
         override fun onBeginningOfSpeech() {
@@ -146,58 +141,20 @@ class GameActivity : ComponentActivity() {
         // Load phrases: either single generated phrase or from assets
         phrases = if (singlePhraseJson != null) {
             try {
-                Log.d("GameActivity", "Attempting to load single phrase from JSON extra: $singlePhraseJson")
-                val singlePhrase = gson.fromJson(singlePhraseJson, Phrase::class.java)
-                if (singlePhrase != null) {
-                    listOf(singlePhrase)
-                } else {
-                    Log.e("GameActivity", "Deserialized single phrase JSON was null.")
-                    loadErrorPhrase("Error: Invalid phrase data received.")
-                }
+                Log.d("GameActivity", "Attempting to load single phrase from JSON: $singlePhraseJson")
+                listOf(gson.fromJson(singlePhraseJson, Phrase::class.java))
             } catch (e: Exception) {
                 Log.e("GameActivity", "Error deserializing single phrase JSON", e)
-                loadErrorPhrase("Error: Could not load phrase data.")
+                loadPhrasesFromAssets().shuffled().filterNot { isPhraseLearned(it, selectedLanguage, this) }
             }
         } else {
-            // Load phrases from asset files
-            Log.d("GameActivity", "No PHRASE extra found. Loading from assets for Lang=$selectedLanguage, Diff=$selectedDifficulty, Mat=$selectedMaterial")
-            val loadedPhrases = loadPhrasesFromAssets()
-            if (loadedPhrases.isNotEmpty() && !loadedPhrases[0].spoken.startsWith("Error:")) {
-                // Filter out learned phrases only when loading from assets
-                loadedPhrases
-                    .filterNot { isPhraseLearned(it, selectedLanguage, this) }
-                    .shuffled() // Shuffle the remaining list
-            } else {
-                loadedPhrases // Keep the error phrase list if loading failed
-            }
+            loadPhrasesFromAssets().shuffled().filterNot { isPhraseLearned(it, selectedLanguage, this) }
         }
-
-        // Handle case where filtering leaves the asset list empty
-        if (phrases.isEmpty() && singlePhraseJson == null) {
-            Log.w("GameActivity", "Phrase list is empty after filtering learned phrases or initial load.")
-            phrases = loadErrorPhrase("No new phrases available for this set.")
-        }
-
-        Log.d("GameActivity", "Final phrases list size: ${phrases.size}. First phrase: ${phrases.firstOrNull()?.spoken}")
+        Log.d("GameActivity", "Phrases loaded (filtered): ${phrases.size} phrases")
 
         // Initialize SpeechRecognizer and MediaPlayer
-        try {
-            speechRecognizer = createSpeechRecognizer()
-        } catch (e: Exception) {
-            Log.e("GameActivity", "Failed to create SpeechRecognizer", e)
-            Toast.makeText(this, "Speech recognition service unavailable on this device.", Toast.LENGTH_LONG).show()
-            phrases = loadErrorPhrase("Error: Speech Recognizer unavailable.")
-        }
-
-        // Initialize MediaPlayer (can fail if resource is missing)
-        try {
-            mediaPlayer = MediaPlayer.create(this, R.raw.speak)
-            if (mediaPlayer == null) {
-                Log.e("GameActivity", "Failed to create MediaPlayer for R.raw.speak")
-            }
-        } catch (e: Exception) {
-            Log.e("GameActivity", "Exception creating MediaPlayer", e)
-        }
+        speechRecognizer = createSpeechRecognizer()
+        mediaPlayer = MediaPlayer.create(this, R.raw.speak) // Ensure R.raw.speak exists
 
         // Set the Composable content
         setContent {
@@ -215,6 +172,7 @@ class GameActivity : ComponentActivity() {
         requestAudioPermission()
     }
 
+    // Destroy existing lifecycle, permissions, recognizer setup
     override fun onDestroy() {
         super.onDestroy()
         speechRecognizer.destroy()
@@ -234,17 +192,17 @@ class GameActivity : ComponentActivity() {
         )
     }
 
-    private fun createSpeechRecognizer(): SpeechRecognizer {
-        val recognizer = SpeechRecognizer.createSpeechRecognizer(this)
-        recognizer.setRecognitionListener(speechListener)
-        return recognizer
-    }
-
     // Requests audio permission using the Activity Result API launcher
     private fun requestAudioPermission() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
             requestPermissions(arrayOf(Manifest.permission.RECORD_AUDIO), 1)
         }
+    }
+
+    private fun createSpeechRecognizer(): SpeechRecognizer {
+        val recognizer = SpeechRecognizer.createSpeechRecognizer(this)
+        recognizer.setRecognitionListener(speechListener)
+        return recognizer
     }
 
     // Starts the speech recognizer after checking permissions
