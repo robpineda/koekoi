@@ -112,7 +112,6 @@ class GameActivity : ComponentActivity() {
         override fun onPartialResults(partialResults: Bundle?) {
             val partialText = partialResults?.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION)?.get(0) ?: ""
             Log.d("GameActivity", "Partial result: '$partialText'")
-            // Update UI only if partial result is not empty
             if (partialText.isNotEmpty()) currentOnResult?.invoke(partialText)
         }
 
@@ -145,7 +144,7 @@ class GameActivity : ComponentActivity() {
     // --- Lifecycle Methods ---
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        initializePermissionLauncher() // Initialize before use
+        initializePermissionLauncher()
 
         // Retrieve intent extras
         selectedLanguage = intent.getStringExtra("LANGUAGE") ?: "Japanese"
@@ -157,7 +156,6 @@ class GameActivity : ComponentActivity() {
 
         // Load phrases: either single generated phrase or from assets
         phrases = if (singlePhraseJson != null) {
-            // Load single phrase passed via intent extra
             try {
                 Log.d("GameActivity", "Attempting to load single phrase from JSON extra: $singlePhraseJson")
                 val singlePhrase = gson.fromJson(singlePhraseJson, Phrase::class.java)
@@ -200,7 +198,6 @@ class GameActivity : ComponentActivity() {
             Log.e("GameActivity", "Failed to create SpeechRecognizer", e)
             Toast.makeText(this, "Speech recognition service unavailable on this device.", Toast.LENGTH_LONG).show()
             phrases = loadErrorPhrase("Error: Speech Recognizer unavailable.")
-            // Note: Mic button should ideally be disabled in the UI if this happens
         }
 
         // Initialize MediaPlayer (can fail if resource is missing)
@@ -208,13 +205,10 @@ class GameActivity : ComponentActivity() {
             mediaPlayer = MediaPlayer.create(this, R.raw.speak)
             if (mediaPlayer == null) {
                 Log.e("GameActivity", "Failed to create MediaPlayer for R.raw.speak")
-                // Handle gracefully, maybe disable sounds
             }
         } catch (e: Exception) {
             Log.e("GameActivity", "Exception creating MediaPlayer", e)
-            // Handle gracefully
         }
-
 
         // Set the Composable content
         setContent {
@@ -232,16 +226,8 @@ class GameActivity : ComponentActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        // Release resources safely
-        if (::speechRecognizer.isInitialized) {
-            try { speechRecognizer.destroy() } catch (e: Exception) { Log.e("GameActivity", "Error destroying recognizer", e) }
-        }
-        if (::mediaPlayer.isInitialized && mediaPlayer.isPlaying) {
-            try { mediaPlayer.stop() } catch (e: Exception) { Log.e("GameActivity", "Error stopping mediaplayer", e) }
-        }
-        if (::mediaPlayer.isInitialized) {
-            try { mediaPlayer.release() } catch (e: Exception) { Log.e("GameActivity", "Error releasing mediaplayer", e) }
-        }
+        speechRecognizer.destroy()
+        mediaPlayer.release()
     }
 
     // --- Helper Methods ---
@@ -301,37 +287,15 @@ class GameActivity : ComponentActivity() {
     ) {
         // 1. Check for permission *before* attempting to use the microphone
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
-            Log.w("GameActivity", "StartListening called but RECORD_AUDIO permission not granted. Requesting again.")
-            onResult("Permission needed") // Inform UI
-            onSpeechEnded() // Ensure UI state (like isRecording) resets
-            requestAudioPermission() // Ask for permission again
-            return // Stop execution until permission is granted
-        }
-
-        // 2. Check if recognizer is initialized
-        if (!::speechRecognizer.isInitialized) {
-            Log.e("GameActivity", "startListening called but SpeechRecognizer not initialized.")
-            onResult("Error: Speech Recognizer unavailable.")
-            onSpeechEnded()
+            onResult("Permission denied")
             return
         }
 
         // 3. Recreate recognizer instance to avoid potential issues (e.g., ERROR_CLIENT)
-        try {
-            Log.d("GameActivity", "Recreating SpeechRecognizer before listening...")
-            speechRecognizer.cancel() // Cancel any ongoing listening first
-            speechRecognizer.destroy()
-            delay(50) // Brief delay to allow resources to release
-            speechRecognizer = createSpeechRecognizer()
-            delay(50) // Brief delay before starting new instance
-        } catch (e: Exception) {
-            Log.e("GameActivity", "Error recreating SpeechRecognizer", e)
-            onResult("Error: Cannot start microphone.")
-            onSpeechEnded()
-            return
-        }
-
-        // 4. Set up callbacks and intent
+        Log.d("GameActivity", "Destroying and recreating SpeechRecognizer")
+        speechRecognizer.destroy()
+        speechRecognizer = createSpeechRecognizer()
+        delay(50)
         currentOnResult = onResult
         currentOnSpeechEnded = onSpeechEnded
 
@@ -357,8 +321,6 @@ class GameActivity : ComponentActivity() {
             putExtra(RecognizerIntent.EXTRA_CALLING_PACKAGE, packageName)
             putExtra(RecognizerIntent.EXTRA_LANGUAGE, recognizerLanguageCode) // Set the target language
             putExtra(RecognizerIntent.EXTRA_PARTIAL_RESULTS, true) // Enable partial results
-            // Optional: Add biasing strings if accuracy is an issue for specific phrases
-            // putExtra(RecognizerIntent.EXTRA_BIASING_STRINGS, arrayListOf(phrases[currentIndex].expected))
         }
 
         // 5. Start listening
@@ -367,15 +329,12 @@ class GameActivity : ComponentActivity() {
                 Log.d("GameActivity", "Starting SpeechRecognizer for [$recognizerLanguageCode]: ${phrases[currentIndex].spoken}")
                 speechRecognizer.startListening(intent)
             } else {
-                // Handle invalid index - should ideally not happen if list is managed correctly
                 Log.e("GameActivity", "Error: currentIndex $currentIndex out of bounds for phrases list size ${phrases.size}")
                 onResult("Error: Invalid phrase index.")
-                onSpeechEnded()
             }
         } catch (e: Exception) {
             Log.e("GameActivity", "Error starting speech recognizer", e)
             onResult("Error starting mic: ${e.message}")
-            onSpeechEnded()
         }
     }
 
