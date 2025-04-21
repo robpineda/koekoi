@@ -454,10 +454,10 @@ class GameActivity : ComponentActivity() {
                 val phrase = phrases[currentIndex]
                 val expected = phrase.expected
                 val normalizedExpected = withContext(Dispatchers.IO) {
-                    toReading(expected.replace("[\\s、。？！]".toRegex(), "")).lowercase()
+                    toReading(expected.replace("[\\s\\p{Punct}]".toRegex(), "")).lowercase()
                 }
                 val normalizedSpoken = withContext(Dispatchers.IO) {
-                    toReading(spokenText.replace("[\\s、。？！]".toRegex(), "")).lowercase()
+                    toReading(spokenText.replace("[\\s\\p{Punct}]".toRegex(), "")).lowercase()
                 }
                 Log.d("GameScreen", "Comparing: SpokenNorm='$normalizedSpoken' vs ExpectedNorm='$normalizedExpected'")
                 val isError = spokenText.contains("error", ignoreCase = true) ||
