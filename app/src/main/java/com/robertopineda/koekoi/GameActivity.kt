@@ -447,7 +447,6 @@ class GameActivity : ComponentActivity() {
             }
         }
 
-
         // LaunchedEffect for processing spoken text
         LaunchedEffect(spokenText, speechEnded) {
             if (spokenText.isNotEmpty() && spokenText != "Listening..." && currentIndex < phrases.size) {
@@ -683,13 +682,13 @@ class GameActivity : ComponentActivity() {
                 // Spacer
                 Spacer(modifier = Modifier.height(16.dp))
 
-                // Hiragana Reading (Conditional)
+                // Romanization Reading
                 AnimatedVisibility(
-                    visible = showHelp && selectedLanguage == "Japanese",
+                    visible = showHelp,// && selectedLanguage == "Japanese",
                     enter = fadeIn(), exit = fadeOut()
                 ) {
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                        Text(text = "Hiragana", fontSize = 14.sp, color = Color(0xFFE0F7FA))
+                        Text(text = "Reading", fontSize = 14.sp, color = Color(0xFFE0F7FA))
                         Text(
                             text = currentPhrase.reading, fontSize = 18.sp,
                             textAlign = TextAlign.Center, color = Color(0xFFE0F7FA)
