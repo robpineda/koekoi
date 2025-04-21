@@ -722,23 +722,19 @@ class GameActivity : ComponentActivity() {
             // Mic Button
             IconButton(
                 onClick = {
-                    if (!isRecording) {
-                        spokenText = ""
-                        isCorrect = null
-                        showResult = false
-                        speechEnded = false
-                        lastPartialText = ""
-                        isRecording = true
-                        speakMediaPlayer.start()
-                        coroutineScope.launch {
-                            onStartListening(currentIndex, { result -> spokenText = result }, {
-                                isRecording = false
-                                speechEnded = true
-                                Log.d("GameScreen", "Speech ended callback triggered")
-                            })
-                        }
-                    } else {
-                        Log.d("GameScreen", "Mic clicked while already recording.")
+                    spokenText = ""
+                    isCorrect = null
+                    showResult = false
+                    speechEnded = false
+                    lastPartialText = ""
+                    isRecording = true
+                    speakMediaPlayer.start()
+                    coroutineScope.launch {
+                        onStartListening(currentIndex, { result -> spokenText = result }, {
+                            isRecording = false
+                            speechEnded = true
+                            Log.d("GameScreen", "Speech ended callback triggered")
+                        })
                     }
                 },
                 modifier = Modifier.align(Alignment.BottomCenter).padding(16.dp).size(70.dp)
