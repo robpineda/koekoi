@@ -5303,70 +5303,70 @@
     "expected": "この金庫は１００キロからあるので、一人ではとても運べない。",
     "reading": "このきんこはひゃっきろからあるので、ひとりではとてもはこべない。",
     "english": "This safe weighs 100 kilograms or more, so one person definitely cannot move it.",
-    "grammar": "〜からある"
+    "grammar": "〜からある・〜からする・〜からの"
   },
   {
     "spoken": "彼女が身につけている宝石は、一つで数百万円からするらしい。",
     "expected": "彼女が身につけている宝石は、一つで数百万円からするらしい。",
     "reading": "かのじょがみにつけているほうせきは、ひとつで すうひゃくまんえんからするらしい。",
     "english": "Apparently, the jewels she wears cost several million yen or more each.",
-    "grammar": "〜からする"
+    "grammar": "〜からある・〜からする・〜からの"
   },
   {
     "spoken": "そのデモには、一万人からの市民が参加したと報道されている。",
     "expected": "そのデモには、一万人からの市民が参加したと報道されている。",
     "reading": "そのでもには、いちまんにんからのしみんがさんかしたとほうどうされている。",
     "english": "It is reported that ten thousand or more citizens participated in that demonstration.",
-    "grammar": "〜からの"
+    "grammar": "〜からある・〜からする・〜からの"
   },
   {
     "spoken": "彼が住んでいる家は、駅から２キロからある丘の上にある。",
     "expected": "彼が住んでいる家は、駅から２キロからある丘の上にある。",
     "reading": "かれがすんでいるいえは、えきからにきろからあるおかのうえにある。",
     "english": "The house he lives in is on a hill two kilometers or more from the station.",
-    "grammar": "〜からある"
+    "grammar": "〜からある・〜からする・〜からの"
   },
   {
     "spoken": "新しいシステム開発には、５億円からする費用が見込まれている。",
     "expected": "新しいシステム開発には、５億円からする費用が見込まれている。",
     "reading": "あたらしいしすてむかいはつには、ごおくえんからするひようがみこまれている。",
     "english": "A cost of 500 million yen or more is estimated for the new system development.",
-    "grammar": "〜からする"
+    "grammar": "〜からある・〜からする・〜からの"
   },
   {
     "spoken": "あの人気歌手のコンサートには、毎回５万人からの観客が集まる。",
     "expected": "あの人気歌手のコンサートには、毎回５万人からの観客が集まる。",
     "reading": "あの にんきかしゅのこんさーとには、まいかいごまんにんからのかんきゃくがあつまる。",
     "english": "That popular singer's concerts draw audiences of 50,000 people or more every time.",
-    "grammar": "〜からの"
+    "grammar": "〜からある・〜からする・〜からの"
   },
   {
     "spoken": "建設中の超高層ビルは、完成すれば３００メートルからある高さになるそうだ。",
     "expected": "建設中の超高層ビルは、完成すれば３００メートルからある高さになるそうだ。",
     "reading": "けんせつちゅうのちょうこうそうびるは、かんせいすればさんびゃくめーとるからあるたかさになるそうだ。",
     "english": "They say the skyscraper under construction will be 300 meters or more tall when completed.",
-    "grammar": "〜からある"
+    "grammar": "〜からある・〜からする・〜からの"
   },
   {
     "spoken": "有名な画家の作品ともなれば、一点で数千万円からするのは普通だ。",
     "expected": "有名な画家の作品ともなれば、一点で数千万円からするのは普通だ。",
     "reading": "ゆうめいながかのさくひんともなれば、いってんで すうせんまんえんからするのはふつうだ。",
     "english": "When it comes to works by famous painters, it's normal for a single piece to cost tens of millions of yen or more.",
-    "grammar": "〜からする"
+    "grammar": "〜からある・〜からする・〜からの"
   },
   {
     "spoken": "その難関大学の学部には、毎年千人からの受験生が応募する。",
     "expected": "その難関大学の学部には、毎年千人からの受験生が応募する。",
     "reading": "そのなんかんだいがくのがくぶには、まいとし せんにんからのじゅけんせいがおうぼする。",
     "english": "One thousand or more students apply to that highly competitive university faculty every year.",
-    "grammar": "〜からの"
+    "grammar": "〜からある・〜からする・〜からの"
   },
   {
     "spoken": "動物園で見た象は、５トンからある巨体だった。",
     "expected": "動物園で見た象は、５トンからある巨体だった。",
     "reading": "どうぶつえんでみたぞうは、ごとんからあるきょたいだった。",
     "english": "The elephant I saw at the zoo had a huge body weighing 5 tons or more.",
-    "grammar": "〜からある"
+    "grammar": "〜からある・〜からする・〜からの"
   },
   {
     "spoken": "その結果は明らかだから、改めて説明するまでもないでしょう。",
@@ -6003,70 +6003,70 @@
     "expected": "公の場でそのような発言をするとは、非常識極まる。",
     "reading": "おおやけのばでそのようなはつげんをするとは、ひじょうしききわまる。",
     "english": "Making such remarks in public is the height of absurdity.",
-    "grammar": "〜極まる"
+    "grammar": "〜極まる・〜極まりない"
   },
   {
     "spoken": "彼の態度は、失礼極まりないものだった。",
     "expected": "彼の態度は、失礼極まりないものだった。",
     "reading": "かれのたいどは、しつれいきわまりないものだった。",
     "english": "His attitude was extremely rude.",
-    "grammar": "〜極まりない"
+    "grammar": "〜極まる・〜極まりない"
   },
   {
     "spoken": "贅沢極まる生活を送っている彼らは、庶民の苦しみなど理解できないだろう。",
     "expected": "贅沢極まる生活を送っている彼らは、庶民の苦しみなど理解できないだろう。",
     "reading": "ぜいたくきわまるせいかつをおくっているかれらは、しょみんのくるしみなどりかいできないだろう。",
     "english": "Living an extremely luxurious life, they probably cannot understand the struggles of ordinary people.",
-    "grammar": "〜極まる"
+    "grammar": "〜極まる・〜極まりない"
   },
   {
     "spoken": "彼の提案は現実離れしており、愚か極まりない。",
     "expected": "彼の提案は現実離れしており、愚か極まりない。",
     "reading": "かれのていあんはげんじつばなれしており、おろかきわまりない。",
     "english": "His proposal is detached from reality and utterly foolish.",
-    "grammar": "〜極まりない"
+    "grammar": "〜極まる・〜極まりない"
   },
   {
     "spoken": "危険極まる行為を平気でする若者たちに、将来が案じられる。",
     "expected": "危険極まる行為を平気でする若者たちに、将来が案じられる。",
     "reading": "きけんきわまるこういをへいきでするわかものたちに、しょうらいがあんじられる。",
     "english": "I worry about the future of young people who casually engage in extremely dangerous acts.",
-    "grammar": "〜極まる"
+    "grammar": "〜極まる・〜極まりない"
   },
   {
     "spoken": "あの政治家の汚職事件は、不快極まりない。",
     "expected": "あの政治家の汚職事件は、不快極まりない。",
     "reading": "あのせいじかのおしょくじけんは、ふかいきわまりない。",
     "english": "That politician's corruption scandal is extremely unpleasant.",
-    "grammar": "〜極まりない"
+    "grammar": "〜極まる・〜極まりない"
   },
   {
     "spoken": "こんな単純なミスをするなんて、怠慢極まる。",
     "expected": "こんな単純なミスをするなんて、怠慢極まる。",
     "reading": "こんなたんじゅんなみすをするなんて、たいまんきわまる。",
     "english": "Making such a simple mistake is the height of negligence.",
-    "grammar": "〜極まる"
+    "grammar": "〜極まる・〜極まりない"
   },
   {
     "spoken": "彼の自己中心的な行動には、退屈極まりない。",
     "expected": "彼の自己中心的な行動には、退屈極まりない。",
     "reading": "かれのじこちゅうしんてきなこうどうには、たいくつきわまりない。",
     "english": "His self-centered behavior is utterly tedious.",
-    "grammar": "〜極まりない"
+    "grammar": "〜極まる・〜極まりない"
   },
   {
     "spoken": "感極まって、涙が止まらなかった。",
     "expected": "感極まって、涙が止まらなかった。",
     "reading": "かんきわまって、なみだがとまらなかった。",
     "english": "Overcome with emotion, I couldn't stop crying. (Note: This is a related fixed expression, using the kanji)",
-    "grammar": "〜極まる"
+    "grammar": "〜極まる・〜極まりない"
   },
   {
     "spoken": "彼の説明は曖昧極まりなく、全く理解できなかった。",
     "expected": "彼の説明は曖昧極まりなく、全く理解できなかった。",
     "reading": "かれのせつめいはあいまいきわまりなく、まったく理解できなかった。",
     "english": "His explanation was extremely ambiguous, and I couldn't understand it at all.",
-    "grammar": "〜極まりない"
+    "grammar": "〜極まる・〜極まりない"
   },
   {
     "spoken": "彼が社長に抜擢されるとは、誰も予想していなかった。",
