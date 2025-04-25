@@ -2,6 +2,7 @@ package com.robertopineda.koekoi
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -193,25 +194,32 @@ fun MainScreen(
                     if (llmDescription.isNotBlank() && !isGenerating) {
                         isGenerating = true
                         coroutineScope.launch {
-                            val result = llmApiService.generatePhrase(selectedLanguage, llmDescription)
+                            val result = llmApiService.generatePhrases(selectedLanguage,
+                                llmDescription)
                             launch(Dispatchers.Main) {
                                 isGenerating = false
-                                result.onSuccess { phrase ->
-                                    Toast.makeText(context, "Phrase generated!", Toast.LENGTH_SHORT).show()
-                                    val intent = Intent(context, GameActivity::class.java).apply {
-                                        putExtra("LANGUAGE", selectedLanguage)
-                                        putExtra("DIFFICULTY", "Generated")
-                                        putExtra("PHRASE", Gson().toJson(phrase))
+                                result.onSuccess { phrasesList ->
+                                    if (phrasesList.isNotEmpty()) {
+                                        Toast.makeText(context, "Generated ${phrasesList.size} phrases!", Toast.LENGTH_SHORT).show()
+                                        val intent = Intent(context, GameActivity::class.java).apply {
+                                            putExtra("LANGUAGE", selectedLanguage)
+                                            putExtra("DIFFICULTY", "Generated")
+                                            putExtra("PHRASES_LIST", Gson().toJson(phrasesList))
+                                        }
+                                        context.startActivity(intent)
+                                    } else {
+                                        Toast.makeText(context, "Error: AI returned an empty list.", Toast.LENGTH_LONG).show()
+                                        Log.w("MainScreen", "LLM Generation returned empty list.")
                                     }
-                                    context.startActivity(intent)
-                                }.onFailure { error ->
-                                    Toast.makeText(context, "Error: ${error.message ?: "Unknown error"}", Toast.LENGTH_LONG).show()
-                                    android.util.Log.e("MainScreen", "LLM Generation Failed", error)
-                                }
+                                    }.onFailure { error ->
+                                        Toast.makeText(context, "Error generating phrases: ${error.message ?: "Unknown error"}", Toast.LENGTH_LONG).show()
+                                        Log.e("MainScreen", "LLM Generation Failed", error)
+                                    }
                             }
                         }
                     } else if (isGenerating) { /* Optional feedback */ }
-                    else { Toast.makeText(context, "Please describe what you want to learn.", Toast.LENGTH_SHORT).show() }
+                    else { Toast.makeText(context, "Describe what you want to learn.", Toast
+                        .LENGTH_SHORT).show() }
                 },
                 enabled = llmDescription.isNotBlank() && !isGenerating,
                 colors = ButtonDefaults.buttonColors(
@@ -224,7 +232,7 @@ fun MainScreen(
                         CircularProgressIndicator(Modifier.size(20.dp), color = Color(0xFF004D40), strokeWidth = 2.dp)
                         Spacer(Modifier.width(8.dp))
                         Text("Generating...")
-                    } else { Text("Generate Phrase") }
+                    } else { Text("Generate") }
                 }
             }
 
