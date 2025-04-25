@@ -54,6 +54,8 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.io.InputStreamReader
+import android.speech.tts.TextToSpeech
+import java.util.Locale
 
 class GameActivity : ComponentActivity() {
 
@@ -279,6 +281,27 @@ class GameActivity : ComponentActivity() {
         }
     }
 
+    // Helper to get Locale for TTS
+    private fun getLocaleForTts(languageName: String): Locale? {
+        return when (languageName) {
+            "Japanese" -> Locale.JAPAN
+            "Korean" -> Locale.KOREA
+            "Vietnamese" -> Locale("vi", "VN")
+            "Spanish" -> Locale("es", "MX")
+            "French" -> Locale.FRANCE
+            "German" -> Locale.GERMANY
+            "Mandarin Chinese" -> Locale.CHINA // or Locale.CHINA
+            "Italian" -> Locale.ITALY
+            "Portuguese" -> Locale("pt", "BR") // Or Locale("pt", "PT")
+            "Russian" -> Locale("ru", "RU")
+            "Arabic" -> Locale("ar", "SA") // May need specific dialect
+            "Hindi" -> Locale("hi", "IN")
+            "English" -> Locale.US // Add English if needed
+            // Add other languages
+            else -> null // Return null if no specific locale mapping found
+        }
+    }
+
     // Loads phrases from asset JSON files based on selections
     private fun loadPhrasesFromAssets(): List<Phrase> {
         val gson = Gson()
@@ -366,10 +389,55 @@ class GameActivity : ComponentActivity() {
         var speechEnded by remember { mutableStateOf(false) }
         var lastPartialText by remember { mutableStateOf("") }
         var isRecording by remember { mutableStateOf(false) }
+        var showGrammarDialog by remember { mutableStateOf(false) }
+
         val context = LocalContext.current
 
-        // State for grammar dialog
-        var showGrammarDialog by remember { mutableStateOf(false) }
+        // --- TextToSpeech State and Initialization ---
+        var textToSpeech by remember { mutableStateOf<TextToSpeech?>(null) }
+        var ttsInitialized by remember { mutableStateOf(false) }
+        var ttsError by remember { mutableStateOf<String?>(null) } // Optional: Track TTS errors
+
+        DisposableEffect(context, selectedLanguage) { // Re-run if context or language changes
+            Log.d("GameScreen", "Initializing TTS for language: $selectedLanguage")
+            ttsError = null // Reset error on re-init
+            val listener = TextToSpeech.OnInitListener { status ->
+                if (status == TextToSpeech.SUCCESS) {
+                    val locale = getLocaleForTts(selectedLanguage) // Use the helper function
+                    if (locale != null) {
+                        val result = textToSpeech?.setLanguage(locale)
+                        if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
+                            Log.e("GameScreen", "TTS language '$selectedLanguage' ($locale) not supported or missing data.")
+                            ttsError = "TTS language not supported: $selectedLanguage"
+                            ttsInitialized = false // Ensure it's false if language fails
+                        } else {
+                            Log.i("GameScreen", "TTS initialized successfully for language: $selectedLanguage ($locale)")
+                            ttsInitialized = true
+                        }
+                    } else {
+                        Log.e("GameScreen", "TTS language '$selectedLanguage' has no locale mapping.")
+                        ttsError = "Unsupported language for TTS: $selectedLanguage"
+                        ttsInitialized = false
+                    }
+                } else {
+                    Log.e("GameScreen", "TTS initialization failed with status: $status")
+                    ttsError = "TTS engine failed to initialize."
+                    ttsInitialized = false
+                }
+            }
+            // Create TTS instance
+            val ttsInstance = TextToSpeech(context, listener)
+            textToSpeech = ttsInstance
+
+            onDispose {
+                Log.d("GameScreen", "Shutting down TTS engine.")
+                textToSpeech?.stop()
+                textToSpeech?.shutdown()
+                ttsInitialized = false
+                textToSpeech = null // Clear the reference
+            }
+        }
+        // --- End TextToSpeech Setup ---
 
         // Handle empty/error phrases list
         if (phrases.isEmpty() || phrases[0].spoken.startsWith("Error:")) {
@@ -764,6 +832,39 @@ class GameActivity : ComponentActivity() {
                     .padding(16.dp), // Overall padding for the row
                 horizontalArrangement = Arrangement.spacedBy(8.dp) // Space between buttons
             ) {
+                // Speak Phrase Button (NEW)
+                OutlinedIconButton(
+                    onClick = {
+                        if (ttsInitialized && textToSpeech != null) {
+                            // Use currentPhrase which is already defined in the scope
+                            val phraseToSpeak = phrases.getOrNull(currentIndex)
+                            if (phraseToSpeak != null) {
+                                val textToSay = phraseToSpeak.expected // Get the text to be spoken
+                                Log.d("GameScreen", "TTS Speak button clicked. Saying: '$textToSay'")
+                                // Use QUEUE_FLUSH to interrupt previous speech
+                                textToSpeech?.speak(textToSay, TextToSpeech.QUEUE_FLUSH, null, null)
+                            } else {
+                                Log.e("GameScreen", "TTS Speak button clicked but current phrase is null (index: $currentIndex)")
+                                Toast.makeText(context, "Error: Cannot find phrase to speak.", Toast.LENGTH_SHORT).show()
+                            }
+                        } else {
+                            val errorMsg = ttsError ?: "TTS is not ready. Please wait or check settings."
+                            Toast.makeText(context, errorMsg, Toast.LENGTH_SHORT).show()
+                            Log.w("GameScreen", "TTS Speak button clicked but TTS not ready. Initialized=$ttsInitialized, Error=$ttsError")
+                        }
+                    },
+                    modifier = Modifier.size(42.dp), // Match other buttons
+                    border = BorderStroke(1.dp, Color(0xFFFF8F00)), // Match styling
+                    enabled = ttsInitialized // Enable only when TTS is ready
+                ) {
+                    Icon(
+                        imageVector = Icons.Filled.VolumeUp, // Speaker Icon
+                        contentDescription = "Speak Phrase",
+                        tint = if (ttsInitialized) Color(0xFFE0F7FA) else Color.Gray, // Dim if disabled
+                        modifier = Modifier.size(20.dp)
+                    )
+                }
+
                 // Grammar Info Button
                 OutlinedIconButton(
                     onClick = {
@@ -773,26 +874,26 @@ class GameActivity : ComponentActivity() {
                             Toast.makeText(context, "No grammar point specified.", Toast.LENGTH_SHORT).show()
                         }
                     },
-                    modifier = Modifier.size(48.dp), // Match help button size
+                    modifier = Modifier.size(42.dp), // Match help button size
                     border = BorderStroke(1.dp, Color(0xFFFF8F00)),
                     enabled = currentPhrase.grammar.isNotBlank()
                 ) {
                     Icon(
                         imageVector = Icons.Filled.MenuBook, contentDescription = "Show Grammar Info",
                         tint = if (currentPhrase.grammar.isNotBlank()) Color(0xFFE0F7FA) else Color.Gray,
-                        modifier = Modifier.size(24.dp)
+                        modifier = Modifier.size(20.dp)
                     )
                 }
 
                 // Help Button
                 OutlinedIconButton(
                     onClick = { showHelp = !showHelp },
-                    modifier = Modifier.size(48.dp), // Consistent size
+                    modifier = Modifier.size(42.dp), // Consistent size
                     border = BorderStroke(1.dp, Color(0xFFFF8F00))
                 ) {
                     Icon(
                         imageVector = Icons.Default.HelpOutline, contentDescription = "Show Help",
-                        tint = Color(0xFFE0F7FA), modifier = Modifier.size(24.dp)
+                        tint = Color(0xFFE0F7FA), modifier = Modifier.size(20.dp)
                     )
                 }
             }

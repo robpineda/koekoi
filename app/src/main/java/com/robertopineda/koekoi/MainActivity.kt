@@ -332,7 +332,7 @@ fun MainScreen(
                     disabledContainerColor = Color(0xFF455A64), disabledContentColor = Color(0xFF90A4AE)
                 )
             ) {
-                Text("Start Predefined Set")
+                Text("Start")
             }
             Spacer(modifier = Modifier.height(16.dp)) // Add some space at the bottom
 
