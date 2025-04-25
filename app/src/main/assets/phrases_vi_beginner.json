@@ -1,0 +1,716 @@
+[
+  {
+    "spoken": "Chào bạn.",
+    "expected": "Chào bạn.",
+    "reading": "Chào bạn.",
+    "english": "Hello.",
+    "grammar": "Greeting"
+  },
+  {
+    "spoken": "Bạn khỏe không?",
+    "expected": "Bạn khỏe không?",
+    "reading": "Bạn khỏe không?",
+    "english": "How are you?",
+    "grammar": "Yes/No Question 'không?', Pronoun 'bạn'"
+  },
+  {
+    "spoken": "Tôi khỏe, cảm ơn bạn.",
+    "expected": "Tôi khỏe, cảm ơn bạn.",
+    "reading": "Tôi khỏe, cảm ơn bạn.",
+    "english": "I'm fine, thank you.",
+    "grammar": "Basic Sentence Structure (SVO), Pronoun 'tôi', Verb 'cảm ơn'"
+  },
+  {
+    "spoken": "Cảm ơn nhiều ạ.",
+    "expected": "Cảm ơn nhiều ạ.",
+    "reading": "Cảm ơn nhiều ạ.",
+    "english": "Thank you very much.",
+    "grammar": "Common Expression 'Cảm ơn', Politeness Particle 'ạ'"
+  },
+  {
+    "spoken": "Xin lỗi, nhà vệ sinh ở đâu ạ?",
+    "expected": "Xin lỗi, nhà vệ sinh ở đâu ạ?",
+    "reading": "Xin lỗi, nhà vệ sinh ở đâu ạ?",
+    "english": "Excuse me, where is the restroom?",
+    "grammar": "WH-Question 'đâu', Common Expression 'Xin lỗi', Politeness Particle 'ạ'"
+  },
+  {
+    "spoken": "Tên bạn là gì?",
+    "expected": "Tên bạn là gì?",
+    "reading": "Tên bạn là gì?",
+    "english": "What is your name?",
+    "grammar": "WH-Question 'gì', Verb 'là'"
+  },
+  {
+    "spoken": "Tôi tên là Nam.",
+    "expected": "Tôi tên là Nam.",
+    "reading": "Tôi tên là Nam.",
+    "english": "My name is Nam.",
+    "grammar": "Verb 'là', Pronoun 'tôi'"
+  },
+  {
+    "spoken": "Anh ấy là giáo viên.",
+    "expected": "Anh ấy là giáo viên.",
+    "reading": "Anh ấy là giáo viên.",
+    "english": "He is a teacher.",
+    "grammar": "Pronoun 'anh ấy', Verb 'là', Basic Sentence Structure (SVO)"
+  },
+  {
+    "spoken": "Chị ấy làm việc ở ngân hàng.",
+    "expected": "Chị ấy làm việc ở ngân hàng.",
+    "reading": "Chị ấy làm việc ở ngân hàng.",
+    "english": "She works at a bank.",
+    "grammar": "Pronoun 'chị ấy', Verb 'làm việc', Preposition 'ở'"
+  },
+  {
+    "spoken": "Em đang học tiếng Việt.",
+    "expected": "Em đang học tiếng Việt.",
+    "reading": "Em đang học tiếng Việt.",
+    "english": "I am learning Vietnamese.",
+    "grammar": "Present Continuous Marker 'đang', Pronoun 'em', Verb 'học'"
+  },
+  {
+    "spoken": "Hôm qua tôi đã ăn phở.",
+    "expected": "Hôm qua tôi đã ăn phở.",
+    "reading": "Hôm qua tôi đã ăn phở.",
+    "english": "I ate pho yesterday.",
+    "grammar": "Past Action Marker 'đã', Pronoun 'tôi', Food Vocabulary"
+  },
+  {
+    "spoken": "Ngày mai bạn sẽ đi đâu?",
+    "expected": "Ngày mai bạn sẽ đi đâu?",
+    "reading": "Ngày mai bạn sẽ đi đâu?",
+    "english": "Where will you go tomorrow?",
+    "grammar": "Future Action Marker 'sẽ', WH-Question 'đâu', Pronoun 'bạn'"
+  },
+  {
+    "spoken": "Bạn thích ăn món gì?",
+    "expected": "Bạn thích ăn món gì?",
+    "reading": "Bạn thích ăn món gì?",
+    "english": "What dish do you like to eat?",
+    "grammar": "Verb 'thích', WH-Question 'gì'"
+  },
+  {
+    "spoken": "Tôi thích uống cà phê sữa đá.",
+    "expected": "Tôi thích uống cà phê sữa đá.",
+    "reading": "Tôi thích uống cà phê sữa đá.",
+    "english": "I like to drink iced coffee with milk.",
+    "grammar": "Verb 'thích', Drink Vocabulary, Basic Sentence Structure (SVO)"
+  },
+  {
+    "spoken": "Cho tôi một cái bánh mì.",
+    "expected": "Cho tôi một cái bánh mì.",
+    "reading": "Cho tôi một cái bánh mì.",
+    "english": "Give me one banh mi.",
+    "grammar": "Verb 'cho', Number 'một', Classifier 'cái'"
+  },
+  {
+    "spoken": "Cái này bao nhiêu tiền?",
+    "expected": "Cái này bao nhiêu tiền?",
+    "reading": "Cái này bao nhiêu tiền?",
+    "english": "How much does this cost?",
+    "grammar": "WH-Question 'bao nhiêu', Demonstrative 'này', Classifier 'cái'"
+  },
+  {
+    "spoken": "Năm mươi nghìn đồng.",
+    "expected": "Năm mươi nghìn đồng.",
+    "reading": "Năm mươi nghìn đồng.",
+    "english": "Fifty thousand dong.",
+    "grammar": "Numbers, Currency 'đồng'"
+  },
+  {
+    "spoken": "Món này ngon quá!",
+    "expected": "Món này ngon quá!",
+    "reading": "Món này ngon quá!",
+    "english": "This dish is so delicious!",
+    "grammar": "Adjective 'ngon', Intensifier Particle 'quá'"
+  },
+  {
+    "spoken": "Quyển sách này rất thú vị.",
+    "expected": "Quyển sách này rất thú vị.",
+    "reading": "Quyển sách này rất thú vị.",
+    "english": "This book is very interesting.",
+    "grammar": "Classifier 'quyển', Demonstrative 'này', Adjective 'thú vị', Intensifier 'rất'"
+  },
+  {
+    "spoken": "Con chó kia rất dễ thương.",
+    "expected": "Con chó kia rất dễ thương.",
+    "reading": "Con chó kia rất dễ thương.",
+    "english": "That dog is very cute.",
+    "grammar": "Classifier 'con', Demonstrative 'kia', Adjective 'dễ thương'"
+  },
+  {
+    "spoken": "Đây là nhà của tôi.",
+    "expected": "Đây là nhà của tôi.",
+    "reading": "Đây là nhà của tôi.",
+    "english": "This is my house.",
+    "grammar": "Demonstrative 'Đây', Verb 'là', Possession 'của'"
+  },
+  {
+    "spoken": "Bạn đến từ nước nào?",
+    "expected": "Bạn đến từ nước nào?",
+    "reading": "Bạn đến từ nước nào?",
+    "english": "Which country are you from?",
+    "grammar": "WH-Question 'nào', Preposition 'từ'"
+  },
+  {
+    "spoken": "Tôi đến từ Canada.",
+    "expected": "Tôi đến từ Canada.",
+    "reading": "Tôi đến từ Canada.",
+    "english": "I am from Canada.",
+    "grammar": "Verb 'đến', Preposition 'từ'"
+  },
+  {
+    "spoken": "Bây giờ là mấy giờ rồi?",
+    "expected": "Bây giờ là mấy giờ rồi?",
+    "reading": "Bây giờ là mấy giờ rồi?",
+    "english": "What time is it now?",
+    "grammar": "WH-Question 'mấy giờ', Time Adverb 'Bây giờ', Particle 'rồi'"
+  },
+  {
+    "spoken": "Bây giờ là chín giờ tối.",
+    "expected": "Bây giờ là chín giờ tối.",
+    "reading": "Bây giờ là chín giờ tối.",
+    "english": "It's nine PM now.",
+    "grammar": "Stating Time, Number 'chín'"
+  },
+  {
+    "spoken": "Hôm nay là thứ mấy?",
+    "expected": "Hôm nay là thứ mấy?",
+    "reading": "Hôm nay là thứ mấy?",
+    "english": "What day is it today?",
+    "grammar": "WH-Question 'thứ mấy', Time Adverb 'Hôm nay'"
+  },
+  {
+    "spoken": "Hôm nay là thứ Sáu.",
+    "expected": "Hôm nay là thứ Sáu.",
+    "reading": "Hôm nay là thứ Sáu.",
+    "english": "Today is Friday.",
+    "grammar": "Days of the Week"
+  },
+  {
+    "spoken": "Anh ấy không hiểu tiếng Việt.",
+    "expected": "Anh ấy không hiểu tiếng Việt.",
+    "reading": "Anh ấy không hiểu tiếng Việt.",
+    "english": "He doesn't understand Vietnamese.",
+    "grammar": "Negation 'không', Pronoun 'anh ấy', Verb 'hiểu'"
+  },
+  {
+    "spoken": "Cô ấy không thích ăn cay.",
+    "expected": "Cô ấy không thích ăn cay.",
+    "reading": "Cô ấy không thích ăn cay.",
+    "english": "She doesn't like to eat spicy food.",
+    "grammar": "Negation 'không', Verb 'thích', Pronoun 'cô ấy', Adjective 'cay'"
+  },
+  {
+    "spoken": "Bạn có gia đình chưa?",
+    "expected": "Bạn có gia đình chưa?",
+    "reading": "Bạn có gia đình chưa?",
+    "english": "Do you have a family (Are you married)?",
+    "grammar": "Verb 'có', Yes/No Question particle 'chưa?'"
+  },
+  {
+    "spoken": "Tôi có hai người con.",
+    "expected": "Tôi có hai người con.",
+    "reading": "Tôi có hai người con.",
+    "english": "I have two children.",
+    "grammar": "Verb 'có', Number 'hai', Classifier 'người'"
+  },
+  {
+    "spoken": "Đi thẳng rồi rẽ phải nhé.",
+    "expected": "Đi thẳng rồi rẽ phải nhé.",
+    "reading": "Đi thẳng rồi rẽ phải nhé.",
+    "english": "Go straight then turn right, okay?",
+    "grammar": "Giving Directions, Imperative Particle 'nhé'"
+  },
+  {
+    "spoken": "Bưu điện ở đâu ạ?",
+    "expected": "Bưu điện ở đâu ạ?",
+    "reading": "Bưu điện ở đâu ạ?",
+    "english": "Where is the post office?",
+    "grammar": "WH-Question 'đâu', Politeness Particle 'ạ'"
+  },
+  {
+    "spoken": "Tôi cần mua một tờ báo.",
+    "expected": "Tôi cần mua một tờ báo.",
+    "reading": "Tôi cần mua một tờ báo.",
+    "english": "I need to buy a newspaper.",
+    "grammar": "Verb 'cần', Verb 'mua', Classifier 'tờ'"
+  },
+  {
+    "spoken": "Bạn nói tiếng Anh được không?",
+    "expected": "Bạn nói tiếng Anh được không?",
+    "reading": "Bạn nói tiếng Anh được không?",
+    "english": "Can you speak English?",
+    "grammar": "Asking Ability 'được không?', Verb 'nói'"
+  },
+  {
+    "spoken": "Tôi nói được một chút thôi.",
+    "expected": "Tôi nói được một chút thôi.",
+    "reading": "Tôi nói được một chút thôi.",
+    "english": "I can only speak a little.",
+    "grammar": "Stating Ability 'được', Quantity 'một chút'"
+  },
+  {
+    "spoken": "Cẩn thận! Đường trơn.",
+    "expected": "Cẩn thận! Đường trơn.",
+    "reading": "Cẩn thận! Đường trơn.",
+    "english": "Be careful! The road is slippery.",
+    "grammar": "Warning 'Cẩn thận', Adjective 'trơn'"
+  },
+  {
+    "spoken": "Chúc bạn một ngày tốt lành.",
+    "expected": "Chúc bạn một ngày tốt lành.",
+    "reading": "Chúc bạn một ngày tốt lành.",
+    "english": "Have a nice day.",
+    "grammar": "Common Expression 'Chúc'"
+  },
+  {
+    "spoken": "Hẹn gặp lại bạn sau.",
+    "expected": "Hẹn gặp lại bạn sau.",
+    "reading": "Hẹn gặp lại bạn sau.",
+    "english": "See you later.",
+    "grammar": "Common Expression 'Hẹn gặp lại'"
+  },
+  {
+    "spoken": "Quả xoài này ngọt lắm.",
+    "expected": "Quả xoài này ngọt lắm.",
+    "reading": "Quả xoài này ngọt lắm.",
+    "english": "This mango is very sweet.",
+    "grammar": "Classifier 'quả', Adjective 'ngọt', Intensifier Particle 'lắm'"
+  },
+  {
+    "spoken": "Một ly nước cam giá bao nhiêu?",
+    "expected": "Một ly nước cam giá bao nhiêu?",
+    "reading": "Một ly nước cam giá bao nhiêu?",
+    "english": "How much is a glass of orange juice?",
+    "grammar": "Classifier 'ly', WH-Question 'bao nhiêu'"
+  },
+  {
+    "spoken": "Ba mươi lăm nghìn đồng ạ.",
+    "expected": "Ba mươi lăm nghìn đồng ạ.",
+    "reading": "Ba mươi lăm nghìn đồng ạ.",
+    "english": "Thirty-five thousand dong.",
+    "grammar": "Numbers, Currency 'đồng', Politeness Particle 'ạ'"
+  },
+  {
+    "spoken": "Ôi, đắt quá!",
+    "expected": "Ôi, đắt quá!",
+    "reading": "Ôi, đắt quá!",
+    "english": "Oh, too expensive!",
+    "grammar": "Adjective 'đắt', Intensifier Particle 'quá', Interjection 'Ôi'"
+  },
+  {
+    "spoken": "Bác ơi, cho cháu xem cái kia.",
+    "expected": "Bác ơi, cho cháu xem cái kia.",
+    "reading": "Bác ơi, cho cháu xem cái kia.",
+    "english": "(Elder uncle/auntie), let me see that one.",
+    "grammar": "Pronoun 'bác', 'cháu', Verb 'xem', Demonstrative 'kia', Classifier 'cái'"
+  },
+  {
+    "spoken": "Chú đang đi đâu đấy?",
+    "expected": "Chú đang đi đâu đấy?",
+    "reading": "Chú đang đi đâu đấy?",
+    "english": "(Uncle), where are you going?",
+    "grammar": "Pronoun 'chú', Present Continuous Marker 'đang', WH-Question 'đâu'"
+  },
+  {
+    "spoken": "Tôi đang tìm đường ra Hồ Gươm.",
+    "expected": "Tôi đang tìm đường ra Hồ Gươm.",
+    "reading": "Tôi đang tìm đường ra Hồ Gươm.",
+    "english": "I am looking for the way to Hoan Kiem Lake.",
+    "grammar": "Present Continuous Marker 'đang', Verb 'tìm', Location Vocabulary"
+  },
+  {
+    "spoken": "Bạn có thể giúp tôi được không?",
+    "expected": "Bạn có thể giúp tôi được không?",
+    "reading": "Bạn có thể giúp tôi được không?",
+    "english": "Can you help me?",
+    "grammar": "Asking Ability/Permission 'có thể... được không?', Verb 'giúp'"
+  },
+  {
+    "spoken": "Vâng, tất nhiên rồi.",
+    "expected": "Vâng, tất nhiên rồi.",
+    "reading": "Vâng, tất nhiên rồi.",
+    "english": "Yes, of course.",
+    "grammar": "Agreement 'Vâng', Common Expression 'tất nhiên'"
+  },
+  {
+    "spoken": "Em không biết đường.",
+    "expected": "Em không biết đường.",
+    "reading": "Em không biết đường.",
+    "english": "I don't know the way.",
+    "grammar": "Negation 'không', Verb 'biết', Pronoun 'em'"
+  },
+  {
+    "spoken": "Anh ấy rất tốt bụng.",
+    "expected": "Anh ấy rất tốt bụng.",
+    "reading": "Anh ấy rất tốt bụng.",
+    "english": "He is very kind.",
+    "grammar": "Adjective 'tốt bụng', Intensifier 'rất'"
+  },
+  {
+    "spoken": "Chị ấy nấu ăn rất ngon.",
+    "expected": "Chị ấy nấu ăn rất ngon.",
+    "reading": "Chị ấy nấu ăn rất ngon.",
+    "english": "She cooks very well (deliciously).",
+    "grammar": "Verb 'nấu ăn', Adverb 'ngon', Intensifier 'rất'"
+  },
+  {
+    "spoken": "Chúng ta đi uống cà phê đi!",
+    "expected": "Chúng ta đi uống cà phê đi!",
+    "reading": "Chúng ta đi uống cà phê đi!",
+    "english": "Let's go drink coffee!",
+    "grammar": "Pronoun 'chúng ta', Imperative/Suggestion Particle 'đi'"
+  },
+  {
+    "spoken": "Hôm qua trời rất nóng.",
+    "expected": "Hôm qua trời rất nóng.",
+    "reading": "Hôm qua trời rất nóng.",
+    "english": "It was very hot yesterday.",
+    "grammar": "Time Adverb 'Hôm qua', Adjective 'nóng', Intensifier 'rất'"
+  },
+  {
+    "spoken": "Tôi thích thời tiết mùa thu.",
+    "expected": "Tôi thích thời tiết mùa thu.",
+    "reading": "Tôi thích thời tiết mùa thu.",
+    "english": "I like the autumn weather.",
+    "grammar": "Verb 'thích', Season Vocabulary 'mùa thu'"
+  },
+  {
+    "spoken": "Gia đình bạn có mấy người?",
+    "expected": "Gia đình bạn có mấy người?",
+    "reading": "Gia đình bạn có mấy người?",
+    "english": "How many people are in your family?",
+    "grammar": "WH-Question 'mấy', Classifier 'người', Verb 'có'"
+  },
+  {
+    "spoken": "Nhà tôi có năm người.",
+    "expected": "Nhà tôi có năm người.",
+    "reading": "Nhà tôi có năm người.",
+    "english": "There are five people in my family.",
+    "grammar": "Number 'năm', Classifier 'người', Verb 'có'"
+  },
+  {
+    "spoken": "Đây là ảnh của bạn tôi.",
+    "expected": "Đây là ảnh của bạn tôi.",
+    "reading": "Đây là ảnh của bạn tôi.",
+    "english": "This is a picture of my friend.",
+    "grammar": "Possession 'của', Demonstrative 'Đây'"
+  },
+  {
+    "spoken": "Cái bút này của ai vậy?",
+    "expected": "Cái bút này của ai vậy?",
+    "reading": "Cái bút này của ai vậy?",
+    "english": "Whose pen is this?",
+    "grammar": "WH-Question 'ai', Possession 'của', Classifier 'cái', Question Particle 'vậy?'"
+  },
+  {
+    "spoken": "Cái đó là của chị gái tôi.",
+    "expected": "Cái đó là của chị gái tôi.",
+    "reading": "Cái đó là của chị gái tôi.",
+    "english": "That one belongs to my older sister.",
+    "grammar": "Possession 'của', Demonstrative 'đó', Classifier 'cái'"
+  },
+  {
+    "spoken": "Bạn ăn tối chưa?",
+    "expected": "Bạn ăn tối chưa?",
+    "reading": "Bạn ăn tối chưa?",
+    "english": "Have you eaten dinner yet?",
+    "grammar": "Yes/No Question particle 'chưa?', Verb 'ăn tối'"
+  },
+  {
+    "spoken": "Tôi ăn rồi, cảm ơn.",
+    "expected": "Tôi ăn rồi, cảm ơn.",
+    "reading": "Tôi ăn rồi, cảm ơn.",
+    "english": "I've eaten already, thanks.",
+    "grammar": "Past Action Marker 'rồi', Verb 'ăn'"
+  },
+  {
+    "spoken": "Bạn muốn uống trà hay nước ngọt?",
+    "expected": "Bạn muốn uống trà hay nước ngọt?",
+    "reading": "Bạn muốn uống trà hay nước ngọt?",
+    "english": "Do you want to drink tea or soda?",
+    "grammar": "Verb 'muốn', Conjunction 'hay'"
+  },
+  {
+    "spoken": "Tôi uống một chai nước suối.",
+    "expected": "Tôi uống một chai nước suối.",
+    "reading": "Tôi uống một chai nước suối.",
+    "english": "I'll drink a bottle of water.",
+    "grammar": "Verb 'uống', Classifier 'chai', Number 'một'"
+  },
+  {
+    "spoken": "Xin mời vào nhà.",
+    "expected": "Xin mời vào nhà.",
+    "reading": "Xin mời vào nhà.",
+    "english": "Please come in.",
+    "grammar": "Common Expression 'Xin mời', Verb 'vào'"
+  },
+  {
+    "spoken": "Bạn làm nghề gì?",
+    "expected": "Bạn làm nghề gì?",
+    "reading": "Bạn làm nghề gì?",
+    "english": "What is your job?",
+    "grammar": "WH-Question 'gì', Verb 'làm'"
+  },
+  {
+    "spoken": "Tôi là kỹ sư phần mềm.",
+    "expected": "Tôi là kỹ sư phần mềm.",
+    "reading": "Tôi là kỹ sư phần mềm.",
+    "english": "I am a software engineer.",
+    "grammar": "Verb 'là', Job Title Vocabulary"
+  },
+  {
+    "spoken": "Cô ấy bao nhiêu tuổi?",
+    "expected": "Cô ấy bao nhiêu tuổi?",
+    "reading": "Cô ấy bao nhiêu tuổi?",
+    "english": "How old is she?",
+    "grammar": "WH-Question 'bao nhiêu tuổi', Pronoun 'cô ấy'"
+  },
+  {
+    "spoken": "Cô ấy hai mươi lăm tuổi.",
+    "expected": "Cô ấy hai mươi lăm tuổi.",
+    "reading": "Cô ấy hai mươi lăm tuổi.",
+    "english": "She is twenty-five years old.",
+    "grammar": "Stating Age, Number 'hai mươi lăm'"
+  },
+  {
+    "spoken": "Em bé đó rất kháu khỉnh.",
+    "expected": "Em bé đó rất kháu khỉnh.",
+    "reading": "Em bé đó rất kháu khỉnh.",
+    "english": "That baby is very cute/clever-looking.",
+    "grammar": "Classifier 'em bé', Demonstrative 'đó', Adjective 'kháu khỉnh'"
+  },
+  {
+    "spoken": "Họ nói chuyện điện thoại khá lâu.",
+    "expected": "Họ nói chuyện điện thoại khá lâu.",
+    "reading": "Họ nói chuyện điện thoại khá lâu.",
+    "english": "They talked on the phone for quite a long time.",
+    "grammar": "Pronoun 'họ', Verb 'nói chuyện', Adverb 'lâu', Modifier 'khá'"
+  },
+  {
+    "spoken": "Tôi muốn đặt vé máy bay đi Đà Nẵng.",
+    "expected": "Tôi muốn đặt vé máy bay đi Đà Nẵng.",
+    "reading": "Tôi muốn đặt vé máy bay đi Đà Nẵng.",
+    "english": "I want to book a plane ticket to Da Nang.",
+    "grammar": "Verb 'muốn', Verb 'đặt', Travel Vocabulary"
+  },
+  {
+    "spoken": "Chuyến bay của bạn lúc mấy giờ?",
+    "expected": "Chuyến bay của bạn lúc mấy giờ?",
+    "reading": "Chuyến bay của bạn lúc mấy giờ?",
+    "english": "What time is your flight?",
+    "grammar": "WH-Question 'mấy giờ', Possession 'của'"
+  },
+  {
+    "spoken": "Tôi cần đi taxi đến sân bay.",
+    "expected": "Tôi cần đi taxi đến sân bay.",
+    "reading": "Tôi cần đi taxi đến sân bay.",
+    "english": "I need to take a taxi to the airport.",
+    "grammar": "Verb 'cần', Verb 'đi', Location Vocabulary"
+  },
+  {
+    "spoken": "Đi từ đây mất bao lâu?",
+    "expected": "Đi từ đây mất bao lâu?",
+    "reading": "Đi từ đây mất bao lâu?",
+    "english": "How long does it take from here?",
+    "grammar": "WH-Question 'bao lâu', Verb 'mất'"
+  },
+  {
+    "spoken": "Mất khoảng ba mươi phút.",
+    "expected": "Mất khoảng ba mươi phút.",
+    "reading": "Mất khoảng ba mươi phút.",
+    "english": "It takes about thirty minutes.",
+    "grammar": "Verb 'mất', Quantity 'khoảng', Number 'ba mươi'"
+  },
+  {
+    "spoken": "Bạn có bút không? Cho tôi mượn một cái.",
+    "expected": "Bạn có bút không? Cho tôi mượn một cái.",
+    "reading": "Bạn có bút không? Cho tôi mượn một cái.",
+    "english": "Do you have a pen? Lend me one.",
+    "grammar": "Yes/No Question 'không?', Verb 'có', Verb 'mượn', Classifier 'cái'"
+  },
+  {
+    "spoken": "Của bạn đây, xin mời.",
+    "expected": "Của bạn đây, xin mời.",
+    "reading": "Của bạn đây, xin mời.",
+    "english": "Here you are, please.",
+    "grammar": "Common Expression 'Của bạn đây', 'Xin mời'"
+  },
+  {
+    "spoken": "Thời tiết hôm nay đẹp quá!",
+    "expected": "Thời tiết hôm nay đẹp quá!",
+    "reading": "Thời tiết hôm nay đẹp quá!",
+    "english": "The weather today is so beautiful!",
+    "grammar": "Adjective 'đẹp', Intensifier Particle 'quá', Time Adverb 'Hôm nay'"
+  },
+  {
+    "spoken": "Chúng ta đi dạo công viên nhé?",
+    "expected": "Chúng ta đi dạo công viên nhé?",
+    "reading": "Chúng ta đi dạo công viên nhé?",
+    "english": "Shall we take a walk in the park?",
+    "grammar": "Pronoun 'chúng ta', Verb 'đi dạo', Suggestion Particle 'nhé'"
+  },
+  {
+    "spoken": "Được thôi, đi đi.",
+    "expected": "Được thôi, đi đi.",
+    "reading": "Được thôi, đi đi.",
+    "english": "Okay, let's go.",
+    "grammar": "Agreement 'Được thôi', Imperative Particle 'đi'"
+  },
+  {
+    "spoken": "Tôi cảm thấy hơi mệt.",
+    "expected": "Tôi cảm thấy hơi mệt.",
+    "reading": "Tôi cảm thấy hơi mệt.",
+    "english": "I feel a little tired.",
+    "grammar": "Verb 'cảm thấy', Adjective 'mệt', Modifier 'hơi'"
+  },
+  {
+    "spoken": "Bạn nên về nhà nghỉ ngơi.",
+    "expected": "Bạn nên về nhà nghỉ ngơi.",
+    "reading": "Bạn nên về nhà nghỉ ngơi.",
+    "english": "You should go home and rest.",
+    "grammar": "Modal Verb 'nên', Verb 'nghỉ ngơi'"
+  },
+  {
+    "spoken": "Tôi thích nghe nhạc pop Việt Nam.",
+    "expected": "Tôi thích nghe nhạc pop Việt Nam.",
+    "reading": "Tôi thích nghe nhạc pop Việt Nam.",
+    "english": "I like listening to Vietnamese pop music.",
+    "grammar": "Verb 'thích', Verb 'nghe', Music Vocabulary"
+  },
+  {
+    "spoken": "Bài hát đó tên là gì?",
+    "expected": "Bài hát đó tên là gì?",
+    "reading": "Bài hát đó tên là gì?",
+    "english": "What is the name of that song?",
+    "grammar": "WH-Question 'gì', Demonstrative 'đó', Verb 'là'"
+  },
+  {
+    "spoken": "Ở gần đây có quán ăn nào ngon không?",
+    "expected": "Ở gần đây có quán ăn nào ngon không?",
+    "reading": "Ở gần đây có quán ăn nào ngon không?",
+    "english": "Are there any good restaurants nearby?",
+    "grammar": "Yes/No Question 'không?', WH-Question Word used for indefiniteness 'nào', Verb 'có', Location 'gần đây'"
+  },
+  {
+    "spoken": "Có ạ, quán phở ở góc đường kia.",
+    "expected": "Có ạ, quán phở ở góc đường kia.",
+    "reading": "Có ạ, quán phở ở góc đường kia.",
+    "english": "Yes, the pho restaurant on that street corner.",
+    "grammar": "Verb 'có', Politeness Particle 'ạ', Location 'góc đường', Demonstrative 'kia'"
+  },
+  {
+    "spoken": "Tôi có thể thử đôi giày này không?",
+    "expected": "Tôi có thể thử đôi giày này không?",
+    "reading": "Tôi có thể thử đôi giày này không?",
+    "english": "Can I try on this pair of shoes?",
+    "grammar": "Asking Permission 'có thể... không?', Verb 'thử', Classifier 'đôi'"
+  },
+  {
+    "spoken": "Vâng, cỡ của bạn là bao nhiêu?",
+    "expected": "Vâng, cỡ của bạn là bao nhiêu?",
+    "reading": "Vâng, cỡ của bạn là bao nhiêu?",
+    "english": "Yes, what is your size?",
+    "grammar": "WH-Question 'bao nhiêu', Possession 'của'"
+  },
+  {
+    "spoken": "Món bún chả này cay không ạ?",
+    "expected": "Món bún chả này cay không ạ?",
+    "reading": "Món bún chả này cay không ạ?",
+    "english": "Is this bun cha spicy?",
+    "grammar": "Yes/No Question 'không?', Adjective 'cay', Politeness Particle 'ạ'"
+  },
+  {
+    "spoken": "Không cay lắm đâu, bạn ăn thử đi.",
+    "expected": "Không cay lắm đâu, bạn ăn thử đi.",
+    "reading": "Không cay lắm đâu, bạn ăn thử đi.",
+    "english": "It's not very spicy, try it.",
+    "grammar": "Negation 'không', Intensifier 'lắm', Verb 'ăn thử', Imperative Particle 'đi'"
+  },
+  {
+    "spoken": "Chúc mừng năm mới!",
+    "expected": "Chúc mừng năm mới!",
+    "reading": "Chúc mừng năm mới!",
+    "english": "Happy New Year!",
+    "grammar": "Common Expression 'Chúc mừng'"
+  },
+  {
+    "spoken": "Tạm biệt cô giáo ạ.",
+    "expected": "Tạm biệt cô giáo ạ.",
+    "reading": "Tạm biệt cô giáo ạ.",
+    "english": "Goodbye, teacher.",
+    "grammar": "Common Expression 'Tạm biệt', Pronoun 'cô', Politeness Particle 'ạ'"
+  },
+  {
+    "spoken": "Việt Nam có nhiều cảnh đẹp.",
+    "expected": "Việt Nam có nhiều cảnh đẹp.",
+    "reading": "Việt Nam có nhiều cảnh đẹp.",
+    "english": "Vietnam has many beautiful landscapes.",
+    "grammar": "Verb 'có', Quantity 'nhiều', Adjective 'đẹp'"
+  },
+  {
+    "spoken": "Tôi yêu con người Việt Nam.",
+    "expected": "Tôi yêu con người Việt Nam.",
+    "reading": "Tôi yêu con người Việt Nam.",
+    "english": "I love Vietnamese people.",
+    "grammar": "Verb 'yêu', Basic Sentence Structure (SVO)"
+  },
+  {
+    "spoken": "Bạn đến Việt Nam bao giờ chưa?",
+    "expected": "Bạn đến Việt Nam bao giờ chưa?",
+    "reading": "Bạn đến Việt Nam bao giờ chưa?",
+    "english": "Have you ever been to Vietnam?",
+    "grammar": "Yes/No Question particle 'chưa?', Time Adverb 'bao giờ'"
+  },
+  {
+    "spoken": "Tôi chưa đến bao giờ.",
+    "expected": "Tôi chưa đến bao giờ.",
+    "reading": "Tôi chưa đến bao giờ.",
+    "english": "I have never been there.",
+    "grammar": "Negation 'chưa', Time Adverb 'bao giờ'"
+  },
+  {
+    "spoken": "Mời bạn ăn bánh nhé.",
+    "expected": "Mời bạn ăn bánh nhé.",
+    "reading": "Mời bạn ăn bánh nhé.",
+    "english": "Please have some cake.",
+    "grammar": "Verb 'Mời', Suggestion Particle 'nhé'"
+  },
+  {
+    "spoken": "Cà phê ở đây rất đậm đà.",
+    "expected": "Cà phê ở đây rất đậm đà.",
+    "reading": "Cà phê ở đây rất đậm đà.",
+    "english": "The coffee here is very strong/flavorful.",
+    "grammar": "Adjective 'đậm đà', Intensifier 'rất', Location 'ở đây'"
+  },
+  {
+    "spoken": "Chúng tôi là sinh viên đại học.",
+    "expected": "Chúng tôi là sinh viên đại học.",
+    "reading": "Chúng tôi là sinh viên đại học.",
+    "english": "We are university students.",
+    "grammar": "Pronoun 'chúng tôi', Verb 'là', Noun Phrase"
+  },
+  {
+    "spoken": "Họ đang chơi đá bóng ngoài sân.",
+    "expected": "Họ đang chơi đá bóng ngoài sân.",
+    "reading": "Họ đang chơi đá bóng ngoài sân.",
+    "english": "They are playing football outside in the yard.",
+    "grammar": "Present Continuous Marker 'đang', Pronoun 'họ', Verb 'chơi', Location 'ngoài sân'"
+  },
+  {
+    "spoken": "Tôi muốn gọi một tô phở bò.",
+    "expected": "Tôi muốn gọi một tô phở bò.",
+    "reading": "Tôi muốn gọi một tô phở bò.",
+    "english": "I want to order a bowl of beef pho.",
+    "grammar": "Verb 'muốn', Verb 'gọi', Classifier 'tô', Food Vocabulary"
+  },
+  {
+    "spoken": "Bạn có thích đọc sách không?",
+    "expected": "Bạn có thích đọc sách không?",
+    "reading": "Bạn có thích đọc sách không?",
+    "english": "Do you like reading books?",
+    "grammar": "Verb 'thích', Verb 'đọc', Yes/No Question 'không?'"
+  }
+]

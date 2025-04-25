@@ -1,0 +1,702 @@
+[
+  {
+    "spoken": "이번 주말에 특별한 계획이라도 있으실 거예요?",
+    "expected": "이번 주말에 특별한 계획이라도 있으실 거예요?",
+    "reading": "이번 주말에 특별한 계획이라도 있으실 거예요?",
+    "english": "Do you happen to have any special plans this weekend?",
+    "grammar": "-(으)ㄹ 거예요?, -(이)라도"
+  },
+  {
+    "spoken": "외국어로 자기 생각을 정확하게 표현하기는 어려워요.",
+    "expected": "외국어로 자기 생각을 정확하게 표현하기는 어려워요.",
+    "reading": "외국어로 자기 생각을 정확하게 표현하기는 어려워요.",
+    "english": "It's difficult to express one's thoughts accurately in a foreign language.",
+    "grammar": "-기 어렵다"
+  },
+  {
+    "spoken": "제주도에 가시면 한라산 등반을 꼭 한번 해 보시면 좋겠어요.",
+    "expected": "제주도에 가시면 한라산 등반을 꼭 한번 해 보시면 좋겠어요.",
+    "reading": "제주도에 가시면 한라산 등반을 꼭 한번 해 보시면 좋겠어요.",
+    "english": "If you go to Jeju Island, it would be good if you try climbing Mt. Halla at least once.",
+    "grammar": "-아/어 보다, -(으)면 좋겠다"
+  },
+  {
+    "spoken": "갑자기 비가 내리는 바람에 소풍을 취소할 수밖에 없었어요.",
+    "expected": "갑자기 비가 내리는 바람에 소풍을 취소할 수밖에 없었어요.",
+    "reading": "갑자기 비가 내리는 바람에 소풍을 취소할 수바께 없었어요.",
+    "english": "Because it suddenly started raining, we had no choice but to cancel the picnic.",
+    "grammar": "-는 바람에, -(으)ㄹ 수밖에 없다"
+  },
+  {
+    "spoken": "올해 여름은 작년에 비해서 훨씬 더 더운 것 같아요.",
+    "expected": "올해 여름은 작년에 비해서 훨씬 더 더운 것 같아요.",
+    "reading": "올해 여름은 작년에 비해서 훨씬 더 더운 것 같아요.",
+    "english": "It seems like this summer is much hotter compared to last year.",
+    "grammar": "-에 비해(서), -(으)ㄴ/는 것 같다"
+  },
+  {
+    "spoken": "저는 예전에 한국 민속촌에 가 본 적이 있어요.",
+    "expected": "저는 예전에 한국 민속촌에 가 본 적이 있어요.",
+    "reading": "저는 예전에 한국 민속초네 가 본 저기 있어요.",
+    "english": "I have been to the Korean Folk Village before.",
+    "grammar": "-(으)ㄴ 적이 있다"
+  },
+  {
+    "spoken": "음악을 들으면서 책을 읽는 것을 좋아해요.",
+    "expected": "음악을 들으면서 책을 읽는 것을 좋아해요.",
+    "reading": "으마글 드르면서 채글 읽는 거슬 조아해요.",
+    "english": "I like reading books while listening to music.",
+    "grammar": "-(으)면서, -는 것"
+  },
+  {
+    "spoken": "조금 더 일찍 출발할걸 그랬어요. 길이 너무 막히네요.",
+    "expected": "조금 더 일찍 출발할걸 그랬어요. 길이 너무 막히네요.",
+    "reading": "조금 더 일찍 출발할껄 그랬어요. 기리 너무 마키네요.",
+    "english": "I should have left a little earlier. The traffic is so bad.",
+    "grammar": "-(으)ㄹ걸 그랬다, -네요"
+  },
+  {
+    "spoken": "그 식당 앞에 사람들이 줄 서 있는 걸 보니 맛집인가 봐요.",
+    "expected": "그 식당 앞에 사람들이 줄 서 있는 걸 보니 맛집인가 봐요.",
+    "reading": "그 식땅 아페 사람들이 줄 서 인는 걸 보니맏찌빈가 봐요.",
+    "english": "Seeing people lined up in front of that restaurant, it seems to be a popular place (맛집).",
+    "grammar": "-나 보다 / -(으)ㄴ가 보다"
+  },
+  {
+    "spoken": "건강을 유지하려고 매일 아침 꾸준히 운동하고 있어요.",
+    "expected": "건강을 유지하려고 매일 아침 꾸준히 운동하고 있어요.",
+    "reading": "건강을 유지하려구 매일 아침 꾸준히 운동하고 있어요.",
+    "english": "I am exercising consistently every morning to maintain my health.",
+    "grammar": "-(으)려고, -고 있다"
+  },
+  {
+    "spoken": "뉴스에서 내일부터 날씨가 추워진다고 했어요.",
+    "expected": "뉴스에서 내일부터 날씨가 추워진다고 했어요.",
+    "reading": "뉴쓰에서 내일부터 날씨가 추워진다고 해써요.",
+    "english": "The news said that the weather will get colder starting tomorrow.",
+    "grammar": "-다고 하다"
+  },
+  {
+    "spoken": "시간이 있으면 같이 영화 보러 가지 않을래요?",
+    "expected": "시간이 있으면 같이 영화 보러 가지 않을래요?",
+    "reading": "시가니 이쓰면 가치 영화 보러 가지 아늘래요?",
+    "english": "If you have time, would you like to go watch a movie together?",
+    "grammar": "-(으)면, -(으)ㄹ래요?"
+  },
+  {
+    "spoken": "동생은 자는 척했지만 사실 깨어 있었어요.",
+    "expected": "동생은 자는 척했지만 사실 깨어 있었어요.",
+    "reading": "동생은 자는 처캩지만 사실 깨어 이써써요.",
+    "english": "My younger sibling pretended to be asleep, but was actually awake.",
+    "grammar": "-는 척하다"
+  },
+  {
+    "spoken": "지금 친구와 중요한 이야기를 나누는 중이라서 전화를 받기 어려워요.",
+    "expected": "지금 친구와 중요한 이야기를 나누는 중이라서 전화를 받기 어려워요.",
+    "reading": "지금 친구와 중요한 이야기는 나누는 중이라서 저놔를 받끼 어려워요.",
+    "english": "I'm in the middle of an important conversation with a friend right now, so it's difficult to answer the phone.",
+    "grammar": "-는 중이다, -기 어렵다"
+  },
+  {
+    "spoken": "친구가 저에게 한국 생활이 어떻냐고 물었어요.",
+    "expected": "친구가 저에게 한국 생활이 어떻냐고 물었어요.",
+    "reading": "친구가 저에게 한국 생화리 어뗜냐고 무러써요.",
+    "english": "My friend asked me how Korean life is.",
+    "grammar": "-냐고 묻다"
+  },
+  {
+    "spoken": "그 배우는 연기를 잘할 뿐만 아니라 노래도 아주 잘 불러요.",
+    "expected": "그 배우는 연기를 잘할 뿐만 아니라 노래도 아주 잘 불러요.",
+    "reading": "그 배우는 연기를 잘할 뿐만 아니라 노래도 아주 잘 불러요.",
+    "english": "That actor not only acts well but also sings very well.",
+    "grammar": "-(으)ㄹ 뿐만 아니라"
+  },
+  {
+    "spoken": "집에 도착하자마자 너무 피곤해서 바로 잠들었어요.",
+    "expected": "집에 도착하자마자 너무 피곤해서 바로 잠들었어요.",
+    "reading": "지베 도차카자마자 너무 피고내서 바로 잠드러써요.",
+    "english": "As soon as I arrived home, I was so tired that I fell asleep right away.",
+    "grammar": "-자마자"
+  },
+  {
+    "spoken": "저는 다른 사람들에 비해 추위를 많이 타는 편이에요.",
+    "expected": "저는 다른 사람들에 비해 추위를 많이 타는 편이에요.",
+    "reading": "저는 다른 사람드레 비해 추위를 마니 타는 펴니에요.",
+    "english": "Compared to other people, I tend to feel the cold more.",
+    "grammar": "-는 편이다, -에 비해(서)"
+  },
+  {
+    "spoken": "아무리 힘들어도 포기하지 않고 계속 노력할 거예요.",
+    "expected": "아무리 힘들어도 포기하지 않고 계속 노력할 거예요.",
+    "reading": "아무리 힘드러도 포기하지 안코 계속 노력할 거예요.",
+    "english": "No matter how hard it is, I won't give up and will keep trying.",
+    "grammar": "아무리 -아/어도, -(으)ㄹ 거예요"
+  },
+  {
+    "spoken": "선생님께서 잘 가르쳐 주신 덕분에 한국어 실력이 많이 늘었어요.",
+    "expected": "선생님께서 잘 가르쳐 주신 덕분에 한국어 실력이 많이 늘었어요.",
+    "reading": "선생님께서 잘 가르처 주신 덕뿌네 한구거 실려기 마니 느러써요.",
+    "english": "Thanks to the teacher teaching well, my Korean skills have improved a lot.",
+    "grammar": "-덕분에, -아/어 주다"
+  },
+  {
+    "spoken": "다음 달에 가족들과 함께 해외여행을 가려고 해요.",
+    "expected": "다음 달에 가족들과 함께 해외여행을 가려고 해요.",
+    "reading": "다음 따레 가족뜰과 함꼐 해외여행을 가려고 해요.",
+    "english": "I'm planning to go on an overseas trip with my family next month.",
+    "grammar": "-(으)려고 하다"
+  },
+  {
+    "spoken": "최근 연구 결과에 따르면 규칙적인 운동은 정신 건강에 좋다고 합니다.",
+    "expected": "최근 연구 결과에 따르면 규칙적인 운동은 정신 건강에 좋다고 합니다.",
+    "reading": "췌근 연구 결과에 따르믄 규칙쩌긴 운동은 정신 건가에 조타곱합니다.",
+    "english": "According to recent research results, regular exercise is said to be good for mental health.",
+    "grammar": "-에 따르면, -다고 하다"
+  },
+  {
+    "spoken": "갑자기 계획이 변경되어서 조금 당황스러웠어요.",
+    "expected": "갑자기 계획이 변경되어서 조금 당황스러웠어요.",
+    "reading": "갑짜기 계획이 변경되어서 조끔 당황스러워써요.",
+    "english": "I was a bit flustered because the plan was suddenly changed.",
+    "grammar": "-아/어지다 (passive)"
+  },
+  {
+    "spoken": "이 옷이 예쁘기는 하지만 저한테는 조금 작은 것 같아요.",
+    "expected": "이 옷이 예쁘기는 하지만 저한테는 조금 작은 것 같아요.",
+    "reading": "이 오시 예쁘기는 하지만 저한테는 조끔 자근 것 가타요.",
+    "english": "This piece of clothing is pretty, but I think it's a little small for me.",
+    "grammar": "-기는 하지만 / -기는 -지만, -(으)ㄴ 것 같다"
+  },
+  {
+    "spoken": "박물관 안에서는 조용히 관람하여 주십시오.",
+    "expected": "박물관 안에서는 조용히 관람하여 주십시오.",
+    "reading": "방물관 아네서는 조용히 괄라마여 주십씨오.",
+    "english": "Please view quietly inside the museum.",
+    "grammar": "-(으)십시오"
+  },
+  {
+    "spoken": "회의가 끝났으니 다 같이 저녁 식사하러 갑시다.",
+    "expected": "회의가 끝났으니 다 같이 저녁 식사하러 갑시다.",
+    "reading": "회의가 끈나쓰니 다 가치 저녁 식싸하러 갑씨다.",
+    "english": "Since the meeting is over, let's all go have dinner together.",
+    "grammar": "-(으)ㅂ시다, -(으)니(까)"
+  },
+  {
+    "spoken": "냉장고에 우유밖에 남지 않아서 장을 보러 가야 해요.",
+    "expected": "냉장고에 우유밖에 남지 않아서 장을 보러 가야 해요.",
+    "reading": "냉장고에 우유바께 남지 아나서 장을 보러 가야 해요.",
+    "english": "There is nothing but milk left in the refrigerator, so I need to go grocery shopping.",
+    "grammar": "-밖에 + negative, -아/어서"
+  },
+  {
+    "spoken": "어제 새로 생긴 카페에 가 봤는데 분위기가 정말 좋더라고요.",
+    "expected": "어제 새로 생긴 카페에 가 봤는데 분위기가 정말 좋더라고요.",
+    "reading": "어제 새로 생깅 카페에 가 봤는데 부니기가 정말 조터라고요.",
+    "english": "I went to the newly opened cafe yesterday, and (I realized) the atmosphere was really good.",
+    "grammar": "-더라고요, -는데"
+  },
+  {
+    "spoken": "주말에는 보통 집에서 쉬거나 친구들을 만나요.",
+    "expected": "주말에는 보통 집에서 쉬거나 친구들을 만나요.",
+    "reading": "주마레는 보통 지베서 쉬거나 친구드를 만나요.",
+    "english": "On weekends, I usually rest at home or meet friends.",
+    "grammar": "-거나"
+  },
+  {
+    "spoken": "열심히 공부했는데 시험 결과가 생각보다 좋지 않았어요.",
+    "expected": "열심히 공부했는데 시험 결과가 생각보다 좋지 않았어요.",
+    "reading": "열씸히 공부핸는데 시험 결과가 생각뽀다 조치 아나써요.",
+    "english": "I studied hard, but the test results were not as good as I thought.",
+    "grammar": "-는데/-(으)ㄴ데"
+  },
+  {
+    "spoken": "저는 젓가락을 능숙하게 사용할 수 있어요.",
+    "expected": "저는 젓가락을 능숙하게 사용할 수 있어요.",
+    "reading": "저는 저까라글 능수카게 사용할 쑤 이써요.",
+    "english": "I can use chopsticks skillfully.",
+    "grammar": "-(으)ㄹ 수 있다"
+  },
+  {
+    "spoken": "오늘은 너무 바빠서 친구의 생일 파티에 갈 수 없게 되었어요.",
+    "expected": "오늘은 너무 바빠서 친구의 생일 파티에 갈 수 없게 되었어요.",
+    "reading": "오느른 너무 바빠서 친구에 생일 파티에 갈 쑤 업께 되어써요.",
+    "english": "I became unable to go to my friend's birthday party because I'm too busy today.",
+    "grammar": "-(으)ㄹ 수 없다, -게 되다"
+  },
+  {
+    "spoken": "날씨가 좋은데 우리 공원에 산책하러 갈까요?",
+    "expected": "날씨가 좋은데 우리 공원에 산책하러 갈까요?",
+    "reading": "날씨가 조은데 우리 공워네 산채카러 갈까요?",
+    "english": "The weather is nice, so shall we go for a walk in the park?",
+    "grammar": "-는데/-(으)ㄴ데, -(으)ㄹ까요?"
+  },
+  {
+    "spoken": "노력한 만큼 좋은 결과를 얻을 수 있을 거라고 믿어요.",
+    "expected": "노력한 만큼 좋은 결과를 얻을 수 있을 거라고 믿어요.",
+    "reading": "노려칸 만큼 조은 결과르 어들 쑤 이쓸 거라고 미더요.",
+    "english": "I believe that I will be able to achieve good results as much as I have put in the effort.",
+    "grammar": "-만큼, -(으)ㄹ 수 있다, -(으)ㄹ 거라고 믿다"
+  },
+  {
+    "spoken": "영화를 보는 동안에는 휴대폰을 꺼 주시기 바랍니다.",
+    "expected": "영화를 보는 동안에는 휴대폰을 꺼 주시기 바랍니다.",
+    "reading": "영화를 보는 도아네는 휴대포늘 꺼 주시기 바람니다.",
+    "english": "Please turn off your mobile phone while watching the movie.",
+    "grammar": "-는 동안, -아/어 주다"
+  },
+  {
+    "spoken": "내일까지 이 보고서를 반드시 제출해야 해요.",
+    "expected": "내일까지 이 보고서를 반드시 제출해야 해요.",
+    "reading": "내일까지 이 보고서를 반드시 제출해야 해요.",
+    "english": "I must submit this report by tomorrow.",
+    "grammar": "-아/어야 하다/되다"
+  },
+  {
+    "spoken": "질문이 있으면 언제든지 저에게 물어보셔도 돼요.",
+    "expected": "질문이 있으면 언제든지 저에게 물어보셔도 돼요.",
+    "reading": "질무니 이쓰면 언제든디 저에게 무러보셔도 돼요.",
+    "english": "If you have any questions, you may ask me anytime.",
+    "grammar": "-아/어도 되다"
+  },
+  {
+    "spoken": "도서관에서는 큰 소리로 떠들면 안 됩니다.",
+    "expected": "도서관에서는 큰 소리로 떠들면 안 됩니다.",
+    "reading": "도서과네서는 큰 소리로 떠들면 안 됨니다.",
+    "english": "You must not talk loudly in the library.",
+    "grammar": "-(으)면 안 되다"
+  },
+  {
+    "spoken": "그녀는 천사처럼 마음씨가 정말 착해요.",
+    "expected": "그녀는 천사처럼 마음씨가 정말 착해요.",
+    "reading": "그녀는 천사처럼 마음씨가 정말 차캐요.",
+    "english": "She is really kind-hearted, like an angel.",
+    "grammar": "-처럼"
+  },
+  {
+    "spoken": "오늘 날씨가 생각보다 쌀쌀하지요?",
+    "expected": "오늘 날씨가 생각보다 쌀쌀하지요?",
+    "reading": "오늘 날씨가 생각뽀다 쌀쌀하지요?",
+    "english": "The weather today is chillier than expected, isn't it?",
+    "grammar": "-지요 / -죠?"
+  },
+  {
+    "spoken": "와, 한국 음식을 정말 잘 만드시네요!",
+    "expected": "와, 한국 음식을 정말 잘 만드시네요!",
+    "reading": "와, 한구금시글 정말 잘 만드시네요!",
+    "english": "Wow, you make Korean food really well!",
+    "grammar": "-네요"
+  },
+  {
+    "spoken": "제가 먼저 가서 자리를 잡아 놓을게요.",
+    "expected": "제가 먼저 가서 자리를 잡아 놓을게요.",
+    "reading": "제가 먼저 가서 자리를 자바 노을께요.",
+    "english": "I'll go first and save seats.",
+    "grammar": "-(으)ㄹ게(요), -아/어 놓다"
+  },
+  {
+    "spoken": "저녁으로 뭐 먹을래요? 피자 어때요?",
+    "expected": "저녁으로 뭐 먹을래요? 피자 어때요?",
+    "reading": "저녀그로 뭐 머글래요? 피자 어때요?",
+    "english": "What do you want to eat for dinner? How about pizza?",
+    "grammar": "-(으)ㄹ래요?"
+  },
+  {
+    "spoken": "부모님은 제가 어렸을 때부터 책을 많이 읽게 하셨어요.",
+    "expected": "부모님은 제가 어렸을 때부터 책을 많이 읽게 하셨어요.",
+    "reading": "부모니믄 제가 어러쓸 때부터 채글 마니 일께 하셔써요.",
+    "english": "My parents made me read a lot of books since I was young.",
+    "grammar": "-게 하다 (causative)"
+  },
+  {
+    "spoken": "퇴근하는 길에 마트에 들러서 장을 좀 봤어요.",
+    "expected": "퇴근하는 길에 마트에 들러서 장을 좀 봤어요.",
+    "reading": "퇴그나는 기레 마트에 들러서 장을 좀 봐써요.",
+    "english": "On my way home from work, I stopped by the supermarket and did some grocery shopping.",
+    "grammar": "-는 길에"
+  },
+  {
+    "spoken": "혹시 결과가 좋지 않더라도 너무 실망하지 마세요.",
+    "expected": "혹시 결과가 좋지 않더라도 너무 실망하지 마세요.",
+    "reading": "혹씨 결과가 조치 안터라도 너무 실망하지 마세요.",
+    "english": "Even if the results are not good, please don't be too disappointed.",
+    "grammar": "-더라도"
+  },
+  {
+    "spoken": "하늘에 구름이 많은 걸 보니 곧 비가 올 것 같아요.",
+    "expected": "하늘에 구름이 많은 걸 보니 곧 비가 올 것 같아요.",
+    "reading": "하느레 구르미 마는 걸 보니 곧 비가 올 것 가타요.",
+    "english": "Seeing many clouds in the sky, it looks like it will rain soon.",
+    "grammar": "-(으)ㄴ/는/(으)ㄹ 것 같다"
+  },
+  {
+    "spoken": "컴퓨터 프로그래밍을 할 줄 알면 취업에 유리해요.",
+    "expected": "컴퓨터 프로그래밍을 할 줄 알면 취업에 유리해요.",
+    "reading": "컴퓨터 프로그래미을 할 쭐 알면 취어베 유리해요.",
+    "english": "Knowing how to do computer programming is advantageous for employment.",
+    "grammar": "-(으)ㄹ 줄 알다"
+  },
+  {
+    "spoken": "저는 아직 김치를 담글 줄 몰라서 어머니께 배워야 해요.",
+    "expected": "저는 아직 김치를 담글 줄 몰라서 어머니께 배워야 해요.",
+    "reading": "저는 아직 김치를 담글 쭐 몰라서 어머니께 배워야 해요.",
+    "english": "I still don't know how to make kimchi, so I need to learn from my mother.",
+    "grammar": "-(으)ㄹ 줄 모르다"
+  },
+  {
+    "spoken": "주말에 일하는 대신에 평일에 하루 쉬기로 했어요.",
+    "expected": "주말에 일하는 대신에 평일에 하루 쉬기로 했어요.",
+    "reading": "주마레 이라는 대신에 평이레 하루 쉬기로 해써요.",
+    "english": "Instead of working on the weekend, I decided to take a day off on a weekday.",
+    "grammar": "-는 대신에, -기로 하다"
+  },
+  {
+    "spoken": "오늘은 몸이 좋지 않기 때문에 일찍 퇴근하려고 합니다.",
+    "expected": "오늘은 몸이 좋지 않기 때문에 일찍 퇴근하려고 합니다.",
+    "reading": "오느른 모미 조치 안키 때무네 일찍 퇴근하려곱합니다.",
+    "english": "Because I don't feel well today, I intend to leave work early.",
+    "grammar": "-기 때문에, -(으)려고 하다"
+  },
+  {
+    "spoken": "의사 선생님께서 매일 30분씩 걸으라고 하셨어요.",
+    "expected": "의사 선생님께서 매일 30분씩 걸으라고 하셨어요.",
+    "reading": "의사 선생님께서 매일 삼십뿐씩 거르라고 하셔써요.",
+    "english": "The doctor told me to walk for 30 minutes every day.",
+    "grammar": "-(으)라고 하다"
+  },
+  {
+    "spoken": "친구가 이번 주말에 같이 등산 가자고 했어요.",
+    "expected": "친구가 이번 주말에 같이 등산 가자고 했어요.",
+    "reading": "친구가 이번 주마레 가치 등산 가자고 해써요.",
+    "english": "My friend suggested we go hiking together this weekend.",
+    "grammar": "-자고 하다"
+  },
+  {
+    "spoken": "교통사고 때문에 길이 많이 막혔어요.",
+    "expected": "교통사고 때문에 길이 많이 막혔어요.",
+    "reading": "교통사고 때무네 기리 마니 마켜써요.",
+    "english": "The road was very congested due to a traffic accident.",
+    "grammar": "-때문에"
+  },
+  {
+    "spoken": "창문이 바람에 세게 닫혔어요.",
+    "expected": "창문이 바람에 세게 닫혔어요.",
+    "reading": "창무니 바라메 쎄게 다쳐써요.",
+    "english": "The window was slammed shut by the wind.",
+    "grammar": "-이/히/리/기- (passive verb)"
+  },
+  {
+    "spoken": "어렸을 때 자주 가던 공원에 오랜만에 다시 가봤어요.",
+    "expected": "어렸을 때 자주 가던 공원에 오랜만에 다시 가봤어요.",
+    "reading": "어려쓸 때 자주 가던 공워네 오랜마네 다시 가봐써요.",
+    "english": "I revisited the park I used to go to often when I was young after a long time.",
+    "grammar": "-던"
+  },
+  {
+    "spoken": "저희 회사는 고객 만족을 최우선으로 하고자 노력하고 있습니다.",
+    "expected": "저희 회사는 고객 만족을 최우선으로 하고자 노력하고 있습니다.",
+    "reading": "저히 회사는 고객 만족을 최우서느로 하고자 노력하고 이씀니다.",
+    "english": "Our company is striving to prioritize customer satisfaction above all else.",
+    "grammar": "-고자"
+  },
+  {
+    "spoken": "비가 올 텐데 우산을 챙겨 가는 게 좋겠어요.",
+    "expected": "비가 올 텐데 우산을 챙겨 가는 게 좋겠어요.",
+    "reading": "비가 올 텐데 우사늘 챙겨 가는 게 조케써요.",
+    "english": "It might rain, so you should probably take an umbrella.",
+    "grammar": "-(으)ㄹ 텐데"
+  },
+  {
+    "spoken": "그 사람이 약속 시간에 늦을지도 모르니 먼저 들어가서 기다리자.",
+    "expected": "그 사람이 약속 시간에 늦을지도 모르니 먼저 들어가서 기다리자.",
+    "reading": "그 사라미 약속 씨가네 느즐지도 모르니 먼저 드러가서 기다리자.",
+    "english": "That person might be late for the appointment, so let's go in first and wait.",
+    "grammar": "-(으)ㄹ지도 모르다, -(으)니(까)"
+  },
+  {
+    "spoken": "어제 잠을 잘 못 잤거든요. 그래서 지금 좀 피곤해요.",
+    "expected": "어제 잠을 잘 못 잤거든요. 그래서 지금 좀 피곤해요.",
+    "reading": "어제 자믈 잘 못 잗꺼드뇨. 그래서 지금 좀 피고내요.",
+    "english": "You see, I didn't sleep well last night. So I'm a bit tired now.",
+    "grammar": "-거든요"
+  },
+  {
+    "spoken": "아이들이 안전하게 놀 수 있도록 놀이터 시설을 점검해야 합니다.",
+    "expected": "아이들이 안전하게 놀 수 있도록 놀이터 시설을 점검해야 합니다.",
+    "reading": "아이들이 안저나게 놀 쑤 이또록 노리터 시설을 점검해야 함니다.",
+    "english": "We need to inspect the playground facilities so that children can play safely.",
+    "grammar": "-도록, -(으)ㄹ 수 있다"
+  },
+  {
+    "spoken": "회의가 끝나는 대로 바로 연락드리겠습니다.",
+    "expected": "회의가 끝나는 대로 바로 연락드리겠습니다.",
+    "reading": "회의가 끈나는 대로 바로 열락뜨리게씀니다.",
+    "english": "I will contact you as soon as the meeting ends.",
+    "grammar": "-는 대로"
+  },
+  {
+    "spoken": "사람에 따라서 선호하는 커피 종류가 다를 수 있어요.",
+    "expected": "사람에 따라서 선호하는 커피 종류가 다를 수 있어요.",
+    "reading": "사라메 따라서는 선호하는 커피 종류가 다를 쑤 이써요.",
+    "english": "Preferred coffee types can differ depending on the person.",
+    "grammar": "-에 따라(서)"
+  },
+  {
+    "spoken": "바쁘시면 커피라도 한 잔 하고 가세요.",
+    "expected": "바쁘시면 커피라도 한 잔 하고 가세요.",
+    "reading": "바쁘시면 커피라도 한 잔 하고 가세요.",
+    "english": "If you're busy, at least have a cup of coffee before you go.",
+    "grammar": "-(이)라도"
+  },
+  {
+    "spoken": "마침 저도 당신에게 전화하려던 참이었어요.",
+    "expected": "마침 저도 당신에게 전화하려던 참이었어요.",
+    "reading": "마침 저도 당시에네게 저놔하려던 차미어써요.",
+    "english": "As it happens, I was just about to call you too.",
+    "grammar": "-(으)려던 참이다"
+  },
+  {
+    "spoken": "학창 시절에는 친구들과 방과 후에 자주 농구를 하곤 했어요.",
+    "expected": "학창 시절에는 친구들과 방과 후에 자주 농구를 하곤 했어요.",
+    "reading": "학창 시절에는 친구들과 방과 후에 자주 농구를 하곤 해써요.",
+    "english": "During my school days, I used to play basketball often with friends after school.",
+    "grammar": "-곤 하다"
+  },
+  {
+    "spoken": "꾸준히 노력해야만 목표를 달성할 수 있을 거예요.",
+    "expected": "꾸준히 노력해야만 목표를 달성할 수 있을 거예요.",
+    "reading": "꾸준히 노려캐야만 목표를 달성할 쑤 이쓸 거예요.",
+    "english": "Only if you make a consistent effort will you be able to achieve your goal.",
+    "grammar": "-아야/어야(만)"
+  },
+  {
+    "spoken": "본 장비는 고가이므로 취급에 주의하시기 바랍니다.",
+    "expected": "본 장비는 고가이므로 취급에 주의하시기 바랍니다.",
+    "reading": "본 장비는 고까이므로 취그베 주의하시기 바람니다.",
+    "english": "As this equipment is expensive, please handle it with care.",
+    "grammar": "-(으)므로"
+  },
+  {
+    "spoken": "한국어를 배우는 것은 재미있지만 때로는 어려워요.",
+    "expected": "한국어를 배우는 것은 재미있지만 때로는 어려워요.",
+    "reading": "한구거를 배우는 거슨 재미읻지만 때로는 어려워요.",
+    "english": "Learning Korean is fun but sometimes difficult.",
+    "grammar": "-는 것"
+  },
+  {
+    "spoken": "매일 아침 일찍 일어나기는 정말 힘든 일이에요.",
+    "expected": "매일 아침 일찍 일어나기는 정말 힘든 일이에요.",
+    "reading": "매일 아침 일찍 이러나기는 정말 힘든 이리에요.",
+    "english": "Waking up early every morning is a really hard thing to do.",
+    "grammar": "-기"
+  },
+  {
+    "spoken": "그 사람이 언제 고향으로 돌아가는지 아세요?",
+    "expected": "그 사람이 언제 고향으로 돌아가는지 아세요?",
+    "reading": "그 사라미 언제 고향으로 도라가는지 아세요?",
+    "english": "Do you know when that person is returning to their hometown?",
+    "grammar": "-(으)ㄴ/는지"
+  },
+  {
+    "spoken": "아무리 찾아봐도 잃어버린 열쇠를 찾을 수가 없었어요.",
+    "expected": "아무리 찾아봐도 잃어버린 열쇠를 찾을 수가 없었어요.",
+    "reading": "아무리 차자봐도 이러버린 열쐬를 차즐 쑤가 업서써요.",
+    "english": "No matter how much I searched, I couldn't find the lost key.",
+    "grammar": "아무리 -아/어도, -(으)ㄹ 수 없다"
+  },
+  {
+    "spoken": "기분 전환도 할 겸 친구도 만날 겸 시내에 나갔어요.",
+    "expected": "기분 전환도 할 겸 친구도 만날 겸 시내에 나갔어요.",
+    "reading": "기분 저놘도 할 겸 친구도 만날 겸 시내에 나가써요.",
+    "english": "I went downtown both to refresh my mood and to meet a friend.",
+    "grammar": "-(으)ㄹ 겸 -(으)ㄹ 겸"
+  },
+  {
+    "spoken": "어젯밤에 드라마를 보느라고 숙제를 다 못 했어요.",
+    "expected": "어젯밤에 드라마를 보느라고 숙제를 다 못 했어요.",
+    "reading": "어젣빠메 드라마를 보느라고 숙쩨를 다 모태써요.",
+    "english": "Because I was watching a drama last night, I couldn't finish all my homework.",
+    "grammar": "-느라고"
+  },
+  {
+    "spoken": "운동을 한 후에는 충분히 스트레칭을 해주는 것이 좋아요.",
+    "expected": "운동을 한 후에는 충분히 스트레칭을 해주는 것이 좋아요.",
+    "reading": "운도을 한 후에는 충분히 스트레치을 해주는 거시 조아요.",
+    "english": "It's good to stretch sufficiently after exercising.",
+    "grammar": "-(으)ㄴ 후에 / 뒤에, -는 것"
+  },
+  {
+    "spoken": "정부는 다음 달부터 새로운 환경 정책을 시행할 예정입니다.",
+    "expected": "정부는 다음 달부터 새로운 환경 정책을 시행할 예정입니다.",
+    "reading": "정부는 다음 딸부터 새로운 환경 정책을 시행할 예정임니다.",
+    "english": "The government plans to implement a new environmental policy starting next month.",
+    "grammar": "-(으)ㄹ 예정이다"
+  },
+  {
+    "spoken": "경주 불국사는 한번 가 볼 만한 역사적인 장소예요.",
+    "expected": "경주 불국사는 한번 가 볼 만한 역사적인 장소예요.",
+    "reading": "경주 불국싸는 한번 가 볼 마난 역싸저긴 장소예요.",
+    "english": "Bulguksa Temple in Gyeongju is a historical place worth visiting once.",
+    "grammar": "-(으)ㄹ 만하다"
+  },
+  {
+    "spoken": "노력하면 결과가 따라오는 법이에요. 너무 걱정하지 마세요.",
+    "expected": "노력하면 결과가 따라오는 법이에요. 너무 걱정하지 마세요.",
+    "reading": "노려카면 결과가 따라오는 버비에요. 너무 걱쩡하지 마세요.",
+    "english": "It's natural that results follow effort. Don't worry too much.",
+    "grammar": "-(으)ㄴ/는 법이다"
+  },
+  {
+    "spoken": "이번 시험에 꼭 합격했으면 좋겠어요.",
+    "expected": "이번 시험에 꼭 합격했으면 좋겠어요.",
+    "reading": "이번 시허메 꼭 합껴캐쓰면 조케써요.",
+    "english": "I really hope I pass this exam.",
+    "grammar": "-았/었으면 좋겠다"
+  },
+  {
+    "spoken": "유학을 갈지 말지 아직 결정하지 못했어요.",
+    "expected": "유학을 갈지 말지 아직 결정하지 못했어요.",
+    "reading": "유하글 갈찌 말찌 아직 결쩡하지 모태써요.",
+    "english": "I haven't decided yet whether to study abroad or not.",
+    "grammar": "-(으)ㄹ지 말지"
+  },
+  {
+    "spoken": "꾸준히 연습했더니 피아노 실력이 점점 좋아졌어요.",
+    "expected": "꾸준히 연습했더니 피아노 실력이 점점 좋아졌어요.",
+    "reading": "꾸준히 연습핟떠니 피아노 실려기 점점 조아저써요.",
+    "english": "As I practiced consistently, my piano skills gradually improved.",
+    "grammar": "-더니, -아/어지다"
+  },
+  {
+    "spoken": "오늘 행사에 사람들이 많이 오려나 봐요. 준비를 더 해야겠어요.",
+    "expected": "오늘 행사에 사람들이 많이 오려나 봐요. 준비를 더 해야겠어요.",
+    "reading": "오늘 행사에 사람들이 마니 오려나 봐요. 준비를 더 해야게써요.",
+    "english": "It seems like many people will come to the event today. We should prepare more.",
+    "grammar": "-(으)려나 보다, -아/어야겠다"
+  },
+  {
+    "spoken": "문이 잠겨 있으니 다른 입구를 이용해 주세요.",
+    "expected": "문이 잠겨 있으니 다른 입구를 이용해 주세요.",
+    "reading": "무니 잠겨 이쓰니 다른 입꾸를 이용해 주세요.",
+    "english": "The door is locked, so please use another entrance.",
+    "grammar": "-아/어 있다, -(으)니(까)"
+  },
+  {
+    "spoken": "오늘 저녁 메뉴는 뭘로 할까? 김치찌개가 좋겠네.",
+    "expected": "오늘 저녁 메뉴는 뭘로 할까? 김치찌개가 좋겠네.",
+    "reading": "오늘 저녁 메뉴는 뭘로 할까? 김치찌개가 조켄네.",
+    "english": "What should I make for dinner tonight? (Let me see...) Kimchi stew would be good.",
+    "grammar": "-(으)ㄹ까?, -겠-"
+  },
+  {
+    "spoken": "친구를 만나려고 나갔다가 갑자기 비가 와서 그냥 돌아왔어요.",
+    "expected": "친구를 만나려고 나갔다가 갑자기 비가 와서 그냥 돌아왔어요.",
+    "reading": "친구를 만나려고 나갇따가 갑짜기 비가 와서 그냥 도라와써요.",
+    "english": "I went out to meet a friend, but it suddenly started raining, so I just came back.",
+    "grammar": "-(으)려다가"
+  },
+  {
+    "spoken": "팀의 리더로서 책임감을 가지고 프로젝트를 이끌어야 합니다.",
+    "expected": "팀의 리더로서 책임감을 가지고 프로젝트를 이끌어야 합니다.",
+    "reading": "티메 리더로서 채김가믈 가지고 프로젝트를 이끌어야 함니다.",
+    "english": "As the team leader, I must lead the project with a sense of responsibility.",
+    "grammar": "-(으)로서"
+  },
+  {
+    "spoken": "대화로써 서로의 오해를 풀 수 있을 거예요.",
+    "expected": "대화로써 서로의 오해를 풀 수 있을 거예요.",
+    "reading": "대화로써 서로에 오해를 풀 쑤 이쓸 거예요.",
+    "english": "We will be able to resolve our misunderstandings through conversation (as a means).",
+    "grammar": "-(으)로써"
+  },
+  {
+    "spoken": "길에서 미끄러져서 넘어질 뻔했어요. 정말 아찔했어요.",
+    "expected": "길에서 미끄러져서 넘어질 뻔했어요. 정말 아찔했어요.",
+    "reading": "기레서 미끄러저서 넘어질 뻔해써요. 정말 아찔해써요.",
+    "english": "I slipped on the street and almost fell. It was really startling.",
+    "grammar": "-(으)ㄹ 뻔하다"
+  },
+  {
+    "spoken": "아이들이 시끄럽게 우는 통에 잠을 제대로 못 잤어요.",
+    "expected": "아이들이 시끄럽게 우는 통에 잠을 제대로 못 잤어요.",
+    "reading": "아이들이 시끄럽께 우는 통에 자믈 제대로 못 짜써요.",
+    "english": "Because the children were crying loudly, I couldn't sleep properly.",
+    "grammar": "-는 통에"
+  },
+  {
+    "spoken": "약속 시간에 늦어서 택시를 탈 수밖에 없었어요.",
+    "expected": "약속 시간에 늦어서 택시를 탈 수밖에 없었어요.",
+    "reading": "약속 씨가네 느저서 택씨를 탈 쑤바께 업서써요.",
+    "english": "I was late for the appointment, so I had no choice but to take a taxi.",
+    "grammar": "-(으)ㄹ 수밖에 없다"
+  },
+  {
+    "spoken": "한국어를 유창하게 하려면 매일 꾸준히 공부해야 해요.",
+    "expected": "한국어를 유창하게 하려면 매일 꾸준히 공부해야 해요.",
+    "reading": "한구거를 유창하게 하려면 매일 꾸준히 공부해야 해요.",
+    "english": "If you intend to speak Korean fluently, you have to study consistently every day.",
+    "grammar": "-(으)려면"
+  },
+  {
+    "spoken": "내일 날씨가 어떨까요? 여행 계획을 세워야 하는데요.",
+    "expected": "내일 날씨가 어떨까요? 여행 계획을 세워야 하는데요.",
+    "reading": "내일 날씨가 어떨까요? 여행 계획을 세워야 하는에요.",
+    "english": "What do you think the weather will be like tomorrow? I need to make travel plans.",
+    "grammar": "-(으)ㄹ까요?, -아/어야 하다"
+  },
+  {
+    "spoken": "잠시 쉬면서 커피 한잔하시겠어요?",
+    "expected": "잠시 쉬면서 커피 한잔하시겠어요?",
+    "reading": "잠시 쉬면서 커피 한잔하시게써요?",
+    "english": "Would you like to take a short break and have a cup of coffee?",
+    "grammar": "-(으)시겠어요?"
+  },
+  {
+    "spoken": "밤새 공부했으니 정말 피곤했겠다.",
+    "expected": "밤새 공부했으니 정말 피곤했겠다.",
+    "reading": "밤새 공부해쓰니 정말 피곤핻껟따.",
+    "english": "You must have been really tired since you studied all night.",
+    "grammar": "-았/었겠다"
+  },
+  {
+    "spoken": "저는 아직 번지 점프를 해 본 적이 없어요. 너무 무서울 것 같아요.",
+    "expected": "저는 아직 번지 점프를 해 본 적이 없어요. 너무 무서울 것 같아요.",
+    "reading": "저는 아직 번지 점프를 해 본 저기 업서요. 너무 무서올 것 가타요.",
+    "english": "I have never tried bungee jumping yet. I think it would be too scary.",
+    "grammar": "-(으)ㄴ 적이 없다, -(으)ㄹ 것 같다"
+  },
+  {
+    "spoken": "다음 회의에서는 새로운 마케팅 전략에 대해서 논의할 예정입니다.",
+    "expected": "다음 회의에서는 새로운 마케팅 전략에 대해서 논의할 예정입니다.",
+    "reading": "다음 회의에서는 새로운 마케팅 절랴게 대해서 노니할 예정임니다.",
+    "english": "In the next meeting, we plan to discuss the new marketing strategy.",
+    "grammar": "-에 대해(서), -(으)ㄹ 예정이다"
+  },
+  {
+    "spoken": "친구가 이사하는 것을 도와주기로 약속했어요.",
+    "expected": "친구가 이사하는 것을 도와주기로 약속했어요.",
+    "reading": "친구가 이사하는 거슬 도와주기로 약소캐써요.",
+    "english": "I promised to help my friend move.",
+    "grammar": "-아/어 주다, -기로 하다"
+  },
+  {
+    "spoken": "좋지 않은 날씨에도 불구하고 많은 사람들이 행사에 참여했어요.",
+    "expected": "좋지 않은 날씨에도 불구하고 많은 사람들이 행사에 참여했어요.",
+    "reading": "조치 아는 날씨에도 불구하고 마는 사람들이 행사에 차며해써요.",
+    "english": "Despite the bad weather, many people participated in the event.",
+    "grammar": "-(으)ㅁ에도 불구하고"
+  },
+  {
+    "spoken": "너무 놀라서 말이 안 나올 정도로 당황했어요.",
+    "expected": "너무 놀라서 말이 안 나올 정도로 당황했어요.",
+    "reading": "너무 놀라서 마리 안 나올 정도로 당황해써요.",
+    "english": "I was so surprised that I was flustered to the point of being speechless.",
+    "grammar": "-(으)ㄹ 정도로"
+  },
+  {
+    "spoken": "어제 그 식당에 갔는데 음식이 정말 맛있더라.",
+    "expected": "어제 그 식당에 갔는데 음식이 정말 맛있더라.",
+    "reading": "어제 그 식따에 간는데 음시기 정말 마싣떠라.",
+    "english": "I went to that restaurant yesterday, and (I found that) the food was really delicious.",
+    "grammar": "-더라, -는데"
+  }
+]

@@ -1,0 +1,702 @@
+[
+  {
+    "spoken": "저는 한국어를 매일 공부해요.",
+    "expected": "저는 한국어를 매일 공부해요.",
+    "reading": "저는 한국어를 매일 공부해요.",
+    "english": "I study Korean every day.",
+    "grammar": "-아/어요"
+  },
+  {
+    "spoken": "이것은 제 친구의 책이에요.",
+    "expected": "이것은 제 친구의 책이에요.",
+    "reading": "이것은 제 친구의 책이에요.",
+    "english": "This is my friend's book.",
+    "grammar": "-이에요/예요, 의"
+  },
+  {
+    "spoken": "오늘 날씨가 아주 좋아요.",
+    "expected": "오늘 날씨가 아주 좋아요.",
+    "reading": "오늘 날씨가 아주 좋아요.",
+    "english": "The weather is very good today.",
+    "grammar": "-이/가, -아/어요"
+  },
+  {
+    "spoken": "내일 친구하고 영화를 볼 거예요.",
+    "expected": "내일 친구하고 영화를 볼 거예요.",
+    "reading": "내일 친구하고 영화를 볼 거예요.",
+    "english": "Tomorrow I will watch a movie with my friend.",
+    "grammar": "-하고, -ㄹ/을 거예요"
+  },
+  {
+    "spoken": "어제 시장에서 과일을 많이 샀어요.",
+    "expected": "어제 시장에서 과일을 많이 샀어요.",
+    "reading": "어제 시장에서 과일을 많이 사써요.",
+    "english": "Yesterday I bought a lot of fruit at the market.",
+    "grammar": "-에서, -았/었어요"
+  },
+  {
+    "spoken": "주말에 보통 집에서 쉬어요.",
+    "expected": "주말에 보통 집에서 쉬어요.",
+    "reading": "주말에 보통 집에서 쉬어요.",
+    "english": "On weekends, I usually rest at home.",
+    "grammar": "-에, -에서, -아/어요"
+  },
+  {
+    "spoken": "한국 음식을 정말 좋아해요?",
+    "expected": "한국 음식을 정말 좋아해요?",
+    "reading": "한국 음식을 정말 조아해요?",
+    "english": "Do you really like Korean food?",
+    "grammar": "-을/를, -아/어요?"
+  },
+  {
+    "spoken": "저는 매일 아침 일곱 시에 일어나요.",
+    "expected": "저는 매일 아침 일곱 시에 일어나요.",
+    "reading": "저는 매일 아침 일곱 시에 일어나요.",
+    "english": "I wake up at 7 AM every morning.",
+    "grammar": "-에, -아/어요"
+  },
+  {
+    "spoken": "동생은 지금 도서관에서 공부해요.",
+    "expected": "동생은 지금 도서관에서 공부해요.",
+    "reading": "동생은 지금 도서관에서 공부해요.",
+    "english": "My younger sibling studies at the library now.",
+    "grammar": "-은/는, -에서, -아/어요"
+  },
+  {
+    "spoken": "이 버스는 시청으로 가요?",
+    "expected": "이 버스는 시청으로 가요?",
+    "reading": "이 버스는 시청으로 가요?",
+    "english": "Does this bus go towards City Hall?",
+    "grammar": "-은/는, -(으)로, -아/어요?"
+  },
+  {
+    "spoken": "저는 김치를 조금 먹을 수 있어요.",
+    "expected": "저는 김치를 조금 먹을 수 있어요.",
+    "reading": "저는 김치를 조금 머글 수 이써요.",
+    "english": "I can eat a little Kimchi.",
+    "grammar": "-은/는, -을/를, -ㄹ/을 수 있다"
+  },
+  {
+    "spoken": "학생 식당 밥이 싸고 맛있습니다.",
+    "expected": "학생 식당 밥이 싸고 맛있습니다.",
+    "reading": "학생 식당 바비 싸고 마싣씀니다.",
+    "english": "The student cafeteria food is cheap and delicious.",
+    "grammar": "-이/가, -고, -ㅂ/습니다"
+  },
+  {
+    "spoken": "제 이름은 김민준입니다.",
+    "expected": "제 이름은 김민준입니다.",
+    "reading": "제 이름은 김민주님니다.",
+    "english": "My name is Kim Minjun.",
+    "grammar": "-입니다"
+  },
+  {
+    "spoken": "우리 가족은 모두 서울에 살아요.",
+    "expected": "우리 가족은 모두 서울에 살아요.",
+    "reading": "우리 가조근 모두 서울에 사라요.",
+    "english": "My whole family lives in Seoul.",
+    "grammar": "-은/는, -에, -아/어요"
+  },
+  {
+    "spoken": "저는 오늘 학교에 안 갔어요.",
+    "expected": "저는 오늘 학교에 안 갔어요.",
+    "reading": "저는 오늘 학교에 안 가써요.",
+    "english": "I didn't go to school today.",
+    "grammar": "-에, 안 + Verb, -았/었어요"
+  },
+  {
+    "spoken": "저녁에 친구한테 전화할 거예요.",
+    "expected": "저녁에 친구한테 전화할 거예요.",
+    "reading": "저녀게 친구한테 전화할 거예요.",
+    "english": "I will call my friend in the evening.",
+    "grammar": "-에, -한테, -ㄹ/을 거예요"
+  },
+  {
+    "spoken": "이 예쁜 옷은 얼마예요?",
+    "expected": "이 예쁜 옷은 얼마예요?",
+    "reading": "이 예쁜 오슨 얼마예요?",
+    "english": "How much is this pretty clothing?",
+    "grammar": "-은/는, -예요?"
+  },
+  {
+    "spoken": "시원한 물 한 잔 주세요.",
+    "expected": "시원한 물 한 잔 주세요.",
+    "reading": "시원한 물 한 잔 주세요.",
+    "english": "Please give me a glass of cold water.",
+    "grammar": "N + 주세요"
+  },
+  {
+    "spoken": "저는 지하철로 회사에 다녀요.",
+    "expected": "저는 지하철로 회사에 다녀요.",
+    "reading": "저는 지하철로 회사에 다녀요.",
+    "english": "I commute to work by subway.",
+    "grammar": "-(으)로, -에, -아/어요"
+  },
+  {
+    "spoken": "그 사람은 학생이 아니에요.",
+    "expected": "그 사람은 학생이 아니에요.",
+    "reading": "그 사라믄 학생이 아니에요.",
+    "english": "That person is not a student.",
+    "grammar": "-은/는, -이/가 아니다"
+  },
+  {
+    "spoken": "저는 한국 드라마를 자주 봐요.",
+    "expected": "저는 한국 드라마를 자주 봐요.",
+    "reading": "저는 한국 뜨라마를 자주 봐요.",
+    "english": "I often watch Korean dramas.",
+    "grammar": "-을/를, -아/어요"
+  },
+  {
+    "spoken": "이 사과는 달고 아주 맛있어요.",
+    "expected": "이 사과는 달고 아주 맛있어요.",
+    "reading": "이 사과 는 달고 아주 마시써요.",
+    "english": "This apple is sweet and very delicious.",
+    "grammar": "-은/는, -고, -아/어요"
+  },
+  {
+    "spoken": "토요일 오후에 시간이 있어요?",
+    "expected": "토요일 오후에 시간이 있어요?",
+    "reading": "토요일 오후에 시가니 이써요?",
+    "english": "Do you have time on Saturday afternoon?",
+    "grammar": "-에, -이/가 있다, -아/어요?"
+  },
+  {
+    "spoken": "저는 작년에 한국에 처음 왔어요.",
+    "expected": "저는 작년에 한국에 처음 왔어요.",
+    "reading": "저는 장녀네 한구게 처음 와써요.",
+    "english": "I came to Korea for the first time last year.",
+    "grammar": "-에, -았/었어요"
+  },
+  {
+    "spoken": "백화점에서 예쁜 가방을 샀습니다.",
+    "expected": "백화점에서 예쁜 가방을 샀습니다.",
+    "reading": "배콰저메서 예쁜 가방을 사씀니다.",
+    "english": "I bought a pretty bag at the department store.",
+    "grammar": "-에서, -을/를, -ㅂ/습니다"
+  },
+  {
+    "spoken": "동생은 저보다 수영을 더 잘해요.",
+    "expected": "동생은 저보다 수영을 더 잘해요.",
+    "reading": "동생은 저보다 수영을 더 자래요.",
+    "english": "My younger sibling swims better than me.",
+    "grammar": "-은/는, 보다 더"
+  },
+  {
+    "spoken": "너무 피곤해서 일찍 자고 싶어요.",
+    "expected": "너무 피곤해서 일찍 자고 싶어요.",
+    "reading": "너무 피고내서 일찍 자고 시퍼요.",
+    "english": "I'm very tired, so I want to sleep early.",
+    "grammar": "-아/어서, -고 싶다"
+  },
+  {
+    "spoken": "이것은 누구의 우산이에요?",
+    "expected": "이것은 누구의 우산이에요?",
+    "reading": "이거슨 누구의 우사니에요?",
+    "english": "Whose umbrella is this?",
+    "grammar": "누구, 의, -이에요/예요?"
+  },
+  {
+    "spoken": "책상 위에 제 컴퓨터가 있어요.",
+    "expected": "책상 위에 제 컴퓨터가 있어요.",
+    "reading": "책쌍 위에 제 컴퓨터가 이써요.",
+    "english": "My computer is on the desk.",
+    "grammar": "위에, -이/가 있다"
+  },
+  {
+    "spoken": "오늘 점심 메뉴는 김치찌개입니다.",
+    "expected": "오늘 점심 메뉴는 김치찌개입니다.",
+    "reading": "오늘 점심 메뉴는 김치찌개임니다.",
+    "english": "Today's lunch menu is Kimchi stew.",
+    "grammar": "-은/는, -입니다"
+  },
+  {
+    "spoken": "저는 매운 음식을 잘 못 먹어요.",
+    "expected": "저는 매운 음식을 잘 못 먹어요.",
+    "reading": "저는 매운 음식을 잘 못 머거요.",
+    "english": "I can't eat spicy food well.",
+    "grammar": "-은/는, 못 + Verb"
+  },
+  {
+    "spoken": "다음 주에 시험이 있어서 걱정돼요.",
+    "expected": "다음 주에 시험이 있어서 걱정돼요.",
+    "reading": "다음 쭈에 시험이 이써서 걱쩡돼요.",
+    "english": "I'm worried because there's an exam next week.",
+    "grammar": "-에, -이/가 있다, -아/어서"
+  },
+  {
+    "spoken": "학교 근처에 맛있는 식당 알아요?",
+    "expected": "학교 근처에 맛있는 식당 알아요?",
+    "reading": "학꾜 근처에 마신는 식땅 아라요?",
+    "english": "Do you know a delicious restaurant near the school?",
+    "grammar": "-에, -아/어요?"
+  },
+  {
+    "spoken": "공원에서 강아지랑 같이 산책했어요.",
+    "expected": "공원에서 강아지랑 같이 산책했어요.",
+    "reading": "공워네서 강아지랑 가치 산채캐써요.",
+    "english": "I took a walk with my dog together in the park.",
+    "grammar": "-에서, -(이)랑, -았/었어요"
+  },
+  {
+    "spoken": "저는 아침에 빵하고 우유를 먹어요.",
+    "expected": "저는 아침에 빵하고 우유를 먹어요.",
+    "reading": "저는 아치메 빵하고 우유를 머거요.",
+    "english": "I eat bread and milk in the morning.",
+    "grammar": "-에, -하고, -을/를, -아/어요"
+  },
+  {
+    "spoken": "한국 친구에게서 편지를 받았어요.",
+    "expected": "한국 친구에게서 편지를 받았어요.",
+    "reading": "한 국 친구에게서 편지를 바다써요.",
+    "english": "I received a letter from my Korean friend.",
+    "grammar": "-에게서, -았/었어요"
+  },
+  {
+    "spoken": "오늘은 어제보다 날씨가 춥지 않아요.",
+    "expected": "오늘은 어제보다 날씨가 춥지 않아요.",
+    "reading": "오느른 어제보다 날씨가 춥찌 아나요.",
+    "english": "Today the weather isn't colder than yesterday.",
+    "grammar": "-이/가, -지 않다"
+  },
+  {
+    "spoken": "제주도는 정말 아름다운 섬이에요.",
+    "expected": "제주도는 정말 아름다운 섬이에요.",
+    "reading": "제주도는 정말 아름다운 서미에요.",
+    "english": "Jeju Island is a really beautiful island.",
+    "grammar": "-은/는, -이에요/예요"
+  },
+  {
+    "spoken": "도서관은 아침 9시부터 저녁 6시까지 해요.",
+    "expected": "도서관은 아침 9시부터 저녁 6시까지 해요.",
+    "reading": "도서과 는 아침 아홉씨부터 저녁 여서씨까지 해요.",
+    "english": "The library is open from 9 AM to 6 PM.",
+    "grammar": "부터 ~ 까지"
+  },
+  {
+    "spoken": "제 고향은 부산하고 아주 가까워요.",
+    "expected": "제 고향은 부산하고 아주 가까워요.",
+    "reading": "제 고향은 부산하고 아주 가까워요.",
+    "english": "My hometown is very close to Busan.",
+    "grammar": "-은/는, -하고, -아/어요"
+  },
+  {
+    "spoken": "요즘 한국 노래를 많이 듣고 있어요.",
+    "expected": "요즘 한국 노래를 많이 듣고 있어요.",
+    "reading": "요즘 한국 노래를 마니 듣꼬 이써요.",
+    "english": "These days I am listening to a lot of Korean songs.",
+    "grammar": "-고 있다"
+  },
+  {
+    "spoken": "이 책을 다 읽고 싶어요.",
+    "expected": "이 책을 다 읽고 싶어요.",
+    "reading": "이 채글 다 일꼬 시퍼요.",
+    "english": "I want to finish reading this book.",
+    "grammar": "-을/를, -고 싶다"
+  },
+  {
+    "spoken": "박물관에서 사진을 많이 찍었어요.",
+    "expected": "박물관에서 사진을 많이 찍었어요.",
+    "reading": "방물과네서 사진을 마니 찌거써요.",
+    "english": "I took many pictures at the museum.",
+    "grammar": "-에서, -았/었어요"
+  },
+  {
+    "spoken": "우리는 매일 같이 숙제를 해요.",
+    "expected": "우리는 매일 같이 숙제를 해요.",
+    "reading": "우리는 매일 가치 숙쩨를 해요.",
+    "english": "We do homework together every day.",
+    "grammar": "-는, -을/를, -아/어요"
+  },
+  {
+    "spoken": "저는 운동을 별로 좋아하지 않아요.",
+    "expected": "저는 운동을 별로 좋아하지 않아요.",
+    "reading": "저는 운동을 별로 조아하지 아나요.",
+    "english": "I don't particularly like exercising.",
+    "grammar": "-은/는, -을/를, -지 않다"
+  },
+  {
+    "spoken": "내일 친구 생일 파티에 갈 거예요.",
+    "expected": "내일 친구 생일 파티에 갈 거예요.",
+    "reading": "내일 친구 생일 파티에 갈 거예요.",
+    "english": "I will go to my friend's birthday party tomorrow.",
+    "grammar": "-에, -ㄹ/을 거예요"
+  },
+  {
+    "spoken": "창문을 조금 열어 주세요.",
+    "expected": "창문을 조금 열어 주세요.",
+    "reading": "창무 늘 조금 여러 주세요.",
+    "english": "Please open the window a little.",
+    "grammar": "-아/어 주세요"
+  },
+  {
+    "spoken": "한국어 공부가 아주 재미있어요.",
+    "expected": "한국어 공부가 아주 재미있어요.",
+    "reading": "한구거 공부가 아주 재미이써요.",
+    "english": "Studying Korean is very fun.",
+    "grammar": "-이/가, -아/어요"
+  },
+  {
+    "spoken": "저는 지금 버스를 기다려요.",
+    "expected": "저는 지금 버스를 기다려요.",
+    "reading": "저는 지금 뻐스를 기다려요.",
+    "english": "I am waiting for the bus now.",
+    "grammar": "-을/를, -아/어요"
+  },
+  {
+    "spoken": "어제 본 영화는 정말 슬펐어요.",
+    "expected": "어제 본 영화는 정말 슬펐어요.",
+    "reading": "어제 본 영화는 정말 슬퍼써요.",
+    "english": "The movie I watched yesterday was really sad.",
+    "grammar": "-았/었어요"
+  },
+  {
+    "spoken": "이 자리에 잠시 앉으세요.",
+    "expected": "이 자리에 잠시 앉으세요.",
+    "reading": "이 자리에 잠시 안즈세요.",
+    "english": "Please sit here for a moment.",
+    "grammar": "-(으)세요"
+  },
+  {
+    "spoken": "저는 주말에 보통 늦잠을 자요.",
+    "expected": "저는 주말에 보통 늦잠을 자요.",
+    "reading": "저는 주마레 보통 늗짜믈 자요.",
+    "english": "I usually sleep in on weekends.",
+    "grammar": "-에, -을/를, -아/어요"
+  },
+  {
+    "spoken": "감기에 걸려서 약을 먹었어요.",
+    "expected": "감기에 걸려서 약을 먹었어요.",
+    "reading": "감기에 걸려서 야글 머거써요.",
+    "english": "I caught a cold, so I took medicine.",
+    "grammar": "-에 걸리다, -아/어서, -았/었어요"
+  },
+  {
+    "spoken": "가방 안에 무엇이 들어 있어요?",
+    "expected": "가방 안에 무엇이 들어 있어요?",
+    "reading": "가방 아네 무어시 드러 이써요?",
+    "english": "What is inside the bag?",
+    "grammar": "안에, 무엇, -이/가 있다, -아/어요?"
+  },
+  {
+    "spoken": "이 음식 이름이 뭐예요?",
+    "expected": "이 음식 이름이 뭐예요?",
+    "reading": "이 음식 이르미 뭐예요?",
+    "english": "What is the name of this food?",
+    "grammar": "-이/가, 뭐예요?"
+  },
+  {
+    "spoken": "밖에 비가 와서 우산을 가져왔어요.",
+    "expected": "밖에 비가 와서 우산을 가져왔어요.",
+    "reading": "바께 비가 와서 우산을 가져와써요.",
+    "english": "It was raining outside, so I brought an umbrella.",
+    "grammar": "-이/가 오다, -아/어서, -았/었어요"
+  },
+  {
+    "spoken": "저는 케이팝 아이돌 그룹을 좋아해요.",
+    "expected": "저는 케이팝 아이돌 그룹을 좋아해요.",
+    "reading": "저는 케이팝 아이돌 구루블 조아해요.",
+    "english": "I like K-pop idol groups.",
+    "grammar": "-을/를, -아/어요"
+  },
+  {
+    "spoken": "지하철 역이 어디에 있어요?",
+    "expected": "지하철 역이 어디에 있어요?",
+    "reading": "지하철 여기 어디에 이써요?",
+    "english": "Where is the subway station?",
+    "grammar": "-이/가, 어디에 있다, -아/어요?"
+  },
+  {
+    "spoken": "그 한국어 책은 너무 어려워요.",
+    "expected": "그 한국어 책은 너무 어려워요.",
+    "reading": "그 한구거 채근 너무 어려워요.",
+    "english": "That Korean book is too difficult.",
+    "grammar": "-은/는, -아/어요"
+  },
+  {
+    "spoken": "저는 파란색 셔츠를 자주 입어요.",
+    "expected": "저는 파란색 셔츠를 자주 입어요.",
+    "reading": "저는 파란색 셔츠를 자주 이버요.",
+    "english": "I often wear blue shirts.",
+    "grammar": "-은/는, -을/를, -아/어요"
+  },
+  {
+    "spoken": "시간이 없어서 택시를 탔어요.",
+    "expected": "시간이 없어서 택시를 탔어요.",
+    "reading": "시가니 업서서 택씨를 타써요.",
+    "english": "I didn't have time, so I took a taxi.",
+    "grammar": "-이/가 없다, -아/어서, -았/었어요"
+  },
+  {
+    "spoken": "한국의 여름 날씨는 아주 더워요.",
+    "expected": "한국의 여름 날씨는 아주 더워요.",
+    "reading": "한구게 여름 날씨는 아주 더워요.",
+    "english": "Korea's summer weather is very hot.",
+    "grammar": "의, -은/는, -아/어요"
+  },
+  {
+    "spoken": "오늘 배운 단어를 복습할 거예요.",
+    "expected": "오늘 배운 단어를 복습할 거예요.",
+    "reading": "오늘 배운 단어를 복스팔 거예요.",
+    "english": "I will review the words I learned today.",
+    "grammar": "-ㄹ/을 거예요"
+  },
+  {
+    "spoken": "박물관 앞에서 친구를 기다렸어요.",
+    "expected": "박물관 앞에서 친구를 기다렸어요.",
+    "reading": "방물관 아페서 친구를 기다려써요.",
+    "english": "I waited for my friend in front of the museum.",
+    "grammar": "앞에서, -을/를, -았/었어요"
+  },
+  {
+    "spoken": "저는 매일 한국 뉴스를 봐요.",
+    "expected": "저는 매일 한국 뉴스를 봐요.",
+    "reading": "저는 매일 한국 뉴스를 봐요.",
+    "english": "I watch Korean news every day.",
+    "grammar": "-을/를, -아/어요"
+  },
+  {
+    "spoken": "제가 만든 케이크를 친구에게 주었어요.",
+    "expected": "제가 만든 케이크를 친구에게 주었어요.",
+    "reading": "제가 만든 케이 크를 친구에게 주어써요.",
+    "english": "I gave the cake I made to my friend.",
+    "grammar": "-에게, -았/었어요"
+  },
+  {
+    "spoken": "이 식당은 불고기가 아주 유명해요.",
+    "expected": "이 식당은 불고기가 아주 유명해요.",
+    "reading": "이 식땅은 불고기가 아주 유명해요.",
+    "english": "This restaurant is very famous for Bulgogi.",
+    "grammar": "-은/는, -이/가, -아/어요"
+  },
+  {
+    "spoken": "지금 정확히 몇 시예요?",
+    "expected": "지금 정확히 몇 시예요?",
+    "reading": "지금 정화키 멷 씨예요?",
+    "english": "What time is it exactly now?",
+    "grammar": "몇 시예요?"
+  },
+  {
+    "spoken": "저는 요리하는 것을 잘 못 해요.",
+    "expected": "저는 요리하는 것을 잘 못 해요.",
+    "reading": "저는 요리하는 거슬 잘 모 태요.",
+    "english": "I am not good at cooking.",
+    "grammar": "잘 못 하다, -는 것"
+  },
+  {
+    "spoken": "부산행 비행기 표를 예약하고 싶어요.",
+    "expected": "부산행 비행기 표를 예약하고 싶어요.",
+    "reading": "부산행 비행기 표를 예야카고 시퍼요.",
+    "english": "I want to reserve a plane ticket bound for Busan.",
+    "grammar": "-행, -을/를, -고 싶다"
+  },
+  {
+    "spoken": "우리 집은 학교에서 아주 멀어요.",
+    "expected": "우리 집은 학교에서 아주 멀어요.",
+    "reading": "우리 지븐 학꾜에서 아주 머러요.",
+    "english": "My house is very far from school.",
+    "grammar": "-은/는, -에서, -아/어요"
+  },
+  {
+    "spoken": "그 드라마는 배우들의 연기가 좋아요.",
+    "expected": "그 드라마는 배우들의 연기가 좋아요.",
+    "reading": "그 드라마는 배우드레 연기가 조아요.",
+    "english": "The acting of the actors in that drama is good.",
+    "grammar": "-은/는, -의, -이/가, -아/어요"
+  },
+  {
+    "spoken": "저는 자기 전에 항상 이를 닦아요.",
+    "expected": "저는 자기 전에 항상 이를 닦아요.",
+    "reading": "저는 자기 저네 항상 이를 다까요.",
+    "english": "I always brush my teeth before sleeping.",
+    "grammar": "-기 전에, -아/어요"
+  },
+  {
+    "spoken": "이것 좀 들어 주시겠어요?",
+    "expected": "이것 좀 들어 주시겠어요?",
+    "reading": "이걷 좀 드러 주시게써요?",
+    "english": "Could you please hold this for me?",
+    "grammar": "-아/어 주시겠어요?"
+  },
+  {
+    "spoken": "여름 휴가 때 제주도에 여행 갈 거예요.",
+    "expected": "여름 휴가 때 제주도에 여행 갈 거예요.",
+    "reading": "여름 휴가 때 제주도에 여행 갈 거예요.",
+    "english": "I will travel to Jeju Island during the summer vacation.",
+    "grammar": "때, -에, -ㄹ/을 거예요"
+  },
+  {
+    "spoken": "그 가게는 옷도 팔고 신발도 팔아요.",
+    "expected": "그 가게는 옷도 팔고 신발도 팔아요.",
+    "reading": "그 가게는 얻 또 팔고 신발도 파라요.",
+    "english": "That store sells clothes and also sells shoes.",
+    "grammar": "-도, -고"
+  },
+  {
+    "spoken": "오늘 숙제가 너무 많아서 조금 힘들어요.",
+    "expected": "오늘 숙제가 너무 많아서 조금 힘들어요.",
+    "reading": "오늘 숙쩨가 너무 마나서 조끔 힘드러요.",
+    "english": "I have too much homework today, so it's a bit hard.",
+    "grammar": "-이/가, -아서, -아/어요"
+  },
+  {
+    "spoken": "제 여동생은 그림을 아주 잘 그려요.",
+    "expected": "제 여동생은 그림을 아주 잘 그려요.",
+    "reading": "제 여동생은 그리믈 아주 잘 그려요.",
+    "english": "My younger sister draws pictures very well.",
+    "grammar": "-은/는, -을/를, -아/어요"
+  },
+  {
+    "spoken": "저는 아침 식사로 밥하고 국을 먹어요.",
+    "expected": "저는 아침 식사로 밥하고 국을 먹어요.",
+    "reading": "저는 아침 식싸로 바파고 구글 머거요.",
+    "english": "I eat rice and soup for breakfast.",
+    "grammar": "-(으)로, -하고, -을/를, -아/어요"
+  },
+  {
+    "spoken": "시험을 잘 봐서 기분이 정말 좋아요.",
+    "expected": "시험을 잘 봐서 기분이 정말 좋아요.",
+    "reading": "시허믈 잘 봐서 기부니 정말 조아요.",
+    "english": "I did well on the test, so I feel really good.",
+    "grammar": "-을/를, -아/어서, -이/가, -아/어요"
+  },
+  {
+    "spoken": "한국 사람들은 대부분 정말 친절해요.",
+    "expected": "한국 사람들은 대부분 정말 친절해요.",
+    "reading": "한국 사람들은 대부분 정말 친절해요.",
+    "english": "Most Korean people are really kind.",
+    "grammar": "-은/는, -아/어요"
+  },
+  {
+    "spoken": "저는 주말마다 친구들과 등산을 가요.",
+    "expected": "저는 주말마다 친구들과 등산을 가요.",
+    "reading": "저는 주말마다 친구들과 등사늘 가요.",
+    "english": "I go hiking with friends every weekend.",
+    "grammar": "-마다, -와/과, -아/어요"
+  },
+  {
+    "spoken": "이 소포를 미국으로 보내고 싶어요.",
+    "expected": "이 소포를 미국으로 보내고 싶어요.",
+    "reading": "이 소포를 미구그로 보내고 시퍼요.",
+    "english": "I want to send this parcel to the USA.",
+    "grammar": "-을/를, -(으)로, -고 싶다"
+  },
+  {
+    "spoken": "죄송하지만, 조금 천천히 말씀해 주세요.",
+    "expected": "죄송하지만, 조금 천천히 말씀해 주세요.",
+    "reading": "죄송하지만, 조끔 천처니 말쓰매 주세요.",
+    "english": "I'm sorry, but please speak a little more slowly.",
+    "grammar": "-지만, -아/어 주세요"
+  },
+  {
+    "spoken": "그 식당은 점심 시간에 손님이 많아요.",
+    "expected": "그 식당은 점심 시간에 손님이 많아요.",
+    "reading": "그 식땅은 점심 시가네 손니미 마나요.",
+    "english": "That restaurant has many customers during lunchtime.",
+    "grammar": "-은/는, -에, -이/가, -아/어요"
+  },
+  {
+    "spoken": "저는 대학교에서 한국어를 전공했어요.",
+    "expected": "저는 대학교에서 한국어를 전공했어요.",
+    "reading": "저는 대하꾜에서 한구거를 전공해써요.",
+    "english": "I majored in Korean language at university.",
+    "grammar": "-에서, -을/를, -았/었어요"
+  },
+  {
+    "spoken": "피아노를 칠 수 있지만 잘 못 쳐요.",
+    "expected": "피아노를 칠 수 있지만 잘 못 쳐요.",
+    "reading": "피아노를 칠 수 이찌만 잘몯 처요.",
+    "english": "I can play the piano, but I don't play well.",
+    "grammar": "-ㄹ/을 수 있다, -지만, 못 + Verb"
+  },
+  {
+    "spoken": "한국 전통 문화를 배우고 싶습니다.",
+    "expected": "한국 전통 문화를 배우고 싶습니다.",
+    "reading": "한국 전통 무놔를 배우고 쉽씀니다.",
+    "english": "I want to learn traditional Korean culture.",
+    "grammar": "-을/를, -고 싶다, -ㅂ/습니다"
+  },
+  {
+    "spoken": "저녁 식사 후에 가족과 공원에서 산책했어요.",
+    "expected": "저녁 식사 후에 가족과 공원에서 산책했어요.",
+    "reading": "저녁 식싸 후에 가족꽈 공워네서 산채캐써요.",
+    "english": "After dinner, I took a walk with my family in the park.",
+    "grammar": "후에, -와/과, -에서, -았/었어요"
+  },
+  {
+    "spoken": "이 빨간색 컴퓨터는 제 여동생의 것이에요.",
+    "expected": "이 빨간색 컴퓨터는 제 여동생의 것이에요.",
+    "reading": "이 빨간색 컴퓨터는 제 여동생의 거시에요.",
+    "english": "This red computer is my younger sister's.",
+    "grammar": "-은/는, 의, 것, -이에요/예요"
+  },
+  {
+    "spoken": "다음 달에 한국 친구가 우리 집에 올 거예요.",
+    "expected": "다음 달에 한국 친구가 우리 집에 올 거예요.",
+    "reading": "다음 따레 한국 친구가 우리 지베 올 거예요.",
+    "english": "Next month, my Korean friend will come to my house.",
+    "grammar": "-에, -이/가, -에, -ㄹ/을 거예요"
+  },
+  {
+    "spoken": "저는 매운 떡볶이를 전혀 못 먹어요.",
+    "expected": "저는 매운 떡볶이를 전혀 못 먹어요.",
+    "reading": "저는 매운 떡뽀끼를 저녀 못 머거요.",
+    "english": "I can't eat spicy Tteokbokki at all.",
+    "grammar": "-은/는, -을/를, 전혀 못 + Verb"
+  },
+  {
+    "spoken": "은행은 보통 아홉 시에 문을 열어요.",
+    "expected": "은행은 보통 아홉 시에 문을 열어요.",
+    "reading": "으 냉은 보통 아홉 씨에 무 늘 여러요.",
+    "english": "Banks usually open at nine o'clock.",
+    "grammar": "-은/는, -에, -을/를, -아/어요"
+  },
+  {
+    "spoken": "오늘은 미세먼지가 심해서 마스크를 꼭 썼어요.",
+    "expected": "오늘은 미세먼지가 심해서 마스크를 꼭 썼어요.",
+    "reading": "오느른 미세먼지가 심해서 마스크를 꼭 써써요.",
+    "english": "The fine dust is bad today, so I made sure to wear a mask.",
+    "grammar": "-이/가, -아/어서, -을/를, -았/었어요"
+  },
+  {
+    "spoken": "저는 아직 한국 운전면허증이 없어요.",
+    "expected": "저는 아직 한국 운전면허증이 없어요.",
+    "reading": "저는 아직 한국 운전며너쯩이 업서요.",
+    "english": "I don't have a Korean driver's license yet.",
+    "grammar": "아직, -이/가 없다"
+  },
+  {
+    "spoken": "김 선생님은 학생들에게 한국어를 가르쳐요.",
+    "expected": "김 선생님은 학생들에게 한국어를 가르쳐요.",
+    "reading": "김 선생니믄 학생드레게 한구거를 가르쳐요.",
+    "english": "Teacher Kim teaches Korean to the students.",
+    "grammar": "-은/는, -에게, -을/를, -아/어요"
+  },
+  {
+    "spoken": "방학 동안 아르바이트를 할 거예요.",
+    "expected": "방학 동안 아르바이트를 할 거예요.",
+    "reading": "방학 또안 아르바이트를 할 거예요.",
+    "english": "I will do a part-time job during the vacation.",
+    "grammar": "동안, -을/를, -ㄹ/을 거예요"
+  },
+  {
+    "spoken": "그 가수는 목소리가 정말 아름다워요.",
+    "expected": "그 가수는 목소리가 정말 아름다워요.",
+    "reading": "그 가수는 목쏘리가 정말 아름다워요.",
+    "english": "That singer's voice is really beautiful.",
+    "grammar": "-는, -이/가, -아/어요"
+  },
+  {
+    "spoken": "저는 보통 자기 전에 샤워해요.",
+    "expected": "저는 보통 자기 전에 샤워해요.",
+    "reading": "저는 보통 자기 저네 샤워해요.",
+    "english": "I usually take a shower before going to bed.",
+    "grammar": "-기 전에, -아/어요"
+  },
+  {
+    "spoken": "이 길로 쭉 가면 지하철역이 나와요.",
+    "expected": "이 길로 쭉 가면 지하철역이 나와요.",
+    "reading": "이 길로 쭉 가면 지하철려기 나와요.",
+    "english": "If you go straight down this road, the subway station will appear.",
+    "grammar": "-(으)로, -(으)면, -이/가"
+  }
+]

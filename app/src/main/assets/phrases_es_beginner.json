@@ -1,0 +1,702 @@
+[
+  {
+    "spoken": "¿Qué onda? ¿Cómo estás hoy?",
+    "expected": "¿Qué onda? ¿Cómo estás hoy?",
+    "reading": "¿Qué onda? ¿Cómo estás hoy?",
+    "english": "What's up? How are you today?",
+    "grammar": "Presente de Indicativo (estar), Interrogatives, Greetings"
+  },
+  {
+    "spoken": "Me gustan mucho los tacos de suadero.",
+    "expected": "Me gustan mucho los tacos de suadero.",
+    "reading": "Me gustan mucho los tacos de suadero.",
+    "english": "I really like suadero tacos.",
+    "grammar": "Gustar, Plural Nouns"
+  },
+  {
+    "spoken": "Mi hermana es estudiante en la UNAM.",
+    "expected": "Mi hermana es estudiante en la UNAM.",
+    "reading": "Mi hermana es estudiante en la UNAM.",
+    "english": "My sister is a student at UNAM.",
+    "grammar": "Ser (profession/identity), Possessive Adjectives, Nouns"
+  },
+  {
+    "spoken": "¿Dónde está la estación de metro más cercana?",
+    "expected": "¿Dónde está la estación de metro más cercana?",
+    "reading": "¿Dónde está la estación de metro más cercana?",
+    "english": "Where is the nearest subway station?",
+    "grammar": "Estar (location), Interrogatives, Superlative Adjectives"
+  },
+  {
+    "spoken": "Tenemos dos perros pequeños en casa.",
+    "expected": "Tenemos dos perros pequeños en casa.",
+    "reading": "Tenemos dos perros pequeños en casa.",
+    "english": "We have two small dogs at home.",
+    "grammar": "Presente de Indicativo (tener), Numbers, Adjective Agreement"
+  },
+  {
+    "spoken": "¡Qué padre está tu mochila nueva!",
+    "expected": "¡Qué padre está tu mochila nueva!",
+    "reading": "¡Qué padre está tu mochila nueva!",
+    "english": "How cool is your new backpack!",
+    "grammar": "Estar (state), Possessive Adjectives, Mexican Slang (padre)"
+  },
+  {
+    "spoken": "¿Quieres ir al Zócalo este fin de semana?",
+    "expected": "¿Quieres ir al Zócalo este fin de semana?",
+    "reading": "¿Quieres ir al Zócalo este fin de semana?",
+    "english": "Do you want to go to the Zocalo this weekend?",
+    "grammar": "Presente de Indicativo (querer), Verbo + Infinitivo, Interrogatives"
+  },
+  {
+    "spoken": "Por favor, habla un poco más despacio.",
+    "expected": "Por favor, habla un poco más despacio.",
+    "reading": "Por favor, habla un poco más despacio.",
+    "english": "Please, speak a little more slowly.",
+    "grammar": "Imperativo (tú - hablar), Adverbs"
+  },
+  {
+    "spoken": "Compro fruta fresca en el mercado local.",
+    "expected": "Compro fruta fresca en el mercado local.",
+    "reading": "Compro fruta fresca en el mercado local.",
+    "english": "I buy fresh fruit at the local market.",
+    "grammar": "Presente de Indicativo (comprar), Adjective Agreement, Nouns"
+  },
+  {
+    "spoken": "Ellos son mis amigos de la escuela.",
+    "expected": "Ellos son mis amigos de la escuela.",
+    "reading": "Ellos son mis amigos de la escuela.",
+    "english": "They are my friends from school.",
+    "grammar": "Ser (identity), Possessive Adjectives, Plural Nouns"
+  },
+  {
+    "spoken": "¿Cuánto cuesta este sombrero artesanal?",
+    "expected": "¿Cuánto cuesta este sombrero artesanal?",
+    "reading": "¿Cuánto cuesta este sombrero artesanal?",
+    "english": "How much does this artisan hat cost?",
+    "grammar": "Presente de Indicativo (costar), Interrogatives, Demonstrative Adjectives"
+  },
+  {
+    "spoken": "Necesitamos comprar agua antes de ir a la playa.",
+    "expected": "Necesitamos comprar agua antes de ir a la playa.",
+    "reading": "Necesitamos comprar agua antes de ir a la playa.",
+    "english": "We need to buy water before going to the beach.",
+    "grammar": "Presente de Indicativo (necesitar), Verbo + Infinitivo, Prepositions"
+  },
+  {
+    "spoken": "La comida mexicana es muy deliciosa.",
+    "expected": "La comida mexicana es muy deliciosa.",
+    "reading": "La comida mexicana es muy deliciosa.",
+    "english": "Mexican food is very delicious.",
+    "grammar": "Ser (characteristic), Adjective Agreement, Adverbs"
+  },
+  {
+    "spoken": "Yo vivo cerca del Parque Chapultepec.",
+    "expected": "Yo vivo cerca del Parque Chapultepec.",
+    "reading": "Yo vivo cerca del Parque Chapultepec.",
+    "english": "I live near Chapultepec Park.",
+    "grammar": "Presente de Indicativo (vivir), Prepositions"
+  },
+  {
+    "spoken": "¿Ustedes entienden la tarea de español?",
+    "expected": "¿Ustedes entienden la tarea de español?",
+    "reading": "¿Ustedes entienden la tarea de español?",
+    "english": "Do you all understand the Spanish homework?",
+    "grammar": "Presente de Indicativo (entender), Interrogatives"
+  },
+  {
+    "spoken": "Me llamo Carlos, ¿y tú?",
+    "expected": "Me llamo Carlos, ¿y tú?",
+    "reading": "Me llamo Carlos, ¿y tú?",
+    "english": "My name is Carlos, and you?",
+    "grammar": "Reflexive Verbs (llamarse), Pronouns"
+  },
+  {
+    "spoken": "El guacamole está un poco picante.",
+    "expected": "El guacamole está un poco picante.",
+    "reading": "El guacamole está un poco picante.",
+    "english": "The guacamole is a little spicy.",
+    "grammar": "Estar (state), Adjectives"
+  },
+  {
+    "spoken": "Vamos a pedir unas quesadillas sin queso.",
+    "expected": "Vamos a pedir unas quesadillas sin queso.",
+    "reading": "Vamos a pedir unas quesadillas sin queso.",
+    "english": "We are going to order some quesadillas without cheese.",
+    "grammar": "Futuro Próximo (ir a + infinitivo), Indefinite Articles, Prepositions"
+  },
+  {
+    "spoken": "¿Tienes hermanos o hermanas?",
+    "expected": "¿Tienes hermanos o hermanas?",
+    "reading": "¿Tienes hermanos o hermanas?",
+    "english": "Do you have brothers or sisters?",
+    "grammar": "Presente de Indicativo (tener), Interrogatives, Nouns (gender)"
+  },
+  {
+    "spoken": "¡Órale! Este lugar es muy bonito.",
+    "expected": "¡Órale! Este lugar es muy bonito.",
+    "reading": "¡Órale! Este lugar es muy bonito.",
+    "english": "Wow! This place is very pretty.",
+    "grammar": "Ser (characteristic), Adjectives, Mexican Expression (órale)"
+  },
+  {
+    "spoken": "La fiesta empieza a las ocho de la noche.",
+    "expected": "La fiesta empieza a las ocho de la noche.",
+    "reading": "La fiesta empieza a las ocho de la noche.",
+    "english": "The party starts at eight at night.",
+    "grammar": "Presente de Indicativo (empezar), Telling Time, Prepositions"
+  },
+  {
+    "spoken": "¿Puede traerme la cuenta, por favor?",
+    "expected": "¿Puede traerme la cuenta, por favor?",
+    "reading": "¿Puede traerme la cuenta, por favor?",
+    "english": "Can you bring me the check, please? (formal)",
+    "grammar": "Presente de Indicativo (poder - usted), Direct/Indirect Object Pronouns, Interrogatives"
+  },
+  {
+    "spoken": "Mi color favorito es el azul.",
+    "expected": "Mi color favorito es el azul.",
+    "reading": "Mi color favorito es el azul.",
+    "english": "My favorite color is blue.",
+    "grammar": "Ser (characteristic), Possessive Adjectives, Definite Articles"
+  },
+  {
+    "spoken": "Hace mucho calor hoy en Monterrey.",
+    "expected": "Hace mucho calor hoy en Monterrey.",
+    "reading": "Hace mucho calor hoy en Monterrey.",
+    "english": "It's very hot today in Monterrey.",
+    "grammar": "Hacer (weather), Adverbs"
+  },
+  {
+    "spoken": "¿A qué hora abre el museo?",
+    "expected": "¿A qué hora abre el museo?",
+    "reading": "¿A qué hora abre el museo?",
+    "english": "What time does the museum open?",
+    "grammar": "Presente de Indicativo (abrir), Interrogatives, Telling Time"
+  },
+  {
+    "spoken": "No entiendo esta palabra en español.",
+    "expected": "No entiendo esta palabra en español.",
+    "reading": "No entiendo esta palabra en español.",
+    "english": "I don't understand this word in Spanish.",
+    "grammar": "Presente de Indicativo (entender), Negation, Demonstrative Adjectives"
+  },
+  {
+    "spoken": "Nos encanta caminar por Coyoacán los domingos.",
+    "expected": "Nos encanta caminar por Coyoacán los domingos.",
+    "reading": "Nos encanta caminar por Coyoacán los domingos.",
+    "english": "We love walking through Coyoacán on Sundays.",
+    "grammar": "Gustar-like Verbs (encantar), Verbo + Infinitivo, Days of the Week"
+  },
+  {
+    "spoken": "Disculpe, ¿dónde hay un baño público?",
+    "expected": "Disculpe, ¿dónde hay un baño público?",
+    "reading": "Disculpe, ¿dónde hay un baño público?",
+    "english": "Excuse me, where is there a public restroom? (formal)",
+    "grammar": "Hay (existence), Interrogatives, Politeness"
+  },
+  {
+    "spoken": "Quiero aprender a bailar salsa.",
+    "expected": "Quiero aprender a bailar salsa.",
+    "reading": "Quiero aprender a bailar salsa.",
+    "english": "I want to learn to dance salsa.",
+    "grammar": "Presente de Indicativo (querer), Verbo + a + Infinitivo"
+  },
+  {
+    "spoken": "Este mole poblano está riquísimo.",
+    "expected": "Este mole poblano está riquísimo.",
+    "reading": "Este mole poblano está riquísimo.",
+    "english": "This mole poblano is delicious.",
+    "grammar": "Estar (state), Demonstrative Adjectives, Superlative Adjectives (-ísimo)"
+  },
+  {
+    "spoken": "Mi abuela prepara un pozole excelente.",
+    "expected": "Mi abuela prepara un pozole excelente.",
+    "reading": "Mi abuela prepara un pozole excelente.",
+    "english": "My grandmother makes an excellent pozole.",
+    "grammar": "Presente de Indicativo (preparar), Possessive Adjectives, Adjectives"
+  },
+  {
+    "spoken": "¿Qué haces en tu tiempo libre?",
+    "expected": "¿Qué haces en tu tiempo libre?",
+    "reading": "¿Qué haces en tu tiempo libre?",
+    "english": "What do you do in your free time?",
+    "grammar": "Presente de Indicativo (hacer), Interrogatives, Possessive Adjectives"
+  },
+  {
+    "spoken": "El mariachi toca música muy alegre.",
+    "expected": "El mariachi toca música muy alegre.",
+    "reading": "El mariachi toca música muy alegre.",
+    "english": "The mariachi plays very cheerful music.",
+    "grammar": "Presente de Indicativo (tocar), Adjectives, Definite Articles"
+  },
+  {
+    "spoken": "Necesito comprar un boleto de autobús para Oaxaca.",
+    "expected": "Necesito comprar un boleto de autobús para Oaxaca.",
+    "reading": "Necesito comprar un boleto de autobús para Oaxaca.",
+    "english": "I need to buy a bus ticket to Oaxaca.",
+    "grammar": "Presente de Indicativo (necesitar), Verbo + Infinitivo, Prepositions"
+  },
+  {
+    "spoken": "La casa de Frida Kahlo es azul.",
+    "expected": "La casa de Frida Kahlo es azul.",
+    "reading": "La casa de Frida Kahlo es azul.",
+    "english": "Frida Kahlo's house is blue.",
+    "grammar": "Ser (characteristic), Possessive 'de', Adjectives"
+  },
+  {
+    "spoken": "¿Vamos por un agua de jamaica?",
+    "expected": "¿Vamos por un agua de jamaica?",
+    "reading": "¿Vamos por un agua de jamaica?",
+    "english": "Shall we go get a hibiscus water?",
+    "grammar": "Presente de Indicativo (ir), Preposition 'por', Interrogatives"
+  },
+  {
+    "spoken": "Estos zapatos son muy cómodos para caminar.",
+    "expected": "Estos zapatos son muy cómodos para caminar.",
+    "reading": "Estos zapatos son muy cómodos para caminar.",
+    "english": "These shoes are very comfortable for walking.",
+    "grammar": "Ser (characteristic), Demonstrative Adjectives, Adjective Agreement"
+  },
+  {
+    "spoken": "Prefiero el café con leche y sin azúcar.",
+    "expected": "Prefiero el café con leche y sin azúcar.",
+    "reading": "Prefiero el café con leche y sin azúcar.",
+    "english": "I prefer coffee with milk and without sugar.",
+    "grammar": "Presente de Indicativo (preferir), Prepositions"
+  },
+  {
+    "spoken": "¿Cómo se dice 'good morning' en español?",
+    "expected": "¿Cómo se dice 'good morning' en español?",
+    "reading": "¿Cómo se dice 'good morning' en español?",
+    "english": "How do you say 'good morning' in Spanish?",
+    "grammar": "Passive/Impersonal 'se', Interrogatives"
+  },
+  {
+    "spoken": "El tren a Teotihuacán sale temprano.",
+    "expected": "El tren a Teotihuacán sale temprano.",
+    "reading": "El tren a Teotihuacán sale temprano.",
+    "english": "The train to Teotihuacan leaves early.",
+    "grammar": "Presente de Indicativo (salir), Prepositions, Adverbs"
+  },
+  {
+    "spoken": "Me duele un poco la cabeza hoy.",
+    "expected": "Me duele un poco la cabeza hoy.",
+    "reading": "Me duele un poco la cabeza hoy.",
+    "english": "My head hurts a little today.",
+    "grammar": "Gustar-like Verbs (doler), Body Parts"
+  },
+  {
+    "spoken": "¿Puedes ayudarme con mi maleta, por favor?",
+    "expected": "¿Puedes ayudarme con mi maleta, por favor?",
+    "reading": "¿Puedes ayudarme con mi maleta, por favor?",
+    "english": "Can you help me with my suitcase, please?",
+    "grammar": "Presente de Indicativo (poder - tú), Verbo + Infinitivo + Pronoun"
+  },
+  {
+    "spoken": "Siempre desayuno chilaquiles los sábados.",
+    "expected": "Siempre desayuno chilaquiles los sábados.",
+    "reading": "Siempre desayuno chilaquiles los sábados.",
+    "english": "I always have chilaquiles for breakfast on Saturdays.",
+    "grammar": "Presente de Indicativo (desayunar), Adverbs of Frequency, Days of the Week"
+  },
+  {
+    "spoken": "¿Qué tal si comemos en ese restaurante?",
+    "expected": "¿Qué tal si comemos en ese restaurante?",
+    "reading": "¿Qué tal si comemos en ese restaurante?",
+    "english": "How about we eat at that restaurant?",
+    "grammar": "Presente de Indicativo (comer), Making Suggestions, Demonstrative Adjectives"
+  },
+  {
+    "spoken": "Esta calle es muy ruidosa por la noche.",
+    "expected": "Esta calle es muy ruidosa por la noche.",
+    "reading": "Esta calle es muy ruidosa por la noche.",
+    "english": "This street is very noisy at night.",
+    "grammar": "Ser (characteristic), Demonstrative Adjectives, Adjective Agreement"
+  },
+  {
+    "spoken": "¿Mande? No escuché bien, ¿puede repetir?",
+    "expected": "¿Mande? No escuché bien, ¿puede repetir?",
+    "reading": "¿Mande? No escuché bien, ¿puede repetir?",
+    "english": "Excuse me? (polite) I didn't hear well, can you repeat? (formal)",
+    "grammar": "Pretérito Indefinido (escuchar - simple past), Presente de Indicativo (poder - usted), Mexican Expression (mande)"
+  },
+  {
+    "spoken": "Los niños juegan en el parque todas las tardes.",
+    "expected": "Los niños juegan en el parque todas las tardes.",
+    "reading": "Los niños juegan en el parque todas las tardes.",
+    "english": "The children play in the park every afternoon.",
+    "grammar": "Presente de Indicativo (jugar), Definite Articles, Adverbs of Frequency"
+  },
+  {
+    "spoken": "Voy a la tienda a comprar leche.",
+    "expected": "Voy a la tienda a comprar leche.",
+    "reading": "Voy a la tienda a comprar leche.",
+    "english": "I'm going to the store to buy milk.",
+    "grammar": "Presente de Indicativo (ir), Preposition 'a' (purpose)"
+  },
+  {
+    "spoken": "¿Cuál es tu comida mexicana favorita?",
+    "expected": "¿Cuál es tu comida mexicana favorita?",
+    "reading": "¿Cuál es tu comida mexicana favorita?",
+    "english": "What is your favorite Mexican food?",
+    "grammar": "Ser (identity), Interrogatives, Possessive Adjectives"
+  },
+  {
+    "spoken": "¡Qué chido coche tienes, amigo!",
+    "expected": "¡Qué chido coche tienes, amigo!",
+    "reading": "¡Qué chido coche tienes, amigo!",
+    "english": "What a cool car you have, friend!",
+    "grammar": "Presente de Indicativo (tener), Exclamations, Mexican Slang (chido)"
+  },
+  {
+    "spoken": "Estamos aprendiendo español en la escuela.",
+    "expected": "Estamos aprendiendo español en la escuela.",
+    "reading": "Estamos aprendiendo español en la escuela.",
+    "english": "We are learning Spanish at school.",
+    "grammar": "Presente Progresivo (estar + gerundio)"
+  },
+  {
+    "spoken": "¿Hay alguna farmacia cerca de aquí?",
+    "expected": "¿Hay alguna farmacia cerca de aquí?",
+    "reading": "¿Hay alguna farmacia cerca de aquí?",
+    "english": "Is there a pharmacy near here?",
+    "grammar": "Hay (existence), Interrogatives, Indefinite Pronouns"
+  },
+  {
+    "spoken": "La película empieza en diez minutos.",
+    "expected": "La película empieza en diez minutos.",
+    "reading": "La película empieza en diez minutos.",
+    "english": "The movie starts in ten minutes.",
+    "grammar": "Presente de Indicativo (empezar), Time Expressions"
+  },
+  {
+    "spoken": "Mi hermano trabaja en una oficina grande.",
+    "expected": "Mi hermano trabaja en una oficina grande.",
+    "reading": "Mi hermano trabaja en una oficina grande.",
+    "english": "My brother works in a big office.",
+    "grammar": "Presente de Indicativo (trabajar), Indefinite Articles, Adjective Agreement"
+  },
+  {
+    "spoken": "Bueno, ¿quién habla por favor?",
+    "expected": "Bueno, ¿quién habla por favor?",
+    "reading": "Bueno, ¿quién habla por favor?",
+    "english": "Hello (on phone), who is speaking please?",
+    "grammar": "Presente de Indicativo (hablar), Interrogatives, Mexican Expression (Bueno for phone)"
+  },
+  {
+    "spoken": "Me encanta el pan dulce mexicano.",
+    "expected": "Me encanta el pan dulce mexicano.",
+    "reading": "Me encanta el pan dulce mexicano.",
+    "english": "I love Mexican sweet bread.",
+    "grammar": "Gustar-like Verbs (encantar), Adjectives"
+  },
+  {
+    "spoken": "¿Podemos sentarnos en esta mesa libre?",
+    "expected": "¿Podemos sentarnos en esta mesa libre?",
+    "reading": "¿Podemos sentarnos en esta mesa libre?",
+    "english": "Can we sit at this free table?",
+    "grammar": "Presente de Indicativo (poder), Reflexive Verbs (sentarse), Demonstrative Adjectives"
+  },
+  {
+    "spoken": "Ellos no comen carne, son vegetarianos.",
+    "expected": "Ellos no comen carne, son vegetarianos.",
+    "reading": "Ellos no comen carne, son vegetarianos.",
+    "english": "They don't eat meat, they are vegetarians.",
+    "grammar": "Presente de Indicativo (comer), Negation, Ser (identity)"
+  },
+  {
+    "spoken": "El clima en Cancún es muy cálido.",
+    "expected": "El clima en Cancún es muy cálido.",
+    "reading": "El clima en Cancún es muy cálido.",
+    "english": "The weather in Cancun is very warm.",
+    "grammar": "Ser (characteristic), Adjectives"
+  },
+  {
+    "spoken": "¿Qué día es hoy? ¿Es martes?",
+    "expected": "¿Qué día es hoy? ¿Es martes?",
+    "reading": "¿Qué día es hoy? ¿Es martes?",
+    "english": "What day is it today? Is it Tuesday?",
+    "grammar": "Ser (time), Interrogatives, Days of the Week"
+  },
+  {
+    "spoken": "Toma este autobús para ir al centro.",
+    "expected": "Toma este autobús para ir al centro.",
+    "reading": "Toma este autobús para ir al centro.",
+    "english": "Take this bus to go downtown.",
+    "grammar": "Imperativo (tú - tomar), Demonstrative Adjectives, Preposition 'para' (purpose)"
+  },
+  {
+    "spoken": "Mi tía vive en un pueblo pequeño.",
+    "expected": "Mi tía vive en un pueblo pequeño.",
+    "reading": "Mi tía vive en un pueblo pequeño.",
+    "english": "My aunt lives in a small town.",
+    "grammar": "Presente de Indicativo (vivir), Indefinite Articles, Adjective Agreement"
+  },
+  {
+    "spoken": "¿Te gusta la música ranchera mexicana?",
+    "expected": "¿Te gusta la música ranchera mexicana?",
+    "reading": "¿Te gusta la música ranchera mexicana?",
+    "english": "Do you like Mexican ranchera music?",
+    "grammar": "Gustar, Interrogatives, Adjectives"
+  },
+  {
+    "spoken": "Este es mi amigo Juan de Guadalajara.",
+    "expected": "Este es mi amigo Juan de Guadalajara.",
+    "reading": "Este es mi amigo Juan de Guadalajara.",
+    "english": "This is my friend Juan from Guadalajara.",
+    "grammar": "Ser (identity), Demonstrative Pronouns, Preposition 'de' (origin)"
+  },
+  {
+    "spoken": "Hay mucha gente en el metro ahora.",
+    "expected": "Hay mucha gente en el metro ahora.",
+    "reading": "Hay mucha gente en el metro ahora.",
+    "english": "There are a lot of people on the subway now.",
+    "grammar": "Hay (existence), Mucho/Poco, Adverbs"
+  },
+  {
+    "spoken": "Abre la ventana, por favor. Hace calor.",
+    "expected": "Abre la ventana, por favor. Hace calor.",
+    "reading": "Abre la ventana, por favor. Hace calor.",
+    "english": "Open the window, please. It's hot.",
+    "grammar": "Imperativo (tú - abrir), Hacer (weather)"
+  },
+  {
+    "spoken": "¿Qué van a hacer ustedes mañana?",
+    "expected": "¿Qué van a hacer ustedes mañana?",
+    "reading": "¿Qué van a hacer ustedes mañana?",
+    "english": "What are you all going to do tomorrow?",
+    "grammar": "Futuro Próximo (ir a + infinitivo), Interrogatives"
+  },
+  {
+    "spoken": "El café de olla es tradicional aquí.",
+    "expected": "El café de olla es tradicional aquí.",
+    "reading": "El café de olla es tradicional aquí.",
+    "english": "Café de olla is traditional here.",
+    "grammar": "Ser (characteristic), Adjectives"
+  },
+  {
+    "spoken": "Leo libros en español para practicar.",
+    "expected": "Leo libros en español para practicar.",
+    "reading": "Leo libros en español para practicar.",
+    "english": "I read books in Spanish to practice.",
+    "grammar": "Presente de Indicativo (leer), Preposition 'para' (purpose)"
+  },
+  {
+    "spoken": "¿Dónde compraste esa camisa tan bonita?",
+    "expected": "¿Dónde compraste esa camisa tan bonita?",
+    "reading": "¿Dónde compraste esa camisa tan bonita?",
+    "english": "Where did you buy that pretty shirt?",
+    "grammar": "Pretérito Indefinido (comprar - tú), Demonstrative Adjectives, Adjectives"
+  },
+  {
+    "spoken": "Estamos muy contentos con nuestro viaje.",
+    "expected": "Estamos muy contentos con nuestro viaje.",
+    "reading": "Estamos muy contentos con nuestro viaje.",
+    "english": "We are very happy with our trip.",
+    "grammar": "Estar (emotion), Adjective Agreement, Possessive Adjectives"
+  },
+  {
+    "spoken": "No puedo ir a la fiesta hoy.",
+    "expected": "No puedo ir a la fiesta hoy.",
+    "reading": "No puedo ir a la fiesta hoy.",
+    "english": "I can't go to the party today.",
+    "grammar": "Presente de Indicativo (poder), Negation, Verbo + Infinitivo"
+  },
+  {
+    "spoken": "¿Hablas inglés o solamente español?",
+    "expected": "¿Hablas inglés o solamente español?",
+    "reading": "¿Hablas inglés o solamente español?",
+    "english": "Do you speak English or only Spanish?",
+    "grammar": "Presente de Indicativo (hablar - tú), Interrogatives, Conjunctions"
+  },
+  {
+    "spoken": "Esta sopa de tortilla está deliciosa.",
+    "expected": "Esta sopa de tortilla está deliciosa.",
+    "reading": "Esta sopa de tortilla está deliciosa.",
+    "english": "This tortilla soup is delicious.",
+    "grammar": "Estar (state), Demonstrative Adjectives, Adjectives"
+  },
+  {
+    "spoken": "Necesito ayuda con este ejercicio, por favor.",
+    "expected": "Necesito ayuda con este ejercicio, por favor.",
+    "reading": "Necesito ayuda con este ejercicio, por favor.",
+    "english": "I need help with this exercise, please.",
+    "grammar": "Presente de Indicativo (necesitar), Demonstrative Adjectives"
+  },
+  {
+    "spoken": "Mira esas artesanías, ¡qué bonitas son!",
+    "expected": "Mira esas artesanías, ¡qué bonitas son!",
+    "reading": "Mira esas artesanías, ¡qué bonitas son!",
+    "english": "Look at those crafts, how pretty they are!",
+    "grammar": "Imperativo (tú - mirar), Demonstrative Adjectives, Ser (characteristic), Exclamations"
+  },
+  {
+    "spoken": "¿A qué te dedicas? ¿Eres doctor?",
+    "expected": "¿A qué te dedicas? ¿Eres doctor?",
+    "reading": "¿A qué te dedicas? ¿Eres doctor?",
+    "english": "What do you do for a living? Are you a doctor?",
+    "grammar": "Reflexive Verbs (dedicarse), Ser (profession), Interrogatives"
+  },
+  {
+    "spoken": "Siempre visito a mis abuelos los fines de semana.",
+    "expected": "Siempre visito a mis abuelos los fines de semana.",
+    "reading": "Siempre visito a mis abuelos los fines de semana.",
+    "english": "I always visit my grandparents on the weekends.",
+    "grammar": "Presente de Indicativo (visitar), Personal 'a', Adverbs of Frequency"
+  },
+  {
+    "spoken": "Perdón, ¿sabe usted dónde está el banco?",
+    "expected": "Perdón, ¿sabe usted dónde está el banco?",
+    "reading": "Perdón, ¿sabe usted dónde está el banco?",
+    "english": "Excuse me, do you know where the bank is? (formal)",
+    "grammar": "Presente de Indicativo (saber - usted), Estar (location), Interrogatives, Politeness"
+  },
+  {
+    "spoken": "Queremos probar el chocolate de Oaxaca.",
+    "expected": "Queremos probar el chocolate de Oaxaca.",
+    "reading": "Queremos probar el chocolate de Oaxaca.",
+    "english": "We want to try the chocolate from Oaxaca.",
+    "grammar": "Presente de Indicativo (querer), Verbo + Infinitivo, Preposition 'de'"
+  },
+  {
+    "spoken": "El coche de mi papá es rojo.",
+    "expected": "El coche de mi papá es rojo.",
+    "reading": "El coche de mi papá es rojo.",
+    "english": "My dad's car is red.",
+    "grammar": "Ser (characteristic), Possessive 'de', Adjectives"
+  },
+  {
+    "spoken": "¿Por qué estás aprendiendo español?",
+    "expected": "¿Por qué estás aprendiendo español?",
+    "reading": "¿Por qué estás aprendiendo español?",
+    "english": "Why are you learning Spanish?",
+    "grammar": "Presente Progresivo (estar + gerundio), Interrogatives"
+  },
+  {
+    "spoken": "Me pongo una chamarra porque hace frío.",
+    "expected": "Me pongo una chamarra porque hace frío.",
+    "reading": "Me pongo una chamarra porque hace frío.",
+    "english": "I put on a jacket because it's cold.",
+    "grammar": "Reflexive Verbs (ponerse), Hacer (weather), Conjunctions"
+  },
+  {
+    "spoken": "Ellos viven en un departamento muy moderno.",
+    "expected": "Ellos viven en un departamento muy moderno.",
+    "reading": "Ellos viven en un departamento muy moderno.",
+    "english": "They live in a very modern apartment.",
+    "grammar": "Presente de Indicativo (vivir), Indefinite Articles, Adjective Agreement"
+  },
+  {
+    "spoken": "Cierra la puerta cuando salgas, por favor.",
+    "expected": "Cierra la puerta cuando salgas, por favor.",
+    "reading": "Cierra la puerta cuando salgas, por favor.",
+    "english": "Close the door when you leave, please.",
+    "grammar": "Imperativo (tú - cerrar), Basic Subjunctive Trigger (cuando + future action)"
+  },
+  {
+    "spoken": "¿Cuántos años tienes tú?",
+    "expected": "¿Cuántos años tienes tú?",
+    "reading": "¿Cuántos años tienes tú?",
+    "english": "How old are you?",
+    "grammar": "Presente de Indicativo (tener), Interrogatives"
+  },
+  {
+    "spoken": "Este mercado tiene frutas y verduras frescas.",
+    "expected": "Este mercado tiene frutas y verduras frescas.",
+    "reading": "Este mercado tiene frutas y verduras frescas.",
+    "english": "This market has fresh fruits and vegetables.",
+    "grammar": "Presente de Indicativo (tener), Demonstrative Adjectives, Adjective Agreement"
+  },
+  {
+    "spoken": "Voy a viajar a México el próximo mes.",
+    "expected": "Voy a viajar a México el próximo mes.",
+    "reading": "Voy a viajar a México el próximo mes.",
+    "english": "I am going to travel to Mexico next month.",
+    "grammar": "Futuro Próximo (ir a + infinitivo), Time Expressions"
+  },
+  {
+    "spoken": "Mi platillo favorito son las enchiladas verdes.",
+    "expected": "Mi platillo favorito son las enchiladas verdes.",
+    "reading": "Mi platillo favorito son las enchiladas verdes.",
+    "english": "My favorite dish is green enchiladas.",
+    "grammar": "Ser (identity), Plural Nouns, Adjective Agreement"
+  },
+  {
+    "spoken": "¿Puedes hablar más alto? No te oigo.",
+    "expected": "¿Puedes hablar más alto? No te oigo.",
+    "reading": "¿Puedes hablar más alto? No te oigo.",
+    "english": "Can you speak louder? I can't hear you.",
+    "grammar": "Presente de Indicativo (poder, oír), Adverbs, Direct Object Pronouns"
+  },
+  {
+    "spoken": "Nosotros somos de Estados Unidos.",
+    "expected": "Nosotros somos de Estados Unidos.",
+    "reading": "Nosotros somos de Estados Unidos.",
+    "english": "We are from the United States.",
+    "grammar": "Ser (origin), Pronouns"
+  },
+  {
+    "spoken": "¿Qué hora es? Son las tres y media.",
+    "expected": "¿Qué hora es? Son las tres y media.",
+    "reading": "¿Qué hora es? Son las tres y media.",
+    "english": "What time is it? It's three thirty.",
+    "grammar": "Ser (time), Interrogatives, Telling Time"
+  },
+  {
+    "spoken": "Lava los trastes después de comer, por favor.",
+    "expected": "Lava los trastes después de comer, por favor.",
+    "reading": "Lava los trastes después de comer, por favor.",
+    "english": "Wash the dishes after eating, please.",
+    "grammar": "Imperativo (tú - lavar), Vocabulary (trastes - dishes)"
+  },
+  {
+    "spoken": "El Museo de Antropología es muy interesante.",
+    "expected": "El Museo de Antropología es muy interesante.",
+    "reading": "El Museo de Antropología es muy interesante.",
+    "english": "The Museum of Anthropology is very interesting.",
+    "grammar": "Ser (characteristic), Adjectives"
+  },
+  {
+    "spoken": "¿Necesitas algo de la tienda?",
+    "expected": "¿Necesitas algo de la tienda?",
+    "reading": "¿Necesitas algo de la tienda?",
+    "english": "Do you need anything from the store?",
+    "grammar": "Presente de Indicativo (necesitar - tú), Indefinite Pronouns"
+  },
+  {
+    "spoken": "Mi mamá cocina muy bien la comida mexicana.",
+    "expected": "Mi mamá cocina muy bien la comida mexicana.",
+    "reading": "Mi mamá cocina muy bien la comida mexicana.",
+    "english": "My mom cooks Mexican food very well.",
+    "grammar": "Presente de Indicativo (cocinar), Adverbs"
+  },
+  {
+    "spoken": "¿Cuándo es tu cumpleaños?",
+    "expected": "¿Cuándo es tu cumpleaños?",
+    "reading": "¿Cuándo es tu cumpleaños?",
+    "english": "When is your birthday?",
+    "grammar": "Ser (time), Interrogatives, Possessive Adjectives"
+  },
+  {
+    "spoken": "El agua de horchata está muy refrescante.",
+    "expected": "El agua de horchata está muy refrescante.",
+    "reading": "El agua de horchata está muy refrescante.",
+    "english": "The horchata water is very refreshing.",
+    "grammar": "Estar (state), Adjectives"
+  },
+  {
+    "spoken": "Pide la cuenta al mesero, por favor.",
+    "expected": "Pide la cuenta al mesero, por favor.",
+    "reading": "Pide la cuenta al mesero, por favor.",
+    "english": "Ask the waiter for the check, please.",
+    "grammar": "Imperativo (tú - pedir), Contraction 'al'"
+  },
+  {
+    "spoken": "México tiene playas muy hermosas.",
+    "expected": "México tiene playas muy hermosas.",
+    "reading": "México tiene playas muy hermosas.",
+    "english": "Mexico has very beautiful beaches.",
+    "grammar": "Presente de Indicativo (tener), Adjective Agreement"
+  }
+]
